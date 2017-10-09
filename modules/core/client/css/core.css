@@ -36,3 +36,8 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+.page-header h1{
+  text-align: right;
+  text-transform: uppercase;
+}
