@@ -44,6 +44,7 @@ PAGE HEADER
 .page-header h1{
   text-align: right;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 /********************
