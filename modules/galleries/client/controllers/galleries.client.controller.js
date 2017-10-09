@@ -6,7 +6,7 @@
     .module('galleries')
     .controller('GalleriesController', GalleriesController);
 
-  GalleriesController.$inject = ['$scope', '$state', '$window', 'Authentication', 'galleryResolve'];
+  GalleriesController.$inject = ['$scope', '$state', '$window', 'Authentication'];
 
   function GalleriesController ($scope, $state, $window, Authentication, gallery) {
     var vm = this;
@@ -49,5 +49,11 @@
         vm.error = res.data.message;
       }
     }
+
+    ///////////////
+
+    $scope.albumName = 'Album Name';
+
+
   }
 }());
