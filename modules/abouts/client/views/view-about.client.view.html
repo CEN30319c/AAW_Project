@@ -1,28 +1,125 @@
-<section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <p>ABOUT AAW</p>
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.about.name"></h1>-->
-  <!--</div>-->
-  <!--<div class="pull-right"-->
-       <!--ng-show="vm.about.isCurrentUserOwner">-->
-    <!--<a class="btn btn-primary"-->
-       <!--ui-sref="abouts.edit({ aboutId: vm.about._id })">-->
-      <!--<i class="glyphicon glyphicon-edit"></i>-->
-    <!--</a>-->
-    <!--<a class="btn btn-primary" ng-click="vm.remove()">-->
-      <!--<i class="glyphicon glyphicon-trash"></i>-->
-    <!--</a>-->
-  <!--</div>-->
-  <!--<small>-->
-    <!--<em class="text-muted">-->
-      <!--Posted on-->
-      <!--<span ng-bind="vm.about.created | date:'mediumDate'"></span>-->
-      <!--by-->
-      <!--<span ng-if="vm.about.user"-->
-            <!--ng-bind="vm.about.user.displayName"></span>-->
-      <!--<span ng-if="!vm.about.user">Deleted User</span>-->
-    <!--</em>-->
-  <!--</small>-->
-  <!--<p class="lead" ng-bind="vm.about.content"></p>-->
+<section ng-controller="AboutsController">
+
+  <div id="wrapper">
+  
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+          <nav id="spy">
+              <ul class="sidebar-nav nav">
+                  <li class="sidebar-brand">
+                      <a href="#about"><span class="fa fa-home solo">About</span></a>
+                  </li>
+                  <li>
+                      <a href="#mission">
+                          <span class="fa fa-anchor solo">Mission</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#history">
+                          <span class="fa fa-anchor solo">History</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#awards">
+                          <span class="fa fa-anchor solo">Awards</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#people">
+                          <span class="fa fa-anchor solo">People</span>
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+          <div class="page-content inset" data-spy="scroll" data-target="#spy">
+              <div class="row">
+
+                      <div class="jumbotron text-center"  id="about">
+                          <h1>About Us</h1>
+                          <p>Learn more about the Association of Academic Women below by reading about our mission, history, awards, and people.</p>
+                          <p>
+                      </div>
+  
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12 well" id="mission">
+                      <h2>Mission</h2>
+                      <p>The Association for Academic Women (AAW) connects professional women throughout
+                        the University of Florida community to enable personal growth, relationship building, career
+                        development and lifelong learning - and to have some fun!!</p>
+                        <p> We provide valuable networking and mentoring opportunities through special programs, social
+                        events, and monthly networking luncheons; and act as an advisory group to higher administration
+                        by providing valuable information on UF women's needs and desires. Our organization fosters career
+                        and personal growth for UF women in all faculty, administrative, and professional roles by providing
+                        an interdisciplinary, university-wide platform and encouraging the building and strengthening
+                        of relationships among our members on and off campus. </p>
+                  </div>
+                  <div class="col-md-12 well" id="history">
+                      <h2>History</h2>
+                      <p>Since its early beginnings, the Association for Academic Women (AAW) has been known for its rich history. What began as the Committee on the Status of Women, identifying, advocating for and increasing awareness of the needed changes in the University environment in order to enhance opportunities for women, evolved to become the Association for Academic Women (AAW). Today, the organization is dedicated to providing a forum for topics of interest to women, serving as an advisory group to the University Administration and supporting the professional development of faculty and administrative staff campus-wide.</p>
+                  </div>
+                  <div class="col-md-12 well" id="awards">
+                      <h2>Awards</h2>
+                      <h3>Madelyn Lockhart Dissertation Fellowship Award</h3>
+                      <p> The Association for Academic Women (AAW) at the University of Florida established the Madelyn Lockhart Dissertation Fellowship in 1996 to honor an outstanding graduate student. One fellowship in an amount up to $2,000 will be awarded to assist in the dissertation phase of the doctoral degree. The recipient must be enrolled in dissertation credits for at least one semester (for example summer 2016 or fall 2016 and/or spring, 2017) after s/he is selected to receive the fellowship.</p>
+                      <button type="button" class="btn btn-primary">More Information</button>
+                      <div id="space"></div>
+
+                      <h3>Woman of Distinction Award</h3>
+                      <p>This award is given to a University of Florida faculty member or administrative/professional woman. You must be a member of AAW to submit a nomination</p>
+                      <button type="button" class="btn btn-primary">More Information</button>
+                  </div>
+                  <div class="row" id="people">
+                    <div class="col-md-12 well">
+                        <h2>People</h2>
+                        <h3> <b>President</b> Ayse Gunduz</h3>
+                        <!-- picture of president and information about her -->
+                        <div class="col-md-6">
+                          <!-- picture -->
+                        </div>
+                        <div class="col-md-6">
+                          <!-- information -->
+                        </div>
+
+                        <h3> <b>President-Elect</b> Naz Erenguc</h3>
+                        <!-- picture of president-elect and information about her -->
+                        <div class="col-md-6">
+                            <!-- picture -->
+                          </div>
+                          <div class="col-md-6">
+                            <!-- information -->
+                          </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- profiles button will link to the created profiles -->
+                        <button type="button" class="btn btn-primary">Profiles</button>
+                        </div>
+                    <div class="col-lg-6">
+                        <!-- join button will link to our join page -->
+                        <button type="button" class="btn btn-primary" onclick="location.href = 'joins';">Join</button>
+                    </div>
+                  </div>
+              </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
 </section>
+
+<script>
+    $(document).ready(function(){
+   $("p").click(function(){
+       $(this).hide();
+   });
+ });
+</script>
