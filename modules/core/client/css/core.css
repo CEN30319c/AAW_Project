@@ -63,3 +63,22 @@ GALLERY
   text-transform: uppercase;
   margin-top: 15px;
 }
+.album-title{
+  font-weight: 700;
+  font-size: 3em;
+
+}
+.album-name{
+  font-weight: 300;
+}
+.album-date{
+  font-weight: 300;
+}
+
+.album-content h4{
+  font-weight: 400;
+  font-size: 1.25em;
+  text-decoration: none;
+  line-height: 45px;
+  margin-top: 15px;
+}
