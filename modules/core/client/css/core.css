@@ -37,7 +37,28 @@ a:hover .header-profile-image {
   display: inline;
 }
 
+/********************
+PAGE HEADER
+********************/
+
 .page-header h1{
   text-align: right;
   text-transform: uppercase;
+}
+
+/********************
+GALLERY
+********************/
+
+.album-cover-image{
+  height: 200px;
+  margin: 0px 5px;
+  background: #6B9AC3;
+}
+
+.album-item p {
+  color: #000000;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 15px;
 }
