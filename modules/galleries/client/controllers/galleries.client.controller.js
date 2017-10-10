@@ -55,6 +55,6 @@
     $scope.albumName = 'Album Name';
     $scope.albumDate = 'December 31, 2017';
     $scope.albumDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit hendrerit diam, at condimentum sem lacinia at. Curabitur tincidunt malesuada sem non venenatis. Maecenas pulvinar.';
-
+    
   }
 }());

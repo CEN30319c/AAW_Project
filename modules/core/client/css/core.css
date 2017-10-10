@@ -53,7 +53,7 @@ GALLERY
 
 .album-cover-image{
   height: 200px;
-  margin: 0px 5px;
+  margin: 5px 0;
   background: #6B9AC3;
 }
 
@@ -63,22 +63,38 @@ GALLERY
   text-transform: uppercase;
   margin-top: 15px;
 }
+
 .album-title{
   font-weight: 700;
   font-size: 3em;
-
 }
+
 .album-name{
   font-weight: 300;
 }
+
 .album-date{
   font-weight: 300;
 }
 
 .album-content h4{
   font-weight: 400;
-  font-size: 1.25em;
+  font-size: 1.15em;
   text-decoration: none;
   line-height: 45px;
+  margin-top: 35px;
+}
+
+.gallery-container, .photos-container{
+  margin: 45px 0;
+}
+
+.photos-row{
   margin-top: 15px;
+}
+
+.photo-image{
+  height: 200px;
+  margin: 5px 0;
+  background: #E28F41;
 }
