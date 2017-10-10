@@ -1,16 +1,32 @@
 <section ng-controller="NewsController">
 <div>
-  <h3>Announcements</h3>
+  <h3>Announcements - Admin</h3>
   <div class="jumbotron" style="height: 400px; overflow-y: scroll;">
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="ann in announcements">
         <p>Title: {{ann.title}}</p>
+        <div class="form-group" ng-show="isEdit && $index == editIndex">
+          <label for="exampleFormControlInput1">Title</label>
+          <input ng-model="editTitle" type="text" class="form-control" placeholder="Title">
+        </div>
+        <button style="position:absolute; right:10px; top:50px;"type="button" class="btn btn-primary" ng-click="editPost($index)" ng-show="!isEdit || $index != editIndex">Edit</button>
         <p>By: {{ann.author}}</p>
+        <div class="form-group" ng-show="isEdit && $index == editIndex">
+          <label for="exampleFormControlInput1">Author</label>
+          <input ng-model="editAuthor" type="text" class="form-control" placeholder="Title">
+        </div>
         <p>{{ann.announcement}}</p>
+        <div class="form-group" ng-show="isEdit && $index == editIndex">
+          <label for="exampleFormControlTextarea1">Announcement</label>
+          <textarea ng-model="editText" class="form-control" rows="3"></textarea>
+        </div>
+        {{editTitle}}
+        <button type="button" class="btn btn-primary" ng-click="cancelEdit()" ng-show="isEdit && $index == editIndex">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="rePost()" ng-show="isEdit && $index == editIndex">Re-Post</button>
+
       </li>
     </ul>
   </div>
-
 
   <form>
   <div class="form-group">
@@ -28,5 +44,9 @@
 </form>
 
 <button type="button" class="btn btn-primary" ng-click="postNews()">Post</button>
+
+
+
+
 
 </section>
