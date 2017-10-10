@@ -58,7 +58,7 @@
 //          pageTitle: 'Gallery {{ galleryResolve.name }}'
 //        }
 //      });
-  }
+  // }
 
  // getGallery.$inject = ['$stateParams', 'GalleriesService'];
  //
@@ -72,5 +72,5 @@
  //
  // function newGallery(GalleriesService) {
  //   return new GalleriesService();
- //  }
+  }
 }());
