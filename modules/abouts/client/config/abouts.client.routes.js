@@ -13,8 +13,20 @@
         // abstract: true,
         url: '/abouts',
         //template: '<ui-view/>'
-        templateUrl: 'modules/abouts/client/views/view-about.client.view.html'
-      });
+        templateUrl: 'modules/abouts/client/views/view-about.client.view.html',
+        controller: 'AboutsController',
+        
+      })
+      
+      .state('abouts.madelynaward', {
+         url: '/madelynaward',
+         templateUrl: 'modules/abouts/client/views/madelynaward-abouts.client.view.html'
+      })
+      
+      .state('abouts.distinction-award', {
+        url: '/distinction-award',
+        templateUrl: 'modules/abouts/client/views/distinction-award-abouts.client.view.html'
+     });
       // .state('abouts.list', {
       //   url: '',
       //   templateUrl: 'modules/abouts/client/views/list-abouts.client.view.html',

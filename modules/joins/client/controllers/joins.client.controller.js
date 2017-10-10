@@ -2,13 +2,11 @@
   'use strict';
 
   // Joins controller
-  angular
-    .module('joins')
-    .controller('JoinsController', JoinsController);
+  angular.module('joins').controller('JoinsController', JoinsController);
 
-  JoinsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'joinResolve'];
+  JoinsController.$inject = ['$rootScope', '$scope', '$state', '$window', '$modal', 'Authentication'];
 
-  function JoinsController ($scope, $state, $window, Authentication, join) {
+  function JoinsController ($rootScope, $scope, $state, $window, $modal, Authentication, join) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,6 +15,42 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+
+    //$scope variables prototypes
+    $scope.myInterval = 3000;
+    $scope.slides = [
+      {
+        image: 'modules/core/client/img/pictures/1.jpg',
+        text: 'Recognition and Talent'
+      },
+      {
+        image: 'modules/core/client/img/pictures/2.jpg',
+        text: 'Hard Work'
+      },
+      {
+        image: 'modules/core/client/img/pictures/3.jpg',
+        text: 'Having Fun'
+      },
+      {
+        image: 'modules/core/client/img/pictures/4.jpg',
+        text: 'Panels and discussion'
+      }
+    ];
+
+    $scope.openModal = function () {
+      $modal.open({
+        templateUrl:'modules/joins/client/views/modal-join.client.view.html',
+        controller: 'ModalController'
+
+      })
+      .result.then($scope.goToPay = function() {
+          // alert('closed');
+          $state.go('modules/joins/client/views/payment-join.client.view.html');
+      }, function() {
+          // alert('canceled');
+      });
+    };
 
     // Remove existing Join
     function remove() {
@@ -48,6 +82,11 @@
       function errorCallback(res) {
         vm.error = res.data.message;
       }
+
     }
   }
 }());
+
+angular.module('joins').controller('ModalController', ['$scope', function($scope) {
+
+}]);

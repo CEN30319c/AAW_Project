@@ -12,7 +12,7 @@
       .state('calendars', {
         // abstract: false,
         url: '/calendars',
-        templateURL: 'modules/calendars/client/views/view-calendar.client.view.html'
+        templateUrl: 'modules/calendars/client/views/view-calendar.client.view.html'
       })
       .state('calendars.list', {
         url: '',
