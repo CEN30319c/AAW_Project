@@ -15,18 +15,5 @@
       // type: 'dropdown',
       roles: ['*']
     });
-
-    // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'galleries', {
-      title: 'List Galleries',
-      state: 'galleries.list'
-    });
-
-    // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'galleries', {
-      title: 'Create Gallery',
-      state: 'galleries.create',
-      roles: ['admin']
-    });
   }
 }());
