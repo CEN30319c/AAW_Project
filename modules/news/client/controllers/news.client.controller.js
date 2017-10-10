@@ -6,9 +6,9 @@
     .module('news')
     .controller('NewsController', NewsController);
 
-  NewsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'newsResolve'];
+  NewsController.$inject = ['$scope', '$state', '$window','$http', 'Authentication'];
 
-  function NewsController ($scope, $state, $window, Authentication, news) {
+  function NewsController ($scope, $state, $window, $http, Authentication, news) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,6 +17,36 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    $scope.title = '';
+    $scope.author = '';
+    $scope.text = '';
+    $scope.announcements = [{title:"FAKE NEWS", author:"ME", announcement:"BLAH BLAH BLAH"}];
+
+    $scope.postNews = function() {
+
+      var ann = {
+        title: $scope.title,
+        author: $scope.author,
+        announcement: $scope.text
+      };
+
+      $scope.title = '';
+      $scope.author = '';
+      $scope.text = '';
+
+      $scope.announcements.push(ann);
+
+      // $http.post('/api/news', ann).then(function(data) {
+      //   console.log(data.data.success);
+      //   console.log(data.data.message);
+      // });
+
+
+
+      console.log(ann);
+
+    }
 
     // Remove existing News
     function remove() {
