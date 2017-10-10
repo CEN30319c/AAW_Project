@@ -12,7 +12,7 @@
       .state('galleries', {
         // abstract: true,
         url: '/galleries',
-        template: 'modules/galleries/client/views/form-gallery.client.view.html'
+        templateUrl: 'modules/galleries/client/views/form-gallery.client.view.html'
       })
       .state('galleries.list', {
         url: '',
