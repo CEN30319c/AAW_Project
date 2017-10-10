@@ -9,7 +9,8 @@
           <label for="exampleFormControlInput1">Title</label>
           <input ng-model="editTitle" type="text" class="form-control" placeholder="Title">
         </div>
-        <button style="position:absolute; right:10px; top:50px;"type="button" class="btn btn-primary" ng-click="editPost($index)" ng-show="!isEdit || $index != editIndex">Edit</button>
+        <button style="position:absolute; right:10px; top:35px;" type="button" class="btn btn-primary" ng-click="editPost($index)" ng-show="!isEdit || $index != editIndex">Edit</button>
+        <button style="position:absolute; right:10px; top:85px;" type="button" class="btn btn-danger" ng-click="deletePost($index)">Delete</button>
         <p>By: {{ann.author}}</p>
         <div class="form-group" ng-show="isEdit && $index == editIndex">
           <label for="exampleFormControlInput1">Author</label>
@@ -23,7 +24,6 @@
         {{editTitle}}
         <button type="button" class="btn btn-primary" ng-click="cancelEdit()" ng-show="isEdit && $index == editIndex">Cancel</button>
         <button type="button" class="btn btn-primary" ng-click="rePost()" ng-show="isEdit && $index == editIndex">Re-Post</button>
-
       </li>
     </ul>
   </div>

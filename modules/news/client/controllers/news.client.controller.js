@@ -88,6 +88,10 @@
 
     }
 
+    $scope.deletePost = function(index) {
+      $scope.announcements.splice(index);
+    }
+
     $scope.editPost = function(index) {
       console.log(index);
       $scope.isEdit = true;
