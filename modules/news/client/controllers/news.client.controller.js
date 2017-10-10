@@ -21,7 +21,7 @@
     $scope.title = '';
     $scope.author = '';
     $scope.text = '';
-    $scope.announcements = [{title:"FAKE NEWS", author:"ME", announcement:"BLAH BLAH BLAH"}];
+    $scope.announcements = [{title:"TEST", author:"ME", announcement:"BLAH BLAH BLAH"}];
 
     $scope.postNews = function() {
 
