@@ -1,4 +1,41 @@
-.content {
+#whoweare {
+  width: 500px;
+  padding: 25px;
+  margin: 25px;
+}
+
+/*#announcementtext {
+    margin: 50px;
+}
+
+#announcementtext2 {
+    margin: 50px;
+}
+
+#announcementtext3 {
+    margin: 50px;
+}*/
+
+#event {
+  margin: 50px;
+}
+
+#date {
+  display: inline;
+}
+
+#eventtext {
+  display: inline;
+}
+
+#inner {
+  width: 50%;
+  margin: 0 auto;
+}
+
+
+
+/*.content {
   margin-top: 50px;
 }
 
@@ -35,4 +72,4 @@ a:hover .header-profile-image {
 }
 .has-error .help-inline.error-text {
   display: inline;
-}
+}*/
