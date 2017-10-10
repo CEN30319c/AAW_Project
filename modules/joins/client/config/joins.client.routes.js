@@ -13,7 +13,8 @@
         // abstract: false,
         url: '/joins',
         controller: 'JoinsController',
-        templateUrl: 'modules/joins/client/views/view-join.client.view.html'
+        templateUrl: 'modules/joins/client/views/view-join.client.view.html',
+        controllerAs: 'vm'
       });
   //     .state('joins.list', {
   //       url: '',
