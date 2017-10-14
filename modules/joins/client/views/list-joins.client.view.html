@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Joins</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="join in vm.joins"
+       ui-sref="joins.view({ joinId: join._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="join.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="join.user" ng-bind="join.user.displayName"></span>
+        <span ng-if="!join.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="join.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.joins.$resolved && !vm.joins.length">
+    No Joins yet, why don't you <a ui-sref="joins.create">create one</a>?
+  </div>
+</section>
