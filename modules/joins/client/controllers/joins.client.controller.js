@@ -4,9 +4,9 @@
   // Joins controller
   angular.module('joins').controller('JoinsController', JoinsController);
 
-  JoinsController.$inject = ['$rootScope', '$scope', '$state', '$window', '$modal', 'Authentication'];
+  JoinsController.$inject = ['$rootScope', '$scope', '$state', '$window', '$modal', '$location', 'Authentication'];
 
-  function JoinsController ($rootScope, $scope, $state, $window, $modal, Authentication, join) {
+  function JoinsController ($rootScope, $scope, $state, $window, $modal, $location, Authentication, join) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -34,9 +34,20 @@
       },
       {
         image: 'modules/core/client/img/pictures/4.jpg',
-        text: 'Panels and discussion'
+        text: 'Panels and Discussion'
       }
     ];
+
+    $scope.goToPay = function () {
+        //Redirecting to client's current payment page
+      var url = 'https://squareup.com/store/UFLAAW';
+      $window.open(url);
+
+    };
+
+    $scope.cancelPayment = function () {
+        $state.go('joins');
+    };
 
     $scope.openModal = function () {
       $modal.open({
@@ -44,11 +55,21 @@
         controller: 'ModalController'
 
       })
-      .result.then($scope.goToPay = function() {
+      .result.then(function() {
           // alert('closed');
-          $state.go('modules/joins/client/views/payment-join.client.view.html');
+        console.log('Save and go to payment page');
+          //After I saved the info in admin side, I want to redirect to payment html
+        $state.go('payment');
+
+          //TODO
+          //Submit application button clicked
+          //Save inputs and text area info into Admin pending requests!
+          //Find a way of how admin can verify payment for a submission
+
+
       }, function() {
           // alert('canceled');
+
       });
     };
 

@@ -15,7 +15,13 @@
         controller: 'JoinsController',
         templateUrl: 'modules/joins/client/views/view-join.client.view.html',
         controllerAs: 'vm'
+      })
+      .state('payment', {
+        url: '/payment',
+        controller: 'JoinsController',
+        templateUrl: 'modules/joins/client/views/payment-join.client.view.html'
       });
+
   //     .state('joins.list', {
   //       url: '',
   //       templateUrl: 'modules/joins/client/views/list-joins.client.view.html',
