@@ -6,7 +6,7 @@
 
   JoinsController.$inject = ['$rootScope', '$scope', '$state', '$window', '$modal', '$location', 'Authentication'];
 
-  function JoinsController ($rootScope, $scope, $state, $window, $modal, $location, Authentication, join) {
+  function JoinsController ($rootScope, $scope, $state, $window, $modal, Authentication, join) {
     var vm = this;
 
     vm.authentication = Authentication;
