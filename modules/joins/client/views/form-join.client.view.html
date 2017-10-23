@@ -1,5 +1,31 @@
+<!--<section>-->
+  <!--<div class="page-header">-->
+    <!--<h1>{{vm.join._id ? 'Edit Join' : 'New Join'}}</h1>-->
+  <!--</div>-->
+  <!--<div class="col-md-12">-->
+    <!--<form name="vm.form.joinForm" class="form-horizontal" ng-submit="vm.save(vm.form.joinForm.$valid)" novalidate>-->
+      <!--<fieldset>-->
+        <!--<div class="form-group" show-errors>-->
+          <!--<label class="control-label" for="name">Name</label>-->
+          <!--<input name="name" type="text" ng-model="vm.join.name" id="name" class="form-control" placeholder="Name" required>-->
+          <!--<div ng-messages="vm.form.joinForm.name.$error" role="alert">-->
+            <!--<p class="help-block error-text" ng-message="required">Join name is required.</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<button type="submit" class="btn btn-default">{{vm.join._id ? 'Update' : 'Create'}}</button>-->
+        <!--</div>-->
+        <!--<div ng-show="vm.error" class="text-danger">-->
+          <!--<strong ng-bind="vm.error"></strong>-->
+        <!--</div>-->
+      <!--</fieldset>-->
+    <!--</form>-->
+  <!--</div>-->
+<!--</section>-->
+
+
 <section>
-  <div class="page-header">
+  <div class="modal-header">
     <h1>{{vm.join._id ? 'Edit Join' : 'New Join'}}</h1>
   </div>
   <div class="col-md-12">
@@ -12,13 +38,19 @@
             <p class="help-block error-text" ng-message="required">Join name is required.</p>
           </div>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.join._id ? 'Update' : 'Create'}}</button>
-        </div>
+        <!--<div class="modal-footer">-->
+          <button type="submit" class="btn btn-default" ng-click="$close()">{{vm.join._id ? 'Update' : 'Create'}}</button>
+        <!--</div>-->
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
         </div>
       </fieldset>
     </form>
   </div>
+
+  <!--&lt;!&ndash;<div class="modal-footer">&ndash;&gt;-->
+  <!--&lt;!&ndash;<button type="submit" class="btn btn-default" ng-click="$close()">{{vm.join._id ? 'Update' : 'Create'}}</button>&ndash;&gt;-->
+
+  <!--&lt;!&ndash;&lt;!&ndash;<button type="button" class="btn btn-primary" ng-click="$close()">Save</button>&ndash;&gt;&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
 </section>
