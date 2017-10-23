@@ -1,0 +1,114 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.pendingrequet._id ? 'Edit Pendingrequet' : 'New Pending Requet'}}</h1>
+  </div>
+  <div class="col-md-12">
+
+    <h1><b>Small Steps, Lead to Big Changes</b></h1>
+    <div id="carousel">
+      <div>
+        <carousel interval="myInterval">
+          <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+            <div class="carousel-caption">
+              <h4>{{slide.text}}</h4>
+            </div>
+          </slide>
+        </carousel>
+      </div>
+    </div>
+
+
+    <div class="rect">
+      <div class="col-md-4 col-xs-6 box">
+        <h3>We strive to: </h3>
+        <ul style="list-style-type:circle">
+          <li>"Empower UF women for the utmost success"</li>
+          <li>"Foster career and personal growth for UF women in all roles"</li>
+          <li>"Encourage relationship building on and off campus"</li>
+          <li>"Connect professional women throughout the University of Florida community"</li>
+          <li>"Have some fun!"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rect">
+      <div class="col-md-4 col-xs-6 box">
+        <h3>We support! </h3>
+        <ul style="list-style-type:circle">
+          <li>Each year our membership fees support the Madelyn Lockhart Dissertation Fellowship
+            in concert with the AAW Emerging Scholar Program honoring eligible young women who are
+            completing their dissertations in their chosen fields of study.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rect">
+      <div class="col-md-4 col-xs-6 box">
+        <h3>Annual Fees</h3>
+        <p>$45.00</p>
+        <p>Used to fund fellowships for female UF doctoral students.</p>
+      </div>
+    </div>
+
+    <div class="rect">
+      <div class="col-md-4 col-xs-6 box">
+        <h3><i>Ready to Become a Member?</i></h3>
+        <p>Click on the link below to complete your membership application</p>
+        <button type="button" class="btn btn-link" ng-click="showme=!showme">Complete Membership Application</button>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="col-md-12" ng-show="showme">
+    <form name="vm.form.pendingrequetForm" class="form-horizontal" ng-submit="vm.save(vm.form.pendingrequetForm.$valid)" novalidate>
+      <fieldset>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.pendingrequet.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.pendingrequetForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Name is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="email">Email</label>
+          <input name="name" type="email" ng-model="vm.pendingrequet.email" id="email" class="form-control" placeholder="Enter your email" required>
+          <div ng-messages="vm.form.pendingrequetForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="email">Email</label>
+          <input name="name" type="email" ng-model="vm.pendingrequet.email" id="email" class="form-control" placeholder="Confirm your email" required>
+          <div ng-messages="vm.form.pendingrequetForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="email">Email</label>
+          <input name="name" type="email" ng-model="vm.pendingrequet.email" id="email" class="form-control" placeholder="Confirm your email" required>
+          <div ng-messages="vm.form.pendingrequetForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.pendingrequet._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+
+
+  </div>
+
+
+</section>

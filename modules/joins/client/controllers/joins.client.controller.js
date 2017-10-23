@@ -16,6 +16,8 @@
     vm.remove = remove;
     vm.save = save;
 
+    vm.openModal = openModal;
+
 
     //$scope variables prototypes
     $scope.myInterval = 3000;
@@ -49,15 +51,18 @@
         $state.go('joins');
     };
 
-    $scope.openModal = function () {
+     function openModal() {
       $modal.open({
-        templateUrl:'modules/joins/client/views/modal-join.client.view.html',
-        controller: 'ModalController'
+        templateUrl:'modules/joins/client/views/form-join.client.view.html',
+        controller: 'JoinsController'
 
       })
       .result.then(function() {
           // alert('closed');
+
         console.log('Save and go to payment page');
+
+
           //After I saved the info in admin side, I want to redirect to payment html
         $state.go('payment');
 
@@ -71,7 +76,7 @@
           // alert('canceled');
 
       });
-    };
+    }
 
     // Remove existing Join
     function remove() {
@@ -80,9 +85,12 @@
       }
     }
 
-    // Save Join
+    //Save Join
     function save(isValid) {
+        console.log('In Save');
       if (!isValid) {
+          console.log('Is Valid');
+
         $scope.$broadcast('show-errors-check-validity', 'vm.form.joinForm');
         return false;
       }
