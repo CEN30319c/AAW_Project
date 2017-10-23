@@ -7,19 +7,19 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * News Schema
+ * Test Schema
  */
-var NewsSchema = new Schema({
+var TestSchema = new Schema({
   name: {
     type: String,
     default: '',
-    required: 'Please fill News name',
+    required: 'Please fill Test name',
     trim: true
   },
-  text: {
+  news: {
     type: String,
     default: '',
-    required: 'Please fill News name',
+    required: 'Please fill News',
     trim: true
   },
   created: {
@@ -32,4 +32,4 @@ var NewsSchema = new Schema({
   }
 });
 
-mongoose.model('News', NewsSchema);
+mongoose.model('Test', TestSchema);

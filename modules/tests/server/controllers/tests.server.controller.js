@@ -5,113 +5,113 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  News = mongoose.model('News'),
+  Test = mongoose.model('Test'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
 /**
- * Create a News
+ * Create a Test
  */
 exports.create = function(req, res) {
-  var news = new News(req.body);
-  news.user = req.user;
+  var test = new Test(req.body);
+  test.user = req.user;
 
-  news.save(function(err) {
+  test.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(news);
+      res.jsonp(test);
     }
   });
 };
 
 /**
- * Show the current News
+ * Show the current Test
  */
 exports.read = function(req, res) {
   // convert mongoose document to JSON
-  var news = req.news ? req.news.toJSON() : {};
+  var test = req.test ? req.test.toJSON() : {};
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  news.isCurrentUserOwner = req.user && news.user && news.user._id.toString() === req.user._id.toString();
+  test.isCurrentUserOwner = req.user && test.user && test.user._id.toString() === req.user._id.toString();
 
-  res.jsonp(news);
+  res.jsonp(test);
 };
 
 /**
- * Update a News
+ * Update a Test
  */
 exports.update = function(req, res) {
-  var news = req.news;
+  var test = req.test;
 
-  news = _.extend(news, req.body);
+  test = _.extend(test, req.body);
 
-  news.save(function(err) {
+  test.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(news);
+      res.jsonp(test);
     }
   });
 };
 
 /**
- * Delete an News
+ * Delete an Test
  */
 exports.delete = function(req, res) {
-  var news = req.news;
+  var test = req.test;
 
-  news.remove(function(err) {
+  test.remove(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(news);
+      res.jsonp(test);
     }
   });
 };
 
 /**
- * List of News
+ * List of Tests
  */
 exports.list = function(req, res) {
-  News.find().sort('-created').populate('user', 'displayName').exec(function(err, news) {
+  Test.find().sort('-created').populate('user', 'displayName').exec(function(err, tests) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(news);
+      res.jsonp(tests);
     }
   });
 };
 
 /**
- * News middleware
+ * Test middleware
  */
-exports.newsByID = function(req, res, next, id) {
+exports.testByID = function(req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'News is invalid'
+      message: 'Test is invalid'
     });
   }
 
-  News.findById(id).populate('user', 'displayName').exec(function (err, news) {
+  Test.findById(id).populate('user', 'displayName').exec(function (err, test) {
     if (err) {
       return next(err);
-    } else if (!news) {
+    } else if (!test) {
       return res.status(404).send({
-        message: 'No News with that identifier has been found'
+        message: 'No Test with that identifier has been found'
       });
     }
-    req.news = news;
+    req.test = test;
     next();
   });
 };
