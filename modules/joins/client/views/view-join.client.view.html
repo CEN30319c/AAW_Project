@@ -1,4 +1,5 @@
-<section ng-controller="JoinsController">
+<section>
+
   <div class="row">
     <div class="col-md-offset-1 col-md-10 formWrapper">
       <div class="page-header">
@@ -6,32 +7,62 @@
         <div class="mySlides">
           <div class="w3-container w3-red">
             <h1><b>Small Steps, Lead to Big Changes</b></h1>
-            <h1><i>Join Us Today!</i></h1>
           </div>
         </div>
 
-
-
-          <img class="mySlides" src="modules/core/client/img/pictures/1.jpg">
-          <!--     <img class="mySlides" src="///Users\Lesly\Documents\CEN3031\AAW_Project\Pics\2.jpg">
-              <img class="mySlides" src="///Users\Lesly\Documents\CEN3031\AAW_Project\Pics\3.jpg">
-              <img class="mySlides" src="///Users\Lesly\Documents\CEN3031\AAW_Project\Pics\4.jpg">  -->
-
-          <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-          <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+        <div ng-controller="JoinsController" id="carousel">
+          <div>
+            <carousel interval="myInterval">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                  <h4>{{slide.text}}</h4>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
 
         <div class="rect">
           <div class="col-md-4 col-xs-6 box">
-            <h3>Each day, our organization continues to: </h3>
+            <h3>We strive to: </h3>
             <ul style="list-style-type:circle">
               <li>"Empower UF women for the utmost success"</li>
               <li>"Foster career and personal growth for UF women in all roles"</li>
               <li>"Encourage relationship building on and off campus"</li>
-              <li>"Connect professional women throughout the Univerity of Florida community"</li>
+              <li>"Connect professional women throughout the University of Florida community"</li>
               <li>"Have some fun!"</li>
             </ul>
           </div>
         </div>
+
+        <div class="rect">
+          <div class="col-md-4 col-xs-6 box">
+            <h3>We support! </h3>
+            <ul style="list-style-type:circle">
+              <li>Each year our membership fees support the Madelyn Lockhart Dissertation Fellowship
+                in concert with the AAW Emerging Scholar Program honoring eligible young women who are
+                completing their dissertations in their chosen fields of study.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rect">
+          <div class="col-md-4 col-xs-6 box">
+            <h3>Annual Fees</h3>
+            <p>$45.00</p>
+            <p>Used to fund fellowships for female UF doctoral students.</p>
+          </div>
+        </div>
+
+    <div class="rect">
+      <div class="col-md-4 col-xs-6 box">
+            <h3><i>Ready to Become a Member?</i></h3>
+            <p>Click on the link below to complete your membership application</p>
+            <button type="button" class="btn btn-link" ng-click="vm.openModal()">Complete Membership Application</button>
+      </div>
+    </div>
+
       </div>
     </div>
   </div>
