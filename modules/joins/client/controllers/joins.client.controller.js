@@ -16,7 +16,7 @@
     vm.remove = remove;
     vm.save = save;
 
-    vm.openModal = openModal;
+    vm.fillApplication = fillApplication;
 
 
     //$scope variables prototypes
@@ -40,42 +40,8 @@
       }
     ];
 
-    $scope.goToPay = function () {
-        //Redirecting to client's current payment page
-      var url = 'https://squareup.com/store/UFLAAW';
-      $window.open(url);
-
-    };
-
-    $scope.cancelPayment = function () {
-        $state.go('joins');
-    };
-
-     function openModal() {
-      $modal.open({
-        templateUrl:'modules/joins/client/views/form-join.client.view.html',
-        controller: 'JoinsController'
-
-      })
-      .result.then(function() {
-          // alert('closed');
-
-        console.log('Save and go to payment page');
-
-
-          //After I saved the info in admin side, I want to redirect to payment html
-        $state.go('payment');
-
-          //TODO
-          //Submit application button clicked
-          //Save inputs and text area info into Admin pending requests!
-          //Find a way of how admin can verify payment for a submission
-
-
-      }, function() {
-          // alert('canceled');
-
-      });
+     function fillApplication() {
+         $state.go('pendingrequets.create');
     }
 
     // Remove existing Join

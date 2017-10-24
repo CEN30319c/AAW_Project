@@ -16,6 +16,19 @@ var PendingrequetSchema = new Schema({
     required: 'Please fill Pendingrequet name',
     trim: true
   },
+  email: {
+    type: String,
+    default: '',
+    required: 'Please fill Email',
+    trim: true
+  },
+
+  phone: {
+    type: Number,
+    default: '',
+    required: 'Please fill with your campus phone number',
+    trim: true
+  },
   created: {
     type: Date,
     default: Date.now
@@ -23,7 +36,13 @@ var PendingrequetSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  },
+
+
+
+
+
+
 });
 
 mongoose.model('Pendingrequet', PendingrequetSchema);

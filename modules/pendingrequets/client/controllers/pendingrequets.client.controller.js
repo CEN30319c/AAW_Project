@@ -40,16 +40,18 @@
         }
     ];
 
-  // $scope.showModal = function () {
-  //   $scope.showme=false;
-  //   var modalTest = $modal.open({
-  //       template: '<div>{{vm.form.pendingrequetForm}}</div>'
-  //
-  //
-  //
-  //   });
-  //
-  // };
+
+    $scope.goToPay = function () {
+        //Redirecting to client's current payment page
+        var url = 'https://squareup.com/store/UFLAAW';
+        $window.open(url);
+
+    };
+
+
+    $scope.cancelForm = function () {
+        $state.go('joins');
+    };
 
 
     // Remove existing Pendingrequet
