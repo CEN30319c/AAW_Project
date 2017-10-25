@@ -1,126 +1,27 @@
-<!--<section>-->
-
-  <!--<div class="modal-header">-->
-    <!--&lt;!&ndash;<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>&ndash;&gt;-->
-    <!--&lt;!&ndash;</button>&ndash;&gt;-->
-    <!--<h1>{{vm.join._id ? 'Edit Join' : 'New Join'}}</h1>-->
-    <!--<h4 class="modal-title">Association for Academic Women Membership Form</h4>-->
-  <!--</div>-->
-
-
-  <!--<div class="modal-body">-->
-    <!--<p>Joining AAW is a great way to build your UF network and expand you knowledge and skills.-->
-      <!--To join, please complete the form below. After submitting, you will be redirected to an online-->
-      <!--payment screen for our $45 dues. Dues are used for events, member-only socials and an annual-->
-      <!--scholarship awarded to female UF doctoral students.-->
-      <!--The membership year spans from June 1st to May 31st; dues will reflect the year in which they are paid.-->
-      <!--If you would prefer to pay dues by check, please contact Marilyn Dumont-Driscoll at dumonmd@peds.ufl.edu&hellip;</p>-->
-
-    <!--<form name="vm.form.joinForm" class="form-horizontal" ng-submit="vm.save(vm.form.joinForm.$valid)" novalidate>-->
-    <!--<fieldset>-->
-
-    <!--<div class="form-group" show-errors>-->
-      <!--<label class="control-label" for="name">Name</label>-->
-
-      <!--<div class="col-md 4"><input name="name" type="text" ng-model="vm.join.name" id="name" class="form-control" placeholder="Name" required></div>-->
-      <!--<div ng-messages="vm.form.joinForm.name.$error" role="alert">-->
-        <!--<p class="help-block error-text" ng-message="required">Name is required.</p>-->
-      <!--</div>-->
-    <!--</div>-->
-
-
-
-    <!--<div class="col-md 4"><input class="form-control" type="email" placeholder="Enter your email address" required></div>-->
-    <!--<br>-->
-    <!--<div class="col-md 4"><input class="form-control" type="email" placeholder="Re-enter your email address" required></div>-->
-    <!--&lt;!&ndash;<br>&ndash;&gt;-->
-    <!--<div class="col-md 4"><input class="form-control" type="tel" placeholder="Enter your campus phone number"></div>-->
-    <!--&lt;!&ndash;<br>&ndash;&gt;-->
-    <!--<div class="col-md 4"><input class="form-control" type="text" placeholder="Enter your mailing address"></div>-->
-    <!--&lt;!&ndash;<br>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-      <!--&lt;!&ndash;<label for="sel1">I am ...</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<select class="form-control" id="sel1">&ndash;&gt;-->
-        <!--&lt;!&ndash;<option>Faculty</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;<option>TEAM</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;<option>Retired Faculty</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;<option>Retired TEAM</option>&ndash;&gt;-->
-      <!--&lt;!&ndash;</select>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-    <!--&lt;!&ndash;<label>Is this your first time joining AAW?</label>&ndash;&gt;-->
-    <!--&lt;!&ndash;<label class="checkbox-inline"><input type="checkbox" value="">Yes</label>&ndash;&gt;-->
-    <!--&lt;!&ndash;<label class="checkbox-inline"><input type="checkbox" value="">No</label>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-      <!--&lt;!&ndash;<label>Are you interested in joining an AAW committee?</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<label class="checkbox-inline"><input type="checkbox" value="">Yes</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<label class="checkbox-inline"><input type="checkbox" value="">No</label>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-      <!--&lt;!&ndash;<label>What topics would you like to see including in our future programming?</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<textarea class="form-control" maxlength="250" rows="8" cols="60"></textarea>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-      <!--&lt;!&ndash;<label>I would like to include a donation to the AAW fellowship fund in addition to the $45 membership dues</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<p>If you would like to include a donation, please submit any additional amount with your membership dues. Thank you</p>&ndash;&gt;-->
-      <!--&lt;!&ndash;<label class="checkbox-inline"><input type="checkbox" value="">Yes</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<label class="checkbox-inline"><input type="checkbox" value="">No</label>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-
-  <!--</div>-->
-
-  <!--<div class="modal-footer">-->
-    <!--<button type="button" class="btn btn-default" ng-click="$dismiss()">Cancel</button>-->
-    <!--<button type="button" class="btn btn-primary" ng-click="$close()">Submit Application</button>-->
-    <!--<button type="submit" class="btn btn-default">{{vm.join._id ? 'Update' : 'Create'}}</button>-->
-
-    <!--&lt;!&ndash;<button type="button" class="btn btn-primary" ng-click="$close()">Save</button>&ndash;&gt;-->
-  <!--</div>-->
-  <!--</fieldset>-->
-  <!--</form>-->
-
-
-
-<!--</section>-->
-
-
 <section>
-  <!--<div class="modal-header">-->
-    <!--<h1>{{vm.join._id ? 'Edit Join' : 'New Join'}}</h1>-->
-  <!--</div>-->
-  <!--<div class="col-md-12">-->
-    <!--<form name="vm.form.joinForm" class="form-horizontal" ng-submit="vm.save(vm.form.joinForm.$valid)" novalidate>-->
-      <!--<fieldset>-->
-        <!--<div class="form-group" show-errors>-->
-          <!--<label class="control-label" for="name">Name</label>-->
-          <!--<input name="name" type="text" ng-model="vm.join.name" id="name" class="form-control" placeholder="Name" required>-->
-          <!--<div ng-messages="vm.form.joinForm.name.$error" role="alert">-->
-            <!--<p class="help-block error-text" ng-message="required">Join name is required.</p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="modal-footer">-->
-          <!--<button type="submit" class="btn btn-default">{{vm.join._id ? 'Update' : 'Create'}}</button>-->
-        <!--</div>-->
-        <!--<div ng-show="vm.error" class="text-danger">-->
-          <!--<strong ng-bind="vm.error"></strong>-->
-        <!--</div>-->
-      <!--</fieldset>-->
-    <!--</form>-->
-  <!--</div>-->
 
-  <!--<div class="modal-footer">-->
-    <!--<button type="submit" class="btn btn-default">{{vm.join._id ? 'Update' : 'Create'}}</button>-->
+  <div class="modal-header">
 
-    <!--<button type="button" class="btn btn-primary" ng-click="$close()">Save</button>-->
-  <!--</div>-->
+    <h4 class="modal-title">Successfully Submitted</h4>
+  </div>
+
+
+  <div class="modal-body">
+    <p>Thanks for successfully completing your membership application.
+      To complete your registration process, please click the Go to Payment button below.
+      You will be redirected to our secure payment platform.
+      &hellip;</p>
+  </div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="$dismiss()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="$close()">Go to Payment</button>
+
+  </div>
+
+
+
 </section>
 
 

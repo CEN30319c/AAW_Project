@@ -18,33 +18,17 @@
     vm.remove = remove;
     vm.save = save;
 
-
-    //$scope variables prototypes
-    $scope.myInterval = 3000;
-    $scope.slides = [
-        {
-            image: 'modules/core/client/img/pictures/1.jpg',
-            text: 'Recognition and Talent'
-        },
-        {
-            image: 'modules/core/client/img/pictures/2.jpg',
-            text: 'Hard Work'
-        },
-        {
-            image: 'modules/core/client/img/pictures/3.jpg',
-            text: 'Having Fun'
-        },
-        {
-            image: 'modules/core/client/img/pictures/4.jpg',
-            text: 'Panels and Discussion'
-        }
-    ];
-
-
     $scope.goToPay = function () {
-        //Redirecting to client's current payment page
-        var url = 'https://squareup.com/store/UFLAAW';
-        $window.open(url);
+        $modal.open ({
+            templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
+            controller:'JoinsController'
+
+        }).result.then(function () {
+            //Redirecting to client's current payment page
+            var url = 'https://squareup.com/store/UFLAAW';
+            $window.open(url);
+        });
+
 
     };
 

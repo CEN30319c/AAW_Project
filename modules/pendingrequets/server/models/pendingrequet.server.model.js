@@ -19,7 +19,7 @@ var PendingrequetSchema = new Schema({
   email: {
     type: String,
     default: '',
-    required: 'Please fill Email',
+    required: 'Please fill with your email address',
     trim: true
   },
 
@@ -28,6 +28,44 @@ var PendingrequetSchema = new Schema({
     default: '',
     required: 'Please fill with your campus phone number',
     trim: true
+  },
+
+  selection: {
+      type: String,
+      default: '',
+      required: 'Please select your role in campus',
+      trim: true
+  },
+  firstTimeYes: {
+      type: String,
+      default: '',
+      required: 'Please select Yes or No',
+      trim: true
+  },
+  firstTimeNo: {
+      type: String,
+      default: '',
+      required: 'Please select Yes or No',
+      trim: true
+  },
+
+  joinYes: {
+      type: String,
+      default: '',
+      required: 'Please select Yes or No',
+      trim: true
+  },
+  joinNo: {
+      type: String,
+      default: '',
+      required: 'Please select Yes or No',
+      trim: true
+  },
+  topics: {
+      type: String,
+      default: '',
+      required: '',
+      trim: true
   },
   created: {
     type: Date,
