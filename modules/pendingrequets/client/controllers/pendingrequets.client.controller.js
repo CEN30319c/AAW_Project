@@ -18,38 +18,24 @@
     vm.remove = remove;
     vm.save = save;
 
+    $scope.goToPay = function () {
+        $modal.open ({
+            templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
+            controller:'JoinsController'
 
-    //$scope variables prototypes
-    $scope.myInterval = 3000;
-    $scope.slides = [
-        {
-            image: 'modules/core/client/img/pictures/1.jpg',
-            text: 'Recognition and Talent'
-        },
-        {
-            image: 'modules/core/client/img/pictures/2.jpg',
-            text: 'Hard Work'
-        },
-        {
-            image: 'modules/core/client/img/pictures/3.jpg',
-            text: 'Having Fun'
-        },
-        {
-            image: 'modules/core/client/img/pictures/4.jpg',
-            text: 'Panels and Discussion'
-        }
-    ];
+        }).result.then(function () {
+            //Redirecting to client's current payment page
+            var url = 'https://squareup.com/store/UFLAAW';
+            $window.open(url);
+        });
 
-  // $scope.showModal = function () {
-  //   $scope.showme=false;
-  //   var modalTest = $modal.open({
-  //       template: '<div>{{vm.form.pendingrequetForm}}</div>'
-  //
-  //
-  //
-  //   });
-  //
-  // };
+
+    };
+
+
+    $scope.cancelForm = function () {
+        $state.go('joins');
+    };
 
 
     // Remove existing Pendingrequet
