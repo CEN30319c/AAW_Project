@@ -1,0 +1,54 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.name"></h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.email"></h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.phone"></h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.selection"></h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.firstTimeYes"></h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.firstTimeNo"></h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.joinYes"></h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.joinNo"></h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.pendingrequet.topics"></h1>
+  </div>
+
+  <div class="pull-right"
+       ng-show="vm.pendingrequet.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="pendingrequets.edit({ pendingrequetId: vm.pendingrequet._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.pendingrequet.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.pendingrequet.user"
+            ng-bind="vm.pendingrequet.user.displayName"></span>
+      <span ng-if="!vm.pendingrequet.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.pendingrequet.content"></p>
+
+
+</section>

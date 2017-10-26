@@ -15,29 +15,35 @@
         controller: 'JoinsController',
         templateUrl: 'modules/joins/client/views/view-join.client.view.html',
         controllerAs: 'vm'
-      });
-  //     .state('joins.list', {
-  //       url: '',
-  //       templateUrl: 'modules/joins/client/views/list-joins.client.view.html',
-  //       controller: 'JoinsListController',
-  //       controllerAs: 'vm',
-  //       data: {
-  //         pageTitle: 'Joins List'
-  //       }
-  //     })
-  //     .state('joins.create', {
-  //       url: '/create',
-  //       templateUrl: 'modules/joins/client/views/form-join.client.view.html',
-  //       controller: 'JoinsController',
-  //       controllerAs: 'vm',
-  //       resolve: {
-  //         joinResolve: newJoin
-  //       },
-  //       data: {
-  //         roles: ['user', 'admin'],
-  //         pageTitle: 'Joins Create'
-  //       }
-  //     })
+      })
+      .state('payment', {
+        url: '/payment',
+        controller: 'JoinsController',
+        templateUrl: 'modules/joins/client/views/payment-join.client.view.html'
+      })
+
+      .state('list', {
+        url: '/joins.list',
+        templateUrl: 'modules/joins/client/views/list-joins.client.view.html',
+        controller: 'JoinsListController',
+        controllerAs: 'vm'
+        // data: {
+        //   pageTitle: 'List Pending Requests'
+        // }
+      })
+      .state('joins.create', {
+        url: '/create',
+        templateUrl: 'modules/joins/client/views/form-join.client.view.html',
+        controller: 'JoinsController',
+        controllerAs: 'vm'
+        // resolve: {
+        //   joinResolve: newJoin
+        // },
+        // data: {
+        //   roles: ['user', 'admin'],
+        //   pageTitle: 'Joins Create'
+        // }
+      })
   //     .state('joins.edit', {
   //       url: '/:joinId/edit',
   //       templateUrl: 'modules/joins/client/views/form-join.client.view.html',
@@ -51,20 +57,20 @@
   //         pageTitle: 'Edit Join {{ joinResolve.name }}'
   //       }
   //     })
-  //     .state('joins.view', {
-  //       url: '/:joinId',
-  //       templateUrl: 'modules/joins/client/views/view-join.client.view.html',
-  //       controller: 'JoinsController',
-  //       controllerAs: 'vm',
-  //       resolve: {
-  //         joinResolve: getJoin
-  //       },
-  //       data: {
-  //         pageTitle: 'Join {{ joinResolve.name }}'
-  //       }
-  //     });
-  // }
-  //
+      .state('joins.view', {
+        url: '/:joinId',
+        templateUrl: 'modules/joins/client/views/list-join.client.view.html',
+        controller: 'JoinsController',
+        controllerAs: 'vm'
+        // resolve: {
+        //   joinResolve: getJoin
+        // },
+        // data: {
+        //   pageTitle: 'Join {{ joinResolve.name }}'
+        // }
+      });
+  }
+
   // getJoin.$inject = ['$stateParams', 'JoinsService'];
   //
   // function getJoin($stateParams, JoinsService) {
@@ -72,10 +78,10 @@
   //     joinId: $stateParams.joinId
   //   }).$promise;
   // }
-  //
+
   // newJoin.$inject = ['JoinsService'];
   //
   // function newJoin(JoinsService) {
   //   return new JoinsService();
-  }
+  // }
 }());

@@ -5,113 +5,113 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  News = mongoose.model('News'),
+  Pendingrequet = mongoose.model('Pendingrequet'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
 /**
- * Create a News
+ * Create a Pendingrequet
  */
 exports.create = function(req, res) {
-  var news = new News(req.body);
-  news.user = req.user;
+  var pendingrequet = new Pendingrequet(req.body);
+  pendingrequet.user = req.user;
 
-  news.save(function(err) {
+  pendingrequet.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(news);
+      res.jsonp(pendingrequet);
     }
   });
 };
 
 /**
- * Show the current News
+ * Show the current Pendingrequet
  */
 exports.read = function(req, res) {
   // convert mongoose document to JSON
-  var news = req.news ? req.news.toJSON() : {};
+  var pendingrequet = req.pendingrequet ? req.pendingrequet.toJSON() : {};
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  news.isCurrentUserOwner = req.user && news.user && news.user._id.toString() === req.user._id.toString();
+  pendingrequet.isCurrentUserOwner = req.user && pendingrequet.user && pendingrequet.user._id.toString() === req.user._id.toString();
 
-  res.jsonp(news);
+  res.jsonp(pendingrequet);
 };
 
 /**
- * Update a News
+ * Update a Pendingrequet
  */
 exports.update = function(req, res) {
-  var news = req.news;
+  var pendingrequet = req.pendingrequet;
 
-  news = _.extend(news, req.body);
+  pendingrequet = _.extend(pendingrequet, req.body);
 
-  news.save(function(err) {
+  pendingrequet.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(news);
+      res.jsonp(pendingrequet);
     }
   });
 };
 
 /**
- * Delete an News
+ * Delete an Pendingrequet
  */
 exports.delete = function(req, res) {
-  var news = req.news;
+  var pendingrequet = req.pendingrequet;
 
-  news.remove(function(err) {
+  pendingrequet.remove(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(news);
+      res.jsonp(pendingrequet);
     }
   });
 };
 
 /**
- * List of News
+ * List of Pendingrequets
  */
 exports.list = function(req, res) {
-  News.find().sort('-created').populate('user', 'displayName').exec(function(err, news) {
+  Pendingrequet.find().sort('-created').populate('user', 'displayName').exec(function(err, pendingrequets) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(news);
+      res.jsonp(pendingrequets);
     }
   });
 };
 
 /**
- * News middleware
+ * Pendingrequet middleware
  */
-exports.newsByID = function(req, res, next, id) {
+exports.pendingrequetByID = function(req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'News is invalid'
+      message: 'Pendingrequet is invalid'
     });
   }
 
-  News.findById(id).populate('user', 'displayName').exec(function (err, news) {
+  Pendingrequet.findById(id).populate('user', 'displayName').exec(function (err, pendingrequet) {
     if (err) {
       return next(err);
-    } else if (!news) {
+    } else if (!pendingrequet) {
       return res.status(404).send({
-        message: 'No News with that identifier has been found'
+        message: 'No Pendingrequet with that identifier has been found'
       });
     }
-    req.news = news;
+    req.pendingrequet = pendingrequet;
     next();
   });
 };
