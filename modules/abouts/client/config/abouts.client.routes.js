@@ -19,6 +19,11 @@
         url: '/about/madelynaward',
         controller: 'AboutsController',
         templateUrl: 'modules/abouts/client/views/madelynaward-about.client.view.html',
+      })
+      .state('distinctionaward', {
+        url: '/about/distinctionaward',
+        controller: 'AboutsController',
+        templateUrl: 'modules/abouts/client/views/distinctionaward-about.client.view.html',
       });
       
     //   .state('abouts.distinction-award', {

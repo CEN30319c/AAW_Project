@@ -48,6 +48,15 @@ PAGE HEADER
 }
 
 /********************
+FOOTER
+********************/
+.footer {
+  background: rgb(255, 255, 255);
+  position: absolute;
+  padding-left: 380px;
+}
+
+/********************
 GALLERY
 ********************/
 
@@ -98,3 +107,4 @@ GALLERY
   margin: 5px 0;
   background: #E28F41;
 }
+

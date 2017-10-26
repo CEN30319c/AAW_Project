@@ -1,0 +1,48 @@
+
+<section ng-controller="AboutsController">
+    <div class=row>
+        <div class="jumbotron text-center">
+
+            <h1> The Woman of Distinction Award </h1>
+            
+        </div>
+    </div>
+
+
+<div class=row>
+    <div class="jumbotron text-center">
+
+        <h2> Eligibility Requirements </h2>
+        <p>
+        <ul class="fa-ul" style="display: inline-block; text-align:left">
+                <li class="fa-li"><p>Must be a University of Florida faculty member or administrative/professional woman</p></li>
+                <li class="fa-li"><p>Must be a member of AAW to submit a nomination</p></li>
+                <li class="fa-li"><p>Must have made significant contributions to the quality of life of women </p></li>
+        </ul>
+        </p>
+
+        <p><b>Applications submitted after the deadline will NOT be accepted.</b></p>
+        <p class="space"></p>
+
+        <!-- No current apply link, but will update if there is one -->
+        <!--<button type="button" class="btn btn-primary btn-lg" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">Apply Here
+        </button> -->
+    </div>
+</div>
+
+<div class=row>
+    <div class="jumbotron text-center">
+
+        <h2> Previous Woman of Distinction Award Winners </h2>
+
+        <!-- not working right now, should access information from database -->
+        <div class="list-group">
+            <div ng-repeat="x in vm.about" class="list-group-item">
+                    <p ng-bind="x.name"></p>
+                    <p ng-bind="x.year"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
