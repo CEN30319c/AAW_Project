@@ -1,0 +1,63 @@
+
+<section ng-controller="AboutsController">
+        <div class=row>
+            <div class="jumbotron text-center">
+    
+                <h1> The Madelyn Lockhart Dissertation Fellowship </h1>
+            </div>
+        </div>
+
+    <div class=row>
+        <div class="jumbotron text-center">
+
+            <h2> Eligibility Requirements </h2>
+            <p>
+            <ul class="fa-ul" style="display: inline-block; text-align:left">
+                    <li class="fa-li"><p>Must be a full-time or full-time equivalent doctoral degree (PhD) candidate as defined by the Graduate School at the University of Florida</p></li>
+                    <li class="fa-li"><p>Must have completed doctoral course work</p></li>
+                    <li class="fa-li"><p>Must have passed the qualifying exam </p></li>
+                    <li class="fa-li"><p>Must be writing or be ready to write the dissertation (Preferably in the later stages of dissertation research and writing)</p></li>
+                    <li class="fa-li"><p>Must have their dissertation proposal be approved by the applicant's graduate committee prior to submission of an application</p></li>
+            </ul>
+            </p>
+
+            <p>     
+                A nomination can come from a faculty member or from the candidate herself, and are welcome from candidates in any 
+                UF Ph.D. program.
+            </p>
+
+            <p><b>Applications submitted after the deadline will NOT be accepted.</b></p>
+        </div>
+    </div>
+
+    <div class=row>
+        <div class="jumbotron text-center">
+
+            <h2> Award Selection And Procedures </h2>
+
+            <p>A faculty committee will evaluate the applications. Committee members are selected by the Executive Committee of AAW. They represent the physical and social sciences, humanities, and professional programs.</p>
+                     
+            <p>The award will be presented during a Women's History Month Celebration typically held in March. Applicants will be notified of the selection committee’s decision on or before March 1. Notification will be by an email message sent to the email address included in the application packet. An invitation to the presentation event will be sent to finalists. 
+            The invitation will be sent electronically to the email address listed for the finalist in her application packet.</p>
+                
+            <p>Questions about the fellowship application process should be directed to Donna Tuckey at tuckey@ufl.edu</p>
+                    
+        </div>
+    </div>
+
+    <div class=row>
+        <div class="jumbotron text-center">
+
+            <h2> Previous Madelyn Lockhart Dissertation Fellowship Winners </h2>
+
+            <!-- not working right now, should access information from database -->
+            <div class="list-group">
+                <div ng-repeat="x in vm.about" class="list-group-item">
+                        <p ng-bind="x.name"></p>
+                        <p ng-bind="x.year"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
