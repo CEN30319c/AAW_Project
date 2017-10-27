@@ -9,12 +9,6 @@
 
   function menuConfig(menuService) {
     // Set top bar menu items
-    // menuService.addMenuItem('topbar', {
-    //   title: 'Test',
-    //   state: 'pendingrequets',
-    //   type: 'dropdown',
-    //   roles: ['admin']
-    // });
 
     menuService.addMenuItem('topbar', {
       title: 'Join',
@@ -33,7 +27,7 @@
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'pendingrequets', {
       title: 'Join Now',
-      state: 'pendingrequets.create'
+      state: 'pendingrequets.create',
       // roles: ['*']
     });
   }

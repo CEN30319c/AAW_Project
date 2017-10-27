@@ -12,21 +12,21 @@
     menuService.addMenuItem('topbar', {
       title: 'News',
       state: 'news',
-      // type: 'dropdown',
+      type: 'dropdown',
       roles: ['*']
     });
 
-    // // Add the dropdown list item
-    // menuService.addSubMenuItem('topbar', 'news', {
-    //   title: 'List News',
-    //   state: 'news.list'
-    // });
-    //
-    // // Add the dropdown create item
-    // menuService.addSubMenuItem('topbar', 'news', {
-    //   title: 'Create News',
-    //   state: 'news.create',
-    //   roles: ['user']
-    // });
+    // Add the dropdown list item
+    menuService.addSubMenuItem('topbar', 'news', {
+      title: 'List News',
+      state: 'news.list'
+    });
+
+    // Add the dropdown create item
+    menuService.addSubMenuItem('topbar', 'news', {
+      title: 'Create News',
+      state: 'news.create',
+      roles: ['user']
+    });
   }
 }());
