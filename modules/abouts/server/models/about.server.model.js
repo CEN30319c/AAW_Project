@@ -19,5 +19,3 @@ var AboutSchema = new Schema({
 });
 
 mongoose.model('About', AboutSchema);
-
-module.exports = abouts;

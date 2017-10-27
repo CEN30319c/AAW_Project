@@ -6,7 +6,7 @@
     .module('abouts')
     .controller('AboutsController', AboutsController);
   
-  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'NewsService'];
+  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'AboutsService'];
   /*Menu-toggle*/
   // $("#menu-toggle").click(function(e) {
   //   e.preventDefault();
@@ -31,13 +31,12 @@
   // });
 
   
-  function AboutsController ($scope, $state, $window, Authentication, about, NewsService) {
+  function AboutsController ($scope, $state, $window, Authentication, about, AboutsService) {
     var vm = this;
 
     vm.authentication = Authentication;
     vm.about = about;
-    $scope.abouts = NewsService.query();
-    //vm.abouts = AboutsService.query();
+    vm.abouts = AboutsService.query();
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
