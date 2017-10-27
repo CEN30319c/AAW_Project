@@ -10,20 +10,14 @@ var mongoose = require('mongoose'),
  * About Schema
  */
 var AboutSchema = new Schema({
+  year: String,
   name: {
     type: String,
-    default: '',
-    required: 'Please fill About name',
-    trim: true
+    required: true
   },
-  created: {
-    type: Date,
-    default: Date.now
-  },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  }
+  department: String
 });
 
 mongoose.model('About', AboutSchema);
+
+module.exports = abouts;
