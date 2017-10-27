@@ -55,27 +55,21 @@
     </div>
   </div>
   <div class="row">
-    <div id="announcementtext" class="col-md-4">
+    <div id="announcementtext" class="col-md-4" ng-repeat="news in newslist">
+      <h4>{{news.name}}</h4>
+      <p>
+        <small>{{news.created | date:'mediumDate'}}</small>
+      </p>
+      <p>{{news.text}}</p>
+    </div>
+
+    <!--<div id="announcementtext3" class="col-md-4">
       <h4>News Title</h4>
       <p>
         <small> October 7, 2017</small>
       </p>
       <p>A description of the news.</p>
-    </div>
-    <div id="announcementtext2" class="col-md-4">
-      <h4>News Title</h4>
-      <p>
-        <small> October 7, 2017</small>
-      </p>
-      <p>A description of the news.</p>
-    </div>
-    <div id="announcementtext3" class="col-md-4">
-      <h4>News Title</h4>
-      <p>
-        <small> October 7, 2017</small>
-      </p>
-      <p>A description of the news.</p>
-    </div>
+    </div>-->
   </div>
   <div class="row">
     <div class="col-md-6">
