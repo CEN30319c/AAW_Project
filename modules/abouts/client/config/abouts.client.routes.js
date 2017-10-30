@@ -11,22 +11,25 @@
     $stateProvider
       .state('abouts', {
         // abstract: true,
-        url: '/abouts',
-        //template: '<ui-view/>'
-        templateUrl: 'modules/abouts/client/views/view-about.client.view.html',
+        url: '/about',
         controller: 'AboutsController',
-        
+        templateUrl: 'modules/abouts/client/views/view-about.client.view.html'
       })
-      
-      .state('abouts.madelynaward', {
-         url: '/madelynaward',
-         templateUrl: 'modules/abouts/client/views/madelynaward-abouts.client.view.html'
+      .state('madelynaward', {
+        url: '/about/madelynaward',
+        controller: 'AboutsController',
+        templateUrl: 'modules/abouts/client/views/madelynaward-about.client.view.html',
       })
+      .state('distinctionaward', {
+        url: '/about/distinctionaward',
+        controller: 'AboutsController',
+        templateUrl: 'modules/abouts/client/views/distinctionaward-about.client.view.html',
+      });
       
-      .state('abouts.distinction-award', {
-        url: '/distinction-award',
-        templateUrl: 'modules/abouts/client/views/distinction-award-abouts.client.view.html'
-     });
+    //   .state('abouts.distinction-award', {
+    //     url: '/distinction-award',
+    //     templateUrl: 'modules/abouts/client/views/distinction-award-abouts.client.view.html'
+    //  });
       // .state('abouts.list', {
       //   url: '',
       //   templateUrl: 'modules/abouts/client/views/list-abouts.client.view.html',

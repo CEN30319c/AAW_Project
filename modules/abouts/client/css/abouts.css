@@ -1,9 +1,14 @@
+a.active {
+  background: #00AC7F;
+  color: #fff;
+}
+
 p {
     font-size: 18px;
 }
 
-#space {
-  padding: 20px;
+.space {
+  padding: 10px;
 }
 
 #mission {
@@ -14,6 +19,7 @@ p {
 #history {
     padding: 60px;
     text-align: center;
+    padding-bottom: 200px;
 }
 
 #awards {
@@ -21,17 +27,17 @@ p {
     text-align: center;
 }
 
-#people {
+#leadership {
     padding: 60px;
     text-align: center;
 }
 
-#wrapper {
+.wrapper {
   padding-left: 190px;
   transition: all 0.4s ease 0s;
 }
 
-#sidebar-wrapper {
+.sidebar-wrapper {
   margin-left: -250px;
   left: 250px;
   width: 250px;
@@ -39,19 +45,18 @@ p {
   position: fixed;
   height: 100%;
   overflow-y: auto;
-  z-index: 1000;
   transition: all 0.4s ease 0s;
 }
 
-#wrapper.active {
+.wrapper.active {
   padding-left: 0;
 }
 
-#wrapper.active #sidebar-wrapper {
+.wrapper.active .sidebar-wrapper {
   left: 0;
 }
 
-#page-content-wrapper {
+.page-content-wrapper {
   width: 100%;
 }
 
@@ -149,20 +154,20 @@ p {
 
 @media (max-width:767px) {
 
-#wrapper {
+.wrapper {
   padding-left: 0;
 }
 
-#sidebar-wrapper {
+.sidebar-wrapper {
   left: 0;
 }
 
-#wrapper.active {
+.wrapper.active {
   position: relative;
   left: 250px;
 }
 
-#wrapper.active #sidebar-wrapper {
+.wrapper.active .sidebar-wrapper {
   left: 250px;
   width: 250px;
   transition: all 0.4s ease 0s;
@@ -174,12 +179,6 @@ p {
 
 .inset {
   padding: 15px;
-}
-
-.highlight{
-	color: rgb(0, 0, 0);
-	background-color: rgb(255, 255, 255);
-	border-left: thick solid rgba(0,255,0,0.5);
 }
 
 }

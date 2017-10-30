@@ -1,12 +1,10 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
 <section ng-controller="AboutsController">
 
-  <div id="wrapper">
+  <div class="wrapper">
   
       <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-          <nav id="spy">
+      <div class="sidebar-wrapper">
+          <nav class="spy">
               <ul class="sidebar-nav nav">
                   <li class="sidebar-brand">
                       <a href="#about"><span class="fa fa-home solo">About</span></a>
@@ -17,18 +15,18 @@
                       </a>
                   </li>
                   <li>
+                        <a href="#awards">
+                            <span class="fa fa-anchor solo">Awards</span>
+                        </a>
+                    </li>
+                    <li>
+                      <a href="#leadership">
+                          <span class="fa fa-anchor solo">Leadership</span>
+                      </a>
+                  </li>
+                  <li>
                       <a href="#history">
                           <span class="fa fa-anchor solo">History</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="#awards">
-                          <span class="fa fa-anchor solo">Awards</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="#people">
-                          <span class="fa fa-anchor solo">People</span>
                       </a>
                   </li>
               </ul>
@@ -36,8 +34,8 @@
       </div>
 
       <!-- Page content -->
-      <div id="page-content-wrapper">
-          <div class="page-content inset" data-spy="scroll" data-target="#spy">
+      <div class="page-content-wrapper">
+          <div class="page-content inset" data-spy="scroll" data-target=".spy">
               <div class="row">
 
                       <div class="jumbotron text-center"  id="about">
@@ -61,51 +59,62 @@
                         an interdisciplinary, university-wide platform and encouraging the building and strengthening
                         of relationships among our members on and off campus. </p>
                   </div>
-                  <div class="col-md-12 well" id="history">
-                      <h2>History</h2>
-                      <p>Since its early beginnings, the Association for Academic Women (AAW) has been known for its rich history. What began as the Committee on the Status of Women, identifying, advocating for and increasing awareness of the needed changes in the University environment in order to enhance opportunities for women, evolved to become the Association for Academic Women (AAW). Today, the organization is dedicated to providing a forum for topics of interest to women, serving as an advisory group to the University Administration and supporting the professional development of faculty and administrative staff campus-wide.</p>
-                  </div>
-                  <div class="col-md-12 well" id="awards">
-                      <h2>Awards</h2>
-                      <h3>Madelyn Lockhart Dissertation Fellowship Award</h3>
-                      <p> The Association for Academic Women (AAW) at the University of Florida established the Madelyn Lockhart Dissertation Fellowship in 1996 to honor an outstanding graduate student. One fellowship in an amount up to $2,000 will be awarded to assist in the dissertation phase of the doctoral degree. The recipient must be enrolled in dissertation credits for at least one semester (for example summer 2016 or fall 2016 and/or spring, 2017) after s/he is selected to receive the fellowship.</p>
-                      <button type="button" class="btn btn-primary">More Information</button>
-                      <div id="space"></div>
+                </div>
 
-                      <h3>Woman of Distinction Award</h3>
-                      <p>This award is given to a University of Florida faculty member or administrative/professional woman. You must be a member of AAW to submit a nomination</p>
-                      <button type="button" class="btn btn-primary">More Information</button>
-                  </div>
-                  <div class="row" id="people">
-                    <div class="col-md-12 well">
-                        <h2>People</h2>
+                <div class="row">
+                    <div class="col-md-12 well" id="awards">
+                        <h2>Awards</h2>
+                        <h3>Madelyn Lockhart Dissertation Fellowship Award</h3>
+                        <p> The Association for Academic Women (AAW) at the University of Florida established the Madelyn Lockhart Dissertation Fellowship in 1996 to honor an outstanding graduate student. One fellowship in an amount up to $2,000 will be awarded to assist in the dissertation phase of the doctoral degree.</p>
+                        <p>Finalists for the Lockhart Fellowship are automatically considered for an award through the AAW Emerging Scholar Program. First presented in 2008, these cash awards, with support from the UF president’s office, range from $500 to $2000.</p>
+                        <button type="button" class="btn btn-primary" onclick="location.href = '/about/madelynaward';">More Information</button>
+
+                        <p class="space"></p>
+
+                        <h3>Woman of Distinction Award</h3>
+                        <p>This award is given to a University of Florida faculty member or administrative/professional woman. You must be a member of AAW to submit a nomination</p>
+                        <button type="button" class="btn btn-primary" onclick="location.href = '/about/distinctionaward';">More Information</button>
+                    </div>
+                </div>
+      
+                <div class="row">
+                    <div class="col-md-12 well" id="leadership">
+                        <h2>Leadership</h2>
                         <h3> <b>President</b> Ayse Gunduz</h3>
                         <!-- picture of president and information about her -->
                         <div class="col-md-6">
-                          <!-- picture -->
+                            <!-- picture -->
                         </div>
                         <div class="col-md-6">
-                          <!-- information -->
+                            <!-- information -->
                         </div>
 
                         <h3> <b>President-Elect</b> Naz Erenguc</h3>
                         <!-- picture of president-elect and information about her -->
                         <div class="col-md-6">
                             <!-- picture -->
-                          </div>
-                          <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
                             <!-- information -->
-                          </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <!-- profiles button will link to the created profiles -->
-                        <button type="button" class="btn btn-primary">Profiles</button>
+                            </div>
+                    
+                        <div class="col-lg-12">
+                            <!-- profiles button will link to the created profiles -->
+                            <button type="button" class="btn btn-primary btn-md">Executive Board and General Members</button>
                         </div>
-                    <div class="col-lg-6">
-                        <!-- join button will link to our join page -->
-                        <button type="button" class="btn btn-primary" onclick="location.href = 'joins';">Join</button>
                     </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-md-12 well" id="history">
+                      <h2>History</h2>
+                      <p>Since its early beginnings, the Association for Academic Women (AAW) has been known for its rich history. What began as the Committee on the Status of Women, identifying, advocating for and increasing awareness of the needed changes in the University environment in order to enhance opportunities for women, evolved to become the Association for Academic Women (AAW). Today, the organization is dedicated to providing a forum for topics of interest to women, serving as an advisory group to the University Administration and supporting the professional development of faculty and administrative staff campus-wide.</p>
                   </div>
+                </div>
+
+
+
+
               </div>
 
           </div>
@@ -114,12 +123,6 @@
 
   </div>
 
-</section>
+  
 
-<script>
-    $(document).ready(function(){
-   $("p").click(function(){
-       $(this).hide();
-   });
- });
-</script>
+</section>
