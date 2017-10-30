@@ -57,7 +57,8 @@ p {
 }
 
 .page-content-wrapper {
-  width: 100%;
+  width: 80%;
+  margin-left: 200px;
 }
 
 
