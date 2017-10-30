@@ -18,23 +18,24 @@
     vm.remove = remove;
     vm.save = save;
 
-    $scope.goToPay = function () {
-        $modal.open ({
-            templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
-            controller:'JoinsController'
 
-        }).result.then(function () {
+    $scope.goToPay = function () {
+      $modal.open ({
+        templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
+        controller:'JoinsController'
+
+      }).result.then(function () {
             //Redirecting to client's current payment page
-            var url = 'https://squareup.com/store/UFLAAW';
-            $window.open(url);
-        });
+        var url = 'https://squareup.com/store/UFLAAW';
+        $window.open(url);
+    });
 
 
     };
 
 
     $scope.cancelForm = function () {
-        $state.go('joins');
+      $state.go('joins');
     };
 
 

@@ -1,12 +1,12 @@
-<section ng-controller="HomeController">
+<div class="container-fluid" ng-controller="HomeController">
 
-  <div class="row">
+  <div>
     <carousel interval="myInterval">
       <slide ng-repeat="slide in slides" active="slide.active">
         <img ng-src="{{slide.image}}">
-        <div class="carousel-caption">
+        <!-- <div class="carousel-caption">
           <h4>Slide {{$index+1}}</h4>
-        </div>
+        </div> -->
       </slide>
     </carousel>
     <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -36,151 +36,183 @@
        </a>
      </div> -->
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Who We Are</h2>
-    </div>
-    <div class="col-md-12">
-      <p id="whoweare">
-        AAW strives to empower UF women for the utmost success in each stage of their careers at the university.
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Recent News</h2>
-    </div>
-    <div class="col-md-6">
-      <a href="/news"> News Page</a>
-    </div>
-  </div>
-  <div class="row">
-    <div id="announcementtext" class="col-md-4">
-      <h4>News Title</h4>
-      <p>
-        <small> October 7, 2017</small>
-      </p>
-      <p>A description of the news.</p>
-    </div>
-    <div id="announcementtext2" class="col-md-4">
-      <h4>News Title</h4>
-      <p>
-        <small> October 7, 2017</small>
-      </p>
-      <p>A description of the news.</p>
-    </div>
-    <div id="announcementtext3" class="col-md-4">
-      <h4>News Title</h4>
-      <p>
-        <small> October 7, 2017</small>
-      </p>
-      <p>A description of the news.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Upcoming Events</h2>
-    </div>
-    <div class="col-md-6">
-      <a href="/calendars"> Calendar Page</a>
-    </div>
-  </div>
-  <div class="row">
-    <div id="event" class="col">
-      <div id="date">
-        <p>MONTH</p>
-        <h3>00</h3>
+  <div class="home-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Who We Are</h2>
+        </div>
+        <div class="col-md-12">
+          <p id="whoweare">
+            AAW strives to empower UF women for the utmost success in each stage of their careers at the university.
+          </p>
+        </div>
       </div>
-      <div id="eventtext">
-        <h4><a href="">Event Name</a></h4>
-        <p>Location</p>
-        <p>6:00 PM</p>
+      <div class="row news">
+        <div class="col-md-6">
+          <h2>Recent News</h2>
+          <div id="announcementtext" ng-repeat="news in newslist">
+            <div class="news-cell">
+              <h3>{{news.name}}</h3>
+              <h5>{{news.created | date:'mediumDate'}}</h5>
+              <p>{{news.text | limitTo: 150}} ... </p>
+            </div>
+        </div>
+        <div class="view-all text-center">
+          <a  href="/news"> View All News </a>
+        </div>
       </div>
-    </div>
+      <div class="col-md-6">
+        <h2>Upcoming Events</h2>
+        <div class="event-cell">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="date text-center">
+                <h4>MONTH</h4>
+                <h1>00</h1>
+              </div>
+            </div>
+            <div class="col-md-8 ">
+              <div class="event-descrip">
+                <h3>Event Name</h3>
+                <h4>Location</h4>
+                <h4>6:00 PM</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="event-cell">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="date text-center">
+                <h4>MONTH</h4>
+                <h1>00</h1>
+              </div>
+            </div>
+            <div class="col-md-8 ">
+              <div class="event-descrip">
+                <h3>Event Name</h3>
+                <h4>Location</h4>
+                <h4>6:00 PM</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="event-cell">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="date text-center">
+                <h4>MONTH</h4>
+                <h1>00</h1>
+              </div>
+            </div>
+            <div class="col-md-8 ">
+              <div class="event-descrip">
+                <h3>Event Name</h3>
+                <h4>Location</h4>
+                <h4>6:00 PM</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="view-all text-center">
+          <a href="/calendars"> View All Events </a>
+        </div>
+      </div>
+      </div>
+
+      <!--<div id="announcementtext3" class="col-md-4">
+        <h4>News Title</h4>
+        <p>
+          <small> October 7, 2017</small>
+        </p>
+        <p>A description of the news.</p>
+      </div>-->
+
+
+      <!--<div class="jumbotron text-center">-->
+      <!--<div class="row">-->
+      <!--<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">-->
+      <!--<img alt="AAW" class="img-responsive text-center" src="modules/core/client/img/pictures/1.jpg" />-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<br>-->
+      <!--<div class="row">-->
+      <!--<p class="lead">-->
+      <!--Welcome to the University of Florida’s Association for Academic Women-->
+      <!--</p>-->
+      <!--</div>-->
+      <!--<div class="row">-->
+      <!--<p>-->
+      <!--<a class="btn btn-primary btn-lg" href="http://meanjs.org" target="_blank">Learn more</a>-->
+      <!--</p>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <!--<div>-->
+      <!--<h2>Congrats! You've configured and run the sample application.</h2>-->
+      <!--<p>MEAN.JS is a web application boilerplate, which means you should start changing everything :-)</p>-->
+      <!--<p>This sample application tracks users and articles.</p>-->
+      <!--<ul>-->
+      <!--<li>-->
+      <!--Click-->
+      <!--<em>Sign Up</em> to get started.-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--Configure your app to work with your social accounts, by editing the-->
+      <!--<em>/config/env/*.js</em> files.-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--Edit your users module.-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--Add new CRUD modules.-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--Have fun...-->
+      <!--</li>-->
+      <!--</ul>-->
+      <!--</div>-->
+      <!--<div class="row">-->
+      <!--<div class="col-md-3">-->
+      <!--<h2><strong>M</strong>ongoDB</h2>-->
+      <!--<p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a NoSQL database. MongoDB's <a target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to get started with NoSQL and MongoDB.</p>-->
+      <!--</div>-->
+      <!--<div class="col-md-3">-->
+      <!--<h2><strong>E</strong>xpress</h2>-->
+      <!--<p><a target="_blank" href="http://expressjs.com/"> Express</a> is a NodeJS server-side application web framework. Check out <a target="_blank" href="http://expressjs.com/4x/api.html">The ExpressJS API reference for more information</a> or <a target="_blank" href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a> for more info.</p>-->
+      <!--</div>-->
+      <!--<div class="col-md-3">-->
+      <!--<h2><strong>A</strong>ngularJS</h2>-->
+      <!--<p><a target="_blank" href="http://angularjs.org/">AngularJS</a> is client-side web application framework. The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and <a target="_blank" href="https://egghead.io/">Egghead Videos</a> are great resources.</p>-->
+      <!--</div>-->
+      <!--<div class="col-md-3">-->
+      <!--<h2><strong>N</strong>ode.js</h2>-->
+      <!--<p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a JavaScript run-time, popular for being a web server platform. Node's website and this <a target="_blank" href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow thread</a> offer excellent starting points to get to grasps with node.</p>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="well">-->
+      <!--<h2>MEAN.JS Documentation</h2>-->
+      <!--<p>-->
+      <!--Once you're familiar with the foundation technology, check out the MEAN.JS Documentation:-->
+      <!--<ul>-->
+      <!--<li><a target="_blank" href="http://meanjs.org/docs.html">MEAN.JS Documentation</a>-->
+      <!--</li>-->
+      <!--&lt;!&ndash; <li><a target="_blank" href="http://meanjs.org/generator.html">Yeoman Generator</a>-->
+      <!--</li> &ndash;&gt;-->
+      <!--<li><a target="_blank" href="http://meanjs.org/modules.html">Modules</a>-->
+      <!--</li>-->
+      <!--<li><a target="_blank" href="http://meanjs.org/changelog.html">Changelog</a>-->
+      <!--</li>-->
+      <!--<li><a target="_blank" href="http://meanjs.org/community.html">Community</a>-->
+      <!--</li>-->
+      <!--<li><a target="_blank" href="http://blog.meanjs.org">Blog</a>-->
+      <!--</li>-->
+      <!--</ul>-->
+      <!--</p>-->
+      <!--</div>-->
+      <!--<br>Enjoy &amp; Keep Us Updated,-->
+      <!--<br>The MEAN.JS Team.-->
+      </div>
   </div>
-
-
-  <!--<div class="jumbotron text-center">-->
-  <!--<div class="row">-->
-  <!--<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">-->
-  <!--<img alt="AAW" class="img-responsive text-center" src="modules/core/client/img/pictures/1.jpg" />-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<br>-->
-  <!--<div class="row">-->
-  <!--<p class="lead">-->
-  <!--Welcome to the University of Florida’s Association for Academic Women-->
-  <!--</p>-->
-  <!--</div>-->
-  <!--<div class="row">-->
-  <!--<p>-->
-  <!--<a class="btn btn-primary btn-lg" href="http://meanjs.org" target="_blank">Learn more</a>-->
-  <!--</p>-->
-  <!--</div>-->
-  <!--</div>-->
-
-  <!--<div>-->
-  <!--<h2>Congrats! You've configured and run the sample application.</h2>-->
-  <!--<p>MEAN.JS is a web application boilerplate, which means you should start changing everything :-)</p>-->
-  <!--<p>This sample application tracks users and articles.</p>-->
-  <!--<ul>-->
-  <!--<li>-->
-  <!--Click-->
-  <!--<em>Sign Up</em> to get started.-->
-  <!--</li>-->
-  <!--<li>-->
-  <!--Configure your app to work with your social accounts, by editing the-->
-  <!--<em>/config/env/*.js</em> files.-->
-  <!--</li>-->
-  <!--<li>-->
-  <!--Edit your users module.-->
-  <!--</li>-->
-  <!--<li>-->
-  <!--Add new CRUD modules.-->
-  <!--</li>-->
-  <!--<li>-->
-  <!--Have fun...-->
-  <!--</li>-->
-  <!--</ul>-->
-  <!--</div>-->
-  <!--<div class="row">-->
-  <!--<div class="col-md-3">-->
-  <!--<h2><strong>M</strong>ongoDB</h2>-->
-  <!--<p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a NoSQL database. MongoDB's <a target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to get started with NoSQL and MongoDB.</p>-->
-  <!--</div>-->
-  <!--<div class="col-md-3">-->
-  <!--<h2><strong>E</strong>xpress</h2>-->
-  <!--<p><a target="_blank" href="http://expressjs.com/"> Express</a> is a NodeJS server-side application web framework. Check out <a target="_blank" href="http://expressjs.com/4x/api.html">The ExpressJS API reference for more information</a> or <a target="_blank" href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a> for more info.</p>-->
-  <!--</div>-->
-  <!--<div class="col-md-3">-->
-  <!--<h2><strong>A</strong>ngularJS</h2>-->
-  <!--<p><a target="_blank" href="http://angularjs.org/">AngularJS</a> is client-side web application framework. The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and <a target="_blank" href="https://egghead.io/">Egghead Videos</a> are great resources.</p>-->
-  <!--</div>-->
-  <!--<div class="col-md-3">-->
-  <!--<h2><strong>N</strong>ode.js</h2>-->
-  <!--<p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a JavaScript run-time, popular for being a web server platform. Node's website and this <a target="_blank" href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow thread</a> offer excellent starting points to get to grasps with node.</p>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<div class="well">-->
-  <!--<h2>MEAN.JS Documentation</h2>-->
-  <!--<p>-->
-  <!--Once you're familiar with the foundation technology, check out the MEAN.JS Documentation:-->
-  <!--<ul>-->
-  <!--<li><a target="_blank" href="http://meanjs.org/docs.html">MEAN.JS Documentation</a>-->
-  <!--</li>-->
-  <!--&lt;!&ndash; <li><a target="_blank" href="http://meanjs.org/generator.html">Yeoman Generator</a>-->
-  <!--</li> &ndash;&gt;-->
-  <!--<li><a target="_blank" href="http://meanjs.org/modules.html">Modules</a>-->
-  <!--</li>-->
-  <!--<li><a target="_blank" href="http://meanjs.org/changelog.html">Changelog</a>-->
-  <!--</li>-->
-  <!--<li><a target="_blank" href="http://meanjs.org/community.html">Community</a>-->
-  <!--</li>-->
-  <!--<li><a target="_blank" href="http://blog.meanjs.org">Blog</a>-->
-  <!--</li>-->
-  <!--</ul>-->
-  <!--</p>-->
-  <!--</div>-->
-  <!--<br>Enjoy &amp; Keep Us Updated,-->
-  <!--<br>The MEAN.JS Team.-->
-</section>
+  </div>
