@@ -42,10 +42,10 @@ NAVIGATION
     padding-bottom: 30px;
     border: none;
     box-shadow: none;
-     -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-     -moz-transition: none;
-     -webkit-transition: none;
+   -webkit-box-shadow: none;
+   -moz-box-shadow: none;
+   -moz-transition: none;
+   -webkit-transition: none;
 
 }
 
@@ -70,6 +70,9 @@ NAVIGATION
 
 }
 
+.footer{
+  background: #E28F40;
+}
 
 .carousel-inner {
   height: 650px;
