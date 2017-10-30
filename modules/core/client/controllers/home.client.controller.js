@@ -7,22 +7,16 @@
 //   }
 // ]);
 
-angular.module('core').controller('HomeController', ['$scope',
-    function ($scope) {
-        $scope.myInterval = 3000;
-        $scope.slides = [
-            {
-                image: 'modules/core/client/img/pictures/1.jpg'
-            },
-            {
-                image: 'modules/core/client/img/pictures/2.jpg'
-            },
-            {
-                image: 'modules/core/client/img/pictures/3.jpg'
-            },
-            {
-                image: 'modules/core/client/img/pictures/4.jpg'
-            }
-        ];
-    }
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', 'NewsService',
+  function ($scope, Authentication, NewsService) {
+    $scope.authentication = Authentication;
+    $scope.myInterval = 3000;
+    $scope.slides = [
+      {
+        image: 'modules/core/client/img/pictures/slide 5.png'
+      }
+    ];
+
+    $scope.newslist = NewsService.query();
+  }
 ]);

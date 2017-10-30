@@ -81,7 +81,7 @@ exports.delete = function(req, res) {
  * List of News
  */
 exports.list = function(req, res) {
-  News.find().exec(function(err, news) {
+  News.find().sort('-created').populate('user', 'displayName').exec(function(err, news) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

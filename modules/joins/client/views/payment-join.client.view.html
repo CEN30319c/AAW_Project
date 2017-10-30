@@ -1,4 +1,12 @@
 <section>
-  <p>PAYMENT PAGE GOES HERE</p>
-  <label>https://squareup.com/store/UFLAAW</label>
+
+  <div ng-controller="JoinsController">
+
+    <h3>Your Application has been successfully submitted</h3>
+    <p>Please, click on the button below to redirect you to our secure payment site to proceed with your payment.</p>
+
+    <button type="button" class="btn btn-primary" ng-click="goToPay()">Submit Payment</button>
+    <button type="button" class="btn btn-default" ng-click="cancelPayment()">Cancel</button>
+  </div>
+
 </section>
