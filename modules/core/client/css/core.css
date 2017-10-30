@@ -103,3 +103,16 @@ GALLERY
 .joins-container {
   margin: 45px 0;
 }
+
+.notification-icon {
+  overflow: hidden;
+  margin-bottom: -200% !important;
+  padding-left: 45%;
+  position: absolute;
+  z-index: 9998!important;
+}
+
+.notification-icon .badge {
+  background-color: red;
+  color: white;
+}

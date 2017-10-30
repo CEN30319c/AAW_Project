@@ -142,3 +142,16 @@
     background-color: #E28F41; /* Orange */
     color: white;
 }
+
+/*.notification-icon {*/
+    /*overflow: hidden;*/
+    /*margin-top: -49px;*/
+    /*position: relative;*/
+    /*padding-left: 61%;*/
+    /*z-index: 9998!important;*/
+/*}*/
+
+/*.notification-icon .badge {*/
+    /*background-color: red;*/
+    /*color: white;*/
+/*}*/

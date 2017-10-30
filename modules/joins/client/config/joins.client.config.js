@@ -12,14 +12,9 @@
     menuService.addMenuItem('topbar', {
       title: 'Join Us!',
       state: 'joins',
-      // type: 'dropdown',
       roles: ['*']
     });
-    menuService.addMenuItem('topbar', {
-      title: 'List Pending Requests',
-      state: 'list',
-      roles: ['admin']
-    });
+
     // // Add the dropdown list item
     // menuService.addSubMenuItem('topbar', 'joins', {
     //   title: 'List Joins',

@@ -11,18 +11,18 @@
     // Set top bar menu items
 
     menuService.addMenuItem('topbar', {
-      title: 'Join',
-      state: 'pendingrequets',
-      type: 'dropdown',
-      roles: ['*']
-  });
-
-    // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'pendingrequets', {
       title: 'List Pending Requests',
       state: 'pendingrequets.list',
+      // type: 'dropdown',
       roles: ['admin']
     });
+
+    // Add the dropdown list item
+    // menuService.addSubMenuItem('topbar', 'pendingrequets', {
+    //   title: 'List Pending Requests',
+    //   state: 'pendingrequets.list',
+    //   roles: ['admin']
+    // });
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'pendingrequets', {
