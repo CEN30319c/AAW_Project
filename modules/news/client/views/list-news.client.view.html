@@ -4,7 +4,7 @@
   </div>
   <div class="list-group">
     <div ng-repeat="news in vm.news" class="list-group-item">
-       <button ng-show="news.user.roles[0] == "user"" class="btn btn-primary" ui-sref="news.view({ newsId: news._id })" style="position: absolute; right: 100px; top: 20px;">Edit</button>
+       <button class="btn btn-primary" ui-sref="news.view({ newsId: news._id })" style="position: absolute; right: 100px; top: 20px;">Edit</button>
 
       <small class="list-group-item-text">
         Posted on
