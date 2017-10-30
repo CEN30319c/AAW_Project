@@ -103,23 +103,29 @@ HOME
   color: #6B9AC3;
 }
 
-.announcement-cell{
+.news-cell{
   background: #6B9AC3;
   color: #fff;
   padding: 15px 25px;
   margin: 15px 0;
 }
 
-.announcement-cell h3{
+.news-cell h3{
   font-family: 'Avenir Black';
 }
 
-.announcement-cell h5{
+.news-cell h5{
   font-family: 'Avenir Light';
 }
-.announcement-cell h6{
+.news-cell h6{
   font-family: 'Avenir Roman';
   line-height: 25px;
+}
+
+.news a{
+  color: #fff;
+  text-transform: uppercase;
+
 }
 
 #whoweare{
