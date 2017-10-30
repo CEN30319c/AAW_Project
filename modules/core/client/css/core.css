@@ -77,8 +77,9 @@ HOME
 .home-content{
   z-index: 1;
   position:relative;
-    z-index:1;
+  z-index:1;
   background: #E28F40;
+  margin-top: 45px;
 }
 
 .home-content:before{
@@ -94,6 +95,38 @@ HOME
 
 .carousel-inner {
   height: 650px;
+}
+
+.home-content h2{
+  font-family: 'Avenir Black';
+  text-transform: uppercase;
+  color: #6B9AC3;
+}
+
+.announcement-cell{
+  background: #6B9AC3;
+  color: #fff;
+  padding: 15px 25px;
+  margin: 15px 0;
+}
+
+.announcement-cell h3{
+  font-family: 'Avenir Black';
+}
+
+.announcement-cell h5{
+  font-family: 'Avenir Light';
+}
+.announcement-cell h6{
+  font-family: 'Avenir Roman';
+  line-height: 25px;
+}
+
+#whoweare{
+  font-size: 2em;
+  margin: 25px 0;
+  font-family: 'Avenir Light';
+  font-style: normal;
 }
 
 /********************
