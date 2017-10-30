@@ -13,10 +13,58 @@
   src: url('../css/fonts/AvenirLTStd-Black.ttf') format('truetype');
 }
 
-
 body{
     font-family: 'Avenir Roman';
 }
+
+
+/********************
+NAVIGATION
+********************/
+
+.nav-item {
+  font-family: 'Avenir Black';
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  margin-left: 15px;
+  width: 35%;
+}
+
+.navbar-default {
+    background: #E28F40;
+    padding-top: 25px;
+    padding-bottom: 30px;
+    border: none;
+
+}
+
+.navbar-default .navbar-nav {
+    margin-right: 10px;
+    margin-top: 5px
+}
+
+.navbar-default .navbar-nav > li {
+    display: inline-block;
+    float: none
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    font-size: 1.05em;
+}
+
+.container-fluid {
+     padding-right: 0px;
+     padding-left: 0px; 
+
+}
+
 .content {
   margin-top: 50px;
 }
