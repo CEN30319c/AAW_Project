@@ -185,6 +185,8 @@ FOOTER
 
 .footer{
   background: #E28F40;
+  position: absolute;
+  width: 100%;
 }
 
 .footer a, .footer i{
@@ -260,15 +262,6 @@ PAGE HEADER
   text-align: right;
   text-transform: uppercase;
   cursor: pointer;
-}
-
-/********************
-FOOTER
-********************/
-.footer {
-  background: rgb(255, 255, 255);
-  position: absolute;
-  padding-left: 380px;
 }
 
 /********************
