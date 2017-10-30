@@ -128,6 +128,41 @@ HOME
 
 }
 
+.event-cell{
+  background: #6B9AC3;
+justify-content: center;
+  margin: 15px 0;
+}
+
+.event-cell .date{
+  background: #fff;
+  color: #E28F40;
+  height: 100%;
+  width: 100%;
+  padding: 5px 0;
+}
+
+
+.event-cell .date h1{
+  font-family: 'Avenir Black';
+  color: #E28F40;
+  font-size: 4em;
+}
+
+.event-cell .date h3{
+  font-size: 1.20em;
+}
+
+.event-cell .event-descrip{
+  background: #6B9AC3;
+  color: #fff;
+}
+
+.event-cell .event-descrip h3{
+  font-family: 'Avenir Black';
+
+}
+
 #whoweare{
   font-size: 2em;
   margin: 25px 0;
@@ -146,6 +181,7 @@ FOOTER
 .footer a, .footer i{
   color: #fff;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .footer i{
