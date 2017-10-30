@@ -10,6 +10,6 @@
   "qualified-headings": false,
   "regex-selectors": false,
   "unique-headings": false,
-  "universal-selector": false,
+  "universal-selector": true,
   "unqualified-attributes": false
 }

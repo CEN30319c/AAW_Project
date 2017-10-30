@@ -7,8 +7,9 @@
 //   }
 // ]);
 
-angular.module('core').controller('HomeController', ['$scope',
-  function ($scope) {
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', 'NewsService',
+  function ($scope, Authentication, NewsService) {
+    $scope.authentication = Authentication;
     $scope.myInterval = 3000;
     $scope.slides = [
       {
@@ -24,5 +25,7 @@ angular.module('core').controller('HomeController', ['$scope',
         image: 'modules/core/client/img/pictures/4.jpg'
       }
     ];
+
+    $scope.newslist = NewsService.query();
   }
 ]);

@@ -30,24 +30,57 @@ var PendingrequetSchema = new Schema({
     trim: true
   },
 
+  college: {
+    type: String,
+    default: '',
+    required: '',
+    trim: true
+  },
+
+  position: {
+    type: String,
+    default: '',
+    required: '',
+    trim: true
+  },
   selection: {
       type: String,
       default: '',
       required: 'Please select your role in campus',
       trim: true
   },
-  firstTimeYes: {
-      type: String,
+
+  yearsUf: {
+      type: Number,
       default: '',
-      required: 'Please select Yes or No',
+      required: '',
       trim: true
   },
-  firstTimeNo: {
-      type: String,
-      default: '',
-      required: 'Please select Yes or No',
-      trim: true
+
+  selection2: {
+    type: String,
+    default: '',
+    required: 'Please, select an answer',
+    trim: true
   },
+  selection3: {
+    type: String,
+    default: '',
+    required: 'Please, select an answer',
+    trim: true
+  },
+  // firstTimeYes: {
+  //     type: String,
+  //     default: '',
+  //     required: 'Please select Yes or No',
+  //     trim: true
+  // },
+  // firstTimeNo: {
+  //     type: String,
+  //     default: '',
+  //     required: 'Please select Yes or No',
+  //     trim: true
+  // },
 
   joinYes: {
       type: String,
@@ -61,6 +94,13 @@ var PendingrequetSchema = new Schema({
       required: 'Please select Yes or No',
       trim: true
   },
+  interest: {
+    type: String,
+    default: '',
+    required: '',
+    trim: true
+  },
+
   topics: {
       type: String,
       default: '',
