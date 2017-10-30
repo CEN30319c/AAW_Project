@@ -88,7 +88,7 @@ HOME
    top:0;
    left:0;
    width:100%;
-   height:55%;
+   height:65%;
    content:"";
    background-color: white;
 }
@@ -101,6 +101,11 @@ HOME
   font-family: 'Avenir Black';
   text-transform: uppercase;
   color: #6B9AC3;
+  margin-bottom: 65px;
+}
+.home-content a{
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .news-cell{
@@ -108,6 +113,8 @@ HOME
   color: #fff;
   padding: 15px 25px;
   margin: 15px 0;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 15px 15px rgba(0, 0, 0, .25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 15px 15px rgba(0, 0, 0, .25);
 }
 
 .news-cell h3{
@@ -122,16 +129,14 @@ HOME
   line-height: 25px;
 }
 
-.news a{
-  color: #fff;
-  text-transform: uppercase;
 
-}
 
 .event-cell{
   background: #6B9AC3;
-justify-content: center;
   margin: 15px 0;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 15px 15px rgba(0, 0, 0, .25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 15px 15px rgba(0, 0, 0, .25);
+
 }
 
 .event-cell .date{
@@ -165,9 +170,13 @@ justify-content: center;
 
 #whoweare{
   font-size: 2em;
-  margin: 25px 0;
+  margin-bottom: 45px;
   font-family: 'Avenir Light';
   font-style: normal;
+}
+
+.view-all{
+  margin-top: 25px;
 }
 
 /********************
