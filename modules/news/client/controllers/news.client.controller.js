@@ -13,7 +13,6 @@
 
     vm.authentication = Authentication;
     vm.news = news;
-    //vm.news.newsText = '';
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
