@@ -1,5 +1,6 @@
 <section>
   <div class="ui-view">
+
       <div ng-controller="JoinsController" class="joins-container">
 
       <carousel interval="myInterval">
@@ -7,12 +8,29 @@
           <img ng-src="{{slide.image}}" style="margin:auto;">
           <div class="carousel-caption">
             <h4>{{slide.text}}</h4>
+
+    <div class="page-content">
+      <div class="joins-container">
+
+
+        <div ng-controller="JoinsController" class="carousel2">
+          <div class="rect">
+            <carousel interval="myInterval">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                  <h4>{{slide.text}}</h4>
+                </div>
+              </slide>
+            </carousel>
+
           </div>
         </slide>
       </carousel>
 
 
       <div class="row box1-row">
+
 
         <div class="col-md-4">
           <div class="circle-text">
@@ -26,6 +44,7 @@
 
               </ul>
             </div>
+
           </div>
         </div>
 
