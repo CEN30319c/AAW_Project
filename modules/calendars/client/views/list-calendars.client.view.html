@@ -1,22 +1,32 @@
 <section>
+  <iframe width="1150" height="900" align="middle" src="https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/5a8f34cd-399c-4de8-93ca-5edb62643f41/cid-5939566F43ADC820/index.html"></iframe>
+</section>
+
+<section>
   <div class="page-header">
-    <h1>Calendars</h1>
+    <h1>All Events</h1>
   </div>
   <div class="list-group">
     <a ng-repeat="calendar in vm.calendars"
        ui-sref="calendars.view({ calendarId: calendar._id })"
        class="list-group-item">
       <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="calendar.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="calendar.user" ng-bind="calendar.user.displayName"></span>
-        <span ng-if="!calendar.user">Deleted User</span>
+        From
+        <span ng-bind="calendar.begin | date:'mediumDate'"></span>
+        until
+        <span ng-bind="calendar.end | date:'mediumDate'"></span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="calendar.name"></h4>
+      <h4 class="list-group-item-heading" ng-bind="calendar.summary"></h4>
     </a>
   </div>
-  <div class="alert alert-warning text-center" ng-if="vm.calendars.$resolved && !vm.calendars.length">
-    No Calendars yet, why don't you <a ui-sref="calendars.create">create one</a>?
-  </div>
+</section>
+
+<section>
+  <h1>How to subscribe to this Calendar</h1>
+  <div>1.) Copy this link: https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/5a8f34cd-399c-4de8-93ca-5edb62643f41/cid-5939566F43ADC820/calendar.ics</div>
+  <div>2.) Go to your outlook email</div>
+  <div>3.) Click on the calendar icon on the lower left of the page</div>
+  <div>4.) On the top of the page, click on "Add calendar", and from the drop down menu click "From internet"</div>
+  <div>5.) Under "Link to calendar" paste the link copied in step 1.  Under "Calendar name" put anyname you wish.</div>
+  <div>6.) Click Save and you're done!</div>
 </section>
