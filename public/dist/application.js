@@ -168,9 +168,9 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'About',
       state: 'abouts',
       // type: 'dropdown',
@@ -178,13 +178,13 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
     });
 
     // // Add the dropdown list item
-    // menuService.addSubMenuItem('topbar', 'abouts', {
+    // Menus.addSubMenuItem('topbar', 'abouts', {
     //   title: 'List Abouts',
     //   state: 'abouts.list'
     // });
     //
     // // Add the dropdown create item
-    // menuService.addSubMenuItem('topbar', 'abouts', {
+    // Menus.addSubMenuItem('topbar', 'abouts', {
     //   title: 'Create About',
     //   state: 'abouts.create',
     //   roles: ['admin']
@@ -293,7 +293,7 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
     .module('abouts')
     .controller('AboutsController', AboutsController);
 
-  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'aboutResolve'];
+  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication'];
 
   $(document).ready(function(){
     $("p").click(function(){
@@ -419,9 +419,9 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'Calendar',
       state: 'calendars',
       // type: 'dropdown',
@@ -429,13 +429,13 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
     });
 
     // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'calendars', {
+    Menus.addSubMenuItem('topbar', 'calendars', {
       title: 'List Calendars',
       state: 'calendars.list'
     });
 
     // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'calendars', {
+    Menus.addSubMenuItem('topbar', 'calendars', {
       title: 'Create Calendar',
       state: 'calendars.create',
       roles: ['user']
@@ -1065,9 +1065,9 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'Gallery',
       state: 'galleries',
       // type: 'dropdown',
@@ -1260,22 +1260,22 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'Join Us!',
       state: 'joins',
       roles: ['*']
     });
 
     // // Add the dropdown list item
-    // menuService.addSubMenuItem('topbar', 'joins', {
+    // Menus.addSubMenuItem('topbar', 'joins', {
     //   title: 'List Joins',
     //   state: 'joins.list'
     // });
     //
     // // Add the dropdown create item
-    // menuService.addSubMenuItem('topbar', 'joins', {
+    // Menus.addSubMenuItem('topbar', 'joins', {
     //   title: 'Create Join',
     //   state: 'joins.create',
     //   roles: ['user']
@@ -1506,9 +1506,9 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'Members',
       state: 'members',
       // type: 'dropdown',
@@ -1516,13 +1516,13 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     });
 
     // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'members', {
+    Menus.addSubMenuItem('topbar', 'members', {
       title: 'List Members',
       state: 'members.list'
     });
 
     // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'members', {
+    Menus.addSubMenuItem('topbar', 'members', {
       title: 'Create Member',
       state: 'members.create',
       roles: ['user']
@@ -1710,9 +1710,9 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'News',
       state: 'news',
       type: 'dropdown',
@@ -1720,13 +1720,13 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     });
 
     // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'news', {
+    Menus.addSubMenuItem('topbar', 'news', {
       title: 'List News',
       state: 'news.list'
     });
 
     // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'news', {
+    Menus.addSubMenuItem('topbar', 'news', {
       title: 'Create News',
       state: 'news.create',
       roles: ['user']
@@ -1917,10 +1917,10 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
 
-    menuService.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'List Pending Requests',
       state: 'pendingrequets.list',
       // type: 'dropdown',
@@ -1928,14 +1928,14 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     });
 
     // Add the dropdown list item
-    // menuService.addSubMenuItem('topbar', 'pendingrequets', {
+    // Menus.addSubMenuItem('topbar', 'pendingrequets', {
     //   title: 'List Pending Requests',
     //   state: 'pendingrequets.list',
     //   roles: ['admin']
     // });
 
     // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'pendingrequets', {
+    Menus.addSubMenuItem('topbar', 'pendingrequets', {
       title: 'Join Now',
       state: 'pendingrequets.create',
       // roles: ['*']

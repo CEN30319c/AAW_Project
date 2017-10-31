@@ -6,7 +6,7 @@
     .module('abouts')
     .controller('AboutsController', AboutsController);
 
-  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'aboutResolve'];
+  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication'];
 
   $(document).ready(function(){
     $("p").click(function(){
