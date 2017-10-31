@@ -2,7 +2,9 @@
     height: 500px;
 }*/
 
-
+.joins-container{
+  margin-bottom: 75px;
+}
 .box1-row {
     padding-top: 6%;
 
@@ -13,9 +15,8 @@
     width: 360px;
     background-color: #6C9AC3;
     border-radius: 1000px;
-    margin-right: 10px;
+    margin: 0 auto;
     margin-bottom: 30px;
-    float: left;
     box-shadow: 15px 20px 25px grey;
 }
 
@@ -26,13 +27,10 @@
 }
 
 .circle-text div {
-    float: left;
     width: 100%;
     padding-top: 12%;
     line-height: 1em;
-    text-align: left;
     color: white;
-
 }
 
 .circle-text1 {
@@ -41,23 +39,22 @@
     background-color: #E28F41;
     border-radius: 1000px;
     margin-bottom: 30px;
-    margin-left: 20px;
-    float: left;
-    margin-right: 20px;
+    margin: 0 auto;
     box-shadow: 15px 20px 25px grey;
 }
 
-.circle-text1 h3 {
+.circle-text1 h3,
+.circle-text2 h3,
+.circle-text h3 {
+    font-family: 'Avenir Black';
     text-align: center;
     font: bold;
 }
 
 .circle-text1 div {
-    float: left;
     width: 100%;
     padding-top: 15%;
     line-height: 1em;
-    text-align: left;
     color: white;
 }
 
@@ -67,9 +64,9 @@
     background-color: #6C9AC3;
     border-radius: 1000px;
     margin-bottom: 30px;
-    margin-left: 20px;
-    float: left;
-    margin-right: 20px;
+    margin: 0 auto;
+
+
     box-shadow: 15px 20px 25px grey;
 }
 
@@ -80,11 +77,9 @@
 }
 
 .circle-text2 div {
-    float: left;
     width: 100%;
     padding-top: 15%;
     line-height: 1em;
-    text-align: left;
     color: white;
 }
 
@@ -97,8 +92,9 @@
 .myTestimonials{
     background-color: whitesmoke;
     border-radius: 15px;
-    width: 45%;
+    width: 100%;
     height: 100px;
+    margin-top: 65px;
 }
 
 .testimonials div{
@@ -108,14 +104,14 @@
 
 .testimonials h3, p{
     text-align: center;
-    font: italic bold 12px/30px Georgia, serif;
+    /*font: italic bold 12px/30px Georgia, serif;*/
 }
 
 .message {
     padding-top: 5%;
     text-align: center;
     color: #6C9AC3;
-    padding-left: 5%;
+    /*padding-left: 5%;*/
     text-decoration: underline
 }
 
@@ -123,7 +119,7 @@
     padding-top: 1%;
     text-align: center;
     color: #E28F41;
-    padding-left: 5%;
+    /*padding-left: 5%;*/
 
 }
 
@@ -143,15 +139,12 @@
     color: white;
 }
 
-/*.notification-icon {*/
-    /*overflow: hidden;*/
-    /*margin-top: -49px;*/
-    /*position: relative;*/
-    /*padding-left: 61%;*/
-    /*z-index: 9998!important;*/
-/*}*/
-
-/*.notification-icon .badge {*/
-    /*background-color: red;*/
-    /*color: white;*/
-/*}*/
+.circle-text li,
+.circle-text1 li,
+.circle-text2 li {
+  font-family: 'Avenir Roman';
+  /*text-align: center;
+  margin: auto;
+  margin-left: -25px;
+  margin-top: 15px;*/
+}

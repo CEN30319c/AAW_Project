@@ -5,50 +5,65 @@ a.active {
 
 p {
     font-size: 18px;
+    text-align: left;
+    line-height: 45px;
 }
 
-.space {
-  padding: 10px;
+/*.row {
+     margin-right: 0px;
+     margin-left: 0px;
+}*/
+
+
+.page-content-wrapper{
+  margin-top: 45px;
+  padding-bottom: 100px;
+  text-align: center;
+  width: 75%;
+  margin: auto;
 }
 
-#mission {
-    padding: 60px;
-    text-align: center;
+.about-section{
+  margin: 65px 0;
+  padding-top: 250px;
+  margin-top: -250px;
 }
 
-#history {
-    padding: 60px;
-    text-align: center;
-    padding-bottom: 200px;
+.about-section p{
+  margin-top: 45px;
 }
 
-#awards {
-    padding: 60px;
-    text-align: center;
+.page-content-wrapper h1,
+.page-content-wrapper h2 {
+  font-family: 'Avenir Black';
 }
 
-#leadership {
-    padding: 60px;
-    text-align: center;
+#space{
+  margin-top: 65px;
 }
-
-.wrapper {
+/*#wrapper {
   padding-left: 190px;
   transition: all 0.4s ease 0s;
-}
+}*/
 
 .sidebar-wrapper {
-  margin-left: -250px;
-  left: 250px;
+  margin-top: 45px;
+  color: #B1B3B6;
   width: 250px;
-  background: #000;
+  background: transparent;
   position: fixed;
   height: 100%;
-  overflow-y: auto;
-  transition: all 0.4s ease 0s;
+  /*overflow-y: auto;*/
+  /*z-index: 1000;*/
+  /*transition: all 0.4s ease 0s;*/
 }
 
-.wrapper.active {
+/*.page-content-wrapper{
+  margin-bottom: 45px;
+}
+
+
+#wrapper.active {
   padding-left: 0;
 }
 
@@ -56,20 +71,16 @@ p {
   left: 0;
 }
 
-.page-content-wrapper {
-  width: 80%;
-  margin-left: 200px;
-}
-
-
+#page-content-wrapper {
+  width: 100%;
+}*/
 
 .sidebar-nav {
+  font-family: 'Avenir Black';
   position: absolute;
-  top: 0;
-  width: 250px;
+  width: 100%;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  font-size: 1.25em;
 }
 
 .sidebar-nav li {
@@ -78,9 +89,10 @@ p {
 }
 
 .sidebar-nav li a {
+  font-family: 'Avenir Black';
   color: #999999;
   display: block;
-  text-decoration: none;
+  text-transform: uppercase;
   padding-left: 60px;
 }
 
@@ -96,13 +108,13 @@ p {
 .sidebar-nav li a:hover,
 .sidebar-nav li.active {
   color: #fff;
-  background: rgba(255,255,255,0.2);
+  background: #6B9AC3;
   text-decoration: none;
 }
 
 .sidebar-nav li.highlight {
-    color: #fff;
-    background: rgba(255,255,255,0.2);
+  color: #fff;
+  background: #6B9AC3;
     text-decoration: none;
   }
 
@@ -123,7 +135,7 @@ p {
 
 .sidebar-nav > .sidebar-brand a:hover {
   color: #fff;
-  background: rgba(255,255,255,0.2);
+  background: #6B9AC3;
   text-decoration: none;
 }
 
@@ -147,15 +159,16 @@ p {
 
 .btn-menu {
   color: #000;
-} 
-
-.inset {
-  padding: 20px;
 }
+
+/*.inset {
+  padding: 20px;
+}*/
 
 @media (max-width:767px) {
 
-.wrapper {
+#wrapper {
+
   padding-left: 0;
 }
 
@@ -180,6 +193,12 @@ p {
 
 .inset {
   padding: 15px;
+}
+
+.highlight{
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
+	border-left: thick solid rgba(0,255,0,0.5);
 }
 
 }
