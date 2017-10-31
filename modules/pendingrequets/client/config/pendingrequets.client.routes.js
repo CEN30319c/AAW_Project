@@ -15,10 +15,13 @@
         template: '<ui-view/>'
       })
       .state('pendingrequets.list', {
-        url: '',
+        url: '/list',
         templateUrl: 'modules/pendingrequets/client/views/list-pendingrequets.client.view.html',
         controller: 'PendingrequetsListController',
         controllerAs: 'vm',
+        resolve: {
+          pendingrequetResolve: getPendingrequets
+        },
         data: {
           pageTitle: 'Pendingrequets List',
           roles: ['admin']
@@ -70,6 +73,12 @@
     return PendingrequetsService.get({
       pendingrequetId: $stateParams.pendingrequetId
     }).$promise;
+  }
+
+    getPendingrequets.$inject = ['PendingrequetsService'];
+
+  function getPendingrequets(PendingrequetsService) {
+    return PendingrequetsService.query().$promise;
   }
 
   newPendingrequet.$inject = ['PendingrequetsService'];

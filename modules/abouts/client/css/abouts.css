@@ -1,3 +1,8 @@
+a.active {
+  background: #00AC7F;
+  color: #fff;
+}
+
 p {
     font-size: 18px;
     text-align: left;
@@ -8,6 +13,7 @@ p {
      margin-right: 0px;
      margin-left: 0px;
 }*/
+
 
 .page-content-wrapper{
   margin-top: 45px;
@@ -61,7 +67,7 @@ p {
   padding-left: 0;
 }
 
-#wrapper.active #sidebar-wrapper {
+.wrapper.active .sidebar-wrapper {
   left: 0;
 }
 
@@ -166,16 +172,16 @@ p {
   padding-left: 0;
 }
 
-#sidebar-wrapper {
+.sidebar-wrapper {
   left: 0;
 }
 
-#wrapper.active {
+.wrapper.active {
   position: relative;
   left: 250px;
 }
 
-#wrapper.active #sidebar-wrapper {
+.wrapper.active .sidebar-wrapper {
   left: 250px;
   width: 250px;
   transition: all 0.4s ease 0s;

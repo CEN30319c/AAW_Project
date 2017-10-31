@@ -23,7 +23,7 @@
       })
 
       .state('list', {
-        url: '/joins.list',
+        url: '/list',
         templateUrl: 'modules/joins/client/views/list-joins.client.view.html',
         controller: 'JoinsListController',
         controllerAs: 'vm'
@@ -78,7 +78,8 @@
   //     joinId: $stateParams.joinId
   //   }).$promise;
   // }
-
+  //
+  //
   // newJoin.$inject = ['JoinsService'];
   //
   // function newJoin(JoinsService) {
