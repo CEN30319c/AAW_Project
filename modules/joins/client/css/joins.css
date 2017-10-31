@@ -1,6 +1,10 @@
-/*.carousel div{
-    height: 500px;
-}*/
+.carousel2 div {
+    height: 380px;
+}
+
+.carousel2 {
+    padding-top: 3%;
+}
 
 .joins-container{
   margin-bottom: 75px;
@@ -15,7 +19,12 @@
     width: 360px;
     background-color: #6C9AC3;
     border-radius: 1000px;
+<<<<<<< HEAD
     margin: 0 auto;
+=======
+    margin-right: 30px;
+    margin-left: 100px;
+>>>>>>> origin/lesly
     margin-bottom: 30px;
     box-shadow: 15px 20px 25px grey;
 }
@@ -38,8 +47,14 @@
     width: 360px;
     background-color: #E28F41;
     border-radius: 1000px;
+    margin-right: 30px;
     margin-bottom: 30px;
+<<<<<<< HEAD
     margin: 0 auto;
+=======
+    margin-left: 40px;
+    float: left;
+>>>>>>> origin/lesly
     box-shadow: 15px 20px 25px grey;
 }
 
@@ -63,10 +78,16 @@
     width: 360px;
     background-color: #6C9AC3;
     border-radius: 1000px;
+    margin-right: 30px;
     margin-bottom: 30px;
+<<<<<<< HEAD
     margin: 0 auto;
 
 
+=======
+    margin-left: 40px;
+    float: left;
+>>>>>>> origin/lesly
     box-shadow: 15px 20px 25px grey;
 }
 
@@ -139,6 +160,7 @@
     color: white;
 }
 
+<<<<<<< HEAD
 /*.notification-icon {*/
     /*overflow: hidden;*/
     /*margin-top: -49px;*/
@@ -160,3 +182,5 @@
   margin-left: -25px;
   margin-top: 15px;*/
 }
+=======
+>>>>>>> origin/lesly
