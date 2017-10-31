@@ -18,6 +18,23 @@ body{
 }
 
 
+.header{
+  position: relative;
+  height: 380px;
+  background-image: url('/modules/core/client/img/pictures/slide 5.png');
+  background-size: cover;
+}
+
+.header h1{
+  font-family: 'Avenir Black';
+  color: white;
+  font-size: 4em;
+  display: inline;
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+}
+
 /********************
 NAVIGATION
 ********************/
@@ -37,7 +54,7 @@ NAVIGATION
 }
 
 .navbar-default {
-    background: none;
+    background: transparent;
     padding-top: 25px;
     padding-bottom: 30px;
     border: none;
@@ -115,28 +132,27 @@ HOME
   margin: 15px 0;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 15px 15px rgba(0, 0, 0, .25);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 15px 15px rgba(0, 0, 0, .25);
+  line-height: 30px;
 }
 
 .news-cell h3{
   font-family: 'Avenir Black';
+  text-transform: uppercase;
+  font-size: 2em;
+  margin-bottom: 15px;
 }
 
 .news-cell h5{
   font-family: 'Avenir Light';
+  font-size: 1.15em;
+  margin-bottom: 25px;
 }
-.news-cell h6{
-  font-family: 'Avenir Roman';
-  line-height: 25px;
-}
-
-
 
 .event-cell{
   background: #6B9AC3;
   margin: 15px 0;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 15px 15px rgba(0, 0, 0, .25);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 15px 15px rgba(0, 0, 0, .25);
-
 }
 
 .event-cell .date{
@@ -144,7 +160,9 @@ HOME
   color: #E28F40;
   height: 100%;
   width: 100%;
-  padding: 5px 0;
+  padding-top: 20px;
+  padding-bottom: 15px;
+
 }
 
 
@@ -166,6 +184,11 @@ HOME
 .event-cell .event-descrip h3{
   font-family: 'Avenir Black';
 
+}
+
+.news-cell p{
+  font-size: 1em;
+  text-align: left;
 }
 
 #whoweare{
@@ -214,6 +237,13 @@ FOOTER
   display: inline;
 }
 
+/********************
+AFFIX
+********************/
+
+.navbar-affix {
+  background: rgba(0,0,0,0.45);
+}
 
 .content {
   margin-top: 0px;
