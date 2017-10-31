@@ -1,28 +1,14 @@
 p {
     font-size: 18px;
     text-align: left;
+    line-height: 45px;
 }
 
-.header{
-  position: relative;
-  height: 380px;
-  background-image: url('/modules/core/client/img/pictures/slide 5.png');
-  background-size: cover;
-}
 
-.header h1{
-  font-family: 'Avenir Black';
-  color: white;
-  font-size: 4em;
-  display: inline;
-  position: absolute;
-  right: 30px;
-  bottom: 0;
-}
 
 .page-content-wrapper{
   margin-top: 45px;
-  padding-bottom: 45px;
+  padding-bottom: 100px;
   text-align: center;
   width: 75%;
   margin: auto;
@@ -41,7 +27,9 @@ p {
   font-family: 'Avenir Black';
 }
 
-
+#space{
+  margin-top: 65px;
+}
 /*#wrapper {
   padding-left: 190px;
   transition: all 0.4s ease 0s;
@@ -162,9 +150,9 @@ p {
   color: #000;
 }
 
-.inset {
+/*.inset {
   padding: 20px;
-}
+}*/
 
 @media (max-width:767px) {
 

@@ -18,6 +18,23 @@ body{
 }
 
 
+.header{
+  position: relative;
+  height: 380px;
+  background-image: url('/modules/core/client/img/pictures/slide 5.png');
+  background-size: cover;
+}
+
+.header h1{
+  font-family: 'Avenir Black';
+  color: white;
+  font-size: 4em;
+  display: inline;
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+}
+
 /********************
 NAVIGATION
 ********************/
