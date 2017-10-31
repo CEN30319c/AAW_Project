@@ -1,4 +1,12 @@
-a.active {
+td {
+  text-align:center;
+}
+
+th {
+  text-align:center;
+}
+
+.active {
   background: #00AC7F;
   color: #fff;
 }
@@ -9,6 +17,9 @@ p {
     line-height: 45px;
 }
 
+.space {
+  padding: 10px;
+}
 /*.row {
      margin-right: 0px;
      margin-left: 0px;
@@ -23,6 +34,11 @@ p {
   margin: auto;
 }
 
+#history {
+    padding: 60px;
+    text-align: center;
+    padding-bottom: 200px;
+}
 .about-section{
   margin: 65px 0;
   padding-top: 250px;
@@ -31,6 +47,11 @@ p {
 
 .about-section p{
   margin-top: 45px;
+}
+
+#leadership {
+    padding: 60px;
+    text-align: center;
 }
 
 .page-content-wrapper h1,
@@ -42,17 +63,24 @@ p {
   margin-top: 65px;
 }
 /*#wrapper {
+>>>>>>> jonathan
   padding-left: 190px;
   transition: all 0.4s ease 0s;
 }*/
 
 .sidebar-wrapper {
+  margin-left: -250px;
+  left: 250px;
   margin-top: 45px;
   color: #B1B3B6;
   width: 250px;
   background: transparent;
   position: fixed;
   height: 100%;
+  overflow-y: auto;
+}
+
+.wrapper.active {
   /*overflow-y: auto;*/
   /*z-index: 1000;*/
   /*transition: all 0.4s ease 0s;*/
@@ -70,6 +98,12 @@ p {
 .wrapper.active .sidebar-wrapper {
   left: 0;
 }
+
+.page-content-wrapper {
+  width: 80%;
+  margin-left: 200px;
+}
+
 
 #page-content-wrapper {
   width: 100%;
@@ -167,8 +201,7 @@ p {
 
 @media (max-width:767px) {
 
-#wrapper {
-
+.wrapper {
   padding-left: 0;
 }
 
@@ -195,6 +228,7 @@ p {
   padding: 15px;
 }
 
+}
 .highlight{
 	color: rgb(0, 0, 0);
 	background-color: rgb(255, 255, 255);
