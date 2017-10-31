@@ -11,9 +11,9 @@
   function NewsController ($scope, $state, $window, Authentication, news) {
     var vm = this;
 
+
     vm.authentication = Authentication;
     vm.news = news;
-    //vm.news.newsText = '';
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
