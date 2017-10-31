@@ -4,7 +4,7 @@
   // Joins controller
   angular.module('joins').controller('JoinsController', JoinsController);
 
-  JoinsController.$inject = ['$rootScope', '$scope', '$state', '$window', '$modal', 'Authentication'];
+  JoinsController.$inject = ['$rootScope', '$scope', '$state', '$window', '$modal', '$location', 'Authentication'];
 
   function JoinsController ($rootScope, $scope, $state, $window, $modal, Authentication, join) {
     var vm = this;
@@ -15,6 +15,8 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    vm.fillApplication = fillApplication;
 
 
     //$scope variables prototypes
@@ -34,23 +36,13 @@
       },
       {
         image: 'modules/core/client/img/pictures/4.jpg',
-        text: 'Panels and discussion'
+        text: 'Panels and Discussion'
       }
     ];
 
-    $scope.openModal = function () {
-      $modal.open({
-        templateUrl:'modules/joins/client/views/modal-join.client.view.html',
-        controller: 'ModalController'
-
-      })
-      .result.then($scope.goToPay = function() {
-          // alert('closed');
-          $state.go('modules/joins/client/views/payment-join.client.view.html');
-      }, function() {
-          // alert('canceled');
-      });
-    };
+     function fillApplication() {
+         $state.go('pendingrequets.create');
+    }
 
     // Remove existing Join
     function remove() {
@@ -59,9 +51,12 @@
       }
     }
 
-    // Save Join
+    //Save Join
     function save(isValid) {
+        console.log('In Save');
       if (!isValid) {
+          console.log('Is Valid');
+
         $scope.$broadcast('show-errors-check-validity', 'vm.form.joinForm');
         return false;
       }

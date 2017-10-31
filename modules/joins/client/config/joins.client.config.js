@@ -12,7 +12,6 @@
     menuService.addMenuItem('topbar', {
       title: 'Join Us!',
       state: 'joins',
-      // type: 'dropdown',
       roles: ['*']
     });
 
