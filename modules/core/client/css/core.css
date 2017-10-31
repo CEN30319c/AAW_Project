@@ -37,7 +37,7 @@ NAVIGATION
 }
 
 .navbar-default {
-    background: none;
+    background: transparent;
     padding-top: 25px;
     padding-bottom: 30px;
     border: none;
@@ -218,6 +218,21 @@ FOOTER
   display: inline;
 }
 
+/********************
+AFFIX
+********************/
+
+.navbar-affix {
+  z-index: 1;
+
+  background: rgba(0,0,0,0.45);
+}
+
+.navbar-affix:after{
+  z-index: -1;
+  -webkit-filter: blur(5px);
+ filter: blur(5px);
+}
 
 .content {
   margin-top: 0px;
