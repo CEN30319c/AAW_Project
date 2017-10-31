@@ -19,6 +19,8 @@ p {
 
 .about-section{
   margin: 65px 0;
+  padding-top: 250px;
+  margin-top: -250px;
 }
 
 .about-section p{
