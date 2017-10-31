@@ -1,4 +1,12 @@
-a.active {
+td {
+  text-align:center;
+}
+
+th {
+  text-align:center;
+}
+
+.active {
   background: #00AC7F;
   color: #fff;
 }
