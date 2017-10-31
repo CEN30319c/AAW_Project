@@ -40,9 +40,11 @@
 
 <body class="ng-cloak">
   <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-default" yc-navbar-affix></header>
-  <section class="content">
+  <section class="content"  autoscroll="false">
     <section class="container-fluid">
-    {% block content %}{% endblock %}
+      <div class="ui-view"  autoscroll="true">
+        {% block content %}{% endblock %}
+      </div>
     </section>
   </section>
   <footer ng-include="'/modules/core/client/views/footer.client.view.html'"></footer>

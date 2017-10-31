@@ -2,7 +2,9 @@
     height: 500px;
 }*/
 
-
+.joins-container{
+  margin-bottom: 75px;
+}
 .box1-row {
     padding-top: 6%;
 
@@ -13,9 +15,8 @@
     width: 360px;
     background-color: #6C9AC3;
     border-radius: 1000px;
-    margin-right: 10px;
+    margin: 0 auto;
     margin-bottom: 30px;
-    float: left;
     box-shadow: 15px 20px 25px grey;
 }
 
@@ -41,13 +42,15 @@
     background-color: #E28F41;
     border-radius: 1000px;
     margin-bottom: 30px;
-    margin-left: 20px;
-    float: left;
-    margin-right: 20px;
+    margin: 0 auto;
+
     box-shadow: 15px 20px 25px grey;
 }
 
-.circle-text1 h3 {
+.circle-text1 h3,
+.circle-text2 h3,
+.circle-text h3 {
+    font-family: 'Avenir Black';
     text-align: center;
     font: bold;
 }
@@ -67,9 +70,9 @@
     background-color: #6C9AC3;
     border-radius: 1000px;
     margin-bottom: 30px;
-    margin-left: 20px;
-    float: left;
-    margin-right: 20px;
+    margin: 0 auto;
+
+
     box-shadow: 15px 20px 25px grey;
 }
 

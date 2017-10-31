@@ -1,58 +1,56 @@
 <section>
-
-
   <div class="ui-view">
-    <div class="page-content">
-      <div class="joins-container">
+      <div ng-controller="JoinsController" class="joins-container">
 
-
-        <div ng-controller="JoinsController" class="carousel">
-          <div class="rect">
-            <carousel interval="myInterval">
-              <slide ng-repeat="slide in slides" active="slide.active">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                  <h4>{{slide.text}}</h4>
-                </div>
-              </slide>
-            </carousel>
+      <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+          <img ng-src="{{slide.image}}" style="margin:auto;">
+          <div class="carousel-caption">
+            <h4>{{slide.text}}</h4>
           </div>
-        </div>
+        </slide>
+      </carousel>
 
 
       <div class="row box1-row">
 
-        <div class="circle-text">
-          <div class="col-md-4 col-xs-6 box circle-text">
-            <h3>Our Mission: </h3>
-            <ul style="font: bold 13px/30px Georgia, serif">
-              <li>Empower UF women for the utmost success</li>
-              <li>Foster career and personal growth</li>
-              <li>Encourage relationship on and off campus</li>
-              <li>Connect professional women throughout the UF community</li>
+        <div class="col-md-4">
+          <div class="circle-text">
+            <div class="col-md-4 col-xs-6 box circle-text">
+              <h3>OUR MISSION: </h3>
+              <ul style="font: bold 13px/30px Georgia, serif">
+                <li>Empower UF women for the utmost success</li>
+                <li>Foster career and personal growth</li>
+                <li>Encourage relationship on and off campus</li>
+                <li>Connect professional women throughout the UF community</li>
 
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div class="circle-text1">
-          <div class="col-md-4 col-xs-6 box">
-            <h3>We support! </h3>
-            <ul style="font: bold 14px/30px Georgia, serif">
-              <li>Our organization supports women who are
-                completing their dissertations in their chosen fields of study.</li>
-            </ul>
+        <div class="col-md-4">
+          <div class="circle-text1">
+            <div class="col-md-4 col-xs-6 box">
+              <h3>WE SUPPORT... </h3>
+              <ul style="font: bold 14px/30px Georgia, serif">
+                <li>Our organization supports women who are
+                  completing their dissertations in their chosen fields of study.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div class="circle-text2">
-          <div class="col-md-4 col-xs-6 box">
-            <h3>Annual Fee</h3>
-            <ul style="font: bold 14px/30px Georgia, serif">
-            <li>$45.00</li>
-            <li>Each year our membership fees support the Madelyn Lockhart Dissertation Fellowship
-              in concert with the AAW Emerging Scholar Program honoring </li>
-            </ul>
+        <div class="col-md-4">
+          <div class="circle-text2">
+            <div class="col-md-4 col-xs-6 box">
+              <h3>ANNUAL FEE</h3>
+              <ul style="font: bold 14px/30px Georgia, serif">
+              <li>$45.00</li>
+              <li>Each year our membership fees support the Madelyn Lockhart Dissertation Fellowship
+                in concert with the AAW Emerging Scholar Program honoring </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -80,7 +78,6 @@
 
 
       </div>
-    </div>
   </div>
 
 
