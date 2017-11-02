@@ -1,17 +1,7 @@
 
-.formImage img {
-    padding-bottom: 1%;
-    width: 1390px;
-    height: 380px;
-    margin-left: 25px;
-
-}
-
 #applicationForm {
     background-color: #CFDBCB;
-
-    width: 1390px;
-    margin-left: 25px;
+    width: 100%;
     border: 1px solid darkgray;
     color: black;
 }
