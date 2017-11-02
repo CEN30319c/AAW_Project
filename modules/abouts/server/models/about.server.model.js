@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * About Schema
  */
 var AboutSchema = new Schema({
-  year: String,
+  year: Number,
   name: {
     type: String,
     default: '',
@@ -25,7 +25,8 @@ var AboutSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  department: String
+  department: String,
+  award: String
 });
 
 mongoose.model('About', AboutSchema);
