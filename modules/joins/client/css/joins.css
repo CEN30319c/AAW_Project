@@ -1,6 +1,6 @@
 .carousel2 div {
     height: 550px;
-    width: 1430px;
+    width: 1450px;
 
 }
 
@@ -74,8 +74,6 @@
     background-color: #6C9AC3;
     margin-right: 50px;
     margin-left: 50px;
-    /*margin-bottom: 0px;*/
-    /*margin: 0 auto;*/
     float: left;
 }
 
@@ -147,15 +145,17 @@
 .circle-text1 li,
 .circle-text2 li {
   font-family: 'Avenir Roman';
-  /*text-align: center;
-  margin: auto;
-  margin-left: -25px;
-  margin-top: 15px;*/
+
 }
 
+.testi {
+    color: white;
+    margin-left: 600px;
+    padding-top: 2%;
+}
 
 .joins-footer {
     background-color: #E28F49;
-    height: 370px;
+    height: 450px;
     z-index: -1;
 }
