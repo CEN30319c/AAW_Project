@@ -5,7 +5,7 @@
   angular
     .module('abouts')
     .controller('AboutsController', AboutsController);
-  
+
   AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'AboutsService'];
   /*Menu-toggle*/
   // $("#menu-toggle").click(function(e) {
@@ -13,7 +13,7 @@
   //   $("#wrapper").toggleClass("active");
   // });
 
-  
+
 
   /*Smooth link animation*/
   // $('a[href*=#]:not([href=#])').click(function() {
@@ -30,7 +30,7 @@
   //     }
   // });
 
-  
+
   function AboutsController ($scope, $state, $window, Authentication, AboutsService) {
     var vm = this;
 
@@ -40,7 +40,7 @@
     vm.form = {};
     // vm.remove = remove;
     // vm.save = save;
-    
+
 
     // // Remove existing About
     // function remove() {
@@ -73,6 +73,6 @@
     //     vm.error = res.data.message;
     //   }
     // }
-    
+
   }
 }());
