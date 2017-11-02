@@ -7,22 +7,22 @@
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(Menus) {
+  function menuConfig(menuService) {
     // Set top bar menu items
-    Menus.addMenuItem('topbar', {
+    menuService.addMenuItem('topbar', {
       title: 'Join Us!',
       state: 'joins',
       roles: ['*']
     });
 
     // // Add the dropdown list item
-    // Menus.addSubMenuItem('topbar', 'joins', {
+    // menuService.addSubMenuItem('topbar', 'joins', {
     //   title: 'List Joins',
     //   state: 'joins.list'
     // });
     //
     // // Add the dropdown create item
-    // Menus.addSubMenuItem('topbar', 'joins', {
+    // menuService.addSubMenuItem('topbar', 'joins', {
     //   title: 'Create Join',
     //   state: 'joins.create',
     //   roles: ['user']

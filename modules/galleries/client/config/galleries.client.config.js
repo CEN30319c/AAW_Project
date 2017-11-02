@@ -7,9 +7,9 @@
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(Menus) {
+  function menuConfig(menuService) {
     // Set top bar menu items
-    Menus.addMenuItem('topbar', {
+    menuService.addMenuItem('topbar', {
       title: 'Gallery',
       state: 'galleries',
       // type: 'dropdown',

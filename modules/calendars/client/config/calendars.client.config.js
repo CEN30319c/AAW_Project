@@ -7,9 +7,9 @@
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(Menus) {
+  function menuConfig(menuService) {
     // Set top bar menu items
-    Menus.addMenuItem('topbar', {
+    menuService.addMenuItem('topbar', {
       title: 'Calendar',
       state: 'calendars',
       // type: 'dropdown',
@@ -17,13 +17,13 @@
     });
 
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'calendars', {
+    menuService.addSubMenuItem('topbar', 'calendars', {
       title: 'List Calendars',
       state: 'calendars.list'
     });
 
     // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'calendars', {
+    menuService.addSubMenuItem('topbar', 'calendars', {
       title: 'Create Calendar',
       state: 'calendars.create',
       roles: ['user']
