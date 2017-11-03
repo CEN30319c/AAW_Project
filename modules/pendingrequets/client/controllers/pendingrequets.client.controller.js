@@ -35,7 +35,7 @@
 
 
     $scope.cancelForm = function () {
-        $state.go('joins');
+      $state.go('joins');
     };
 
 

@@ -1,16 +1,17 @@
 <section>
-  <div class="page-header">
 
+  <div class="header">
+    <h1>APPLICATION FORM</h1>
     <h1>{{vm.pendingrequet._id ? 'Edit Pendingrequet' : ''}}</h1>
 
-    <div class="formImage">
-      <img src="modules/core/client/img/pictures/3.jpg" align="top"/>
-    </div>
-    <h2>Association for Academic Women (AAW) Application Form</h2>
   </div>
 
 
+  </div>
+
   <div class="col-md-12" id="applicationForm">
+    <h2 style="margin-left: 250px">Association for Academic Women (AAW) Application Form</h2>
+
     <form name="vm.form.pendingrequetForm" class="form-horizontal" ng-submit="vm.save(vm.form.pendingrequetForm.$valid)"
           novalidate>
       <fieldset>

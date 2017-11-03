@@ -5,49 +5,41 @@
   angular
     .module('abouts')
     .controller('AboutsController', AboutsController);
-
-  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'aboutResolve'];
-
-  $(document).ready(function(){
-    $("p").click(function(){
-        $(this).hide();
-    });
-  });
-
+  
+  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'AboutsService'];
   /*Menu-toggle*/
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("active");
-  });
+  // $("#menu-toggle").click(function(e) {
+  //   e.preventDefault();
+  //   $("#wrapper").toggleClass("active");
+  // });
 
-  /*Scroll Spy*/
-  $('body').scrollspy({ target: '#spy', offset:80});
+  
 
   /*Smooth link animation*/
-  $('a[href*=#]:not([href=#])').click(function() {
-      if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+  // $('a[href*=#]:not([href=#])').click(function() {
+  //     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-          if (target.length) {
-              $('html,body').animate({
-                  scrollTop: target.offset().top
-              }, 1000);
-              return false;
-          }
-      }
-  });
+  //         var target = $(this.hash);
+  //         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+  //         if (target.length) {
+  //             $('html,body').animate({
+  //                 scrollTop: target.offset().top
+  //             }, 1000);
+  //             return false;
+  //         }
+  //     }
+  // });
 
-  function AboutsController ($scope, $state, $window, Authentication, about) {
+  
+  function AboutsController ($scope, $state, $window, Authentication, AboutsService) {
     var vm = this;
 
     vm.authentication = Authentication;
-    vm.about = about;
+    $scope.abouts = AboutsService.query();
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-
     
 
     // Remove existing About
@@ -81,7 +73,6 @@
         vm.error = res.data.message;
       }
     }
-
+    
   }
 }());
-

@@ -1,11 +1,12 @@
 <section>
-  <div class="page-header">
-    <h1>News</h1>
+  <div class="header">
+    <h1>NEWS</h1>
   </div>
+  <div class="jumbotron" style="width: 1250px; height: 500px; overflow-y: scroll;, overflow-x: scroll;">
   <div class="list-group">
-    <a ng-repeat="news in vm.news"
-       ui-sref="news.view({ newsId: news._id })"
-       class="list-group-item">
+    <div ng-repeat="news in vm.news" class="list-group-item">
+       <button class="btn btn-primary" ui-sref="news.view({ newsId: news._id })" style="position: absolute; right: 100px; top: 20px;">Edit</button>
+
       <small class="list-group-item-text">
         Posted on
         <span ng-bind="news.created | date:'mediumDate'"></span>
@@ -15,8 +16,9 @@
       </small>
       <h4 class="list-group-item-heading" ng-bind="news.name"></h4>
       <p class="list-group-item-heading" ng-bind="news.text"></p>
-    </a>
+    </div>
   </div>
+</div>
   <div class="alert alert-warning text-center" ng-if="vm.news.$resolved && !vm.news.length">
     No News yet, why don't you <a ui-sref="news.create">create one</a>?
   </div>

@@ -1,0 +1,72 @@
+
+<section ng-controller="AboutsController" style="padding-left:150px; padding-right:150px;">
+    <div class=row>
+        <div class="jumbotron text-center">
+
+            <h1> The Woman of Distinction Award </h1>
+            
+        </div>
+    </div>
+
+
+    <div class=row>
+        <div class="jumbotron text-center">
+
+            <h2> Eligibility Requirements </h2>
+            <p>
+            <ul>
+                    <li><p style="text-align:left">Must be a University of Florida faculty member or administrative/professional woman</p></li>
+                    <li><p style="text-align:left">Must be a member of AAW to submit a nomination</p></li>
+                    <li><p style="text-align:left">Must have made significant contributions to the quality of life of women </p></li>
+            </ul>
+            </p>
+
+            <p><b>Applications submitted after the deadline will NOT be accepted.</b></p>
+            <p class="space"></p>
+
+            <!-- No current apply link, but will update if there is one -->
+            <!--<button type="button" class="btn btn-primary btn-lg" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">Apply Here
+            </button> -->
+        </div>
+    </div>
+
+    <div class=row>
+        <div class="jumbotron text-center">
+
+            <h2> Previous Woman of Distinction Award Winners </h2>
+
+            <!-- not working right now, should access information from database -->
+            <div class="list-group">
+                <div ng-repeat="x in vm.abouts" class="list-group-item">
+                        <p ng-bind="x.name"></p>
+                        <p ng-bind="x.year"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="jumbotron text-center">
+
+            <h2> Previous Madelyn Lockhart Dissertation Fellowship Winners </h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th><p style="font-weight: bold;">Year</p></th>
+                    <th><p style="font-weight: bold;">Name</p></th>
+                    <th><p style="font-weight: bold;">Department/Unit/College</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="about in abouts | filter: {'award' : 'distinction'}">
+                    <td><p>{{ about.year }}</p></td>
+                    <td><p>{{ about.name }}</p></td>
+                    <td><p>{{ about.department }}</p></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</section>

@@ -69,31 +69,7 @@ var PendingrequetSchema = new Schema({
     required: 'Please, select an answer',
     trim: true
   },
-  // firstTimeYes: {
-  //     type: String,
-  //     default: '',
-  //     required: 'Please select Yes or No',
-  //     trim: true
-  // },
-  // firstTimeNo: {
-  //     type: String,
-  //     default: '',
-  //     required: 'Please select Yes or No',
-  //     trim: true
-  // },
 
-  joinYes: {
-      type: String,
-      default: '',
-      required: 'Please select Yes or No',
-      trim: true
-  },
-  joinNo: {
-      type: String,
-      default: '',
-      required: 'Please select Yes or No',
-      trim: true
-  },
   interest: {
     type: String,
     default: '',
