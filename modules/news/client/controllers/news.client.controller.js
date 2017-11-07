@@ -10,8 +10,9 @@
 
   function NewsController ($scope, $state, $window, Authentication, news, Admin) {
     var vm = this;
-
+    //$scope.auth = Authentication.query();
     $scope.usersList = Admin.query();
+    $scope.currUserRole = Authentication.user.roles[0];
     vm.authentication = Authentication;
     vm.news = news;
     vm.error = null;
@@ -29,6 +30,8 @@
     // Save News
     function save(isValid) {
       console.log($scope.usersList);
+      console.log(vm.authentication);
+      console.log($scope.currUserRole);
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.newsForm');
         return false;
