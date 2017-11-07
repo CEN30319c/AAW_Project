@@ -6,12 +6,12 @@
     .module('news')
     .controller('NewsController', NewsController);
 
-  NewsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'newsResolve', 'UserController'];
+  NewsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'newsResolve', 'Admin'];
 
-  function NewsController ($scope, $state, $window, Authentication, news) {
+  function NewsController ($scope, $state, $window, Authentication, news, Admin) {
     var vm = this;
 
-
+    $scope.usersList = Admin.query();
     vm.authentication = Authentication;
     vm.news = news;
     vm.error = null;
@@ -28,8 +28,7 @@
 
     // Save News
     function save(isValid) {
-      console.log(vm.news.text);
-      console.log(vm.news);
+      console.log($scope.usersList);
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.newsForm');
         return false;
