@@ -11,7 +11,7 @@
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
       title: 'Calendar',
-      state: 'calendars',
+      state: 'calendars.list',
       // type: 'dropdown',
       roles: ['*']
     });
