@@ -6,7 +6,7 @@
     .module('news')
     .controller('NewsController', NewsController);
 
-  NewsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'newsResolve'];
+  NewsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'newsResolve', 'UserController'];
 
   function NewsController ($scope, $state, $window, Authentication, news) {
     var vm = this;
