@@ -1,19 +1,8 @@
-.formImage {
-    margin-top: 20px;
-    width: 100%;
-    height: 260px;
-    overflow: hidden;
-    background-color: #E28F41;
-}
-
-.formImage img {
-    position: relative;
-    margin: -230px 90px 100px 90px;
-}
 
 #applicationForm {
-    border: 1px solid darkgray;
     background-color: #CFDBCB;
+    width: 100%;
+    border: 1px solid darkgray;
     color: black;
 }
 

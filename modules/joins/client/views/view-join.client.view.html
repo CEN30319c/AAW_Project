@@ -1,29 +1,47 @@
 <section>
-  <div class="ui-view">
-      <div ng-controller="JoinsController" class="joins-container">
+<div class="ui-view">
 
-      <carousel interval="myInterval">
-        <slide ng-repeat="slide in slides" active="slide.active">
-          <img ng-src="{{slide.image}}" style="margin:auto;">
-          <div class="carousel-caption">
-            <h4>{{slide.text}}</h4>
+  <div class="page-content">
+    <div class="joins-container">
+
+
+        <div ng-controller="JoinsController" class="carousel2">
+          <div class="rect">
+            <carousel interval="myInterval">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                  <h4>{{slide.text}}</h4>
+                </div>
+              </slide>
+            </carousel>
           </div>
-        </slide>
-      </carousel>
+        </div>
+
+        <div class="message">
+          <h1><b>Small Steps, Lead to Big Changes...</b></h1>
+        </div>
+
+
+        <div class="member">
+
+          <div class="btn1">
+            <button type="button" class="button" ng-click="vm.fillApplication()">APPLY NOW</button>
+          </div>
+        </div>
 
 
       <div class="row box1-row">
 
         <div class="col-md-4">
           <div class="circle-text">
-            <div class="col-md-4 col-xs-6 box circle-text">
+            <div class="col-md-4 col-xs-6 box">
               <h3>OUR MISSION: </h3>
               <ul style="font: bold 13px/30px Georgia, serif">
                 <li>Empower UF women for the utmost success</li>
                 <li>Foster career and personal growth</li>
                 <li>Encourage relationship on and off campus</li>
                 <li>Connect professional women throughout the UF community</li>
-
               </ul>
             </div>
           </div>
@@ -53,55 +71,42 @@
             </div>
           </div>
         </div>
-      </div>
 
-        <div class="message">
-          <h1><b>Small Steps, Lead to Big Changes...</b></h1>
-        </div>
-
-
-      <div class="member">
-        <h3><b>Become a Member!<b></h3>
-          <p>Click on the button below to start filling out your membership application</p>
-
-         <div class="btn1">
-          <button type="button" class="button" ng-click="vm.fillApplication()">Complete Membership Application</button>
-         </div>
       </div>
 
 
-      <div class="row">
+    </div>
+
+
+    <div class="joins-footer" >
+
+      <footer class="col-md-12">
+        <h2 class="testi">Testimonials</h2>
+
         <div class="col-md-4">
-          <div class="myTestimonials">
-            <div class="testimonials">
-              <h3>Testimonials...</h3>
-              <p>"Insert testimonial here!"</p>
-            </div>
-          </div>
+        <div class="testimonials">
+          <p>"Insert testimonial here!"</p>
         </div>
+        </div>
+
         <div class="col-md-4">
-          <div class="myTestimonials">
-            <div class="testimonials">
-              <h3>Testimonials...</h3>
-              <p>"Insert testimonial here!"</p>
-            </div>
-          </div>
+        <div class="testimonials">
+          <p>"Insert testimonial here!"</p>
         </div>
+        </div>
+
         <div class="col-md-4">
-          <div class="myTestimonials">
-            <div class="testimonials">
-              <h3>Testimonials...</h3>
-              <p>"Insert testimonial here!"</p>
-            </div>
-          </div>
+        <div class="testimonials">
+          <p>"Insert testimonial here!"</p>
         </div>
-      </div>
+        </div>
 
 
+       </footer>
+    </div>
 
-      </div>
   </div>
-
+</div>
 
   <!--<div class="page-header">-->
     <!--<h1 ng-bind="vm.join.name"></h1>-->
