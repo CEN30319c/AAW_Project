@@ -109,6 +109,6 @@
   		var e = {summary: event.summary, description: event.description, begin: db.toLocaleString(), end: de.toLocaleString()};
   		calendars.push(e);
     });
-    vm.calendars = calendars
+    vm.calendars = calendars;
   }
 }());
