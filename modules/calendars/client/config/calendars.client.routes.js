@@ -10,9 +10,9 @@
   function routeConfig($stateProvider) {
     $stateProvider
       .state('calendars', {
-        // abstract: false,
+        abstract: true,
         url: '/calendars',
-        templateUrl: 'modules/calendars/client/views/view-calendar.client.view.html'
+        template: '<ui-view/>'
       })
       .state('calendars.list', {
         url: '',
