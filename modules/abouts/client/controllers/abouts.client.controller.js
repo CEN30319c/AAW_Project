@@ -5,15 +5,15 @@
   angular
     .module('abouts')
     .controller('AboutsController', AboutsController);
-  
-  AboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'AboutsService'];
+
+  AboutsController.$inject = ['$scope', '$state', '$window', 'aboutsResolve','Authentication'];
   /*Menu-toggle*/
   // $("#menu-toggle").click(function(e) {
   //   e.preventDefault();
   //   $("#wrapper").toggleClass("active");
   // });
 
-  
+
 
   /*Smooth link animation*/
   // $('a[href*=#]:not([href=#])').click(function() {
@@ -30,18 +30,23 @@
   //     }
   // });
 
-  
-  function AboutsController ($scope, $state, $window, Authentication, AboutsService) {
+
+  function AboutsController ($scope, $state, $window, Authentication, abouts) {
     var vm = this;
 
     vm.authentication = Authentication;
-    $scope.abouts = AboutsService.query();
+    //$scope.currUserStatus = vm.authentication.user.roles[0];
+    $scope.user = Authentication.user;
+    //$scope.curr = 1;
+    //$scope.about = abouts;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-    
 
+     $scope.edit = function() {
+      console.log(abouts);
+    }
     // Remove existing About
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
@@ -73,6 +78,6 @@
         vm.error = res.data.message;
       }
     }
-    
+
   }
 }());
