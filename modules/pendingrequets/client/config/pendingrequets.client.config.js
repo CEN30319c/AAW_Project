@@ -7,10 +7,10 @@
 
   menuConfig.$inject = ['Menus'];
 
-  function menuConfig(menuService) {
+  function menuConfig(Menus) {
     // Set top bar menu items
 
-    menuService.addMenuItem('topbar', {
+    Menus.addMenuItem('topbar', {
       title: 'List Pending Requests',
       state: 'pendingrequets.list',
       // type: 'dropdown',
@@ -18,14 +18,14 @@
     });
 
     // Add the dropdown list item
-    // menuService.addSubMenuItem('topbar', 'pendingrequets', {
+    // Menus.addSubMenuItem('topbar', 'pendingrequets', {
     //   title: 'List Pending Requests',
     //   state: 'pendingrequets.list',
     //   roles: ['admin']
     // });
 
     // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'pendingrequets', {
+    Menus.addSubMenuItem('topbar', 'pendingrequets', {
       title: 'Join Now',
       state: 'pendingrequets.create',
       // roles: ['*']
