@@ -1,0 +1,16 @@
+<section ng-controller="HomeController">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title" id="modal-title">Who We Are</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <div class="form-group">
+      <label for="newtext">New Description</label>
+      <input type="text" class="form-control" id="newtext" name="newtext" placeholder="New Text" ng-model="newtext">
+    </div><br>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+    <button type="submit" class="btn btn-primary" ng-click="update()">Update</button>
+  </div>
+</section>
