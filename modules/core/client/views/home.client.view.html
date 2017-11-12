@@ -46,8 +46,9 @@
         </div>
         <div class="col-md-12">
           <p id="whoweare">
-            AAW strives to empower UF women for the utmost success in each stage of their careers at the university.
+            {{whoweareText}}
           </p>
+          <button ng-click="edit('whoweare')" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
         </div>
       </div>
       <div class="row news">
