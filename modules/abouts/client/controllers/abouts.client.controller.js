@@ -6,47 +6,77 @@
     .module('abouts')
     .controller('AboutsController', AboutsController);
 
-  AboutsController.$inject = ['$scope', '$state', '$window', 'aboutsResolve','Authentication'];
-  /*Menu-toggle*/
-  // $("#menu-toggle").click(function(e) {
-  //   e.preventDefault();
-  //   $("#wrapper").toggleClass("active");
-  // });
+  AboutsController.$inject = ['$scope', '$state', '$window','$modal', '$log', 'Authentication', 'AboutsService'];
 
 
 
-  /*Smooth link animation*/
-  // $('a[href*=#]:not([href=#])').click(function() {
-  //     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-  //         var target = $(this.hash);
-  //         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-  //         if (target.length) {
-  //             $('html,body').animate({
-  //                 scrollTop: target.offset().top
-  //             }, 1000);
-  //             return false;
-  //         }
-  //     }
-  // });
-
-
-  function AboutsController ($scope, $state, $window, Authentication, abouts) {
+  function AboutsController ($scope, $state, $window, $modal, $log, Authentication, AboutsService, abouts) {
     var vm = this;
 
+    vm.aboutsData = AboutsService.query();
     vm.authentication = Authentication;
     //$scope.currUserStatus = vm.authentication.user.roles[0];
     $scope.user = Authentication.user;
     //$scope.curr = 1;
-    //$scope.about = abouts;
+    vm.about = abouts;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    //$scope.selectedEdit = 'Hi';
 
-     $scope.edit = function() {
-      console.log(abouts);
+     $scope.edit = function(header) {
+      console.log(header);
+
+      // switch (header) {
+      //   case 'mission':
+      //     //$scope.selectedEdit = 'Mission';
+      //     break;
+      //   case 'awards':
+      //     break;
+      //
+      //   case 'WOD_Award':
+      //     break;
+      //
+      //   case 'history':
+      //     break;
+      //
+      //   default:
+      //     break;
+      //
+      // }
+
+      modalUpdate(0, header);
     }
+
+    function modalUpdate(size, header) {
+      var url = ''
+      if(header != 'mission') {
+        url = "modules/abouts/client/views/modal-abouts-" + header + ".client.view.html"
+      }
+
+      else {
+        url = "modules/abouts/client/views/modal-abouts.client.view.html";
+      }
+        var modalInstance = $modal.open({
+            templateUrl: url,
+            controller: function ($scope, $modalInstance) {
+                //$scope.member = member;
+            },
+            size: size
+          //   resolve: {
+          //       member: function() {
+          //           return selectedMember;
+          //       }
+          //   }
+        });
+
+        modalInstance.result.then(function() {
+        }, function () {
+            $log.info("Modal dismissed at: " + new Date());
+        });
+    };
+
     // Remove existing About
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
