@@ -22,29 +22,11 @@
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
-    vm.save = save;
+    //vm.save = save;
     //$scope.selectedEdit = 'Hi';
 
      $scope.edit = function(header) {
       console.log(header);
-
-      // switch (header) {
-      //   case 'mission':
-      //     //$scope.selectedEdit = 'Mission';
-      //     break;
-      //   case 'awards':
-      //     break;
-      //
-      //   case 'WOD_Award':
-      //     break;
-      //
-      //   case 'history':
-      //     break;
-      //
-      //   default:
-      //     break;
-      //
-      // }
 
       modalUpdate(0, header);
     }
@@ -61,14 +43,9 @@
         var modalInstance = $modal.open({
             templateUrl: url,
             controller: function ($scope, $modalInstance) {
-                //$scope.member = member;
+
             },
             size: size
-          //   resolve: {
-          //       member: function() {
-          //           return selectedMember;
-          //       }
-          //   }
         });
 
         modalInstance.result.then(function() {
@@ -76,6 +53,10 @@
             $log.info("Modal dismissed at: " + new Date());
         });
     };
+
+    $scope.updateText = function(header) {
+
+    }
 
     // Remove existing About
     function remove() {
@@ -85,29 +66,33 @@
     }
 
     // Save About
-    function save(isValid) {
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.aboutForm');
-        return false;
-      }
-
+    $scope.save(header) {
+      // if (!isValid) {
+      //   $scope.$broadcast('show-errors-check-validity', 'vm.form.aboutForm');
+      //   return false;
+      // }
+      console.log("In SAVE");
       // TODO: move create/update logic to service
-      if (vm.about._id) {
-        vm.about.$update(successCallback, errorCallback);
-      } else {
+      // if (vm.about._id) {
+      //   vm.about.$update(successCallback, errorCallback);
+      // }
+      //else {
+        console.log(vm.about);
+        vm.about.contentType = header;
         vm.about.$save(successCallback, errorCallback);
-      }
+      //}
 
       function successCallback(res) {
-        $state.go('abouts.view', {
-          aboutId: res._id
-        });
+        // $state.go('abouts.view', {
+        //   aboutId: res._id
+        // });
       }
 
       function errorCallback(res) {
         vm.error = res.data.message;
       }
     }
+
 
   }
 }());
