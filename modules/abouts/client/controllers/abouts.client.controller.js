@@ -13,7 +13,7 @@
   function AboutsController ($scope, $state, $window, $modal, $log, Authentication, AboutsService, abouts) {
     var vm = this;
 
-    vm.aboutsData = AboutsService.query();
+    $scope.aboutsData = AboutsService.query();
     vm.authentication = Authentication;
     //$scope.currUserStatus = vm.authentication.user.roles[0];
     $scope.user = Authentication.user;
