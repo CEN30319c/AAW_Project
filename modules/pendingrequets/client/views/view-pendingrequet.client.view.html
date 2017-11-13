@@ -1,49 +1,50 @@
 <section>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.name"></h1>
+
+  <div ng-init="fillFields()">
+    <!--<h4 ng-bind="vm.pendingrequet.file"></h4>-->
+    <img class="member-picture-description" ng-src="{{imageURL}}" class="img-thumbnail add-member-picture">
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.email"></h1>
+
+  <div >
+    <h4 ng-bind="vm.pendingrequet.name"></h4>
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.phone"></h1>
+  <div >
+    <h4 ng-bind="vm.pendingrequet.email"></h4>
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.college"></h1>
+  <div >
+    <h4 ng-bind="vm.pendingrequet.phone"></h4>
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.position"></h1>
+  <div >
+    <h4 ng-bind="vm.pendingrequet.college"></h4>
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.selection"></h1>
+  <div>
+    <h4 ng-bind="vm.pendingrequet.position"></h4>
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.yearsUf"></h1>
+  <div >
+    <h4 ng-bind="vm.pendingrequet.selection"></h4>
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.selection2"></h1>
+  <div>
+    <h4 ng-bind="vm.pendingrequet.yearsUf"></h4>
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.selection3"></h1>
+  <div>
+    <h4 ng-bind="vm.pendingrequet.selection2"></h4>
   </div>
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.pendingrequet.firstTimeYes"></h1>-->
-  <!--</div>-->
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.pendingrequet.firstTimeNo"></h1>-->
-  <!--</div>-->
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.pendingrequet.joinYes"></h1>-->
-  <!--</div>-->
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.pendingrequet.joinNo"></h1>-->
-  <!--</div>-->
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.topics"></h1>
+  <div>
+    <h4 ng-bind="vm.pendingrequet.selection3"></h4>
   </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.interest"></h1>
+  <div>
+    <h4 ng-bind="vm.pendingrequet.topics"></h4>
   </div>
+  <div>
+    <h4 ng-bind="vm.pendingrequet.selection4"></h4>
+  </div>
+  <div>
+    <h4 ng-bind="vm.pendingrequet.interest"></h4>
+  </div>
+  <div>
+    <h4 ng-bind="vm.pendingrequet.motivation"></h4>
+  </div>
+
 
   <div class="pull-right"
        ng-show="vm.pendingrequet.isCurrentUserOwner">
