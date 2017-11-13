@@ -66,7 +66,7 @@
     }
 
     // Save About
-    $scope.save(header) {
+    $scope.save = function(header) {
       // if (!isValid) {
       //   $scope.$broadcast('show-errors-check-validity', 'vm.form.aboutForm');
       //   return false;
