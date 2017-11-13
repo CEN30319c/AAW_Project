@@ -11,25 +11,26 @@ var path = require('path'),
   request = require('request'),
   ical = require('ical.js');
 
+exports.ical = function(req, response) {
+    request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/2fcda5ec-ef8a-4933-872a-676fdc90b096/cid-5939566F43ADC820/calendar.ics', function(err, res, body) {  
+    var jcalData = ICAL.parse(body);
+    var vcalendar = new ICAL.Component(jcalData);
+    var vevents = vcalendar.getAllSubcomponents('vevent');
+    var calendars = [];
+    vevents.forEach(function(evt, ix, array) {
+      var event = new ICAL.Event(evt);
+      var db = new Date(evt.getFirstPropertyValue('dtstart'));
+      var de = new Date(evt.getFirstPropertyValue('dtend'));
+      var e = {summary: event.summary, description: event.description, begin: db.toLocaleString(), end: de.toLocaleString()};
+      calendars.push(e);
+    });
+    response.send(calendars);
+  });
+};
+
 /**
  * Create a Calendar
  */
-
-// exports.ical = function(req, response) {
-//   request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/5a8f34cd-399c-4de8-93ca-5edb62643f41/cid-5939566F43ADC820/calendar.ics', function(err, res, body) {  
-//     var jcalData = ICAL.parse(body);
-//     var vcalendar = new ICAL.Component(jcalData);
-//     var vevents = vcalendar.getAllSubcomponents('vevent');
-//     var calendars = [];
-//     vevents.forEach(function(evt, ix, array) {
-//       var event = new ICAL.Event(evt);
-//       var db = new Date(evt.getFirstPropertyValue('dtstart'));
-//       var de = new Date(evt.getFirstPropertyValue('dtend'));
-//       var e = {summary: event.summary, description: event.description, begin: db.toLocaleString(), end: de.toLocaleString()};
-//       calendars.push(e);
-//     });
-//   });
-// };
 
 exports.create = function(req, res) {
   var calendar = new Calendar(req.body);
