@@ -8,7 +8,7 @@ var calendarsPolicy = require('../policies/calendars.server.policy'),
 
 module.exports = function(app) {
   
-  app.route('/api/ical').get(calendars.ical);
+  app.route('/api/ical').all(calendarsPolicy.isAllowed).get(calendars.ical);
   
   // Calendars Routes
   app.route('/api/calendars').all(calendarsPolicy.isAllowed)

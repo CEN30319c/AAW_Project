@@ -3,38 +3,20 @@
 </div>
 
 <section>
-  <iframe width="1150" height="900" align="middle" src="https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/2fcda5ec-ef8a-4933-872a-676fdc90b096/cid-5939566F43ADC820/index.html"></iframe>
+  <iframe width="1150" height="900" align="middle" src="https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/index.html"></iframe>
 </section>
 
 <section>
   <div>
-    <h1>All Events</h1>
-  </div>
-  <div ng-repeat="event in vm.calendars">
-    <div>
-      <h4>{{event.summary}}</h4>
-      <div>Begins: {{event.begin}}</div>
-      <div>Ends: {{event.end}}</div>
-    </div>
+    <a href="https://outlook.office.com/owa/?realm=ufl.edu&path=/calendar/view/Month?rru=addsubscription">Subscribe Gatorlink</a>
   </div>
 </section>
 
-<!-- <a href="https://mail.ufl.edu/owa"> -->
-
-<!-- a href="http://calendar.live.com/calendar/calendar.aspx?rru=addsubscription&amp;url=webcal://www.nasa.gov/templateimages/redesign/calendar/iCal/nasa_calendar.ics&amp;name=NASA+Launch+Schedule">Subscribe with Outlook.com Calendar</a> -->
-
-<!-- <div>
-<a href="http://calendar.live.com/calendar/calendar.aspx?rru=addsubscription&amp;url=https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/2fcda5ec-ef8a-4933-872a-676fdc90b096/cid-5939566F43ADC820/calendar.ics&amp;name=AAW+Events">Subscribe Test</a>
-</div> -->
-
-<div>
-<a href="http://calendar.live.com/calendar/calendar.aspx?rru=addevent">Add Event</a>
-</div>
-
-
-<!-- <div>
-<a href="https://outlook.office.com/owa/?realm=ufl.edu&path=/calendar/calendar.aspx">Subscribe</a>
-</div> -->
+<section>
+  <div>
+    <a href="http://calendar.live.com/calendar/calendar.aspx?rru=addsubscription&amp;url=https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/calendar.ics&amp;name=AAW+Events">Subscribe Outlook</a>
+  </div>
+</section>
 
 <section>
   <h1>How to Subsribe to this Calendar</h1>
@@ -45,4 +27,25 @@
   <div>5.) Under "Link to calendar" paste the link copied in step 1
   <div>6.) Under "Calendar name" put anyname you wish</div>
   <div>7.) Click Save and you're done!</div>
+</section>
+
+<section>
+  <div>
+    <h1>All Upcoming Events</h1>
+  </div>
+  <div ng-repeat="event in vm.calendars">
+    <div>
+      <h4>{{event.title}}</h4>
+      <div>Location: {{event.location}}</div>
+      <div>Begins: {{event.begin}}</div>
+      <div>Ends: {{event.end}}</div>
+      <div>Description: {{event.description}}</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div ng-show="user != '' && user.roles[0] == 'admin'">
+    <a href="http://calendar.live.com/calendar/calendar.aspx?rru=addevent">Add Event</a>
+  </div>
 </section>

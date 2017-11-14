@@ -12,17 +12,24 @@ var path = require('path'),
   ical = require('ical.js');
 
 exports.ical = function(req, response) {
-    request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/2fcda5ec-ef8a-4933-872a-676fdc90b096/cid-5939566F43ADC820/calendar.ics', function(err, res, body) {  
+    request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/calendar.ics', function(err, res, body) {  
+    if (err) { return console.log(err); }
     var jcalData = ICAL.parse(body);
     var vcalendar = new ICAL.Component(jcalData);
     var vevents = vcalendar.getAllSubcomponents('vevent');
     var calendars = [];
     vevents.forEach(function(evt, ix, array) {
       var event = new ICAL.Event(evt);
-      var db = new Date(evt.getFirstPropertyValue('dtstart'));
-      var de = new Date(evt.getFirstPropertyValue('dtend'));
-      var e = {summary: event.summary, description: event.description, begin: db.toLocaleString(), end: de.toLocaleString()};
-      calendars.push(e);
+      var now = new Date();
+      var dtstart = evt.getFirstPropertyValue('dtstart');
+      var db = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
+      var dtend = evt.getFirstPropertyValue('dtend');
+      var de = new Date(dtend._time.year, dtend._time.month - 1, dtend._time.day, dtend._time.hour, dtend._time.minute, dtend._time.second);
+      var location = evt.getFirstPropertyValue('location');
+      var e = {title: event.summary, description: event.description, begin: db.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString()};
+      if (now.getTime() < de.getTime()) {
+        calendars.push(e);
+      }
     });
     response.send(calendars);
   });
