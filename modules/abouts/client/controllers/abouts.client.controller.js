@@ -6,27 +6,30 @@
     .module('abouts')
     .controller('AboutsController', AboutsController);
 
-  AboutsController.$inject = ['$scope', '$state', '$window','$modal', '$log', 'Authentication', 'AboutsService'];
+  AboutsController.$inject = ['$scope', '$state', '$window','$modal', '$log', 'Authentication'];
 
 
 
-  function AboutsController ($scope, $state, $window, $modal, $log, Authentication, AboutsService, abouts) {
+  function AboutsController ($scope, $state, $window, $modal, $log, Authentication, about) {
     var vm = this;
 
-    $scope.aboutsData = AboutsService.query();
+    //$scope.aboutsData = AboutsService.query();
     vm.authentication = Authentication;
+    $scope.data = '';
     //$scope.currUserStatus = vm.authentication.user.roles[0];
     $scope.user = Authentication.user;
     //$scope.curr = 1;
-    vm.about = abouts;
+    vm.abouts = about;
+    //vm.abouts.test = 10;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
-    //vm.save = save;
+    // vm.save = save;
     //$scope.selectedEdit = 'Hi';
 
      $scope.edit = function(header) {
       console.log(header);
+      console.log(vm.abouts);
 
       modalUpdate(0, header);
     }
@@ -42,9 +45,7 @@
       }
         var modalInstance = $modal.open({
             templateUrl: url,
-            controller: function ($scope, $modalInstance) {
-
-            },
+            controller: AboutsController,
             size: size
         });
 
@@ -61,26 +62,28 @@
     // Remove existing About
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.about.$remove($state.go('abouts.list'));
+        vm.abouts.$remove($state.go('abouts.list'));
       }
     }
 
     // Save About
-    $scope.save = function(header) {
-      // if (!isValid) {
-      //   $scope.$broadcast('show-errors-check-validity', 'vm.form.aboutForm');
-      //   return false;
-      // }
+     $scope.save = function(isValid) {
       console.log("In SAVE");
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.aboutForm');
+        return false;
+      }
+
+      // console.log($scope.data);
       // TODO: move create/update logic to service
-      // if (vm.about._id) {
-      //   vm.about.$update(successCallback, errorCallback);
-      // }
-      //else {
-        console.log(vm.about);
-        vm.about.contentType = header;
-        vm.about.$save(successCallback, errorCallback);
-      //}
+       if (vm.about._id) {
+         vm.abouts.$update(successCallback, errorCallback);
+       }
+      else {
+      // console.log(vm.abouts);
+      // vm.abouts.contentType = header;
+        vm.abouts.$save(successCallback, errorCallback);
+      }
 
       function successCallback(res) {
         // $state.go('abouts.view', {
