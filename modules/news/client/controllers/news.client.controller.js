@@ -10,8 +10,8 @@
 
   function NewsController ($scope, $state, $window, Authentication, news, Admin) {
     var vm = this;
-    //$scope.auth = Authentication.query();
     $scope.usersList = Admin.query();
+    $scope.user = 'HI';
     $scope.currUserRole = Authentication.user.roles[0];
     vm.authentication = Authentication;
     vm.news = news;
@@ -19,6 +19,8 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    //console.log($scope.user.roles[0]);
 
     // Remove existing News
     function remove() {
@@ -32,6 +34,7 @@
       console.log($scope.usersList);
       console.log(vm.authentication);
       console.log($scope.currUserRole);
+      console.log(news);
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.newsForm');
         return false;

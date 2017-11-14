@@ -16,13 +16,15 @@ var MemberSchema = new Schema({
     required: 'Please fill Member name',
     trim: true
   },
+  description: {
+    type: String,
+    default: '',
+    required: 'Please fill Member description',
+    trim: true
+  },
   created: {
     type: Date,
     default: Date.now
-  },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
   }
 });
 

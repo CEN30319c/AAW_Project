@@ -25,8 +25,8 @@
 
 
         <div class="form-group" show-errors>
-          <div class="col-md-4">
-            <label class="control-label" for="name">Name</label><br>
+          <div class="col-md-6">
+            <label class="control-label" for="name">Name</label><label style="color: red">*</label><br>
             <input name="name" type="text" ng-model="vm.pendingrequet.name" id="name" class="form-control"
                    placeholder="Full Name" required>
             <div ng-messages="vm.form.pendingrequetForm.name.$error" role="alert">
@@ -36,8 +36,8 @@
         </div>
 
         <div class="form-group" show-errors>
-          <div class="col-md-8">
-            <label class="control-label" for="email">Email Address</label><br>
+          <div class="col-md-4">
+            <label class="control-label" for="email">Email Address</label><label style="color: red">*</label><br>
             <input name="name" type="email" ng-model="vm.pendingrequet.email" id="email" class="form-control"
                    placeholder="Enter your email" required>
             <div ng-messages="vm.form.pendingrequetForm.email.$error" role="alert">
@@ -47,8 +47,8 @@
         </div>
 
         <div class="form-group" show-errors>
-          <div class="col-md-8">
-            <label class="control-label" for="email">Confirm Email</label><br>
+          <div class="col-md-4">
+            <label class="control-label" for="email">Confirm Email</label><label style="color: red">*</label><br>
             <input name="email" type="email" ng-model="vm.pendingrequet.email" id="email" class="form-control"
                    placeholder="Confirm your email" required>
             <div ng-messages="vm.form.pendingrequetForm.email.$error" role="alert">
@@ -58,10 +58,10 @@
         </div>
 
         <div class="form-group" show-errors>
-          <div class="col-md-8">
-            <label class="control-label" for="phone">Phone Number</label><br>
+          <div class="col-md-3">
+            <label class="control-label" for="phone">Enter your campus phone number</label><label style="color: red">*</label><br>
             <input name="phone" type="tel" ng-model="vm.pendingrequet.phone" id="phone" class="form-control"
-                   placeholder="Enter your campus phone number" required>
+                   placeholder="123-456-7890" required>
             <div ng-messages="vm.form.pendingrequetForm.phone.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
             </div>
@@ -70,35 +70,35 @@
 
         <div class="form-group" show-errors>
           <div class="col-md-4">
-            <label class="control-label" for="college">College</label><br>
+            <label class="control-label" for="college">College</label><label style="color: red">*</label><br>
             <input name="college" type="text" ng-model="vm.pendingrequet.college" id="college" class="form-control"
-                   placeholder="College Name">
+                   placeholder="College Name" required>
             <div ng-messages="vm.form.pendingrequetForm.college.$error" role="alert">
-              <!--<p class="help-block error-text" ng-message="required">College is required.</p>-->
+              <p class="help-block error-text" ng-message="required">College is required.</p>
             </div>
           </div>
         </div>
 
 
         <div class="form-group" show-errors>
-          <div class="col-md-4">
-            <label class="control-label" for="position">Position</label><br>
+          <div class="col-md-3">
+            <label class="control-label" for="position">Position</label><label style="color: red">*</label><br>
             <input name="position" type="text" ng-model="vm.pendingrequet.position" id="position" class="form-control"
-                   placeholder="Position">
+                   placeholder="Position" required>
             <div ng-messages="vm.form.pendingrequetForm.college.$error" role="alert">
-              <!--<p class="help-block error-text" ng-message="required">College is required.</p>-->
+              <p class="help-block error-text" ng-message="required">Position is required.</p>
             </div>
           </div>
         </div>
 
         <div class="form-group" show-errors>
-          <div class="col-md-8">
+          <div class="col-md-3">
             <label class="control-label" for="selection">I am...</label><br>
             <select name="selection" ng-model="vm.pendingrequet.selection" id="selection" class="form-control" required>
               <option>Faculty</option>
-              <option>TEAM</option>
+              <option>Staff</option>
               <option>Retired Faculty</option>
-              <option>Retired TEAM</option>
+              <option>Retired Staff</option>
             </select>
             <div ng-messages="vm.form.pendingrequetForm.selection.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
@@ -109,7 +109,7 @@
         <div class="form-group" show-errors>
           <div class="col-md-3">
             <label class="control-label" for="yearsUf">Number of Years at UF</label><br>
-            <input name="yearsUf" type="number" ng-model="vm.pendingrequet.yearsUf" id="yearsUf" class="form-control">
+            <input name="yearsUf" type="number" min="0" ng-model="vm.pendingrequet.yearsUf" id="yearsUf" class="form-control">
             <div ng-messages="vm.form.pendingrequetForm.yearsUf.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
             </div>
@@ -134,79 +134,24 @@
           <div><label class="col-md-4" for="selection3">Are you interested in joining an AAW committee?</label></div>
 
           <div class="col-md-2">
-            <select name="selection3" ng-model="vm.pendingrequet.selection3" id="selection3" class="form-control" required>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
+
+            <input type="radio" name="selection3" ng-model="vm.pendingrequet.selection3" checked="checked"> Yes<br>
+            <input type="radio" name="selection3" ng-model="vm.pendingrequet.selection3" value="no"> No<br>
+
+            <!--<select name="selection3" ng-model="vm.pendingrequet.selection3" id="selection3" class="form-control" required>-->
+              <!--<option>Yes</option>-->
+              <!--<option>No</option>-->
+            <!--</select>-->
             <div ng-messages="vm.form.pendingrequetForm.selection3.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
             </div>
           </div>
         </div>
 
-        <!--<div class="form-group" show-errors>-->
-          <!--<label class="control-label">Is this your first time joining AAW?</label><br>-->
-
-          <!--<div class="col-md-8">-->
-            <!--<label for="firstTimeYes">Yes</label>-->
-            <!--<input name="firstTimeYes" type="radio" ng-model="vm.pendingrequet.firstTimeYes" id="firstTimeYes" class="form-control">-->
-
-            <!--<label for="firstTimeNo">No</label>-->
-            <!--<input name="firstTimeNo" type="radio" ng-model="vm.pendingrequet.firstTimeNo" id="firstTimeNo" class="form-control">-->
-
-            <!--<div ng-messages="vm.form.pendingrequetForm.firstTime.$error" role="alert">-->
-              <!--&lt;!&ndash;<p class="help-block error-text" ng-message="required">Email is required.</p>&ndash;&gt;-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" show-errors>-->
-          <!--<div class="col-md-8">-->
-            <!--<label class="control-label" for="firstTime">Is this your first time joining AAW?</label><br>-->
-            <!--<input name="firstTimeNO" type="radio" ng-model="vm.pendingrequet.firstTime" id="firstTimeNo" class="form-control">No</label>-->
-            <!--<div ng-messages="vm.form.pendingrequetForm.firstTimeNo.$error" role="alert">-->
-              <!--&lt;!&ndash;<p class="help-block error-text" ng-message="required">Email is required.</p>&ndash;&gt;-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" show-errors>-->
-          <!--<div class="col-md-8">-->
-            <!--<label class="control-label" for="joinYes">Are you interested in joining an AAW committee?</label><br>-->
-            <!--<label class="checkbox-inline"><input name="joinYes" type="checkbox" ng-model="vm.pendingrequet.joinYes"-->
-                                                  <!--id="joinYes" class="form-control">Yes</label>-->
-            <!--<div ng-messages="vm.form.pendingrequetForm.joinYes.$error" role="alert">-->
-              <!--&lt;!&ndash;<p class="help-block error-text" ng-message="required">Email is required.</p>&ndash;&gt;-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" show-errors>-->
-          <!--<div class="col-md-8">-->
-            <!--&lt;!&ndash;<label class="control-label" for="firstTimeYes">Is this your first time joining AAW?</label><br>&ndash;&gt;-->
-            <!--<label class="checkbox-inline"><input name="joinNo" type="checkbox" ng-model="vm.pendingrequet.joinNo"-->
-                                                  <!--id="joinNo" class="form-control">No</label>-->
-            <!--<div ng-messages="vm.form.pendingrequetForm.firstTimeNo.$error" role="alert">-->
-              <!--&lt;!&ndash;<p class="help-block error-text" ng-message="required">Email is required.</p>&ndash;&gt;-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
 
         <div class="form-group" show-errors>
           <div class="col-md-8">
-            <label class="control-label" for="interest">Academic, Scholarly, or Professional Interests</label><br>
-            <textarea maxlength="250" rows="8" cols="60" name="interest" type="text"
-                      ng-model="vm.pendingrequet.interest" id="interest" class="form-control"
-                      placeholder="Tell us about your interests..."></textarea>
-            <div ng-messages="vm.form.pendingrequetForm.interest.$error" role="alert">
-              <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group" show-errors>
-          <div class="col-md-8">
-            <label class="control-label" for="topics">What topics would you like to see including in our future
+            <label class="control-label" for="topics">What topics would you like to see included in our future
               programming?</label><br>
             <textarea maxlength="250" rows="8" cols="60" name="topics" type="text" ng-model="vm.pendingrequet.topics"
                       id="topics" class="form-control" placeholder="Tell us your thoughts..."></textarea>
@@ -216,9 +161,77 @@
           </div>
         </div>
 
+        <div class="form-group" show-errors>
+          <div>
+            <label for="selection4">Are you interested in having a profile?</label><br>
+            <label>"Disclaim: By answering Yes you are authorizing AAW to ......"</label>
+          </div>
+
+          <div class="col-md-2">
+
+            <input ng-bind="additional" ng-click="clickedYes()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="yes"> Yes<br>
+            <input ng-bind="additional" ng-click="clickedNo()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="no">No<br>
+
+            <div ng-messages="vm.form.pendingrequetForm.selection4.$error" role="alert">
+              <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
+            </div>
+          </div>
+        </div>
+
+     <div ng-show="showMe" class="additional">
+         <!--UPLOAD PICTURE-->
+           <div ng-init="fillFields()">
+             <label>For your profile, please upload an image</label>
+
+             <div class="form-group text-center">
+               <img ng-src="{{imageURL}}" class="img-thumbnail add-member-picture">
+             </div>
+             <div class="form-group text-center" ng-hide="uploader.queue.length">
+                <span class="btn btn-default btn-file">
+                   Select Image <input type="file" nv-file-select uploader="uploader">
+               </span>
+             </div>
+             <div class="text-center form-group" ng-hide="!uploader.queue.length">
+               <button class="btn btn-primary" ng-click="uploadPicture()">Upload</button>
+               <!--<button class="btn btn-default" ng-click="cancelUpload();">Cancel</button>-->
+             </div>
+             <div ng-show="success" class="text-center text-success">
+               <strong>Your picture has been uploaded successfully</strong>
+             </div>
+             <div ng-show="error" class="text-center text-danger">
+               <strong ng-bind="error"></strong>
+             </div>
+           </div>
+
+
+        <div class="form-group" show-errors>
+          <div class="col-md-8">
+            <label class="control-label" for="interest">Academic, Scholarly, or Professional Interests</label><label style="color: red">*</label><br>
+            <textarea maxlength="500" rows="8" cols="60" name="interest" type="text"
+                      ng-model="vm.pendingrequet.interest" id="interest" class="form-control"
+                      placeholder="Tell us about your interests..." required></textarea>
+            <div ng-messages="vm.form.pendingrequetForm.interest.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">This field is required.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <div class="col-md-8">
+            <label class="control-label" for="interest">What attracted you to AAW? </label><label style="color: red">*</label><br>
+            <textarea maxlength="500" rows="8" cols="60" name="motivation" type="text"
+                      ng-model="vm.pendingrequet.motivation" id="motivation" class="form-control"
+                      placeholder="..." required></textarea>
+            <div ng-messages="vm.form.pendingrequetForm.motivation.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">This field is required.</p>
+            </div>
+          </div>
+        </div>
+     </div>
+
 
         <div class="form-group">
-          <button type="submit" class="btn btn-primary" ng-disabled="vm.form.pendingrequetForm.$invalid"
+          <button type="submit" class="btn btn-primary" ng-disabled="isDisabled"
                   ng-click="goToPay()">{{vm.pendingrequet._id ? 'Update' : 'Submit Form'}}
           </button>
           <button type="button" class="btn btn-default" ng-click="cancelForm()">Cancel</button>
