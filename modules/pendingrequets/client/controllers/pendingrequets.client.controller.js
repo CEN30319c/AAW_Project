@@ -19,6 +19,33 @@
     vm.save = save;
 
 
+//disable submit button
+  $scope.isDisabled = true;
+
+  //Disable submit button while form is invalid
+  $scope.clickedYes = function () {
+      $scope.showMe = true;
+      if('vm.form.pendingrequetForm') {
+          $scope.isDisabled = false;
+      }
+      else{
+          $scope.isDisabled = true;
+      }
+
+  };
+
+  $scope.clickedNo = function () {
+      $scope.showMe = false;
+      if('vm.form.pendingrequetForm') {
+          $scope.isDisabled = false;
+      }
+      else{
+          $scope.isDisabled = true;
+      }
+
+  };
+
+    //this function open a modal that allows user to create an account and go to pay
     $scope.goToPay = function () {
       $modal.open ({
         templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
