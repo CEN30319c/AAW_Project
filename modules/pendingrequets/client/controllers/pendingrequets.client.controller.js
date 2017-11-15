@@ -69,7 +69,7 @@
       /*
       * Upload images.
       */
-      $scope.fillFields = function () {  //
+      $scope.fillFields = function () {
           if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
             $scope.imageURL = vm.pendingrequet.imageURL;
           }
