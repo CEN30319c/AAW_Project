@@ -772,7 +772,7 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
     $scope.myInterval = 3000;
     $scope.slides = [
       {
-        image: 'modules/core/client/img/pictures/slide 5.png'
+        image: 'modules/core/client/img/pictures/slide5.png'
       }
     ];
 
