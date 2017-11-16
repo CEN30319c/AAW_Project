@@ -11,7 +11,7 @@
     // Set top bar menu items
 
     Menus.addMenuItem('topbar', {
-      title: 'List New Members',
+      title: 'List of Members',
       state: 'pendingrequets.list',
       // type: 'dropdown',
       roles: ['admin']

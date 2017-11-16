@@ -134,12 +134,8 @@
           <div class="col-md-2">
 
             <input type="radio" name="selection3" ng-model="vm.pendingrequet.selection3" checked="checked"> Yes<br>
-            <input type="radio" name="selection3" ng-model="vm.pendingrequet.selection3" value="no"> No<br>
+            <input type="radio" name="selection3" ng-model="vm.pendingrequet.selection3" value="No"> No<br>
 
-            <!--<select name="selection3" ng-model="vm.pendingrequet.selection3" id="selection3" class="form-control" required>-->
-              <!--<option>Yes</option>-->
-              <!--<option>No</option>-->
-            <!--</select>-->
             <div ng-messages="vm.form.pendingrequetForm.selection3.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
             </div>
@@ -167,8 +163,8 @@
 
           <div class="col-md-2">
 
-            <input ng-bind="additional" ng-click="clickedYes()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="yes"> Yes<br>
-            <input ng-bind="additional" ng-click="clickedNo()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="no">No<br>
+            <input ng-bind="additional" ng-click="clickedYes()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="Yes"> Yes<br>
+            <input ng-bind="additional" ng-click="clickedNo()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="No">No<br>
 
             <div ng-messages="vm.form.pendingrequetForm.selection4.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
