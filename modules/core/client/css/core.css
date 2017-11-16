@@ -1,16 +1,16 @@
 @font-face {
   font-family: 'Avenir Roman';
-  src: url('../css/fonts/AvenirLTStd-Roman.ttf') format('truetype');
+  src: url('/modules/core/client/css/fonts/AvenirLTStd-Roman.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Avenir Light';
-  src: url('../css/fonts/AvenirLTStd-Light.ttf') format('truetype');
+  src: url('/modules/core/client/css/fonts/AvenirLTStd-Light.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Avenir Black';
-  src: url('../css/fonts/AvenirLTStd-Black.ttf') format('truetype');
+  src: url('/modules/core/client/css/fonts/AvenirLTStd-Black.ttf') format('truetype');
 }
 
 body{
@@ -21,7 +21,7 @@ body{
 .header{
   position: relative;
   height: 380px;
-  background-image: url('/modules/core/client/img/pictures/slide 5.png');
+  background-image: url('/modules/core/client/img/pictures/slide5.png');
   background-size: cover;
 }
 

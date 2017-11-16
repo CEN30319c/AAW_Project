@@ -14,12 +14,12 @@ var path = require('path'),
 exports.ical = function(req, response) {
     request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/calendar.ics', function(err, res, body) {  
     if (err) { return console.log(err); }
-    var jcalData = ICAL.parse(body);
-    var vcalendar = new ICAL.Component(jcalData);
+    var jcalData = ical.parse(body);
+    var vcalendar = new ical.Component(jcalData);
     var vevents = vcalendar.getAllSubcomponents('vevent');
     var calendars = [];
     vevents.forEach(function(evt, ix, array) {
-      var event = new ICAL.Event(evt);
+      var event = new ical.Event(evt);
       var now = new Date();
       var dtstart = evt.getFirstPropertyValue('dtstart');
       var db = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
