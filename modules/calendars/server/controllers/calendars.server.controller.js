@@ -14,24 +14,32 @@ var path = require('path'),
 exports.ical = function(req, response) {
     request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/calendar.ics', function(err, res, body) {  
     if (err) { return console.log(err); }
-    var jcalData = ICAL.parse(body);
-    var vcalendar = new ICAL.Component(jcalData);
-    var vevents = vcalendar.getAllSubcomponents('vevent');
-    var calendars = [];
-    vevents.forEach(function(evt, ix, array) {
-      var event = new ICAL.Event(evt);
-      var now = new Date();
-      var dtstart = evt.getFirstPropertyValue('dtstart');
-      var db = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
-      var dtend = evt.getFirstPropertyValue('dtend');
-      var de = new Date(dtend._time.year, dtend._time.month - 1, dtend._time.day, dtend._time.hour, dtend._time.minute, dtend._time.second);
-      var location = evt.getFirstPropertyValue('location');
-      var e = {title: event.summary, description: event.description, begin: db.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString()};
-      if (now.getTime() < de.getTime()) {
-        calendars.push(e);
-      }
-    });
-    response.send(calendars);
+    // console.log(body);
+    if ((body[0] + body[1] + body[2] + body[3] + body[4]) == 'BEGIN') {
+      // console.log('BODY IS GOOD SO PARSE');
+      var jcalData = ICAL.parse(body);
+      var vcalendar = new ICAL.Component(jcalData);
+      var vevents = vcalendar.getAllSubcomponents('vevent');
+      var calendars = [];
+      vevents.forEach(function(evt, ix, array) {
+        var event = new ICAL.Event(evt);
+        var now = new Date();
+        var dtstart = evt.getFirstPropertyValue('dtstart');
+        var db = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
+        var dtend = evt.getFirstPropertyValue('dtend');
+        var de = new Date(dtend._time.year, dtend._time.month - 1, dtend._time.day, dtend._time.hour, dtend._time.minute, dtend._time.second);
+        var location = evt.getFirstPropertyValue('location');
+        var e = {title: event.summary, description: event.description, begin: db.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString()};
+        if (now.getTime() < de.getTime()) {
+          calendars.push(e);
+        }
+      });
+      response.send(calendars);
+    }
+    else {
+      // console.log('BODY IS BAD SO SEND ERRORS');
+      response.send([{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR'}]);
+    }
   });
 };
 
