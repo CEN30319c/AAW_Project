@@ -32,12 +32,12 @@
       console.log(vm.abouts);
 
       modalUpdate(0, header);
-    }
+    };
 
     function modalUpdate(size, header) {
-      var url = ''
+      var url = '';
       if(header != 'mission') {
-        url = "modules/abouts/client/views/modal-abouts-" + header + ".client.view.html"
+        url = "modules/abouts/client/views/modal-abouts-" + header + ".client.view.html";
       }
 
       else {
@@ -53,11 +53,11 @@
         }, function () {
             $log.info("Modal dismissed at: " + new Date());
         });
-    };
+    }
 
     $scope.updateText = function(header) {
 
-    }
+    };
 
     // Remove existing About
     function remove() {
@@ -94,7 +94,7 @@
       function errorCallback(res) {
         vm.error = res.data.message;
       }
-    }
+    };
 
 
   }

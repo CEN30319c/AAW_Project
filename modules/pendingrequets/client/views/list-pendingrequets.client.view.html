@@ -6,11 +6,10 @@
   <!--</div>-->
 
   <div class="page-header">
-    <h1>Pending Requests</h1>
+    <h1>List of Members</h1>
   </div>
+
   <div class="list-group">
-
-
     <a ng-repeat="pendingrequet in vm.pendingrequets"
        ui-sref="pendingrequets.view({ pendingrequetId: pendingrequet._id })"
        class="list-group-item">
@@ -19,12 +18,12 @@
         <span ng-bind="pendingrequet.created | date:'mediumDate'"></span>
         by
         <span ng-if="pendingrequet.user" ng-bind="pendingrequet.user.displayName"></span>
-        <span ng-if="!pendingrequet.user">Deleted User</span>
+        <span ng-if="!pendingrequet.user">{{pendingrequet.name}}</span>
       </small>
       <h4 class="list-group-item-heading" ng-bind="pendingrequet.name"></h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.pendingrequets.$resolved && !vm.pendingrequets.length">
-    No Pendingrequets yet, why don't you <a ui-sref="pendingrequets.create">create one</a>?
+    No members yet, why don't you <a ui-sref="pendingrequets.create">create one</a>?
   </div>
 </section>

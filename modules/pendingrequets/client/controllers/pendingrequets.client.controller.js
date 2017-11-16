@@ -18,7 +18,6 @@
     vm.remove = remove;
     vm.save = save;
 
-
 //disable submit button
   $scope.isDisabled = true;
 
@@ -66,89 +65,89 @@
     };
 
 
-      /*
-      * Upload images.
-      */
-      $scope.fillFields = function () {  //
-          if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
-            $scope.imageURL = vm.pendingrequet.imageURL;
-          }
-          else {
-            $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
-            console.log($scope.imageURL);
-          }
-      };
-      // Create file uploader instance
-      $scope.uploader = new FileUploader({
-          url: '/api/pendingrequets/picture',
-          alias: 'newMemberPicture'
-      });
+  /*
+  * Upload images.
+  */
+  $scope.fillFields = function () {
+      if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
+        $scope.imageURL = vm.pendingrequet.imageURL;
+      }
+      else {
+        $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
+        console.log($scope.imageURL);
+      }
+  };
+  // Create file uploader instance
+  $scope.uploader = new FileUploader({
+      url: '/api/pendingrequets/picture',
+      alias: 'newMemberPicture'
+  });
 
-      // Set file uploader image filter
-      $scope.uploader.filters.push({
-          name: 'imageFilter',
-          fn: function (item, options) {
-              var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-              return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-          }
-      });
-      // Function called after the user selected a new picture file
-      $scope.uploader.onAfterAddingFile = function (fileItem) {
-          console.log("onAfterAddingFile");
-          if ($window.FileReader) {
-              var fileReader = new FileReader();
-              fileReader.readAsDataURL(fileItem._file);
-              fileReader.onload = function (fileReaderEvent) {
-                  $timeout(function () {
-                      $scope.imageURL = fileReaderEvent.target.result;
+  // Set file uploader image filter
+  $scope.uploader.filters.push({
+      name: 'imageFilter',
+      fn: function (item, options) {
+          var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+          return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+  });
+  // Function called after the user selected a new picture file
+  $scope.uploader.onAfterAddingFile = function (fileItem) {
+      console.log("onAfterAddingFile");
+      if ($window.FileReader) {
+          var fileReader = new FileReader();
+          fileReader.readAsDataURL(fileItem._file);
+          fileReader.onload = function (fileReaderEvent) {
+              $timeout(function () {
+                  $scope.imageURL = fileReaderEvent.target.result;
 
-                      // Upload the new selected picture.
-                      $scope.uploadPicture();
-                  }, 0);
-              };
-          }
-      };
+                  // Upload the new selected picture.
+                  $scope.uploadPicture();
+              }, 0);
+          };
+      }
+  };
 
-      // Called after the user has successfully uploaded a new picture
-      $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
-          console.log("onSuccessItem");
+  // Called after the user has successfully uploaded a new picture
+  $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+      console.log("onSuccessItem");
 
-          // Show success message
-          $scope.success = true;
+      // Show success message
+      $scope.success = true;
 
-          // Populate user object
-          vm.pendingrequet.filename = response.file.filename;
-          vm.pendingrequet.imageURL = response.file.filename;
+      // Populate user object
+      vm.pendingrequet.filename = response.file.filename;
+      vm.pendingrequet.imageURL = response.file.filename;
 
-          console.log("filename: " + vm.pendingrequet.filename);
-      };
+      console.log("filename: " + vm.pendingrequet.filename);
+  };
 
-      // Called after the user has failed to uploaded a new picture
-      $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
-          // Clear upload buttons
-          $scope.cancelUpload();
+  // Called after the user has failed to uploaded a new picture
+  $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
+      // Clear upload buttons
+      $scope.cancelUpload();
 
-          // Show error message
-          $scope.error = response.message;
-      };
+      // Show error message
+      $scope.error = response.message;
+  };
 
 
-      // Change upcoming event picture
-      $scope.uploadPicture = function () {
-          console.log("upload Picture");
+  // Change upcoming event picture
+  $scope.uploadPicture = function () {
+      console.log("upload Picture");
 
-          // Clear messages
-          $scope.success = $scope.error = null;
+      // Clear messages
+      $scope.success = $scope.error = null;
 
-          // Start upload
-          $scope.uploader.uploadAll();
-      };
+      // Start upload
+      $scope.uploader.uploadAll();
+  };
 
-      // Cancel the upload process
-      $scope.cancelUpload = function () {
-          $scope.uploader.clearQueue();
-          // $scope.imageURL = '';
-      };
+  // Cancel the upload process
+  $scope.cancelUpload = function () {
+      $scope.uploader.clearQueue();
+      // $scope.imageURL = '';
+  };
 
 
 
@@ -159,7 +158,7 @@
       }
     }
 
-    // Save Pendingrequet
+  // Save Pendingrequet
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.pendingrequetForm');

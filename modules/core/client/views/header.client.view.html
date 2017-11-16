@@ -1,4 +1,4 @@
-<div class="container" ng-controller="HeaderController">
+<notification-icon class="container" ng-controller="HeaderController">
 
   <div class="navbar-header">
 
@@ -16,10 +16,12 @@
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav navbar-right" ng-if="menu.shouldRender(authentication.user);">
 
-    <div ng-show="(authentication.user.roles == 'admin')" class="notification-icon">
+    <notification-icon ng-show="(authentication.user.roles == 'admin')" class="notification-icon">
       <!--<span class="glyphicon glyphicon-envelope"></span>-->
       <span class="badge">19</span>
-    </div>
+    </notification-icon>
+
+
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
 
       <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-show="!((item.title == 'Join Us!' && authentication.user) || (item.title=='Join' && !authentication.user))" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}}" dropdown="item.type === 'dropdown'">

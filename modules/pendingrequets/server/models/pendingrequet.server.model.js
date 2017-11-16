@@ -13,20 +13,20 @@ var PendingrequetSchema = new Schema({
     name: {
         type: String,
         default: '',
-        required: 'Please fill Pendingrequet name',
+        required: 'Please enter your ful name',
         trim: true
     },
     email: {
         type: String,
         default: '',
-        required: 'Please fill with your email address',
+        required: 'Please enter your email address',
         trim: true
     },
 
     phone: {
         type: Number,
         default: '',
-        required: 'Please fill with your campus phone number',
+        required: 'Please provide your campus phone number',
         trim: true
     },
 
@@ -60,13 +60,13 @@ var PendingrequetSchema = new Schema({
     selection2: {
         type: String,
         default: '',
-        required: 'Please, select an answer',
+        required: 'Please, select an answer 2',
         trim: true
     },
     selection3: {
         type: String,
         default: '',
-        required: 'Please, select an answer',
+        required: 'Please, select an answer 3',
         trim: true
     },
 
@@ -87,7 +87,7 @@ var PendingrequetSchema = new Schema({
     selection4: {
         type: String,
         default: '',
-        required: 'Please, select an answer',
+        required: 'Please, select an answer 4',
         trim: true
     },
 

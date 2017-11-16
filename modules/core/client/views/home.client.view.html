@@ -48,7 +48,7 @@
           <p id="whoweare">
             {{whoweareText}}
           </p>
-          <button ng-click="edit('whoweare')" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
+          <button ng-click="modalUpdate(0,whoweareText)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
         </div>
       </div>
       <div class="row news">

@@ -7,8 +7,6 @@
   </div>
 
 
-  </div>
-
   <div class="col-md-12" id="applicationForm">
     <h2 style="margin-left: 250px">Association for Academic Women (AAW) Application Form</h2>
 
@@ -136,12 +134,8 @@
           <div class="col-md-2">
 
             <input type="radio" name="selection3" ng-model="vm.pendingrequet.selection3" checked="checked"> Yes<br>
-            <input type="radio" name="selection3" ng-model="vm.pendingrequet.selection3" value="no"> No<br>
+            <input type="radio" name="selection3" ng-model="vm.pendingrequet.selection3" value="No"> No<br>
 
-            <!--<select name="selection3" ng-model="vm.pendingrequet.selection3" id="selection3" class="form-control" required>-->
-              <!--<option>Yes</option>-->
-              <!--<option>No</option>-->
-            <!--</select>-->
             <div ng-messages="vm.form.pendingrequetForm.selection3.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
             </div>
@@ -169,8 +163,8 @@
 
           <div class="col-md-2">
 
-            <input ng-bind="additional" ng-click="clickedYes()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="yes"> Yes<br>
-            <input ng-bind="additional" ng-click="clickedNo()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="no">No<br>
+            <input ng-bind="additional" ng-click="clickedYes()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="Yes"> Yes<br>
+            <input ng-bind="additional" ng-click="clickedNo()" type="radio" name="selection4" ng-model="vm.pendingrequet.selection4" value="No">No<br>
 
             <div ng-messages="vm.form.pendingrequetForm.selection4.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
@@ -181,19 +175,15 @@
      <div ng-show="showMe" class="additional">
          <!--UPLOAD PICTURE-->
            <div ng-init="fillFields()">
-             <label>For your profile, please upload an image</label>
+             <label>For your profile, please upload an image (up to 5 MB)</label>
 
              <div class="form-group text-center">
                <img ng-src="{{imageURL}}" class="img-thumbnail add-member-picture">
              </div>
-             <div class="form-group text-center" ng-hide="uploader.queue.length">
+             <div class="form-group text-center">
                 <span class="btn btn-default btn-file">
                    Select Image <input type="file" nv-file-select uploader="uploader">
                </span>
-             </div>
-             <div class="text-center form-group" ng-hide="!uploader.queue.length">
-               <button class="btn btn-primary" ng-click="uploadPicture()">Upload</button>
-               <!--<button class="btn btn-default" ng-click="cancelUpload();">Cancel</button>-->
              </div>
              <div ng-show="success" class="text-center text-success">
                <strong>Your picture has been uploaded successfully</strong>
