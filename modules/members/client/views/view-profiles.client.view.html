@@ -12,6 +12,7 @@
                             <center><img class="img-circle img-responsive" src="/modules/members/client/img/bird1.jpg"></center>
                             <p>{{ profile.name }}</p>
                     </a>
+                    <button ng-click="vm.modalEdit(profile, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
                 </div>
 
                 <!-- <div class="col-xs-3" style="text-align:center">
