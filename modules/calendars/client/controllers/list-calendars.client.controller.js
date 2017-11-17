@@ -19,6 +19,6 @@
     	// console.log('bodyError: ' + JSON.stringify(bodyError));
     	// console.log('vm.calendars: ' + JSON.stringify(vm.calendars));
     	// console.log(JSON.stringify(bodyError) == JSON.stringify(vm.calendars));
-	} while(1 == 0);
+	} while(1 === 0);
   }
 }());
