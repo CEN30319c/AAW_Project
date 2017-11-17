@@ -17,12 +17,12 @@ exports.ical = function(req, response) {
     // console.log(body);
     if ((body[0] + body[1] + body[2] + body[3] + body[4]) == 'BEGIN') {
       // console.log('BODY IS GOOD SO PARSE');
-      var jcalData = ICAL.parse(body);
-      var vcalendar = new ICAL.Component(jcalData);
+      var jcalData = ical.parse(body);
+      var vcalendar = new ical.Component(jcalData);
       var vevents = vcalendar.getAllSubcomponents('vevent');
       var calendars = [];
       vevents.forEach(function(evt, ix, array) {
-        var event = new ICAL.Event(evt);
+        var event = new ical.Event(evt);
         var now = new Date();
         var dtstart = evt.getFirstPropertyValue('dtstart');
         var db = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
