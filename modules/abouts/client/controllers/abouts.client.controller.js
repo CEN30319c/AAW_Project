@@ -108,7 +108,7 @@ angular.module('abouts')
       link: function(scope, element, attrs) {
         var orignOffsetTop = element[0].offsetTop;
         scope.condition = function() {
-          return $window.pageYOffset > orignOffsetTop;
+          return $window.pageYOffset > orignOffsetTop + 125;
         };
 
         angular.element($window).bind('scroll', function() {
