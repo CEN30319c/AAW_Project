@@ -8,8 +8,9 @@
 .sidebar{
   margin-top: 45px;
   padding-left: 45px;
-}
+  border-right: solid #999999 1px;
 
+}
 
 .sidebar-nav li {
 	line-height: 40px;
@@ -94,9 +95,12 @@ p {
 }
 
 .about-section p{
-	margin-top: 10px;
+	margin-top: 45px;
+  margin-bottom: 50px;
 	text-align: left;
+  font-size: 1.25em;
 }
+
 
 #leadership {
 		/*padding: 60px;*/
