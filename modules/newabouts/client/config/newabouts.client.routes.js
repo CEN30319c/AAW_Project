@@ -89,3 +89,26 @@
     return new NewaboutsService();
   }
 }());
+
+angular.module('newabouts')
+  .directive('ycSidebarAffix', function($window) {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+        var orignOffsetTop = element[0].offsetTop;
+        scope.condition = function() {
+          return $window.pageYOffset > orignOffsetTop + 125;
+        };
+
+        angular.element($window).bind('scroll', function() {
+          scope.$apply(function() {
+            if (scope.condition()) {
+              angular.element(element).addClass('sidebar-affix');
+            } else {
+              angular.element(element).removeClass('sidebar-affix');
+            }
+          });
+        });
+      }
+    };
+  });
