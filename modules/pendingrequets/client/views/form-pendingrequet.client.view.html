@@ -117,18 +117,21 @@
         </div>
 
         <div class="form-group" show-errors>
-          <div><label class="col-md-4" for="selection2">Is this your first time joining AAW?</label></div>
+          <div class="col-md-4"><label class="control-label" for="selection2">Is this your first time joining AAW?</label><label style="color: red">*</label>
+          </div>
 
-          <div class="col-md-2">
-            <select name="selection2" ng-model="vm.pendingrequet.selection2" id="selection2" class="form-control"
-                    required>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
+            <div class="col-md-1">
+              <select name="selection2" ng-model="vm.pendingrequet.selection2" id="selection2" class="form-control"
+                      required>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+
             <div ng-messages="vm.form.pendingrequetForm.selection2.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
             </div>
-          </div>
+
         </div>
 
         <div class="form-group" show-errors>
