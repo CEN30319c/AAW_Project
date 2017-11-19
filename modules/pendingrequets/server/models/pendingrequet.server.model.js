@@ -65,36 +65,36 @@ var PendingrequetSchema = new Schema({
     },
     selection3: {
         type: String,
-        default: '',
-        required: 'Please, select an answer 3',
+        default: 'Yes',
+        required: 'Are you interested in joining an AAW committee?, select an answer',
         trim: true
     },
 
     interest: {
         type: String,
         default: '',
-        required: '',
+        // required: '',
         trim: true
     },
 
     topics: {
         type: String,
         default: '',
-        required: '',
+        // required: '',
         trim: true
     },
 
     selection4: {
         type: String,
         default: '',
-        required: 'Please, select an answer 4',
+        // required: 'Are you interested in having a profile? Please, select an answer',
         trim: true
     },
 
     motivation: {
         type: String,
         default: '',
-        required: '',
+        // required: '',
         trim: true
     },
     created: {
