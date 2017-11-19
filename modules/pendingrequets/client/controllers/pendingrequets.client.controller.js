@@ -6,9 +6,9 @@
     .module('pendingrequets')
     .controller('PendingrequetsController', PendingrequetsController);
 
-  PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
+  PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
 
-  function PendingrequetsController ($scope, $state, $window, $modal, $timeout, Authentication, FileUploader, pendingrequet) {
+  function PendingrequetsController ($scope, $state, $window, $modal, $timeout, $location, Authentication, FileUploader, pendingrequet) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -18,42 +18,29 @@
     vm.remove = remove;
     vm.save = save;
 
-//disable submit button
-  $scope.isDisabled = true;
-
-  //Disable submit button while form is invalid
-  $scope.clickedYes = function () {
-      $scope.showMe = true;
-      if('vm.form.pendingrequetForm') {
-          $scope.isDisabled = false;
+  $scope.clicked = function () {
+      if(vm.pendingrequet.selection4) {
+          $scope.showForm = true;
+      } else {
+          $scope.showForm = false;
+          vm.pendingrequet.interest = '';
+          vm.pendingrequet.motivation = '';
       }
-      else{
-          $scope.isDisabled = true;
-      }
-
-  };
-
-  $scope.clickedNo = function () {
-      $scope.showMe = false;
-      if('vm.form.pendingrequetForm') {
-          $scope.isDisabled = false;
-      }
-      else{
-          $scope.isDisabled = true;
-      }
-
   };
 
     //this function open a modal that allows user to create an account and go to pay
     $scope.goToPay = function () {
+
       $modal.open ({
         templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
         controller:'JoinsController'
 
       }).result.then(function () {
             //Redirecting to client's current payment page
-        var url = 'https://squareup.com/store/UFLAAW';
-        $window.open(url);
+        // var url = 'https://squareup.com/store/UFLAAW';
+        //$window.open(url);
+        $window.location.href = 'https://squareup.com/store/UFLAAW';
+
     });
 
 
@@ -132,7 +119,7 @@
   };
 
 
-  // Change upcoming event picture
+  // Change upcoming member picture
   $scope.uploadPicture = function () {
       console.log("upload Picture");
 
@@ -164,6 +151,7 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.pendingrequetForm');
         return false;
       }
+
 
       // TODO: move create/update logic to service
       if (vm.pendingrequet._id) {
