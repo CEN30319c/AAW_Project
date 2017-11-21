@@ -42,7 +42,7 @@
       $scope.p2 = '';
       $scope.p3 = '';
 
-    }
+    };
 
 
     function remove() {
@@ -54,19 +54,19 @@
 
     // Save Newabout
     function save(isValid) {
-      console.log("IN SAVE");
+      console.log('IN SAVE');
       console.log(vm.newabout);
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.newaboutForm');
         return false;
       }
-      if($scope.p1 != '') {
+      if($scope.p1 !== '') {
         vm.newabout.text.push($scope.p1);
       }
-      if($scope.p2 != '') {
+      if($scope.p2 !== '') {
         vm.newabout.text.push($scope.p2);
       }
-      if($scope.p3 != '') {
+      if($scope.p3 !== '') {
         vm.newabout.text.push($scope.p3);
       }
       // TODO: move create/update logic to service
