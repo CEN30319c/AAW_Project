@@ -1,0 +1,27 @@
+<section ng-controller="ProfilesController">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">New Profile</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="name">Name:</label>
+                  <div class="col-sm-10">
+                    <input type="name" class="form-control" id="name" placeholder="Enter name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="description">Description:</label>
+                  <div class="col-sm-10"> 
+                    <input type="description" class="form-control" id="description" placeholder="Enter description">
+                  </div>
+                </div>
+                <div class="form-group"> 
+                  <div class="col-sm-10">
+                    <button class="btn btn-primary" ng-click="ProfileAdd(); ok()"> OK</button>
+                    <button class="btn btn-warning" ng-click="cancel()"> Cancel</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </section>
