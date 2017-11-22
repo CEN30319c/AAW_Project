@@ -67,7 +67,7 @@
       </div>
       <div class="col-md-6">
         <h2>Upcoming Events</h2>
-        <div class="event-cell">
+        <div class="event-cell" ng-repeat="event in calendarlist" ng-show="$index <= 2">
           <div class="row row-eq-height">
             <div class="col-md-4">
               <div class="date text-center">
@@ -77,14 +77,14 @@
             </div>
             <div class="col-md-8">
               <div class="event-descrip">
-                <h3>Event Name</h3>
-                <h4>Location</h4>
-                <h4>6:30 PM</h4>
+                <h3>{{event.title}}</h3>
+                <h4>{{event.location}}</h4>
+                <h4>{{event.begin.substring(event.begin.length-10,event.begin.length)}}</h4>
               </div>
             </div>
           </div>
         </div>
-        <div class="event-cell">
+        <!--<div class="event-cell">
           <div class="row">
             <div class="col-md-4">
               <div class="date text-center">
@@ -100,8 +100,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="event-cell">
+        </div> -->
+        <!--<div class="event-cell">
           <div class="row">
             <div class="col-md-4">
               <div class="date text-center">
@@ -117,7 +117,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="view-all text-center">
           <a href="/calendars" id="calendarlink"> View All Events </a>
         </div>
