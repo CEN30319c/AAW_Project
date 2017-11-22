@@ -7,8 +7,8 @@
 //   }
 // ]);
 
-angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService',
-  function ($scope, $modal, $log, Authentication, NewsService) {
+angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService', 'CalendarsService',
+  function ($scope, $modal, $log, Authentication, NewsService, CalendarsService) {
     $scope.authentication = Authentication;
     $scope.user = Authentication.user;
     $scope.whoweareText = 'AAW strives to empower UF women for the utmost success in each stage of their careers at the university.';
@@ -20,6 +20,8 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
     ];
 
     $scope.newslist = NewsService.query();
+    $scope.calendarlist = CalendarsService.query();
+    console.log($scope.calendarlist);
 
     /*$scope.edit = function(header) {
       console.log(header);
