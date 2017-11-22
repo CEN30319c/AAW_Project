@@ -12,7 +12,16 @@
                             <center><img class="img-circle img-responsive" src="/modules/members/client/img/bird1.jpg"></center>
                             <p>{{ profile.name }}</p>
                     </a>
-                    <button ng-click="vm.modalEdit(profile, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
+
+                    <button ng-click="vm.modalEdit(profile, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+
+                    <button ng-click="vm.delete(profile)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+
+                    <p></p>
                 </div>
 
                 <!-- <div class="col-xs-3" style="text-align:center">
@@ -38,6 +47,13 @@
             </div>
             
 
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="text-align:center">
+            <button ng-click="vm.modalAdd(lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
+                Add new user
+            </button>
+        </div>
     </div>
 </div>
 </section>
