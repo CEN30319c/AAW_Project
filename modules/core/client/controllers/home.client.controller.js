@@ -7,13 +7,9 @@
 //   }
 // ]);
 
-// <<<<<<< Updated upstream
 angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService', 'CalendarsService', 'MiscsService',
   function ($scope, $modal, $log, Authentication, NewsService, CalendarsService, MiscsService) {
-// =======
-// angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService', 'MiscsService',
-//   function ($scope, $modal, $log, Authentication, NewsService, MiscsService) {
-// >>>>>>> Stashed changes
+
     $scope.authentication = Authentication;
     $scope.user = Authentication.user;
     $scope.whoweareText = 'AAW strives to empower UF women for the utmost success in each stage of their careers at the university.';
