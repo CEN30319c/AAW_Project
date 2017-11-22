@@ -62,7 +62,8 @@
           pendingrequetResolve: getPendingrequet
         },
         data: {
-          pageTitle: 'Pendingrequet {{ pendingrequetResolve.name }}'
+          pageTitle: 'Pendingrequet {{ pendingrequetResolve.name }}',
+          roles: ['admin']
         }
       });
   }

@@ -6,9 +6,9 @@
     .module('pendingrequets')
     .controller('PendingrequetsController', PendingrequetsController);
 
-  PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
+  PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', '$http', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
 
-  function PendingrequetsController ($scope, $state, $window, $modal, $timeout, $location, Authentication, FileUploader, pendingrequet) {
+  function PendingrequetsController ($scope, $state, $window, $modal, $timeout, $location, $http, Authentication, FileUploader, pendingrequet) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -161,9 +161,29 @@
       }
 
       function successCallback(res) {
-        $state.go('pendingrequets.view', {
-          pendingrequetId: res._id
-        });
+
+
+       //Sending email to notify the admin about a new member application
+       var data = ({
+
+           contactName: vm.pendingrequet.name,
+           contactEmail: vm.pendingrequet.email,
+           contactMsg: 'This email is to notify you that ' + vm.pendingrequet.name + ' has submitted a new membership application.' +
+           ' Does the new member want a PROFILE? ' + vm.pendingrequet.selection4 + '. Please, review the required fields in the application.'
+
+       });
+
+       $http.post('/api/auth/notification', data).success(function (data, status, headers, config) {
+           $state.go('pendingrequets.form', {
+               pendingrequetId: res._id
+           });
+       }).error(function (data, status, headers, config) {
+           console.log('Error sending the email');
+       });
+
+        // $state.go('pendingrequets.view', {
+        //   pendingrequetId: res._id
+        // });
       }
 
       function errorCallback(res) {
