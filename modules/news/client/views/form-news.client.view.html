@@ -3,6 +3,7 @@
     <h1>{{vm.news._id ? 'Edit Post' : 'New Post'}}</h1>
   </div>
   <div class="col-md-12">
+    <div class="col-md-10">
     <form name="vm.form.newsForm" class="form-horizontal" ng-submit="vm.save(vm.form.newsForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
@@ -17,6 +18,7 @@
 
         <div class="form-group">
           <button type="submit" class="btn btn-primary">{{vm.news._id ? 'Update' : 'Create'}}</button>
+          <button ui-sref="news.list" class="btn btn-danger">Cancel</button>
         </div>
 
         <div ng-show="vm.error" class="text-danger">
@@ -24,5 +26,6 @@
         </div>
       </fieldset>
     </form>
+  </div>
   </div>
 </section>

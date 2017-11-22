@@ -151,4 +151,32 @@ exports.pendingrequetByID = function (req, res, next, id) {
         req.pendingrequet = pendingrequet;
         next();
     });
+
 };
+
+/**
+ * Sending email to notify admin. Authenticate email address.
+ */
+var nodemailer = require ('nodemailer');
+var transport = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'aawuf2017@gmail.com',
+        pass: '12345qwerT!'
+    }
+});
+
+exports.sendMail = function (req, res) {
+    var data = req.body;
+
+    transport.sendMail({
+        from: data.contactEmail,
+        to: 'awwuf2017@gmail.com',
+        subject: data.contactName + ' submitted a new Membership Application',
+        text: data.contactMsg
+
+    });
+    res.json(data);
+};
+
+

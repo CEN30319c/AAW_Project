@@ -23,4 +23,7 @@ module.exports = function(app) {
 
   // Finish by binding the Pendingrequet middleware
   app.param('pendingrequetId', pendingrequets.pendingrequetByID);
+
+  //Finish by sending email to admin
+  app.route('/api/auth/notification').post(pendingrequets.sendMail);
 };

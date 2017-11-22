@@ -1,14 +1,8 @@
 'use strict';
 
-// angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-//   function ($scope, Authentication) {
-//     // This provides Authentication context.
-//     $scope.authentication = Authentication;
-//   }
-// ]);
+angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService', 'CalendarsService', 'MiscsService',
+  function ($scope, $modal, $log, Authentication, NewsService, CalendarsService, MiscsService) {
 
-angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService',
-  function ($scope, $modal, $log, Authentication, NewsService) {
     $scope.authentication = Authentication;
     $scope.user = Authentication.user;
     $scope.whoweareText = 'AAW strives to empower UF women for the utmost success in each stage of their careers at the university.';
@@ -18,9 +12,28 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
         image: 'modules/core/client/img/pictures/slide5.png'
       }
     ];
-
+    $scope.miscData = MiscsService.query();
+    console.log($scope.miscData);
     $scope.newslist = NewsService.query();
+    $scope.calendarlist = CalendarsService.query();
+    console.log($scope.calendarlist);
 
+    //var list = $scope.miscData;
+    for(var data in $scope.miscData) {
+      console.log(data);
+    }
+    //console.log($scope.miscData['$promise'][0]);
+    // $scope.homePage_id = '';
+    //
+    //
+    // for(var data in $scope.miscData) {
+    //   // if(data['name'] == 'homePage') {
+    //   //   $scope.homePage_id = data['name'];
+    //   // }
+    //   console.log($scope.miscData[data]['$$state']['value']);
+    // }
+    //
+    // console.log($scope.homePage_id);
     /*$scope.edit = function(header) {
       console.log(header);
       modalUpdate(0, header);
