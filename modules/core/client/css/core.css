@@ -66,25 +66,23 @@ NAVIGATION
 
 }
 
-.navbar-default .navbar-nav {
+/*.navbar-default .navbar-nav {
     margin-right: 10px;
     margin-top: 5px
-}
+}*/
 
-.navbar-default .navbar-nav > li {
+/*.navbar-default .navbar-nav > li {
     display: inline-block;
     float: none
-}
+}*/
 
 .navbar-default .navbar-nav > li > a {
     color: #fff;
-    font-size: 1.05em;
 }
 
 .container-fluid {
      padding-right: 0px;
      padding-left: 0px;
-
 }
 
 /********************
