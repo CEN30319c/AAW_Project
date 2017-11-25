@@ -45,12 +45,13 @@ NAVIGATION
   text-transform: uppercase;
 }
 
-.navbar-brand {
-  padding: 0px;
+
+.navbar-brand{
+  padding: 0;
 }
-.navbar-brand>img {
-  margin-left: 15px;
-  width: 35%;
+
+.navbar-brand > img {
+  width: 150px;
 }
 
 .navbar-default {
@@ -63,18 +64,7 @@ NAVIGATION
    -moz-box-shadow: none;
    -moz-transition: none;
    -webkit-transition: none;
-
 }
-
-/*.navbar-default .navbar-nav {
-    margin-right: 10px;
-    margin-top: 5px
-}*/
-
-/*.navbar-default .navbar-nav > li {
-    display: inline-block;
-    float: none
-}*/
 
 .navbar-default .navbar-nav > li > a {
     color: #fff;
@@ -240,7 +230,7 @@ AFFIX
 ********************/
 
 .navbar-affix {
-  background: #B1B3B6;
+  background: #6B9AC3;
 }
 
 .content {
