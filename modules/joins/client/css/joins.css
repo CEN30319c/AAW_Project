@@ -25,7 +25,6 @@
     margin-bottom: -15%;
     /*margin: 0 auto;*/
     margin-left: 50px;
-
 }
 
 .circle-text h3 {
@@ -109,32 +108,20 @@
 }
 
 .message {
-    padding-top: 5%;
+    font-family: 'Avenir Black';
+    margin: 3% 0;
     text-align: center;
-    color: #E28F41;
-    text-decoration: underline;
+    color: #4A4A4A;
+    text-transform: uppercase;
 }
 
 .member {
-    padding-top: 1%;
-    text-align: center;
+  width: 20%;
+  margin: 3% auto;
+  text-align: center;
     /*color: #E28F41;*/
 }
 
-.btn1 {
-    color: white;
-    font-size: 30px;
-
-}
-
-.button {
-    text-align: center;
-    background-color: lightgreen;
-    height: 50px;
-    width: 350px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-}
 
 .button:hover {
     background-color: limegreen; /* Green */
@@ -145,7 +132,6 @@
 .circle-text1 li,
 .circle-text2 li {
   font-family: 'Avenir Roman';
-
 }
 
 .testi {
@@ -158,4 +144,16 @@
     background-color: #E28F49;
     height: 450px;
     z-index: -1;
+}
+
+.apply-button{
+  display: block;
+  font-family: 'Avenir Black';
+  color: white;
+  font-size: 2em;
+  background-color: #80BE64;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  padding: 15px 0;
 }
