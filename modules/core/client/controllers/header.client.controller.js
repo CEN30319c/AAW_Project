@@ -24,6 +24,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 
 angular.module('core')
   .directive('ycNavbarAffix', function($window) {
+
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
@@ -44,3 +45,25 @@ angular.module('core')
       }
     };
   });
+
+  angular.module('core')
+    .directive('ycNavbarBrandAffix', function($window) {
+      return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+          var orignOffsetTop = element[0].offsetTop;
+          scope.condition = function() {
+            return $window.pageYOffset > orignOffsetTop;
+          };
+
+          angular.element($window).bind('scroll', function() {
+            scope.$apply(function() {
+
+              scope.showSmallLogo = true;
+
+
+            });
+          });
+        }
+      };
+    });
