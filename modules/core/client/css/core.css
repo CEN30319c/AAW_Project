@@ -20,7 +20,11 @@ body{
     height:100%;
 }
 
-
+a:hover,
+a:focus{
+  outline: none;
+  text-decoration: none;
+}
 .header{
   position: relative;
   height: 380px;
@@ -352,4 +356,75 @@ GALLERY
 .notification-icon .badge {
   background-color: red;
   color: white;
+}
+
+/**** CALENDAR ****/
+
+.calendar{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  /*margin-bottom: 15px;*/
+}
+
+
+.sub-buttons{
+  margin: 5% 0;
+}
+
+.sub1 > a{
+  font-family: 'Avenir Black';
+  background: #FBAF15;
+  text-transform: uppercase;
+  color: white;
+  font-size: 2em;
+  padding: 15px 35px;
+  margin-right: 15px;
+}
+
+.sub2 > a{
+  font-family: 'Avenir Black';
+  background: #FBAF15;
+  text-transform: uppercase;
+  color: white;
+  font-size: 2em;
+  padding: 15px 35px;
+  margin-left: 15px;
+}
+
+.sub1 > a:hover,
+.sub2 > a:hover{
+  text-decoration: none;
+}
+
+.panel-default > .panel-heading {
+  background: #80BE64;
+  color: #FFF;
+  font-family: 'Avenir Roman';
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.panel-default{
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
+
+#help{
+   margin-top: 5%;
+  font-size: 3em;
+  text-align: center;
+  color: #80BE64;
+}
+
+.events-grid{
+  margin: 75px 0;
+}
+.events-grid > span > h1{
+  font-family: 'Avenir Black';
+  color: #4a4a4a;
+  text-transform: uppercase;
+  text-align: center;
+
 }
