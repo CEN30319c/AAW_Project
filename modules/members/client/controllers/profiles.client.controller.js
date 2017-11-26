@@ -24,8 +24,8 @@
 
           }, function(errorResponse) {
               $scope.error = errorResponse.data.message;
-          })
-      }
+          });
+      };
 
       $scope.ProfileAdd = function() {
           var newName = document.getElementById("name").value;
@@ -40,10 +40,10 @@
                 
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
-            })
+            });
 
             $state.reload();      //reloads the page
-      }
+      };
 
       vm.delete = function(selectedProfile) {
         var profile = selectedProfile;
@@ -53,7 +53,7 @@
                 
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
-            })
+            });
 
             $state.reload();      //reloads the page
         }
@@ -70,7 +70,7 @@
                   };
                   $scope.cancel = function() {
                       $modalInstance.dismiss('cancel');
-                  }
+                  };
               },
               size: size,
                resolve: {
@@ -98,7 +98,7 @@
                 };
                 $scope.cancel = function() {
                     $modalInstance.dismiss('cancel');
-                }
+                };
             },
             size: size,
              resolve: {
@@ -125,7 +125,7 @@
 
                 $scope.cancel = function() {
                     $modalInstance.dismiss('cancel');
-                }
+                };
             },
             size: size,
              resolve: {

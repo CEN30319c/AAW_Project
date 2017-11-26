@@ -106,12 +106,6 @@ angular.element(document).ready(function () {
 (function (app) {
   'use strict';
 
-  app.registerModule('abouts');
-}(ApplicationConfiguration));
-
-(function (app) {
-  'use strict';
-
   app.registerModule('calendars');
 }(ApplicationConfiguration));
 
@@ -143,6 +137,18 @@ ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
 (function (app) {
   'use strict';
 
+  app.registerModule('miscs');
+}(ApplicationConfiguration));
+
+(function (app) {
+  'use strict';
+
+  app.registerModule('newabouts');
+}(ApplicationConfiguration));
+
+(function (app) {
+  'use strict';
+
   app.registerModule('news');
 }(ApplicationConfiguration));
 
@@ -158,270 +164,6 @@ ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
 ApplicationConfiguration.registerModule('users', ['core']);
 ApplicationConfiguration.registerModule('users.admin', ['core.admin']);
 ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.routes']);
-
-(function () {
-  'use strict';
-
-  angular
-    .module('abouts')
-    .run(menuConfig);
-
-  menuConfig.$inject = ['Menus'];
-
-  function menuConfig(Menus) {
-    // Set top bar menu items
-    Menus.addMenuItem('topbar', {
-      title: 'About',
-      state: 'abouts',
-      // type: 'dropdown',
-      roles: ['*']
-    });
-
-    // // Add the dropdown list item
-    // Menus.addSubMenuItem('topbar', 'abouts', {
-    //   title: 'List Abouts',
-    //   state: 'abouts.list'
-    // });
-    //
-    // // Add the dropdown create item
-    // Menus.addSubMenuItem('topbar', 'abouts', {
-    //   title: 'Create About',
-    //   state: 'abouts.create',
-    //   roles: ['admin']
-    // });
-  }
-}());
-
-(function () {
-  'use strict';
-
-  angular
-    .module('abouts')
-    .config(routeConfig);
-
-  routeConfig.$inject = ['$stateProvider'];
-
-  function routeConfig($stateProvider) {
-    $stateProvider
-      .state('abouts', {
-        // abstract: true,
-        url: '/about',
-        controller: 'AboutsController',
-        templateUrl: 'modules/abouts/client/views/view-about.client.view.html'
-      })
-      .state('madelynaward', {
-        url: '/about/madelynaward',
-        controller: 'AboutsController',
-        templateUrl: 'modules/abouts/client/views/madelynaward-about.client.view.html',
-      })
-      .state('distinctionaward', {
-        url: '/about/distinctionaward',
-        controller: 'AboutsController',
-        templateUrl: 'modules/abouts/client/views/distinctionaward-about.client.view.html',
-      })
-      
-      .state('abouts.list', {
-        url: '',
-        templateUrl: 'modules/abouts/client/views/list-abouts.client.view.html',
-        controller: 'AboutsListController',
-        controllerAs: 'vm',
-        data: {
-          pageTitle: 'Abouts List'
-        }
-      })
-      .state('abouts.create', {
-        url: '/create',
-        templateUrl: 'modules/abouts/client/views/form-about.client.view.html',
-        controller: 'AboutsController',
-        controllerAs: 'vm',
-        resolve: {
-          aboutResolve: newAbout
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'Abouts Create'
-        }
-      })
-      .state('abouts.edit', {
-        url: '/:aboutId/edit',
-        templateUrl: 'modules/abouts/client/views/form-about.client.view.html',
-        controller: 'AboutsController',
-        controllerAs: 'vm',
-        resolve: {
-          aboutResolve: getAbout
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'Edit About {{ aboutResolve.name }}'
-        }
-      })
-      .state('abouts.view', {
-        url: '/:aboutId',
-        templateUrl: 'modules/abouts/client/views/view-about.client.view.html',
-        controller: 'AboutsController',
-        controllerAs: 'vm',
-        resolve: {
-          aboutResolve: getAbout
-        },
-        data: {
-          pageTitle: 'About {{ aboutResolve.name }}'
-        }
-      });
-  }
-
-  getAbout.$inject = ['$stateParams', 'AboutsService'];
-  
-  function getAbout($stateParams, AboutsService) {
-    return AboutsService.get({
-      aboutId: $stateParams.aboutId
-    }).$promise;
-  }
-  
-  newAbout.$inject = ['AboutsService'];
-  
-  function newAbout(AboutsService) {
-    return new AboutsService();
-  }
-}());
-
-(function () {
-  'use strict';
-
-  // Abouts controller
-  angular
-    .module('abouts')
-    .controller('AboutsController', AboutsController);
-
-  AboutsController.$inject = ['$scope', '$state', '$window','$modal', '$log', 'Authentication'];
-
-
-
-  function AboutsController ($scope, $state, $window, $modal, $log, Authentication, about) {
-    var vm = this;
-
-    //$scope.aboutsData = AboutsService.query();
-    vm.authentication = Authentication;
-    $scope.data = '';
-    //$scope.currUserStatus = vm.authentication.user.roles[0];
-    $scope.user = Authentication.user;
-    //$scope.curr = 1;
-    vm.abouts = about;
-    //vm.abouts.test = 10;
-    vm.error = null;
-    vm.form = {};
-    vm.remove = remove;
-    // vm.save = save;
-    //$scope.selectedEdit = 'Hi';
-
-     $scope.edit = function(header) {
-      console.log(header);
-      console.log(vm.abouts);
-
-      modalUpdate(0, header);
-    };
-
-    function modalUpdate(size, header) {
-      var url = '';
-      if(header != 'mission') {
-        url = "modules/abouts/client/views/modal-abouts-" + header + ".client.view.html";
-      }
-
-      else {
-        url = "modules/abouts/client/views/modal-abouts.client.view.html";
-      }
-        var modalInstance = $modal.open({
-            templateUrl: url,
-            controller: AboutsController,
-            size: size
-        });
-
-        modalInstance.result.then(function() {
-        }, function () {
-            $log.info("Modal dismissed at: " + new Date());
-        });
-    }
-
-    $scope.updateText = function(header) {
-
-    };
-
-    // Remove existing About
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
-        vm.abouts.$remove($state.go('abouts.list'));
-      }
-    }
-
-    // Save About
-     $scope.save = function(isValid) {
-      console.log("In SAVE");
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.aboutForm');
-        return false;
-      }
-
-      // console.log($scope.data);
-      // TODO: move create/update logic to service
-       if (vm.about._id) {
-         vm.abouts.$update(successCallback, errorCallback);
-       }
-      else {
-      // console.log(vm.abouts);
-      // vm.abouts.contentType = header;
-        vm.abouts.$save(successCallback, errorCallback);
-      }
-
-      function successCallback(res) {
-        // $state.go('abouts.view', {
-        //   aboutId: res._id
-        // });
-      }
-
-      function errorCallback(res) {
-        vm.error = res.data.message;
-      }
-    };
-
-
-  }
-}());
-
-// (function () {
-//   'use strict';
-//
-//   angular
-//     .module('abouts')
-//     .controller('AboutsListController', AboutsListController);
-//
-//   AboutsListController.$inject = ['AboutsService'];
-//
-//   function AboutsListController(AboutsService) {
-//     var vm = this;
-//
-//     vm.abouts = AboutsService.query();
-//   }
-// }());
-
-// Abouts service used to communicate Abouts REST endpoints
-(function () {
-  'use strict';
-
-  angular
-    .module('abouts')
-    .factory('AboutsService', AboutsService);
-
-  AboutsService.$inject = ['$resource'];
-
-  function AboutsService($resource) {
-    return $resource('api/abouts/:aboutId', {
-      aboutId: '@_id'
-    }, {
-      update: {
-        method: 'PUT'
-      }
-    });
-  }
-}());
 
 (function () {
   'use strict';
@@ -604,7 +346,14 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
 
     $scope.user = Authentication.user;
 
-    vm.calendars = CalendarsService.query();
+    var bodyError = [{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR'}];
+    vm.calendars = [];
+    do {
+    	vm.calendars = CalendarsService.query();
+    	// console.log('bodyError: ' + JSON.stringify(bodyError));
+    	// console.log('vm.calendars: ' + JSON.stringify(vm.calendars));
+    	// console.log(JSON.stringify(bodyError) == JSON.stringify(vm.calendars));
+	} while(1 === 0);
   }
 }());
 
@@ -757,15 +506,9 @@ angular.module('core')
 
 'use strict';
 
-// angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-//   function ($scope, Authentication) {
-//     // This provides Authentication context.
-//     $scope.authentication = Authentication;
-//   }
-// ]);
+angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService', 'CalendarsService', 'MiscsService',
+  function ($scope, $modal, $log, Authentication, NewsService, CalendarsService, MiscsService) {
 
-angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService',
-  function ($scope, $modal, $log, Authentication, NewsService) {
     $scope.authentication = Authentication;
     $scope.user = Authentication.user;
     $scope.whoweareText = 'AAW strives to empower UF women for the utmost success in each stage of their careers at the university.';
@@ -775,37 +518,63 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
         image: 'modules/core/client/img/pictures/slide5.png'
       }
     ];
-
+    $scope.miscData = MiscsService.query();
+    //console.log($scope.miscData);
     $scope.newslist = NewsService.query();
+    $scope.calendarlist = CalendarsService.query();
+    //console.log($scope.calendarlist);
 
-    $scope.edit = function(header) {
+    //var list = $scope.miscData;
+    for(var data in $scope.miscData) {
+      console.log(data);
+    }
+    //console.log($scope.miscData['$promise'][0]);
+    // $scope.homePage_id = '';
+    //
+    //
+    // for(var data in $scope.miscData) {
+    //   // if(data['name'] == 'homePage') {
+    //   //   $scope.homePage_id = data['name'];
+    //   // }
+    //   console.log($scope.miscData[data]['$$state']['value']);
+    // }
+    //
+    // console.log($scope.homePage_id);
+    /*$scope.edit = function(header) {
       console.log(header);
       modalUpdate(0, header);
-    };
+    };*/
 
-    function modalUpdate(size, header) {
+    $scope.modalUpdate = function(size, texttoedit) {
       var url = 'modules/core/client/views/modal-home.client.view.html';
       var modalInstance = $modal.open({
         templateUrl: url,
-        controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
-
+        controller: ["$scope", "$modalInstance", "text", function ($scope, $modalInstance, text) {
+          $scope.newtext = text;
+          console.log($scope.newtext);
           $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
           };
 
-          $scope.update = function () {
-
+          $scope.update = function (newtext) {
+            text = newtext;
+            $modalInstance.close(text);
           };
 
         }],
         size: size,
+        resolve: {
+          text: function() {
+            return texttoedit;
+          }
+        }
       });
 
       modalInstance.result.then(function () {
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-    }
+    };
 
   }
 ]);
@@ -1603,7 +1372,7 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
   function routeConfig($stateProvider) {
     $stateProvider
       .state('members', {
-        // abstract: false,
+        //abstract: true,
         url: '/members',
         template: 'modules/members/client/views/view-member.client.view.html'
       })
@@ -1618,56 +1387,56 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
         templateUrl: 'modules/members/client/views/profiles-modal.client.view.html',
         controller: 'ProfilesController',
         controllerAs: 'vm'
+      })
+
+
+      .state('members.list', {
+        url: '',
+        templateUrl: 'modules/members/client/views/list-members.client.view.html',
+        controller: 'MembersListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Members List'
+        }
+      })
+      .state('members.create', {
+        url: '/create',
+        templateUrl: 'modules/members/client/views/form-member.client.view.html',
+        controller: 'MembersController',
+        controllerAs: 'vm',
+        resolve: {
+          memberResolve: newMember
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Members Create'
+        }
+      })
+      .state('members.edit', {
+        url: '/:memberId/edit',
+        templateUrl: 'modules/members/client/views/form-member.client.view.html',
+        controller: 'MembersController',
+        controllerAs: 'vm',
+        resolve: {
+          memberResolve: getMember
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Edit Member {{ memberResolve.name }}'
+        }
+      })
+      .state('members.view', {
+        url: '/:memberId',
+        templateUrl: 'modules/members/client/views/view-member.client.view.html',
+        controller: 'MembersController',
+        controllerAs: 'vm',
+        resolve: {
+          memberResolve: getMember
+        },
+        data: {
+          pageTitle: 'Member {{ memberResolve.name }}'
+        }
       });
-
-
-      // .state('members.list', {
-      //   url: '',
-      //   templateUrl: 'modules/members/client/views/list-members.client.view.html',
-      //   controller: 'MembersListController',
-      //   controllerAs: 'vm',
-      //   data: {
-      //     pageTitle: 'Members List'
-      //   }
-      // })
-      // .state('members.create', {
-      //   url: '/create',
-      //   templateUrl: 'modules/members/client/views/form-member.client.view.html',
-      //   controller: 'MembersController',
-      //   controllerAs: 'vm',
-      //   resolve: {
-      //     memberResolve: newMember
-      //   },
-      //   data: {
-      //     roles: ['user', 'admin'],
-      //     pageTitle: 'Members Create'
-      //   }
-      // })
-      // .state('members.edit', {
-      //   url: '/:memberId/edit',
-      //   templateUrl: 'modules/members/client/views/form-member.client.view.html',
-      //   controller: 'MembersController',
-      //   controllerAs: 'vm',
-      //   resolve: {
-      //     memberResolve: getMember
-      //   },
-      //   data: {
-      //     roles: ['user', 'admin'],
-      //     pageTitle: 'Edit Member {{ memberResolve.name }}'
-      //   }
-      // })
-      // .state('members.view', {
-      //   url: '/:memberId',
-      //   templateUrl: 'modules/members/client/views/view-member.client.view.html',
-      //   controller: 'MembersController',
-      //   controllerAs: 'vm',
-      //   resolve: {
-      //     memberResolve: getMember
-      //   },
-      //   data: {
-      //     pageTitle: 'Member {{ memberResolve.name }}'
-      //   }
-      // });
   }
 
   getMember.$inject = ['$stateParams', 'MembersService'];
@@ -1763,17 +1532,71 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       .module('members')
       .controller('ProfilesController', ProfilesController);
   
-    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', 'MembersService'];
+    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', 'MembersService', 'Authentication'];
   
-    function ProfilesController ($scope, $state, $window, $modal, $log, MembersService) {
+    function ProfilesController ($scope, $state, $window, $modal, $log, MembersService, Authentication, member) {
       var vm = this;
+      vm.member = member;
+      vm.authentication = Authentication;
+      $scope.user = Authentication.user;
       $scope.profiles = MembersService.query();
+
+      $scope.ProfileUpdate = function(updatedProfile) {
+        var profile = updatedProfile;
+        profile.name = document.getElementById("name").value;
+        profile.description = document.getElementById("description").value;
+
+          profile.$update(function() {
+
+          }, function(errorResponse) {
+              $scope.error = errorResponse.data.message;
+          });
+      };
+
+      $scope.ProfileAdd = function() {
+          var newName = document.getElementById("name").value;
+          var newDescription = document.getElementById("description").value;
+
+          var profile = new MembersService({
+            name: newName,
+            description: newDescription
+            });
+
+            profile.$save(function() {
+                
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+
+            $state.reload();      //reloads the page
+      };
+
+      vm.delete = function(selectedProfile) {
+        var profile = selectedProfile;
+
+        if (confirm(profile.name + "\'s profile will be deleted.")) {
+            profile.$delete(function() {
+                
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+
+            $state.reload();      //reloads the page
+        }
+      };
 
       vm.modalUpdate = function (selectedProfile, size) {
           var modalInstance = $modal.open({
               templateUrl: "modules/members/client/views/profiles-modal.client.view.html",
               controller: ["$scope", "$modalInstance", "profile", function ($scope, $modalInstance, profile) {
                   $scope.profile = profile;
+
+                  $scope.ok = function() {
+                      $modalInstance.close($scope.profile);
+                  };
+                  $scope.cancel = function() {
+                      $modalInstance.dismiss('cancel');
+                  };
               }],
               size: size,
                resolve: {
@@ -1789,6 +1612,62 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
               $log.info("Modal dismissed at: " + new Date());
           });
       };
+
+      vm.modalEdit = function (selectedProfile, size) {
+        var modalInstance = $modal.open({
+            templateUrl: "modules/members/client/views/profiles-edit-modal.client.view.html",
+            controller: ["$scope", "$modalInstance", "profile", function ($scope, $modalInstance, profile) {
+                $scope.profile = profile;
+
+                $scope.ok = function() {
+                    $modalInstance.close($scope.profile);
+                };
+                $scope.cancel = function() {
+                    $modalInstance.dismiss('cancel');
+                };
+            }],
+            size: size,
+             resolve: {
+                 profile: function() {
+                     return selectedProfile;
+                 }
+             }
+        });
+
+        modalInstance.result.then(function(selectedProfile) {
+          $scope.selected = selectedProfile;
+        }, function () {
+            $log.info("Modal dismissed at: " + new Date());
+        });
+    };
+
+    vm.modalAdd = function (size) {
+        var modalInstance = $modal.open({
+            templateUrl: "modules/members/client/views/profiles-add-modal.client.view.html",
+            controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
+                $scope.ok = function() {
+                    $modalInstance.close();
+                };
+
+                $scope.cancel = function() {
+                    $modalInstance.dismiss('cancel');
+                };
+            }],
+            size: size,
+             resolve: {
+                 profile: function() {
+                     
+                 }
+             }
+        });
+
+        modalInstance.result.then(function(selectedProfile) {
+          $scope.selected = selectedProfile;
+        }, function () {
+            $log.info("Modal dismissed at: " + new Date());
+        });
+    };
+
     }
   }());
 
@@ -1805,6 +1684,480 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
   function MembersService($resource) {
     return $resource('api/members/:memberId', {
       memberId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+}());
+
+(function () {
+  'use strict';
+
+  angular
+    .module('miscs')
+    .config(routeConfig);
+
+  routeConfig.$inject = ['$stateProvider'];
+
+  function routeConfig($stateProvider) {
+    $stateProvider
+      .state('miscs', {
+        abstract: true,
+        url: '/miscs',
+        template: '<ui-view/>'
+      })
+      .state('miscs.list', {
+        url: '',
+        templateUrl: 'modules/miscs/client/views/list-miscs.client.view.html',
+        controller: 'MiscsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Miscs List'
+        }
+      })
+      .state('miscs.create', {
+        url: '/create',
+        templateUrl: 'modules/miscs/client/views/form-misc.client.view.html',
+        controller: 'MiscsController',
+        controllerAs: 'vm',
+        resolve: {
+          miscResolve: newMisc
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Miscs Create'
+        }
+      })
+      .state('miscs.edit', {
+        url: '/:miscId/edit',
+        templateUrl: 'modules/miscs/client/views/form-misc.client.view.html',
+        controller: 'MiscsController',
+        controllerAs: 'vm',
+        resolve: {
+          miscResolve: getMisc
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Edit Misc {{ miscResolve.name }}'
+        }
+      })
+      .state('miscs.view', {
+        url: '/:miscId',
+        templateUrl: 'modules/miscs/client/views/view-misc.client.view.html',
+        controller: 'MiscsController',
+        controllerAs: 'vm',
+        resolve: {
+          miscResolve: getMisc
+        },
+        data: {
+          pageTitle: 'Misc {{ miscResolve.name }}'
+        }
+      });
+  }
+
+  getMisc.$inject = ['$stateParams', 'MiscsService'];
+
+  function getMisc($stateParams, MiscsService) {
+    return MiscsService.get({
+      miscId: $stateParams.miscId
+    }).$promise;
+  }
+
+  newMisc.$inject = ['MiscsService'];
+
+  function newMisc(MiscsService) {
+    return new MiscsService();
+  }
+}());
+
+(function () {
+  'use strict';
+
+  angular
+    .module('miscs')
+    .controller('MiscsListController', MiscsListController);
+
+  MiscsListController.$inject = ['MiscsService'];
+
+  function MiscsListController(MiscsService) {
+    var vm = this;
+
+    vm.miscs = MiscsService.query();
+  }
+}());
+
+(function () {
+  'use strict';
+
+  // Miscs controller
+  angular
+    .module('miscs')
+    .controller('MiscsController', MiscsController);
+
+  MiscsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'miscResolve'];
+
+  function MiscsController ($scope, $state, $window, Authentication, misc) {
+    var vm = this;
+
+    vm.authentication = Authentication;
+    vm.misc = misc;
+    vm.error = null;
+    vm.form = {};
+    vm.remove = remove;
+    vm.save = save;
+    vm.misc.data = [];
+    $scope.p1 = '';
+    $scope.p2 = '';
+    $scope.p3 = '';
+    //var updateContent = [];
+
+    // Remove existing Misc
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete?')) {
+        vm.misc.$remove($state.go('miscs.list'));
+      }
+    }
+
+    // Save Misc
+    function save() {
+      // if (!isValid) {
+      //   $scope.$broadcast('show-errors-check-validity', 'vm.form.miscForm');
+      //   return false;
+      // }
+
+      if($scope.p1 !== '') {
+        vm.misc.data.push($scope.p1);
+      }
+      if($scope.p2 !== '') {
+        vm.misc.data.push($scope.p2);
+      }
+      if($scope.p3 !== '') {
+        vm.misc.data.push($scope.p3);
+      }
+
+      //vm.misc.data = ['HI', 'BYE'];
+      //updateContent = [];
+      //vm.misc.name = 'TESTY TEST';
+
+      $scope.p1 = '';
+      $scope.p2 = '';
+      $scope.p3 = '';
+
+      // TODO: move create/update logic to service
+      if (vm.misc._id) {
+        vm.misc.$update(successCallback, errorCallback);
+      } else {
+        vm.misc.$save(successCallback, errorCallback);
+      }
+
+      function successCallback(res) {
+        $state.go('home', {
+          miscId: res._id
+        });
+      }
+
+      function errorCallback(res) {
+        vm.error = res.data.message;
+      }
+    }
+  }
+}());
+
+// Miscs service used to communicate Miscs REST endpoints
+(function () {
+  'use strict';
+
+  angular
+    .module('miscs')
+    .factory('MiscsService', MiscsService);
+
+  MiscsService.$inject = ['$resource'];
+
+  function MiscsService($resource) {
+    return $resource('api/miscs/:miscId', {
+      miscId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+}());
+
+(function () {
+  'use strict';
+
+  angular
+    .module('newabouts')
+    .run(menuConfig);
+
+  menuConfig.$inject = ['Menus'];
+
+  function menuConfig(Menus) {
+    // Set top bar menu items
+    Menus.addMenuItem('topbar', {
+      title: 'About',
+      state: 'newabouts.list',
+      //type: 'dropdown',
+      roles: ['*']
+    });
+
+    // Add the dropdown list item
+    // Menus.addSubMenuItem('topbar', 'newabouts', {
+    //   title: 'List Newabouts',
+    //   state: 'newabouts.list'
+    // });
+
+    // Add the dropdown create item
+    // Menus.addSubMenuItem('topbar', 'newabouts', {
+    //   title: 'Create Newabout',
+    //   state: 'newabouts.create'
+    //   //roles: ['user']
+    // });
+  }
+}());
+
+(function () {
+  'use strict';
+
+  angular
+    .module('newabouts')
+    .config(routeConfig);
+
+  routeConfig.$inject = ['$stateProvider'];
+
+  function routeConfig($stateProvider) {
+    $stateProvider
+      .state('newabouts', {
+        abstract: true,
+        url: '/about',
+        template: '<ui-view/>'
+      })
+      .state('newabouts.list', {
+        url: '',
+        templateUrl: 'modules/newabouts/client/views/list-newabouts.client.view.html',
+        controller: 'NewaboutsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Newabouts List'
+        }
+      })
+      .state('newabouts.create', {
+        url: '/create',
+        templateUrl: 'modules/newabouts/client/views/form-newabout.client.view.html',
+        controller: 'NewaboutsController',
+        controllerAs: 'vm',
+        resolve: {
+          newaboutResolve: newNewabout
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Newabouts Create'
+        }
+      })
+      .state('newabouts.edit', {
+        url: '/:newaboutId/edit',
+        templateUrl: 'modules/newabouts/client/views/form-newabout.client.view.html',
+        controller: 'NewaboutsController',
+        controllerAs: 'vm',
+        resolve: {
+          newaboutResolve: getNewabout
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Edit Newabout {{ newaboutResolve.name }}'
+        }
+      })
+      .state('newabouts.view', {
+        url: '/:newaboutId',
+        templateUrl: 'modules/newabouts/client/views/view-newabout.client.view.html',
+        controller: 'NewaboutsController',
+        controllerAs: 'vm',
+        resolve: {
+          newaboutResolve: getNewabout
+        },
+        data: {
+          pageTitle: 'Newabout {{ newaboutResolve.name }}'
+        }
+      })
+      .state('newabouts.madelynAward', {
+        url: '/madelynAward',
+        templateUrl: 'modules/newabouts/client/views/madelynAward-newabouts.client.view.html',
+        controller: 'NewaboutsListController',
+        controllerAs: 'vm'
+      })
+      .state('newabouts.distinctionAward', {
+        url: '/distinctionAward',
+        templateUrl: 'modules/newabouts/client/views/distinctionAward-newabout.client.view.html',
+        controller: 'NewaboutsListController',
+        controllerAs: 'vm'
+      });
+  }
+
+  getNewabout.$inject = ['$stateParams', 'NewaboutsService'];
+
+  function getNewabout($stateParams, NewaboutsService) {
+    return NewaboutsService.get({
+      newaboutId: $stateParams.newaboutId
+    }).$promise;
+  }
+
+  newNewabout.$inject = ['NewaboutsService'];
+
+  function newNewabout(NewaboutsService) {
+    return new NewaboutsService();
+  }
+}());
+
+angular.module('newabouts')
+  .directive('ycSidebarAffix', ["$window", function($window) {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+        var orignOffsetTop = element[0].offsetTop;
+        scope.condition = function() {
+          return $window.pageYOffset > orignOffsetTop + 125;
+        };
+
+        angular.element($window).bind('scroll', function() {
+          scope.$apply(function() {
+            if (scope.condition()) {
+              angular.element(element).addClass('sidebar-affix');
+            } else {
+              angular.element(element).removeClass('sidebar-affix');
+            }
+          });
+        });
+      }
+    };
+  }]);
+
+(function () {
+  'use strict';
+
+  angular
+    .module('newabouts')
+    .controller('NewaboutsListController', NewaboutsListController);
+
+  NewaboutsListController.$inject = ['$scope', 'NewaboutsService', 'Authentication'];
+
+  function NewaboutsListController($scope, NewaboutsService, Authentication) {
+    var vm = this;
+    $scope.user = Authentication.user;
+    $scope.aboutsData = NewaboutsService.query();
+    $scope.ids = ['mission', 'people', 'awards', 'history'];
+
+    vm.newabouts = NewaboutsService.query();
+  }
+}());
+
+(function () {
+  'use strict';
+
+  // Newabouts controller
+  angular
+    .module('newabouts')
+    .controller('NewaboutsController', NewaboutsController);
+
+  NewaboutsController.$inject = ['$scope', '$state', '$window', 'Authentication', '$log', '$modal','newaboutResolve'];
+
+  function NewaboutsController ($scope, $state, $window, Authentication, $log, $modal, newabout) {
+    var vm = this;
+
+    vm.authentication = Authentication;
+    vm.newabout = newabout;
+    vm.error = null;
+    vm.form = {};
+    vm.remove = remove;
+    vm.save = save;
+    vm.newabout.text = [];
+    vm.newabout.titles = ['MISSION', 'LEADERSHIP', 'AWARDS', 'Woman of Distinction Award', 'HISTORY'];
+    $scope.p1 = '';
+    $scope.p2 = '';
+    $scope.p3 = '';
+    //$scope.aboutsData = NewaboutsService.query();
+    //$scope.user = Authentication.user;
+
+    $scope.show = false;
+    $scope.showMission = false;
+    $scope.showAwards = false;
+    $scope.showWOD_Awards = false;
+    $scope.showLeadership = false;
+    $scope.showHistory = false;
+
+    // $scope.titles = ['MISSION', 'LEADERSHIP', 'AWARDS', 'Woman of Distinction Award', 'HISTORY'];
+    $scope.hello = "Hello World";
+    // Remove existing Newabout
+
+    $scope.edit = function() {
+      //modalUpdate(0);
+      $scope.show = true;
+      $scope.p1 = '';
+      $scope.p2 = '';
+      $scope.p3 = '';
+
+    };
+
+
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete?')) {
+        vm.newabout.$remove($state.go('newabouts.list'));
+      }
+    }
+
+
+    // Save Newabout
+    function save(isValid) {
+      console.log('IN SAVE');
+      console.log(vm.newabout);
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.newaboutForm');
+        return false;
+      }
+      if($scope.p1 !== '') {
+        vm.newabout.text.push($scope.p1);
+      }
+      if($scope.p2 !== '') {
+        vm.newabout.text.push($scope.p2);
+      }
+      if($scope.p3 !== '') {
+        vm.newabout.text.push($scope.p3);
+      }
+      // TODO: move create/update logic to service
+      if (vm.newabout._id) {
+        vm.newabout.$update(successCallback, errorCallback);
+      } else {
+        vm.newabout.$save(successCallback, errorCallback);
+      }
+
+      function successCallback(res) {
+        $state.go('newabouts.list', {
+          newaboutId: res._id
+        });
+      }
+
+      function errorCallback(res) {
+        vm.error = res.data.message;
+      }
+    }
+  }
+}());
+
+// Newabouts service used to communicate Newabouts REST endpoints
+(function () {
+  'use strict';
+
+  angular
+    .module('newabouts')
+    .factory('NewaboutsService', NewaboutsService);
+
+  NewaboutsService.$inject = ['$resource'];
+
+  function NewaboutsService($resource) {
+    return $resource('api/newabouts/:newaboutId', {
+      newaboutId: '@_id'
     }, {
       update: {
         method: 'PUT'
@@ -1933,11 +2286,11 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     .module('news')
     .controller('NewsListController', NewsListController);
 
-  NewsListController.$inject = ['NewsService'];
+  NewsListController.$inject = ['$scope', 'NewsService', 'Authentication'];
 
-  function NewsListController(NewsService) {
+  function NewsListController($scope, NewsService, Authentication) {
     var vm = this;
-
+    $scope.user = Authentication.user;
     vm.news = NewsService.query();
   }
 }());
@@ -2038,7 +2391,7 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     // Set top bar menu items
 
     Menus.addMenuItem('topbar', {
-      title: 'List New Members',
+      title: 'List of Members',
       state: 'pendingrequets.list',
       // type: 'dropdown',
       roles: ['admin']
@@ -2117,7 +2470,8 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
           pendingrequetResolve: getPendingrequet
         },
         data: {
-          pageTitle: 'Pendingrequet {{ pendingrequetResolve.name }}'
+          pageTitle: 'Pendingrequet {{ pendingrequetResolve.name }}',
+          roles: ['admin']
         }
       });
   }
@@ -2167,9 +2521,9 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     .module('pendingrequets')
     .controller('PendingrequetsController', PendingrequetsController);
 
-  PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
+  PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', '$http', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
 
-  function PendingrequetsController ($scope, $state, $window, $modal, $timeout, Authentication, FileUploader, pendingrequet) {
+  function PendingrequetsController ($scope, $state, $window, $modal, $timeout, $location, $http, Authentication, FileUploader, pendingrequet) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -2179,43 +2533,29 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     vm.remove = remove;
     vm.save = save;
 
-
-//disable submit button
-  $scope.isDisabled = true;
-
-  //Disable submit button while form is invalid
-  $scope.clickedYes = function () {
-      $scope.showMe = true;
-      if('vm.form.pendingrequetForm') {
-          $scope.isDisabled = false;
+  $scope.clicked = function () {
+      if(vm.pendingrequet.selection4) {
+          $scope.showForm = true;
+      } else {
+          $scope.showForm = false;
+          vm.pendingrequet.interest = '';
+          vm.pendingrequet.motivation = '';
       }
-      else{
-          $scope.isDisabled = true;
-      }
-
-  };
-
-  $scope.clickedNo = function () {
-      $scope.showMe = false;
-      if('vm.form.pendingrequetForm') {
-          $scope.isDisabled = false;
-      }
-      else{
-          $scope.isDisabled = true;
-      }
-
   };
 
     //this function open a modal that allows user to create an account and go to pay
     $scope.goToPay = function () {
+
       $modal.open ({
         templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
         controller:'JoinsController'
 
       }).result.then(function () {
             //Redirecting to client's current payment page
-        var url = 'https://squareup.com/store/UFLAAW';
-        $window.open(url);
+        // var url = 'https://squareup.com/store/UFLAAW';
+        //$window.open(url);
+        $window.location.href = 'https://squareup.com/store/UFLAAW';
+
     });
 
 
@@ -2227,89 +2567,89 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     };
 
 
-      /*
-      * Upload images.
-      */
-      $scope.fillFields = function () {
-          if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
-            $scope.imageURL = vm.pendingrequet.imageURL;
-          }
-          else {
-            $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
-            console.log($scope.imageURL);
-          }
-      };
-      // Create file uploader instance
-      $scope.uploader = new FileUploader({
-          url: '/api/pendingrequets/picture',
-          alias: 'newMemberPicture'
-      });
+  /*
+  * Upload images.
+  */
+  $scope.fillFields = function () {
+      if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
+        $scope.imageURL = vm.pendingrequet.imageURL;
+      }
+      else {
+        $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
+        console.log($scope.imageURL);
+      }
+  };
+  // Create file uploader instance
+  $scope.uploader = new FileUploader({
+      url: '/api/pendingrequets/picture',
+      alias: 'newMemberPicture'
+  });
 
-      // Set file uploader image filter
-      $scope.uploader.filters.push({
-          name: 'imageFilter',
-          fn: function (item, options) {
-              var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-              return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-          }
-      });
-      // Function called after the user selected a new picture file
-      $scope.uploader.onAfterAddingFile = function (fileItem) {
-          console.log("onAfterAddingFile");
-          if ($window.FileReader) {
-              var fileReader = new FileReader();
-              fileReader.readAsDataURL(fileItem._file);
-              fileReader.onload = function (fileReaderEvent) {
-                  $timeout(function () {
-                      $scope.imageURL = fileReaderEvent.target.result;
+  // Set file uploader image filter
+  $scope.uploader.filters.push({
+      name: 'imageFilter',
+      fn: function (item, options) {
+          var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+          return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+  });
+  // Function called after the user selected a new picture file
+  $scope.uploader.onAfterAddingFile = function (fileItem) {
+      console.log("onAfterAddingFile");
+      if ($window.FileReader) {
+          var fileReader = new FileReader();
+          fileReader.readAsDataURL(fileItem._file);
+          fileReader.onload = function (fileReaderEvent) {
+              $timeout(function () {
+                  $scope.imageURL = fileReaderEvent.target.result;
 
-                      // Upload the new selected picture.
-                      $scope.uploadPicture();
-                  }, 0);
-              };
-          }
-      };
+                  // Upload the new selected picture.
+                  $scope.uploadPicture();
+              }, 0);
+          };
+      }
+  };
 
-      // Called after the user has successfully uploaded a new picture
-      $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
-          console.log("onSuccessItem");
+  // Called after the user has successfully uploaded a new picture
+  $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+      console.log("onSuccessItem");
 
-          // Show success message
-          $scope.success = true;
+      // Show success message
+      $scope.success = true;
 
-          // Populate user object
-          vm.pendingrequet.filename = response.file.filename;
-          vm.pendingrequet.imageURL = response.file.filename;
+      // Populate user object
+      vm.pendingrequet.filename = response.file.filename;
+      vm.pendingrequet.imageURL = response.file.filename;
 
-          console.log("filename: " + vm.pendingrequet.filename);
-      };
+      console.log("filename: " + vm.pendingrequet.filename);
+  };
 
-      // Called after the user has failed to uploaded a new picture
-      $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
-          // Clear upload buttons
-          $scope.cancelUpload();
+  // Called after the user has failed to uploaded a new picture
+  $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
+      // Clear upload buttons
+      $scope.cancelUpload();
 
-          // Show error message
-          $scope.error = response.message;
-      };
+      // Show error message
+      $scope.error = response.message;
+  };
 
 
-      // Change upcoming event picture
-      $scope.uploadPicture = function () {
-          console.log("upload Picture");
+  // Change upcoming member picture
+  $scope.uploadPicture = function () {
+      console.log("upload Picture");
 
-          // Clear messages
-          $scope.success = $scope.error = null;
+      // Clear messages
+      $scope.success = $scope.error = null;
 
-          // Start upload
-          $scope.uploader.uploadAll();
-      };
+      // Start upload
+      $scope.uploader.uploadAll();
+  };
 
-      // Cancel the upload process
-      $scope.cancelUpload = function () {
-          $scope.uploader.clearQueue();
-          // $scope.imageURL = '';
-      };
+  // Cancel the upload process
+  $scope.cancelUpload = function () {
+      $scope.uploader.clearQueue();
+      // $scope.imageURL = '';
+  };
 
 
 
@@ -2320,12 +2660,13 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       }
     }
 
-    // Save Pendingrequet
+  // Save Pendingrequet
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.pendingrequetForm');
         return false;
       }
+
 
       // TODO: move create/update logic to service
       if (vm.pendingrequet._id) {
@@ -2335,9 +2676,29 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       }
 
       function successCallback(res) {
-        $state.go('pendingrequets.view', {
-          pendingrequetId: res._id
-        });
+
+
+       //Sending email to notify the admin about a new member application
+       var data = ({
+
+           contactName: vm.pendingrequet.name,
+           contactEmail: vm.pendingrequet.email,
+           contactMsg: 'This email is to notify you that ' + vm.pendingrequet.name + ' has submitted a new membership application.' +
+           ' Does the new member want a PROFILE? ' + vm.pendingrequet.selection4 + '. Please, review the required fields in the application.'
+
+       });
+
+       $http.post('/api/auth/notification', data).success(function (data, status, headers, config) {
+           $state.go('pendingrequets.form', {
+               pendingrequetId: res._id
+           });
+       }).error(function (data, status, headers, config) {
+           console.log('Error sending the email');
+       });
+
+        // $state.go('pendingrequets.view', {
+        //   pendingrequetId: res._id
+        // });
       }
 
       function errorCallback(res) {

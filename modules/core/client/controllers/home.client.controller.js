@@ -13,10 +13,10 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
       }
     ];
     $scope.miscData = MiscsService.query();
-    console.log($scope.miscData);
+    //console.log($scope.miscData);
     $scope.newslist = NewsService.query();
     $scope.calendarlist = CalendarsService.query();
-    console.log($scope.calendarlist);
+    //console.log($scope.calendarlist);
 
     //var list = $scope.miscData;
     for(var data in $scope.miscData) {
