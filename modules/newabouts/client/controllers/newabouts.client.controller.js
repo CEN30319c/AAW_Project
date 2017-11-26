@@ -22,6 +22,7 @@
     $scope.p1 = '';
     $scope.p2 = '';
     $scope.p3 = '';
+    //$scope.aboutsData = NewaboutsService.query();
     //$scope.user = Authentication.user;
 
     $scope.show = false;
