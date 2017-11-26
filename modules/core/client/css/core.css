@@ -160,7 +160,7 @@ HOME
   width: 100%;
   padding-top: 20px;
   padding-bottom: 15px;
-
+  margin-left: -15px;
 }
 
 .event-cell .date h1{
@@ -468,4 +468,8 @@ GALLERY
   text-transform: uppercase;
   background: #D7152A;
   padding: 15px;
+}
+
+.row{
+  margin: 0;
 }
