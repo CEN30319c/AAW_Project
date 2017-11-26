@@ -136,3 +136,16 @@ p {
 .btn-menu {
 	color: #000;
 }
+
+.madelyn-content > h2{
+  font-family: 'Avenir Black';
+  text-transform: uppercase;
+  text-align: center;
+  margin: 5% 0;
+}
+
+.elig-list{
+  background: #E28F40;
+  color: white;
+  padding: 15px;
+}
