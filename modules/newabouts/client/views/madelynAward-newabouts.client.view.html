@@ -14,25 +14,32 @@
 
             <h2> Eligibility Requirements </h2>
             <p>
-            <ul>
-                    <li><p style="text-align:left">Must be a full-time or full-time equivalent doctoral degree (PhD) candidate as defined by the Graduate School at the University of Florida</p></li>
+            <ul ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynbullets'}">
+                <li><p style="text-align:left">{{about.description}} <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button></p></li>
+                    <!-- <li><p style="text-align:left">Must be a full-time or full-time equivalent doctoral degree (PhD) candidate as defined by the Graduate School at the University of Florida</p></li>
                     <li><p style="text-align:left">Must have completed doctoral course work</p></li>
                     <li><p style="text-align:left">Must have passed the qualifying exam </p></li>
                     <li><p style="text-align:left">Must be writing or be ready to write the dissertation (Preferably in the later stages of dissertation research and writing)</p></li>
                     <li><p style="text-align:left">Must have their dissertation proposal be approved by the applicant's graduate committee prior to submission of an application</p></li>
-                    <li><p style="text-align:left">Must be enrolled in dissertation credits for at least one semester (for example summer 2016 or fall 2016 and/or spring, 2017) after s/he is selected to receive the fellowship.</p></li>
+                    <li><p style="text-align:left">Must be enrolled in dissertation credits for at least one semester (for example summer 2016 or fall 2016 and/or spring, 2017) after s/he is selected to receive the fellowship.</p></li> -->
             </ul>
             </p>
+            <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelyneligibility'}">
+                <p>
+                    {{about.description}}
+                </p>
+                <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </div>
 
-            <p>
-                A nomination can come from a faculty member or from the candidate herself, and are welcome from candidates in any
-                UF Ph.D. program.
-            </p>
-
-            <p><b>Applications submitted after the deadline will NOT be accepted.</b></p>
             <p id="space"></p>
             <button type="button" class="btn btn-primary btn-lg" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">Apply Here
             </button>
+
+            
         </div>
     </div>
 
@@ -48,6 +55,9 @@
 
             <p>Questions about the fellowship application process should be directed to Donna Tuckey at tuckey@ufl.edu</p>
 
+            <button ng-click="" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
         </div>
     </div>
 
@@ -64,10 +74,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="about in aboutsData | filter: {'award' : 'madelyn'}">
+                    <tr ng-repeat="about in vm.newabouts | filter: {'award' : 'madelyn'}">
                     <td><p>{{ about.year }}</p></td>
                     <td><p>{{ about.name }}</p></td>
                     <td><p>{{ about.department }}</p></td>
+                    <td><button ng-click="" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button></td>
                     </tr>
                 </tbody>
             </table>
