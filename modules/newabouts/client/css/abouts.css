@@ -137,15 +137,76 @@ p {
 	color: #000;
 }
 
-.madelyn-content > h2{
+.madelyn-content > h1{
   font-family: 'Avenir Black';
   text-transform: uppercase;
   text-align: center;
   margin: 5% 0;
 }
 
+.elig-content{
+  background: #E28F40;
+}
+
 .elig-list{
+  color: #999999;
+  font-size: 2em;
+}
+
+.elig-list > ul > li > p{
   background: #E28F40;
   color: white;
-  padding: 15px;
+  font-size: 0.75;
+}
+
+.elig-header > h2 {
+  font-family: 'Avenir Black';
+  text-transform: uppercase;
+  color: white;
+  margin: 5% 0;
+}
+
+.elig-footer{
+  margin: 5% 0;
+}
+
+.elig-footer > p{
+  font-family: 'Avenir Light';
+  font-size: 1.50em;
+  text-align: center;
+  color: white;
+
+}
+.selec-content{
+  background: #6B9AC3;
+}
+
+.selec-header > h2 {
+  font-family: 'Avenir Black';
+  text-transform: uppercase;
+  color: white;
+  margin: 5% 0;
+}
+
+.selec-p{
+  color: white;
+  margin-bottom: 5%;
+}
+
+.selec-p > p{
+  text-align: center;
+}
+
+.prev-content{
+  margin-bottom: 5%;
+}
+.prev-header > h2 {
+  font-family: 'Avenir Black';
+  text-transform: uppercase;
+  margin: 5% 0;
+}
+
+.prev-table th {
+  text-transform: uppercase;
+  color: white;
 }

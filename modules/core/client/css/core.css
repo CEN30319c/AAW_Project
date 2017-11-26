@@ -30,6 +30,7 @@ a:focus{
   height: 380px;
   background-image: url('/modules/core/client/img/pictures/slide5.png');
   background-size: cover;
+
 }
 
 .header h1{
@@ -40,6 +41,8 @@ a:focus{
   position: absolute;
   right: 30px;
   bottom: 0;
+  text-transform: uppercase;
+  text-align: right;
 }
 
 /********************
@@ -159,7 +162,6 @@ HOME
   padding-bottom: 15px;
 
 }
-
 
 .event-cell .date h1{
   font-family: 'Avenir Black';
