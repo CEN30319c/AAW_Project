@@ -5,11 +5,11 @@
 
     <div class="profiles-content">
         <div class="container">
-    
+
             <div class="row">
-                    
-                <h3>Meet our members and see why they joined the Association of Academic Women</h3>
-                <div class="list-group">            <!-- Button trigger modal -->
+
+				<h3>Meet our members and see why they joined the <span style="font-family:'Avenir Black';'">Association for Academic Women</span>.</h3>
+              <div class="list-group">            <!-- Button trigger modal -->
                     <div class="col-xs-3" style="text-align:center" ng-repeat="profile in profiles | orderBy : 'name'">
                         <div class="member-cell">
                             <a ng-click="vm.modalUpdate(profile, lg)">
@@ -18,8 +18,6 @@
                                     </div>
                                     <p>{{ profile.name }}</p>
                             </a>
-
-
                             <button ng-click="vm.modalEdit(profile, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
@@ -27,12 +25,10 @@
                             <button ng-click="vm.delete(profile)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
                             </button>
-
-                            <p></p>
                     </div>
                     </div>
                 </div>
-                    
+
 
             </div>
             <div class="row">
@@ -44,6 +40,7 @@
             </div>
         </div>
     </div>
+
 
 
 </section>

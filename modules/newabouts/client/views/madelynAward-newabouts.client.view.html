@@ -5,6 +5,8 @@
 
     <section>
 
+
+    <div class="elig-content"> 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="text-center">
@@ -35,7 +37,7 @@
                         <div class="elig-footer">
                             <hr>
                             <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelyneligibility'} | orderBy : 'created'">
-                                <p><b>
+                                <p class="elig-p"><b>
                                     {{about.text[0]}}
                                     </b>
                                 
@@ -63,11 +65,14 @@
                             <hr style="margin-bottom: 5%;">
                             <span class="apply-button" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">APPLY HERE</span>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
+
+      </div>
+
 
         <div class="selec-content">
             <div class=row>
@@ -132,3 +137,4 @@
     </section>
 
 </div>
+

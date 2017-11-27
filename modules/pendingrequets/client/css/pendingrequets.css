@@ -1,14 +1,24 @@
 
-#applicationForm {
-    background-color: #CFDBCB;
-    width: 100%;
-    border: 1px solid darkgray;
+.form-content {
     color: black;
+    font-family: 'Avenir Roman';
 }
 
-#applicationForm p {
-    font-family: "Lucida Console";
-    font-size: large;
+.form-content > h2 {
+  font-family: 'Avenir Black';
+  font-size: 3em;
+  text-transform: uppercase;
+  color: #E28F41;
+  margin: 4% 0;
+}
+
+.form-content > form > p{
+  padding-bottom: 50px;
+}
+
+.form-content > form{
+  background-color: #E28F41;
+  color: white;
 }
 
 .add-member-picture {
@@ -16,6 +26,6 @@
     height: 150px;
 }
 
-
-
-
+span {
+    color: black;
+}
