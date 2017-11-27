@@ -10,8 +10,7 @@
   <div class="col-md-12" id="applicationForm">
     <h2 style="margin-left: 250px">Association for Academic Women (AAW) Application Form</h2>
 
-    <form name="vm.form.pendingrequetForm" class="form-horizontal" ng-submit="vm.save(updatedprofile)"
-          novalidate>
+    <form name="vm.form.pendingrequetForm" class="form-horizontal" ng-submit="vm.save(vm.form.pendingrequetForm.$valid)" novalidate>
       <fieldset>
 
         <p>Joining AAW is a great way to build your UF network and expand you knowledge and skills.
@@ -60,7 +59,7 @@
             <label class="control-label" for="phone">Enter your campus phone number</label><label
             style="color: red">*</label><br>
             <input name="phone" type="tel" ng-model="vm.pendingrequet.phone" id="phone" class="form-control"
-                   placeholder="123-456-7890" required>
+                   placeholder="1234567890" required>
             <div ng-messages="vm.form.pendingrequetForm.phone.$error" role="alert">
               <!--<p class="help-block error-text" ng-message="required">Email is required.</p>-->
             </div>
