@@ -5,17 +5,24 @@
 
     <section>
 
-      <div class="elig-content">
-                <div class="row">
+
+    <div class="elig-content"> 
+        <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="text-center">
                     <div class="elig-header">
-                      <h2> Eligibility Requirements </h2>
+
+                        <h2> Eligibility Requirements </h2>
                         <div class="elig-list">
                             <ul ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynbullets'} | orderBy : 'created'">
-                                <li><p style="text-align:left">{{about.text[0]}} <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                                <li><p style="text-align:left">{{about.text[0]}}
+                                    <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span>
-                                    </button></p></li>
+                                    </button>
+                                    <button ng-click="vm.delete(about)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </p></li>
                                     <!-- <li><p style="text-align:left">Must be a full-time or full-time equivalent doctoral degree (PhD) candidate as defined by the Graduate School at the University of Florida</p></li> 10 25
                                     <li><p style="text-align:left">Must have completed doctoral course work</p></li> 10 26
                                     <li><p style="text-align:left">Must have passed the qualifying exam </p></li> 10 27
@@ -23,22 +30,32 @@
                                     <li><p style="text-align:left">Must have their dissertation proposal be approved by the applicant's graduate committee prior to submission of an application</p></li> 10 29
                                     <li><p style="text-align:left">Must be enrolled in dissertation credits for at least one semester (for example summer 2016 or fall 2016 and/or spring, 2017) after s/he is selected to receive the fellowship.</p></li> 10 30 -->
                             </ul>
+                            <button ng-click="vm.modalAdd('bullets', lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
+                                Add new bullet point
+                            </button>
                         </div>
                         <div class="elig-footer">
                             <hr>
-                            <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelyneligibility'}">
+                            <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelyneligibility'} | orderBy : 'created'">
                                 <p class="elig-p"><b>
                                     {{about.text[0]}}
                                     </b>
+                                
                                     <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </button>
+                                    <button ng-click="vm.delete(about)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
                                 </p>
                             </div>
-                            <div class="elig-p" ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynwarning'}">
-                                <p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%; text-align: center;">
+                            <button ng-click="vm.modalAdd('eligibility', lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
+                                Add new eligibility paragraph
+                            </button>
+                            <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynwarning'}">
+                                <p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;">
                                     <b>{{about.text[0]}}</b>
-
+                                
                                     <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </button>
@@ -53,7 +70,9 @@
                 </div>
             </div>
         </div>
+
       </div>
+
 
         <div class="selec-content">
             <div class=row>
@@ -79,7 +98,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
 
         <div class="prev-content">
             <div class="row">
@@ -118,3 +137,4 @@
     </section>
 
 </div>
+
