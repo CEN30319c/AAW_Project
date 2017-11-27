@@ -25,7 +25,7 @@
       else {
         $log.info('should be working');
           var award = updatedAward;
-          award.description = document.getElementById("description").value;
+          award.text = document.getElementById("description").value;
 
           award.$update(function() {
 
@@ -36,20 +36,26 @@
     };
 
     $scope.AwardTableUpdate = function(updatedAward) {
-      var newDescription = document.getElementById("description").value;
-      if (newDescription === '') {
-
-      }
-      else {
-          var award = updatedAward;
-          award.description = document.getElementById("description").value;
-
-          award.$update(function() {
-
-          }, function(errorResponse) {
-              $scope.error = errorResponse.data.message;
-          });
-      }
+        $log.info('updating');
+        var newYear = document.getElementById("year").value;
+        var newName = document.getElementById("name").value;
+        var newDepartment = document.getElementById("department").value;
+        if (newYear === '' || newName === '' || newDepartment === '') {
+          $log.info('didnt work');
+        }
+        else {
+          $log.info('should be working');
+            var award = updatedAward;
+            award.year = document.getElementById("year").value;
+            award.name = document.getElementById("name").value;
+            award.department = document.getElementById("department").value;
+  
+            award.$update(function() {
+  
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        }
     };
 
     $scope.AwardAdd = function() {
@@ -118,43 +124,41 @@
       });
   };
 
-  vm.modalTableEdit = function (selectedProfile, size) {
+  vm.modalTableEdit = function (selectedAward, size) {
     var modalInstance = $modal.open({
-        templateUrl: "modules/newabouts/client/views/profiles-edit-modal.client.view.html",
-        controller: function ($scope, $modalInstance, profile) {
-            $scope.profile = profile;
+        templateUrl: "modules/newabouts/client/views/newabouts-edit-table-modal.client.view.html",
+        controller: function ($scope, $modalInstance, award) {
+            $scope.award = award;
 
             $scope.ok = function() {
+                var newYear = document.getElementById("year").value;
                 var newName = document.getElementById("name").value;
-                var newDescription = document.getElementById("description").value;
-                if (newName === '' || newDescription === '') {
+                var newDepartment = document.getElementById("department").value;
+                if (newYear === '' || newName === '' || newDepartment === '') {
 
                 }
                 else {
-                    $modalInstance.close($scope.profile);
+                    $modalInstance.close($scope.award);
                 }
             };
             $scope.cancel = function() {
                 $modalInstance.dismiss('cancel');
-
-                $scope.newfilename = null;
-                $scope.newimageURL = null;
             };
         },
         size: size,
          resolve: {
-             profile: function() {
-                 return selectedProfile;
+             award: function() {
+                 return selectedAward;
              }
          }
     });
 
-    modalInstance.result.then(function(selectedProfile) {
-      $scope.selected = selectedProfile;
-    }, function () {
-        $log.info("Modal dismissed at: " + new Date());
-    });
-};
+        modalInstance.result.then(function(selectedAward) {
+            $scope.selected = selectedAward;
+        }, function () {
+            $log.info("Modal dismissed at: " + new Date());
+        });
+    };
 
   vm.modalAdd = function (size) {
     var modalInstance = $modal.open({

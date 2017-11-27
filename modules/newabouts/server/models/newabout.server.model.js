@@ -33,6 +33,21 @@ var NewaboutSchema = new Schema({
     default: '',
     trim: true
   },
+  name: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  year: {
+    type: Number,
+    default: '',
+    trim: true
+  },
+  department: {
+    type: String,
+    default: '',
+    trim: true
+  },
 });
 
 mongoose.model('Newabout', NewaboutSchema);
