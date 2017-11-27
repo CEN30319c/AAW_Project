@@ -5,14 +5,14 @@
     .module('newabouts')
     .controller('NewaboutsListController', NewaboutsListController);
 
-  NewaboutsListController.$inject = ['$scope', 'NewaboutsService', 'Authentication', '$modal', '$log'];
+  NewaboutsListController.$inject = ['$scope', '$state', 'NewaboutsService', 'Authentication', '$modal', '$log'];
 
-  function NewaboutsListController($scope, NewaboutsService, Authentication, $modal, $log) {
+  function NewaboutsListController($scope, $state, NewaboutsService, Authentication, $modal, $log) {
     var vm = this;
     
     $scope.user = Authentication.user;
-    $scope.aboutsData = NewaboutsService.query();
     $scope.ids = ['mission', 'people', 'awards', 'history'];
+    $scope.awardsection = 'why';
 
     vm.newabouts = NewaboutsService.query();
 
@@ -56,24 +56,6 @@
                 $scope.error = errorResponse.data.message;
             });
         }
-    };
-
-    $scope.AwardAdd = function() {
-      var newDescription = document.getElementById("description").value;
-        if (newDescription === '') {}
-        else {
-          var award = new NewaboutsService({
-              description: newDescription,
-              });
-
-              award.$save(function() {
-                  
-              }, function(errorResponse) {
-                  $scope.error = errorResponse.data.message;
-              });
-
-              $state.reload();      //reloads the page
-      }
     };
 
     vm.delete = function(selectedAward) {
@@ -138,6 +120,7 @@
 
                 }
                 else {
+                    
                     $modalInstance.close($scope.award);
                 }
             };
@@ -160,41 +143,58 @@
         });
     };
 
-  vm.modalAdd = function (size) {
-    var modalInstance = $modal.open({
-        templateUrl: "modules/newabouts/client/views/profiles-add-modal.client.view.html",
-        controller: function ($scope, $modalInstance) {
-            $scope.ok = function() {
-                var newName = document.getElementById("name").value;
-                var newDescription = document.getElementById("description").value;
-                if (newName === '' || newDescription === '') {
+  vm.modalAdd = function (section, size) {
+        var modalInstance = $modal.open({
+            templateUrl: "modules/newabouts/client/views/newabouts-add-modal.client.view.html",
+            controller: function ($scope, $modalInstance) {
+                $scope.ok = function() {
+                    var newText = document.getElementById("description").value;
+                    if (newText === '') {
+                    }
+                    else {
+                        $scope.awardsection = section;
+                        $log.info($scope.awardsection);
 
+                        $log.info($scope.awardsection);
+                        var thissection = 'madelyn' + $scope.awardsection;
+                        $log.info(thissection);
+                        var award = new NewaboutsService({
+                            text: newText,
+                            award: thissection,
+                            });
+            
+                        award.$save(function() {
+                            
+                        }, function(errorResponse) {
+                            $scope.error = errorResponse.data.message;
+                        });
+            
+                            
+                        $modalInstance.close($scope.award);
+
+                        $scope.awardsection = null;
+                        $state.reload();      //reloads the page
+                    }
+                };
+
+                $scope.cancel = function() {
+                    $modalInstance.dismiss('cancel');
+                };
+            },
+            size: size,
+            resolve: {
+                award: function() {
+                    
                 }
-                else {
-                    $modalInstance.close($scope.profile);
-                }
-            };
-
-            $scope.cancel = function() {
-                $modalInstance.dismiss('cancel');
-
-                $scope.newfilename = null;
-                $scope.newimageURL = null;
-            };
-        },
-        size: size,
-         resolve: {
-             profile: function() {
-                 
-             }
-         }
+            }
     });
 
-    modalInstance.result.then(function(selectedProfile) {
-      $scope.selected = selectedProfile;
+    modalInstance.result.then(function(selectedAward) {
+      $scope.selected = selectedAward;
     }, function () {
         $log.info("Modal dismissed at: " + new Date());
     });
   };
+
   }
 }());

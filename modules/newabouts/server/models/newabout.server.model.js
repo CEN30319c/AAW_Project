@@ -48,6 +48,11 @@ var NewaboutSchema = new Schema({
     default: '',
     trim: true
   },
+  award: {
+    type: String,
+    default: '',
+    trim: true
+  },
 });
 
 mongoose.model('Newabout', NewaboutSchema);

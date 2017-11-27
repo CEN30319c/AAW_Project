@@ -10,7 +10,7 @@
   <div class="col-md-12" id="applicationForm">
     <h2 style="margin-left: 250px">Association for Academic Women (AAW) Application Form</h2>
 
-    <form name="vm.form.pendingrequetForm" class="form-horizontal" ng-submit="vm.save(updatedprofile)"
+    <form name="vm.form.pendingrequetForm" class="form-horizontal" ng-submit="vm.save(vm.form.pendingrequetForm.$valid)"
           novalidate>
       <fieldset>
 
