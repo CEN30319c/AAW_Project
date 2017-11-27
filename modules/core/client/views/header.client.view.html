@@ -8,18 +8,22 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+
     <a ui-sref="home" class="navbar-brand">
-      <img src="/modules/core/client//img/pictures/logo.png" >
+      <img src="/modules/core/client/img/pictures/small.png">
     </a>
 
   </div>
+
+
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav navbar-right" ng-if="menu.shouldRender(authentication.user);">
 
+<!--
     <notification-icon ng-show="(authentication.user.roles == 'admin')" class="notification-icon">
-      <!--<span class="glyphicon glyphicon-envelope"></span>-->
+      <span class="glyphicon glyphicon-envelope"></span>
       <span class="badge">19</span>
-    </notification-icon>
+    </notification-icon> -->
 
 
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
