@@ -210,3 +210,10 @@ p {
   text-transform: uppercase;
   color: white;
 }
+
+.distin-header > h1{
+  font-family: 'Avenir Black';
+  text-transform: uppercase;
+  text-align: center;
+  margin: 5% 0;
+}
