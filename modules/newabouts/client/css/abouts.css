@@ -170,13 +170,13 @@ p {
   margin: 5% 0;
 }
 
-.elig-footer > p{
+.elig-p{
   font-family: 'Avenir Light';
   font-size: 1.50em;
   text-align: center;
   color: white;
-
 }
+
 .selec-content{
   background: #6B9AC3;
 }

@@ -5,12 +5,12 @@
 
     <section>
 
-        <div class="row">
+      <div class="elig-content">
+                <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="text-center">
                     <div class="elig-header">
-
-                        <h2> Eligibility Requirements </h2>
+                      <h2> Eligibility Requirements </h2>
                         <div class="elig-list">
                             <ul ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynbullets'} | orderBy : 'created'">
                                 <li><p style="text-align:left">{{about.text[0]}} <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
@@ -27,19 +27,18 @@
                         <div class="elig-footer">
                             <hr>
                             <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelyneligibility'}">
-                                <p><b>
+                                <p class="elig-p"><b>
                                     {{about.text[0]}}
                                     </b>
-                                
                                     <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </button>
                                 </p>
                             </div>
-                            <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynwarning'}">
-                                <p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;">
+                            <div class="elig-p" ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynwarning'}">
+                                <p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%; text-align: center;">
                                     <b>{{about.text[0]}}</b>
-                                
+
                                     <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </button>
@@ -49,11 +48,12 @@
                             <hr style="margin-bottom: 5%;">
                             <span class="apply-button" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">APPLY HERE</span>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
+      </div>
 
         <div class="selec-content">
             <div class=row>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 
         <div class="prev-content">
             <div class="row">
