@@ -14,9 +14,8 @@ var path = require('path'),
 exports.ical = function(req, response) {
     request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/calendar.ics', function(err, res, body) {  
     if (err) { return console.log(err); }
-    // console.log(body);
     if ((body[0] + body[1] + body[2] + body[3] + body[4]) == 'BEGIN') {
-      // console.log('BODY IS GOOD SO PARSE');
+      // BODY IS GOOD SO PARSE
       var jcalData = ical.parse(body);
       var vcalendar = new ical.Component(jcalData);
       var vevents = vcalendar.getAllSubcomponents('vevent');
@@ -25,11 +24,11 @@ exports.ical = function(req, response) {
         var event = new ical.Event(evt);
         var now = new Date();
         var dtstart = evt.getFirstPropertyValue('dtstart');
-        var db = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
+        var ds = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
         var dtend = evt.getFirstPropertyValue('dtend');
         var de = new Date(dtend._time.year, dtend._time.month - 1, dtend._time.day, dtend._time.hour, dtend._time.minute, dtend._time.second);
         var location = evt.getFirstPropertyValue('location');
-        var e = {title: event.summary, description: event.description, begin: db.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString()};
+        var e = {title: event.summary, description: event.description, begin: ds.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString(), beginMonth: (ds.getMonth() + 1), beginDay: ds.getDate(), beginTime: ds.toLocaleTimeString(), endMonth: (de.getMonth() + 1), endDay: de.getDate(), endTime: de.toLocaleTimeString()};
         if (now.getTime() < de.getTime()) {
           calendars.push(e);
         }
@@ -37,8 +36,8 @@ exports.ical = function(req, response) {
       response.send(calendars);
     }
     else {
-      // console.log('BODY IS BAD SO SEND ERRORS');
-      response.send([{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR'}]);
+      // BODY IS BAD SO SEND ERRORS
+      response.send([{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR', beginMonth: 'ERROR', beginDay: 'ERROR', beginTime: 'ERROR', endMonth: 'ERROR', endDay: 'ERROR', endTime: 'ERROR'}]);
     }
   });
 };
