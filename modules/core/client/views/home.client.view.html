@@ -46,14 +46,15 @@
         </div>
         <div class="col-md-12">
           <p id="whoweare">
-            AAW strives to empower UF women for the utmost success in each stage of their careers at the university.
+            {{whoweareText}}
           </p>
+          <button ng-click="modalUpdate(0,whoweareText)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
         </div>
       </div>
       <div class="row news">
         <div class="col-md-6">
           <h2>Recent News</h2>
-          <div id="announcementtext" ng-repeat="news in newslist">
+          <div id="announcementtext" ng-repeat="news in newslist" ng-show="$index <= 2">
             <div class="news-cell">
               <h3>{{news.name}}</h3>
               <h5>{{news.created | date:'mediumDate'}}</h5>

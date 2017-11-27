@@ -10,8 +10,8 @@ var mongoose = require('mongoose'),
  * About Schema
  */
 var AboutSchema = new Schema({
-  year: Number,
-  name: {
+  contentType: String,
+  text: {
     type: String,
     default: '',
     required: 'Please fill Join name',
@@ -20,13 +20,7 @@ var AboutSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
-  },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  },
-  department: String,
-  award: String
+  }
 });
 
 mongoose.model('About', AboutSchema);
