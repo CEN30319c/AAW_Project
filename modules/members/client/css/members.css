@@ -1,3 +1,13 @@
+.imgContainer {
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+.imgContainer img {
+  width: 200px;
+  height: 200px;
+}
+
 .profiles-content h3{
   text-align: center;
   margin: 45px 0;

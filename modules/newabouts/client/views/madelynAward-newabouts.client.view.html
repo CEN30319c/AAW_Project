@@ -1,115 +1,120 @@
 <div class="ui-view" autoscroll="true">
-  <div class="header">
-      <h1>The Madelyn Lockhart</br>Dissertation Fellowship</h1>
-  </div>
+    <div class="header">
+        <h1>The Madelyn Lockhart</br>Dissertation Fellowship</h1>
+    </div>
 
-  <section>
-    <div class="container-fluid">
-      <div class="madelyn-content">
+    <section>
 
-        <h1><span style="font-family: 'Avenir Light';">The</br></span><span style="font-size: 1.25em;">Madelyn Lockhart</span></br><span style="color: #E28F40;font-family: 'Avenir Light';">Dissertation Fellowship</span></h1>
-
-        <div class="elig-content">
-          <div class="row">
+        <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <div class="text-center">
-                <div class="elig-header">
-                  <h2>Eligibility Requirements</h2>
-                </div>
-            		<div class="elig-list">
-            			<ul>
-            				<li>
-            					<p style="text-align:left">Must be a full-time or full-time equivalent doctoral degree (PhD) candidate as defined by the Graduate School at the University of Florida</p>
-            				</li>
-            				<li>
-            					<p style="text-align:left">Must have completed doctoral course work</p>
-            				</li>
-            				<li>
-            					<p style="text-align:left">Must have passed the qualifying exam</p>
-            				</li>
-            				<li>
-            					<p style="text-align:left">Must be writing or be ready to write the dissertation (Preferably in the later stages of dissertation research and writing)</p>
-            				</li>
-            				<li>
-            					<p style="text-align:left">Must have their dissertation proposal be approved by the applicant's graduate committee prior to submission of an application</p>
-            				</li>
-            				<li>
-            					<p style="text-align:left">Must be enrolled in dissertation credits for at least one semester (for example summer 2016 or fall 2016 and/or spring, 2017) after s/he is selected to receive the fellowship.</p>
-            				</li>
-            			</ul>
-            		</div>
+                <div class="text-center">
+                    <div class="elig-header">
 
-                <div class="elig-footer">
-                  <hr>
-                    <p><b>A nomination can come from a faculty member or from the candidate herself, and are welcome from candidates in any UF Ph.D. program.</b></p>
-                		<p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;"><b>Applications submitted after the deadline will NOT be accepted.</b></p>
-                  <hr style="margin-bottom: 5%;">
-              		<!-- <p id="space"></p> -->
-              		<span class="apply-button" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">APPLY HERE</span>
-              	</div>
-              </div>
+                        <h2> Eligibility Requirements </h2>
+                        <div class="elig-list">
+                            <ul ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynbullets'} | orderBy : 'created'">
+                                <li><p style="text-align:left">{{about.text[0]}} <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button></p></li>
+                                    <!-- <li><p style="text-align:left">Must be a full-time or full-time equivalent doctoral degree (PhD) candidate as defined by the Graduate School at the University of Florida</p></li> 10 25
+                                    <li><p style="text-align:left">Must have completed doctoral course work</p></li> 10 26
+                                    <li><p style="text-align:left">Must have passed the qualifying exam </p></li> 10 27
+                                    <li><p style="text-align:left">Must be writing or be ready to write the dissertation (Preferably in the later stages of dissertation research and writing)</p></li> 10 28
+                                    <li><p style="text-align:left">Must have their dissertation proposal be approved by the applicant's graduate committee prior to submission of an application</p></li> 10 29
+                                    <li><p style="text-align:left">Must be enrolled in dissertation credits for at least one semester (for example summer 2016 or fall 2016 and/or spring, 2017) after s/he is selected to receive the fellowship.</p></li> 10 30 -->
+                            </ul>
+                        </div>
+                        <div class="elig-footer">
+                            <hr>
+                            <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelyneligibility'}">
+                                <p><b>
+                                    {{about.text[0]}}
+                                    </b>
+                                
+                                    <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </p>
+                            </div>
+                            <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynwarning'}">
+                                <p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;">
+                                    <b>{{about.text[0]}}</b>
+                                
+                                    <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </p>
+                            </div>
+
+                            <hr style="margin-bottom: 5%;">
+                            <span class="apply-button" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">APPLY HERE</span>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
+
         <div class="selec-content">
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <div class="text-center">
-                <div class='selec-header'>
-                  <h2>Award Selection And Procedures</h2>
+            <div class=row>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="text-center">
+                        <div class='selec-header'>
+                            <h2> Award Selection And Procedures </h2>
+                        </div>
+
+                        <div class="selec-p" ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynprocedures'} | orderBy : 'created'">
+                            <p class="list-group-item-heading">
+                                {{about.text[0]}}
+
+                                <!-- "A faculty committee will evaluate the applications. Committee members are selected by the Executive Committee of AAW. They represent the physical and social sciences, humanities, and professional programs.", 10 26
+                                "The award will be presented during a Women's History Month Celebration typically held in March. Applicants will be notified of the selection committee\u2019s decision on or before March 1. Notification will be by an email message sent to the email address included in the application packet. An invitation to the presentation event will be sent to finalists. The invitation will be sent electronically to the email address listed for the finalist in her application packet.", 10 27
+                                "Questions about the fellowship application process should be directed to Donna Tuckey at tuckey@ufl.edu" 10 28 -->
+
+                                <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="selec-p">
-                  <p>A faculty committee will evaluate the applications. Committee members are selected by the Executive Committee of AAW. They represent the physical and social sciences, humanities, and professional programs.</p>
-                  <p>The award will be presented during a Women's History Month Celebration typically held in March. Applicants will be notified of the selection committee’s decision on or before March 1. Notification will be by an email message sent to the email address included in the application packet. An invitation to the presentation event will be sent to finalists. The invitation will be sent electronically to the email address listed for the finalist in her application packet.</p>
-                  <p>Questions about the fellowship application process should be directed to Donna Tuckey at tuckey@ufl.edu</p>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
+        </div> 
 
         <div class="prev-content">
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <div class="text-center">
-                <div class="prev-header">
-                  <h2>Previous Madelyn Lockhart Dissertation Fellowship Winners</h2>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="text-center">
+                        <div class="prev-header">
+                            <h2> Previous Madelyn Lockhart Dissertation Fellowship Winners </h2>
+                        </div>
+
+                        <div class="prev-table">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                    <th style="background: #E28F40;"><p>Year</p></th>
+                                    <th style="background: #6B9AC3;"><p>Name</p></th>
+                                    <th style="background: #E28F40;"><p>Department/Unit/College</p></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="about in vm.newabouts | filter: {'award' : 'madelyntable'} | orderBy : '-year'">
+                                    <td><p>{{ about.year }}</p></td>
+                                    <td><p>{{ about.name }}</p></td>
+                                    <td><p>{{ about.department }}</p></td>
+                                    <td><button ng-click="vm.modalTableEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="prev-table">
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th style="background: #E28F40;">
-                          <p>Year</p>
-                        </th>
-                        <th style="background: #6B9AC3;">
-                          <p>Name</p>
-                        </th>
-                        <th style="background: #E28F40;">
-                          <p>Department/Unit/College</p>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr ng-repeat="about in aboutsData | filter: {'award' : 'madelyn'}">
-                        <td>
-                          <p>{{ about.year }}</p>
-                        </td>
-                        <td>
-                          <p>{{ about.name }}</p>
-                        </td>
-                        <td>
-                          <p>{{ about.department }}</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+
+    </section>
+
 </div>

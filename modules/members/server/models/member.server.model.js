@@ -25,6 +25,15 @@ var MemberSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
+  },
+
+  filename: {
+    type: String,
+    default: ''
+  },
+  imageURL: {
+      type: String,
+      default: 'modules/pendingrequets/client/img/memberImages/default.png'
   }
 });
 
