@@ -65,14 +65,18 @@
     <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.motivation"></textarea>
   </div>
 
+  <div ng-controller="ProfilesController">
+    <button class="btn btn-primary" type="submit" ng-click="createProfile(vm.pendingrequet.interest, vm.pendingrequet.motivation)" ng-show="vm.pendingrequet.interest && vm.pendingrequet.interest != '' && vm.pendingrequet.motivation && vm.pendingrequet.motivation != ''">Create Profile</button>
+  </div>
 
-  <div class="pull-right"
-       ng-show="vm.pendingrequet.isCurrentUserOwner">
-    <a class="btn btn-primary"
-       ui-sref="pendingrequets.edit({ pendingrequetId: vm.pendingrequet._id })">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" ng-click="vm.remove()">
+<div>
+  <!--<div class="pull-right"-->
+       <!--ng-show="vm.pendingrequet.isCurrentUserOwner">-->
+    <!--<a class="btn btn-primary"-->
+       <!--ui-sref="pendingrequets.edit({ pendingrequetId: vm.pendingrequet._id })">-->
+      <!--<i class="glyphicon glyphicon-edit"></i>-->
+    <!--</a>-->
+    <a class="btn btn-danger" ng-click="vm.remove()">
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
