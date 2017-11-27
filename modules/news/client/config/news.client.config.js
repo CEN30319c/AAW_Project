@@ -13,19 +13,20 @@
       title: 'News',
       state: 'news',
       type: 'dropdown',
-      roles: ['admin']
+      roles: ['*']
     });
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'news', {
       title: 'List News',
-      state: 'news.list'
+      state: 'news.list',
     });
 
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'news', {
       title: 'Create News',
-      state: 'news.create'
+      state: 'news.create',
+      roles: ['admin']
       //roles: ['user']
     });
   }
