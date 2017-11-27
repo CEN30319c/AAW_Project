@@ -1,41 +1,45 @@
 <section ng-controller="ProfilesController">
+    <div class="header">
+            <h1>PROFILES</h1>
+    </div>
+
+    <div class="profiles-content">
+        <div class="container">
+
+            <div class="row">
+
+				<h3>Meet our members and see why they joined the <span style="font-family:'Avenir Black';'">Association for Academic Women</span>.</h3>
+              <div class="list-group">            <!-- Button trigger modal -->
+                    <div class="col-xs-3" style="text-align:center" ng-repeat="profile in profiles | orderBy : 'name'">
+                        <div class="member-cell">
+                            <a ng-click="vm.modalUpdate(profile, lg)">
+                                    <div class="imgContainer">
+                                        <img class="img-circle img-responsive" src="/modules/pendingrequets/client/img/memberImages/uploads/{{profile.imageURL}}">
+                                    </div>
+                                    <p>{{ profile.name }}</p>
+                            </a>
+                            <button ng-click="vm.modalEdit(profile, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+
+                            <button ng-click="vm.delete(profile)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                    </div>
+                    </div>
+                </div>
 
 
-<div class="container">
-	<div class="row">
-
-              <h3>Profiles</h3>
-            <p>Meet our members and see why they joined the Association of Academic Women</p>
-            <div class="list-group">            <!-- Button trigger modal -->
-                <div class="col-xs-3" style="text-align:center" ng-repeat="profile in profiles | orderBy : 'name'">
-                    <a ng-click="vm.modalUpdate(profile, lg)">
-                            <div class="imgContainer">
-                                <center><img class="img-circle img-responsive" src="/modules/pendingrequets/client/img/memberImages/uploads/{{profile.imageURL}}" width="200" height="200" style="object-fit: cover"></center>
-                            </div>
-                            <p style="text-align:center">{{ profile.name }}</p>
-                    </a>
-                    
-
-                    <button ng-click="vm.modalEdit(profile, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-pencil"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="text-align:center">
+                    <button ng-click="vm.modalAdd(lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
+                        Add new profile
                     </button>
-
-                    <button ng-click="vm.delete(profile)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-
-                    <p></p>
                 </div>
             </div>
-            
-
-    </div>
-    <div class="row">
-        <div class="col-xs-12" style="text-align:center">
-            <button ng-click="vm.modalAdd(lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
-                Add new profile
-            </button>
         </div>
     </div>
-</div>
+
+
 </section>

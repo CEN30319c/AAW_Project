@@ -1,72 +1,100 @@
-<!-- <h1>HELLO WORLD</h1> -->
-<section style="padding-left:150px; padding-right:150px;">
-    <div class=row>
-        <div class="jumbotron text-center">
+<div class="ui-view" autoscroll="true">
+	<section>
 
-            <h1> The Woman of Distinction Award </h1>
-
-        </div>
-    </div>
+		<div class="header">
+			<h1>The Woman of Distinction Award</h1>
+		</div>
 
 
-    <div class=row>
-        <div class="jumbotron text-center">
+		<div class="distin-header">
+      <h1><span style="font-family: 'Avenir Light';">The</br></span><span style="font-size: 1.25em;">Woman of Distinction</span></br><span style="color: #E28F40;font-family: 'Avenir Light';">Award</span></h1>
+		</div>
 
+    <div class="elig-content">
+		<div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="text-center">
+          <div class="elig-header">
             <h2> Eligibility Requirements </h2>
-            <p>
-            <ul>
-                    <li><p style="text-align:left">Must be a University of Florida faculty member or administrative/professional woman</p></li>
-                    <li><p style="text-align:left">Must be a member of AAW to submit a nomination</p></li>
-                    <li><p style="text-align:left">Must have made significant contributions to the quality of life of women </p></li>
-            </ul>
-            </p>
+          </div>
+          <div class="elig-list">
+    					<ul style="width: 100%; margin: auto;">
+    						<li>
+    							<p style="text-align:left">Must be a University of Florida faculty member or administrative/professional woman</p>
+    						</li>
+    						<li>
+    							<p style="text-align:left">Must be a member of AAW to submit a nomination</p>
+    						</li>
+    						<li>
+    							<p style="text-align:left">Must have made significant contributions to the quality of life of women</p>
+    						</li>
+    					</ul>
+          </div>
 
-            <p><b>Applications submitted after the deadline will NOT be accepted.</b></p>
-            <p class="space"></p>
-
-            <!-- No current apply link, but will update if there is one -->
-            <!--<button type="button" class="btn btn-primary btn-lg" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">Apply Here
-            </button> -->
-        </div>
+          <div class="elig-footer">
+            <p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;"><b>Applications submitted after the deadline will NOT be accepted.</b></p>
+          </div>
+  				<!-- No current apply link, but will update if there is one -->
+  				<!--<button type="button" class="btn btn-primary btn-lg" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">Apply Here
+              </button> -->
+  			</div>
+      </div>
+		</div>
     </div>
 
-    <div class=row>
-        <div class="jumbotron text-center">
 
-            <h2> Previous Woman of Distinction Award Winners </h2>
-
+    <div class="prev-content">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="text-center">
+            <div class="prev-header">
+              <h2>Previous Woman of Distinction Award Winners</h2>
+            </div>
             <!-- not working right now, should access information from database -->
             <div class="list-group">
-                <div ng-repeat="x in vm.abouts" class="list-group-item">
-                        <p ng-bind="x.name"></p>
-                        <p ng-bind="x.year"></p>
-                </div>
+              <div ng-repeat="x in vm.abouts" class="list-group-item">
+                <p ng-bind="x.name"></p>
+                <p ng-bind="x.year"></p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div class="row">
-        <div class="jumbotron text-center">
 
-            <h2> Previous Madelyn Lockhart Dissertation Fellowship Winners </h2>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                    <th><p style="font-weight: bold;">Year</p></th>
-                    <th><p style="font-weight: bold;">Name</p></th>
-                    <th><p style="font-weight: bold;">Department/Unit/College</p></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="about in aboutsData | filter: {'award' : 'distinction'}">
-                    <td><p>{{ about.year }}</p></td>
-                    <td><p>{{ about.name }}</p></td>
-                    <td><p>{{ about.department }}</p></td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-    </div>
-
-</section>
+		<!-- <div class="row">
+			<div class="text-center">
+				<h2> Previous Madelyn Lockhart Dissertation Fellowship Winners </h2>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>
+								<p style="font-weight: bold;">Year</p>
+							</th>
+							<th>
+								<p style="font-weight: bold;">Name</p>
+							</th>
+							<th>
+								<p style="font-weight: bold;">Department/Unit/College</p>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="about in aboutsData | filter: {'award' : 'distinction'}">
+							<td>
+								<p>{{ about.year }}</p>
+							</td>
+							<td>
+								<p>{{ about.name }}</p>
+							</td>
+							<td>
+								<p>{{ about.department }}</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div> -->
+	</section>
+</div>

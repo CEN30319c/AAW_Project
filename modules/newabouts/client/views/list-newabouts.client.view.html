@@ -32,8 +32,8 @@
             <h3 ng-show="par == 2 && $index == 0">{{text}}</h3>
 
             </div>
-            <button ng-show="$index == 2" type="button" class="btn btn-primary" ui-sref="newabouts.madelynAward">More Information</button>
-            <button ng-show="$index == 3" type="button" class="btn btn-primary" ui-sref="newabouts.distinctionAward">More Information</button>
+            <button ng-show="$index == 2" type="button" class="btn btn-primary" autoscroll="false" ui-sref="newabouts.madelynAward">More Information</button>
+            <button ng-show="$index == 3" type="button" class="btn btn-primary" autoscroll="false" ui-sref="newabouts.distinctionAward">More Information</button>
             <button ng-show="$index == 1" type="button" class="btn btn-primary" onclick="location.href = '/members/profiles';">See All Members</button>
 
             <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: newabout._id })">Edit</button>
