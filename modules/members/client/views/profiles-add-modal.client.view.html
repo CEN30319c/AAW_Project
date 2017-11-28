@@ -1,0 +1,54 @@
+<section ng-controller="ProfilesController">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">New Profile</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="name">Name:</label>
+                  <div class="col-sm-10">
+                    <input type="name" class="form-control" id="name" required placeholder="Enter name" data-errormessage-value-missing="Please input something">
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="description">Description:</label>
+                  <div class="col-sm-10"> 
+                    <input type="description" class="form-control" id="description" required placeholder="Enter description" data-errormessage-value-missing="Please input something">
+                  </div>
+                </div>
+
+                <div ng-init="fillFields()">
+                  <label>Picture:</label>
+      
+                  <div class="form-group text-center">
+                    <img ng-src="{{imageURL}}" class="img-thumbnail add-member-picture">
+                  </div>
+                  <div class="form-group text-center">
+                      <span class="btn btn-default btn-file">
+                         Select Image <input type="file" nv-file-select uploader="uploader">
+                     </span>
+                  </div>
+                  <div class="text-center">
+                      <span style="color:red">
+                          *Pictures come out best when they are 200px by 200px*
+                      </span>
+                  </div>
+                  <div ng-show="success" class="text-center text-success">
+                    <strong>Your picture has been uploaded successfully</strong>
+                  </div>
+                  <div ng-show="error" class="text-center text-danger">
+                    <strong ng-bind="error"></strong>
+                  </div>
+                </div>
+
+                <div class="form-group"> 
+                  <div class="col-sm-10">
+                    <button class="btn btn-primary" ng-click="ProfileAdd(); ok()"> OK</button>
+                    <button class="btn btn-warning" ng-click="cancel()"> Cancel</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </section>

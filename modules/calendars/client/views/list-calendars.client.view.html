@@ -1,22 +1,141 @@
-<section>
-  <div class="page-header">
-    <h1>Calendars</h1>
+<div class="header">
+  <h1>CALENDAR</h1>
+</div>
+
+  <div class="container-fluid">
+    <iframe class="calendar" height="600" src="https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/index.html"></iframe>
   </div>
-  <div class="list-group">
-    <a ng-repeat="calendar in vm.calendars"
-       ui-sref="calendars.view({ calendarId: calendar._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="calendar.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="calendar.user" ng-bind="calendar.user.displayName"></span>
-        <span ng-if="!calendar.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="calendar.name"></h4>
-    </a>
+
+  <!-- <div class="container">
+
+  </div> -->
+
+      <div class="sub-buttons text-center">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="sub1"><a href="https://outlook.office365.com/owa/?realm=ufl.edu&path=/calendar/view/Month" target="_blank">UF Webmail Calendar</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="help">
+
+      <div class="row" style="padding-bottom: 5%;">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h3> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="help"></span></h3>
+            <h3 style="font-family: 'Avenir Black'; color: white;">HOW TO SUBSCRIBE</h3>
+          </div>
+
+          <div class="col-md-6 col-md-offset-3">
+
+            <div class="panel-content" style="margin-top: 3%;">
+              <div><span class="number"> 1.</span> Copy this link:</br> <div style="text-align: center; margin: 0 3%; color:#80BE64;">https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/2fcda5ec-ef8a-4933-872a-676fdc90b096/cid-5939566F43ADC820/calendar.ics</div></div>
+              <div><span class="number"> 2.</span> Click the "UF Webmail Calendar" button above and login with your Gatorlink</div>
+              <div><span class="number"> 3.</span> On the top of the page, click on "Add Calendar" and from the drop down menu click "From Internet" </div>
+              <div><span class="number"> 4.</span> Under "Link to Calendar" paste the link copied in step 1 </div>
+              <div><span class="number"> 5.</span> Under "Calendar Name" put any name you wish</div>
+              <div><span class="number"> 6.</span> Click Save and you're done!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="alert alert-warning text-center" ng-if="vm.calendars.$resolved && !vm.calendars.length">
-    No Calendars yet, why don't you <a ui-sref="calendars.create">create one</a>?
+<div class="container">
+
+    <div class="events-grid">
+      <span>
+        <h1>All Upcoming Events</h1>
+      </span>
+
+      <div class="row">
+        <div ng-repeat="event in vm.calendars">
+          <div class="event-cell">
+             <div class="row row-eq-height">
+                <div class="col-md-4">
+                  <div class="date text-center">
+                    <h4>{{event.beginMonth | monthName}}</h4>
+                    <h1>{{event.beginDay}}</h1>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="event-descrip">
+                    <h3>{{event.title}}</h3>
+                    <h4>{{event.location}}</h4>
+                    <h4>{{event.beginTime}}</h4>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <div ng-show="user != '' && user.roles[0] == 'admin'">
+      <div class="container">
+        <div class="admin-add-event">
+
+          <a href="https://calendar.live.com/calendar/calendar.aspx" target="_blank">Access this Calendar</a>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row" style="background: #D7152A; margin: 5% 0 0 0;">
+            <div class="col-md-6 col-md-offset-3">
+              <accordion close others="oneAtATime">
+                 <div accordion-group class="panel default" heading='HOW TO ADD EVENTS ▼' is open="status.isFirstOpen" is disabled="status.isFirstDisabled" style="margin-top: 3%;">
+                   <div class="panel-content">
+                     <div><span class="number"> 1.</span> Click on the "Access this Calendar" button above and login </div>
+                     <div><span class="number"> 2.</span> On the top of the page, click on "+ New"</div>
+                     <div><span class="number"> 3.</span> Fill out the form that pops up (be sure that the event has a title, location, start date/time, end date/time, and a description)</div>
+                     <div><span class="number"> 4.</span> Click Save and you're done! </div>
+                   </div>
+                </div>
+              </accordion>
+
+            </div>
+        </div>
+        <div class="row" style="background: #D7152A; margin: 0 0 0 0;">
+            <div class="col-md-6 col-md-offset-3">
+
+              <accordion close others="oneAtATime">
+                 <div accordion-group class="panel default" heading='HOW TO DELETE EVENTS ▼' is open="status.isFirstOpen" is disabled="status.isFirstDisabled">
+                   <div class="panel-content">
+                     <div><span class="number"> 1.</span> Click on the "Access this calendar" button and login </div>
+                     <div><span class="number" > 2.</span> Right-click on the event you want to delete </div>
+                     <div><span class="number"> 3.</span> Click on delete from the drop down menu that appears </div>
+                     <div><span class="number"> 4.</span> The event has been deleted! </div>
+                   </div>
+                </div>
+              </accordion>
+
+            </div>
+        </div>
+        <div class="row" style="background: #D7152A; margin: 0 0 0 0;">
+            <div class="col-md-6 col-md-offset-3">
+
+              <accordion close others="oneAtATime">
+                 <div accordion-group class="panel default" heading='HOW TO EDIT EVENTS ▼' is open="status.isFirstOpen" is disabled="status.isFirstDisabled" >
+                   <div class="panel-content">
+                     <div><span class="number"> 1.</span> Click on the "Access this calendar" button and login </div>
+                     <div><span class="number" > 2.</span> Double click on the event you want to edit </div>
+                     <div><span class="number"> 3.</span> Make the changes you desire (be sure that the event has a title, location, start date/time, end date/time, and a description) </div>
+                     <div><span class="number"> 4.</span> Click Save and you're done! </div>
+                   </div>
+                </div>
+              </accordion>
+            </div>
+        </div>
+    </div>
+<!--
+
+        <div>
+          <h4>{{event.title}}</h4>
+          <div>Location: {{event.location}}</div>
+          <div>Begins: {{event.begin}}</div>
+          <div>Ends: {{event.end}}</div>
+          <div>Description: {{event.description}}</div>
+        </div> -->
+
+    </div>
   </div>
-</section>

@@ -1,0 +1,99 @@
+<section>
+    <div class="header">
+        <h1>ABOUT</h1>
+    </div>
+    <div class="row-fluid">
+        <nav class="col-md-2">
+          <div class="sidebar">
+            <ul class="nav nav-stacked" yc-sidebar-affix>
+              <!-- <li><a href="#about">About</a></li> -->
+              <li><a href="#mission">Mission</a></li>
+              <li><a href="#people">Leadership</a></li>
+              <li><a href="#awards">Awards</a></li>
+              <li><a href="#history">History</a></li>
+          	</ul>
+          </div>
+        </nav>
+
+        <div class="col-md-10">
+        <div class="page-content-wrapper">
+          <div class="about-section" id="about">
+            <p  style="font-size: 1.50em;">Learn more about the Association for Academic Women below by reading about our mission, history, awards, and people.</p>
+          </div>
+          <!-- <div class="list-group"> -->
+          <!-- <div ng-init="par = $index" ng-hide="$index > 4" class="about-section" ng-attr-id="{{$index != 3 ? ids[$index]: 'WOD'}}" ng-repeat="newabout in vm.newabouts">
+            <h1 style="color: #E28F41" ng-show="$index == 0">MISSION</h1>
+            <h1 style="color: #6C9AC3" ng-show="$index == 1">LEADERSHIP</h1>
+            <h1 style="color: #E28F41" ng-show="$index == 2">AWARDS</h1>
+            <h3 ng-show="$index == 3">Woman of Distinction Award</h3>
+            <h1 style="color: #6C9AC3" ng-show="$index == 4">HISTORY</h1>
+            <div ng-repeat="text in newabout.text">
+            <p ng-hide="par == 2 && $index == 0" class="list-group-item-heading">{{text}}</p>
+            <h3 ng-show="par == 2 && $index == 0">{{text}}</h3>
+
+            </div>
+            <button ng-show="$index == 2" type="button" class="btn btn-primary" autoscroll="false" ui-sref="newabouts.madelynAward">More Information</button>
+            <button ng-show="$index == 3" type="button" class="btn btn-primary" autoscroll="false" ui-sref="newabouts.distinctionAward">More Information</button>
+            <button ng-show="$index == 1" type="button" class="btn btn-primary" onclick="location.href = '/members/profiles';">See All Members</button>
+
+            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: newabout._id })">Edit</button>
+
+          </div> -->
+          <div id="mission" class="about-section" ng-repeat="about in vm.newabouts | filter: {'contentType' : 'mission'}">
+            <h1 style="color: #E28F41">MISSION</h1>
+            <hr>
+            <p ng-repeat="text in about.text" class="list-group-item-heading">{{text}}</p>
+            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button>
+          </div>
+
+          <br>
+
+          <div id="people" class="about-section" ng-repeat="about in vm.newabouts | filter: {'contentType' : 'leadership'}">
+            <h1 style="color: #6C9AC3">LEADERSHIP</h1>
+            <hr>
+            <p ng-repeat="text in about.text" class="list-group-item-heading" style="font-family: 'Avenir Black';">{{text}}</p>
+            <div class="about-button" id="profilesLink" type="button" class="btn btn-primary" onclick="location.href = '/members/profiles';">See All Members</div>
+            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button>
+          </div>
+
+          <br>
+
+          <div id="awards" class="about-section">
+            <h1 style="color: #E28F41">AWARDS</h1>
+            <hr>
+            <h3>The Madelyn Lockhart Dissertation Fellowship</h3>
+            <div ng-repeat="award in vm.newabouts | filter:{'contentType' : 'madAward'}">
+              <div class="about-section">
+                <p ng-repeat="text in award.text" class="list-group-item-heading">{{text}}</p>
+                <div class="about-button" id="awardLink1" type="button" class="btn btn-primary" ui-sref="newabouts.madelynAward">Learn More</div>
+                <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: award._id })">Edit</button>
+              </div>
+            </div>
+
+            <br>
+
+            <hr>
+
+            <h3 >The Woman of Distinction Award</h3>
+            <div ng-repeat="award in vm.newabouts | filter: {'contentType' : 'WOD'}">
+              <div class="about-section">
+                <p ng-repeat="text in award.text" class="list-group-item-heading">{{text}}</p>
+                <div class="about-button" id="awardLink2" type="button" class="btn btn-primary" ui-sref="newabouts.distinctionAward">Learn More</div>
+                <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: award._id })">Edit</button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <div id="history" class="about-section" ng-repeat="about in vm.newabouts | filter: {'contentType' : 'history'}">
+            <h1 style="color: #6C9AC3">HISTORY</h1>
+            <hr>
+            <p ng-repeat="text in about.text" class="list-group-item-heading">{{text}}</p>
+            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</section>

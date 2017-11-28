@@ -9,11 +9,9 @@
   CalendarsService.$inject = ['$resource'];
 
   function CalendarsService($resource) {
-    return $resource('api/calendars/:calendarId', {
-      calendarId: '@_id'
-    }, {
+    return $resource('api/ical', {
       update: {
-        method: 'PUT'
+        method: 'GET'
       }
     });
   }

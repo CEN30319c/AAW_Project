@@ -56,7 +56,6 @@ angular.module('core').service('Menus', [
     // Add new menu object by menu id
     this.addMenu = function (menuId, options) {
       options = options || {};
-
       // Create the new menu
       this.menus[menuId] = {
         roles: options.roles || this.defaultRoles,

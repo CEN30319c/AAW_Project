@@ -1,28 +1,36 @@
 @font-face {
   font-family: 'Avenir Roman';
-  src: url('../css/fonts/AvenirLTStd-Roman.ttf') format('truetype');
+  src: url('/modules/core/client/css/fonts/AvenirLTStd-Roman.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Avenir Light';
-  src: url('../css/fonts/AvenirLTStd-Light.ttf') format('truetype');
+  src: url('/modules/core/client/css/fonts/AvenirLTStd-Light.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Avenir Black';
-  src: url('../css/fonts/AvenirLTStd-Black.ttf') format('truetype');
+  src: url('/modules/core/client/css/fonts/AvenirLTStd-Black.ttf') format('truetype');
 }
 
 body{
     font-family: 'Avenir Roman';
+    margin:0;
+    padding:0;
+    height:100%;
 }
 
-
+a:hover,
+a:focus{
+  outline: none;
+  text-decoration: none;
+}
 .header{
   position: relative;
   height: 380px;
-  background-image: url('/modules/core/client/img/pictures/slide 5.png');
+  background-image: url('/modules/core/client/img/pictures/slide5.png');
   background-size: cover;
+
 }
 
 .header h1{
@@ -33,6 +41,8 @@ body{
   position: absolute;
   right: 30px;
   bottom: 0;
+  text-transform: uppercase;
+  text-align: right;
 }
 
 /********************
@@ -45,12 +55,13 @@ NAVIGATION
   text-transform: uppercase;
 }
 
-.navbar-brand {
-  padding: 0px;
+
+.navbar-brand{
+  padding: 0;
 }
-.navbar-brand>img {
-  margin-left: 15px;
-  width: 35%;
+
+.navbar-brand > img {
+  width: 150px;
 }
 
 .navbar-default {
@@ -63,28 +74,15 @@ NAVIGATION
    -moz-box-shadow: none;
    -moz-transition: none;
    -webkit-transition: none;
-
-}
-
-.navbar-default .navbar-nav {
-    margin-right: 10px;
-    margin-top: 5px
-}
-
-.navbar-default .navbar-nav > li {
-    display: inline-block;
-    float: none
 }
 
 .navbar-default .navbar-nav > li > a {
     color: #fff;
-    font-size: 1.05em;
 }
 
 .container-fluid {
      padding-right: 0px;
      padding-left: 0px;
-
 }
 
 /********************
@@ -162,9 +160,10 @@ HOME
   width: 100%;
   padding-top: 20px;
   padding-bottom: 15px;
+  margin-left: -15px;
+  text-transform: uppercase;
 
 }
-
 
 .event-cell .date h1{
   font-family: 'Avenir Black';
@@ -179,11 +178,23 @@ HOME
 .event-cell .event-descrip{
   background: #6B9AC3;
   color: #fff;
+  margin-left: -15px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+
 }
 
 .event-cell .event-descrip h3{
   font-family: 'Avenir Black';
+  text-transform: uppercase;
 
+}
+
+
+.event-cell .event-descrip h4{
+  font-family: 'Avenir Roman';
+  font-size: 1em;
+  line-height: 20px;
 }
 
 .news-cell p{
@@ -208,7 +219,8 @@ FOOTER
 
 .footer{
   background: #E28F40;
-  position: absolute;
+  position: relative;
+  bottom: 0;
   width: 100%;
 }
 
@@ -220,8 +232,8 @@ FOOTER
 
 .footer i{
   position: relative;
-  font-size:50px;
-  padding-top: 50px;
+  font-size: 50px;
+  padding-top: 35px;
   margin-left: 15px;
   margin-right: 15px;
 }
@@ -242,7 +254,7 @@ AFFIX
 ********************/
 
 .navbar-affix {
-  background: rgba(0,0,0,0.45);
+  background: #6B9AC3;
 }
 
 .content {
@@ -347,9 +359,7 @@ GALLERY
 }
 
 /**** JOIN ****/
-.joins-container {
-  margin: 45px 0;
-}
+
 
 .notification-icon {
   overflow: hidden;
@@ -362,4 +372,220 @@ GALLERY
 .notification-icon .badge {
   background-color: red;
   color: white;
+}
+
+/**** CALENDAR ****/
+
+.calendar{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  /*margin-bottom: 15px;*/
+}
+
+
+.sub-buttons{
+  background: #80BE64;
+  padding: 35px 0;
+  padding-top: 50px;
+
+}
+
+.sub1{
+  text-align: center;
+}
+
+.sub2{
+  text-align: left;
+
+}
+.sub1 > a{
+  font-family: 'Avenir Black';
+  background: white;
+  text-transform: uppercase;
+  color: #80BE64;
+  font-size: 2em;
+  padding: 15px 35px;
+}
+
+.sub2 > a{
+  font-family: 'Avenir Black';
+  background: white;
+  text-transform: uppercase;
+  color: #80BE64;
+  font-size: 2em;
+  padding: 15px 35px;
+}
+
+.sub1 > a:hover,
+.sub2 > a:hover{
+  text-decoration: none;
+}
+
+.panel-default > .panel-heading {
+  background: #D7152A;
+  color: #FFF;
+  font-family: 'Avenir Roman';
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.panel-default{
+  display: block;
+  margin: 0 auto;
+
+  border: none;
+  /*background: none;*/
+  box-shadow: none;
+
+}
+
+.help{
+  background: #80BE64;
+  /*margin-top: 35px;*/
+  padding-bottom: 15px;
+}
+#help{
+  font-size: 3em;
+  text-align: center;
+  color: #fff;
+}
+
+.events-grid{
+  margin: 75px 0;
+}
+.events-grid > span > h1{
+  font-family: 'Avenir Black';
+  color: #4a4a4a;
+  text-transform: uppercase;
+  text-align: center;
+
+}
+
+.number{
+  color: #4A4A4A;
+  font-size: 2em;
+  margin-right: 5px;
+}
+
+.panel-content{
+  font-family: 'Avenir Roman';
+  background: white;
+  text-align: center;
+  padding: 35px;
+  border-radius: 25px;
+  font-size: 1.15em;
+  line-height: 45px;
+}
+
+.admin-add-event > a{
+  color: white;
+}
+.admin-add-event{
+  text-align: center;
+  text-transform: uppercase;
+  background: #D7152A;
+  padding: 3%;
+}
+
+
+/**** NEWS ****/
+
+.news-list-cell-prefix{
+  color: #E28F41;
+  font-size: 1em;
+
+}
+.new-list-cell-heading{
+  font-family: 'Avenir Black';
+  font-size: 2.25em;
+  text-transform: uppercase;
+  margin: 3% 0 ;
+  text-align: center;
+}
+
+.new-list-cell-p{
+  font-size: 1.05em;
+  margin-top: 3%;
+}
+
+.row{
+  margin: 0;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  header{
+    padding: 0 15px;
+  }
+  .navbar{
+    background: #6B9AC3;
+  }
+  .event-cell .date{
+    background: #fff;
+    color: #E28F40;
+    height: 100%;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    margin-left: 0;
+    text-transform: uppercase;
+
+  }
+
+  .event-cell .date h1{
+    font-family: 'Avenir Black';
+    color: #E28F40;
+    font-size: 4em;
+  }
+
+  .event-cell .date h3{
+    font-size: 1.20em;
+  }
+
+  .event-cell .event-descrip{
+    background: #6B9AC3;
+    color: #fff;
+    margin-left: -15px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    text-align: center;
+
+  }
+
+  .event-cell .event-descrip h3{
+    font-family: 'Avenir Black';
+    text-transform: uppercase;
+
+  }
+
+
+  .event-cell .event-descrip h4{
+    font-family: 'Avenir Roman';
+    font-size: 1em;
+    line-height: 20px;
+  }
+
+  .news-cell p{
+    font-size: 1em;
+    text-align: left;
+  }
+
+  .nav-links{
+    padding-left: 15px;
+  }
+
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    background: #6B9AC3;
+      margin-top: 5%;
+      padding-left: 15px;
+       border-color: none;
+       border: none;
+  }
+
+  .navbar-default .navbar-toggle {
+      border-color: #ddd;
+      background: white;
+  }
 }

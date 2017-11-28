@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/calendars/:calendarId',
       permissions: '*'
+    }, {
+      resources: '/api/ical',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -29,6 +32,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/calendars/:calendarId',
       permissions: ['get']
+    }, {
+      resources: '/api/ical',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
@@ -38,6 +44,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/calendars/:calendarId',
       permissions: ['get']
+    }, {
+      resources: '/api/ical',
+      permissions: '*'
     }]
   }]);
 };
