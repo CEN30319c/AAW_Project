@@ -39,7 +39,7 @@
 									<li>
 										<p style="text-align:left">Must have made significant contributions to the quality of life of women</p> 10 28
 									</li> -->
-									
+
 							</ul>
 							<button ng-click="vm.modalAdd('distinctionbullets', lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
 									Add new bullet point
@@ -52,7 +52,7 @@
 									<p class="elig-p"><b>
 											{{about.text[0]}}
 											</b>
-									
+
 											<button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
 													<span class="glyphicon glyphicon-pencil"></span>
 											</button>
@@ -81,7 +81,7 @@
 								Add new warning paragraph
 						</button>
 					</div>
-					
+
   				<!-- No current apply link, but will update if there is one -->
   				<!--<button type="button" class="btn btn-primary btn-lg" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">Apply Here
               </button> -->
@@ -113,10 +113,10 @@
 																<td><p>{{ about.year }}</p></td>
 																<td><p>{{ about.name }}</p></td>
 																<td><p>{{ about.department }}</p></td>
-																<td><button ng-click="vm.modalTableEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+																<td ng-show="user != '' && user.roles[0] == 'admin'"><button ng-click="vm.modalTableEdit(about, lg)"  type="button" class="btn btn-primary">
 																		<span class="glyphicon glyphicon-pencil"></span>
 																</button></td>
-																<td><button ng-click="vm.delete(about)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+																<td ng-show="user != '' && user.roles[0] == 'admin'"><button ng-click="vm.delete(about)"  type="button" class="btn btn-danger">
 																		<span class="glyphicon glyphicon-trash"></span>
 																</button></td>
 																</tr>
@@ -132,4 +132,3 @@
 		</div>
 	</section>
 </div>
-	
