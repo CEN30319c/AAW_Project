@@ -1,14 +1,17 @@
 .sidebar-affix {
   top: 200px;
   position: fixed;
-  background: white;
+  /*margin-top: 45px;
+  padding-left: 45px;
+  border-right: solid #6B9AC3 1px;
+
   /*z-index: 9999 !important;*/
 }
 
 .sidebar{
   margin-top: 45px;
   padding-left: 45px;
-  border-right: solid #999999 1px;
+  /*border-right: solid #6B9AC3 1px;*/
 
 }
 
@@ -67,12 +70,6 @@ th {
 	color: #fff;
 }
 
-p {
-		font-size: 18px;
-		text-align: left;
-		line-height: 45px;
-}
-
 .space {
 	padding: 10px;
 }
@@ -93,11 +90,24 @@ p {
 
 }
 
-.about-section p{
+.about-section > h1 {
+  font-size: 4em;
+  margin-top: 5%;
+}
+
+.about-section > h3{
+  margin-top: 3%;
+  font-family: 'Avenir Black';
+}
+
+.about-section > p{
+  text-align: left;
+  line-height: 45px;
+
 	margin-top: 45px;
   margin-bottom: 50px;
 	text-align: left;
-  font-size: 1.25em;
+  font-size: 1.35em;
 }
 
 
@@ -216,4 +226,15 @@ p {
   text-transform: uppercase;
   text-align: center;
   margin: 5% 0;
+}
+
+.about-button{
+  font-family: 'Avenir Black';
+  text-transform: uppercase;
+  background: #6B9AC3;
+  color: white;
+  font-size: 1.50em;
+  text-align: center;
+  padding: 15px;
+  width: 25%;
 }
