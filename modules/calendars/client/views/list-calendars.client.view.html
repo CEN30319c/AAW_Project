@@ -82,16 +82,50 @@
       <div class="container-fluid">
         <div class="row" style="background: #D7152A; margin: 5% 0 0 0;">
             <div class="col-md-6 col-md-offset-3">
-            <div class="panel-content" style="background: #D7152A; color: white;" >
-              <!-- <h3 style="font-family: 'Avenir Black'; color: #4a4a4a;"> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="help"></span></h3> -->
-              <h3 class="text-center" style="font-family: 'Avenir Black'; color: white;">HOW TO ADD EVENTS</h3>
-              <div><span class="number" style="color: white;"> 1.</span> Click on the "Access this Calendar" button above and login </div>
-              <div><span class="number" style="color: white;"> 2.</span> On the top of the page, click on "+ New"</div>
-              <div><span class="number" style="color: white;"> 3.</span> Fill out the form that pops up (make sure that the event has a title, location, start date/time, end date/time, and a description)</div>
-              <div><span class="number" style="color: white;"> 4.</span> Click Save and you're done! </div>
+              <accordion close others="oneAtATime">
+                 <div accordion-group class="panel default" heading='HOW TO ADD EVENTS ▼' is open="status.isFirstOpen" is disabled="status.isFirstDisabled" style="margin-top: 3%;">
+                   <div class="panel-content">
+                     <div><span class="number"> 1.</span> Click on the "Access this Calendar" button above and login </div>
+                     <div><span class="number"> 2.</span> On the top of the page, click on "+ New"</div>
+                     <div><span class="number"> 3.</span> Fill out the form that pops up (be sure that the event has a title, location, start date/time, end date/time, and a description)</div>
+                     <div><span class="number"> 4.</span> Click Save and you're done! </div>
+                   </div>
+                </div>
+              </accordion>
+
             </div>
         </div>
-      </div>
+        <div class="row" style="background: #D7152A; margin: 0 0 0 0;">
+            <div class="col-md-6 col-md-offset-3">
+
+              <accordion close others="oneAtATime">
+                 <div accordion-group class="panel default" heading='HOW TO DELETE EVENTS ▼' is open="status.isFirstOpen" is disabled="status.isFirstDisabled">
+                   <div class="panel-content">
+                     <div><span class="number"> 1.</span> Click on the "Access this calendar" button and login </div>
+                     <div><span class="number" > 2.</span> Right-click on the event you want to delete </div>
+                     <div><span class="number"> 3.</span> Click on delete from the drop down menu that appears </div>
+                     <div><span class="number"> 4.</span> The event has been deleted! </div>
+                   </div>
+                </div>
+              </accordion>
+
+            </div>
+        </div>
+        <div class="row" style="background: #D7152A; margin: 0 0 0 0;">
+            <div class="col-md-6 col-md-offset-3">
+
+              <accordion close others="oneAtATime">
+                 <div accordion-group class="panel default" heading='HOW TO EDIT EVENTS ▼' is open="status.isFirstOpen" is disabled="status.isFirstDisabled" >
+                   <div class="panel-content">
+                     <div><span class="number"> 1.</span> Click on the "Access this calendar" button and login </div>
+                     <div><span class="number" > 2.</span> Double click on the event you want to edit </div>
+                     <div><span class="number"> 3.</span> Make the changes you desire (be sure that the event has a title, location, start date/time, end date/time, and a description) </div>
+                     <div><span class="number"> 4.</span> Click Save and you're done! </div>
+                   </div>
+                </div>
+              </accordion>
+            </div>
+        </div>
     </div>
 <!--
 
