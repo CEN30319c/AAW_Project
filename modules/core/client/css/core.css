@@ -474,6 +474,27 @@ GALLERY
   padding: 3%;
 }
 
+
+/**** NEWS ****/
+
+.news-list-cell-prefix{
+  color: #E28F41;
+  font-size: 1em;
+
+}
+.new-list-cell-heading{
+  font-family: 'Avenir Black';
+  font-size: 2.25em;
+  text-transform: uppercase;
+  margin: 3% 0 ;
+  text-align: center;
+}
+
+.new-list-cell-p{
+  font-size: 1.05em;
+  margin-top: 3%;
+}
+
 .row{
   margin: 0;
 }
