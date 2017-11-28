@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 768px) {
   .sidebar-affix {
-    top: 200px;
+    top: 0;
     position: relative;
     /*margin-top: 45px;
     padding-left: 45px;

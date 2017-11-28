@@ -516,7 +516,12 @@ GALLERY
 
 @media screen and (max-width: 768px) {
 
-
+  header{
+    padding: 0 15px;
+  }
+  .navbar{
+    background: #6B9AC3;
+  }
   .event-cell .date{
     background: #fff;
     color: #E28F40;
@@ -565,5 +570,22 @@ GALLERY
   .news-cell p{
     font-size: 1em;
     text-align: left;
+  }
+
+  .nav-links{
+    padding-left: 15px;
+  }
+
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    background: #6B9AC3;
+      margin-top: 5%;
+      padding-left: 15px;
+       border-color: none;
+       border: none;
+  }
+
+  .navbar-default .navbar-toggle {
+      border-color: #ddd;
+      background: white;
   }
 }
