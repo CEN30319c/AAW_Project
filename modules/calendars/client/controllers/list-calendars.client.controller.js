@@ -12,13 +12,16 @@
 
     $scope.user = Authentication.user;
 
-    var bodyError = [{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR'}];
-    vm.calendars = [];
-    do {
-    	vm.calendars = CalendarsService.query();
-    	// console.log('bodyError: ' + JSON.stringify(bodyError));
-    	// console.log('vm.calendars: ' + JSON.stringify(vm.calendars));
-    	// console.log(JSON.stringify(bodyError) == JSON.stringify(vm.calendars));
-	} while(1 === 0);
+    vm.calendars = CalendarsService.query();
+ 
   }
+
 }());
+
+angular.module('calendars').filter('monthName', [function() {
+  return function (monthNumber) { //1 = January
+    var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December' ];
+    return monthNames[monthNumber - 1];
+  };
+}]);

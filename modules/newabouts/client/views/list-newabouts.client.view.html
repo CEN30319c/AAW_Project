@@ -8,8 +8,8 @@
             <ul class="nav nav-stacked" yc-sidebar-affix>
               <li><a href="#about">About</a></li>
               <li><a href="#mission">Mission</a></li>
-              <li><a href="#awards">Awards</a></li>
               <li><a href="#people">Leadership</a></li>
+              <li><a href="#awards">Awards</a></li>
               <li><a href="#history">History</a></li>
           	</ul>
           </div>
@@ -32,8 +32,8 @@
             <h3 ng-show="par == 2 && $index == 0">{{text}}</h3>
 
             </div>
-            <button ng-show="$index == 2" type="button" class="btn btn-primary" ui-sref="newabouts.madelynAward">More Information</button>
-            <button ng-show="$index == 3" type="button" class="btn btn-primary" ui-sref="newabouts.distinctionAward">More Information</button>
+            <button ng-show="$index == 2" type="button" class="btn btn-primary" autoscroll="false" ui-sref="newabouts.madelynAward">More Information</button>
+            <button ng-show="$index == 3" type="button" class="btn btn-primary" autoscroll="false" ui-sref="newabouts.distinctionAward">More Information</button>
             <button ng-show="$index == 1" type="button" class="btn btn-primary" onclick="location.href = '/members/profiles';">See All Members</button>
 
             <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: newabout._id })">Edit</button>
@@ -50,7 +50,7 @@
           <div id="people" class="about-section" ng-repeat="about in vm.newabouts | filter: {'contentType' : 'leadership'}">
             <h1 style="color: #6C9AC3">LEADERSHIP</h1>
             <p ng-repeat="text in about.text" class="list-group-item-heading">{{text}}</p>
-            <button type="button" class="btn btn-primary" onclick="location.href = '/members/profiles';">See All Members</button>
+            <button id="profilesLink" type="button" class="btn btn-primary" onclick="location.href = '/members/profiles';">See All Members</button>
             <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button>
           </div>
 
@@ -61,7 +61,7 @@
             <h3>Madelyn Award</h3>
             <div ng-repeat="award in vm.newabouts | filter:{'contentType' : 'madAward'}">
               <p ng-repeat="text in award.text" class="list-group-item-heading">{{text}}</p>
-              <button type="button" class="btn btn-primary" ui-sref="newabouts.madelynAward">More Information</button>
+              <button id="awardLink1" type="button" class="btn btn-primary" ui-sref="newabouts.madelynAward">More Information</button>
               <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: award._id })">Edit</button>
             </div>
 
@@ -70,7 +70,7 @@
             <h3>Women of Distinction Award</h3>
             <div ng-repeat="award in vm.newabouts | filter: {'contentType' : 'WOD'}">
               <p ng-repeat="text in award.text" class="list-group-item-heading">{{text}}</p>
-              <button type="button" class="btn btn-primary" ui-sref="newabouts.distinctionAward">More Information</button>
+              <button id="awardLink2" type="button" class="btn btn-primary" ui-sref="newabouts.distinctionAward">More Information</button>
               <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: award._id })">Edit</button>
             </div>
           </div>

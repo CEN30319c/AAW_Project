@@ -28,6 +28,12 @@
       }
   };
 
+  //this function takes the user to add a profile page. I am passing two parameters to try to populate the profile.
+  $scope.createProfile = function (interest, motivation) {
+      $state.go('profiles');
+  };
+
+
     //this function open a modal that allows user to create an account and go to pay
     $scope.goToPay = function () {
 
@@ -147,7 +153,9 @@
 
   // Save Pendingrequet
     function save(isValid) {
-      if (!isValid) {
+        console.log("Inside save");
+
+        if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.pendingrequetForm');
         return false;
       }
@@ -157,7 +165,9 @@
       if (vm.pendingrequet._id) {
         vm.pendingrequet.$update(successCallback, errorCallback);
       } else {
-        vm.pendingrequet.$save(successCallback, errorCallback);
+          console.log("Inside save but is Valid");
+
+          vm.pendingrequet.$save(successCallback, errorCallback);
       }
 
       function successCallback(res) {
