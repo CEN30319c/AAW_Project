@@ -423,7 +423,7 @@ GALLERY
 }
 
 .panel-default > .panel-heading {
-  background: #80BE64;
+  background: #D7152A;
   color: #FFF;
   font-family: 'Avenir Roman';
   text-transform: uppercase;
@@ -433,7 +433,7 @@ GALLERY
 .panel-default{
   display: block;
   margin: 0 auto;
-  width: 50%;
+
   border: none;
   /*background: none;*/
   box-shadow: none;
