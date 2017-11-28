@@ -1,57 +1,82 @@
 <section>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.name"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.email"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.phone"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.college"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.position"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.selection"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.yearsUf"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.selection2"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.selection3"></h1>
-  </div>
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.pendingrequet.firstTimeYes"></h1>-->
-  <!--</div>-->
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.pendingrequet.firstTimeNo"></h1>-->
-  <!--</div>-->
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.pendingrequet.joinYes"></h1>-->
-  <!--</div>-->
-  <!--<div class="page-header">-->
-    <!--<h1 ng-bind="vm.pendingrequet.joinNo"></h1>-->
-  <!--</div>-->
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.topics"></h1>
-  </div>
-  <div class="page-header">
-    <h1 ng-bind="vm.pendingrequet.interest"></h1>
+
+  <div class="header"></div>
+
+  <div ng-init="fillFields()">
+    <!--<h4 ng-bind="vm.pendingrequet.file"></h4>-->
+    <img class="member-picture-description" ng-src="{{imageURL}}" class="img-thumbnail add-member-picture" style="width:150px; height:150px">
   </div>
 
-  <div class="pull-right"
-       ng-show="vm.pendingrequet.isCurrentUserOwner">
-    <a class="btn btn-primary"
-       ui-sref="pendingrequets.edit({ pendingrequetId: vm.pendingrequet._id })">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" ng-click="vm.remove()">
+  <div>
+    <label>Member Since: </label>
+    <span>{{vm.pendingrequet.created | date:'mediumDate'}}</span>
+  </div>
+
+  <div>
+    <label>Full Name:</label>
+    <span ng-bind="vm.pendingrequet.name"></span>
+  </div>
+  <div>
+    <label>Email Address:</label>
+    <span ng-bind="vm.pendingrequet.email"></span>
+  </div>
+  <div>
+    <label>Campus Phone Number:</label>
+    <span ng-bind="vm.pendingrequet.phone"></span>
+  </div>
+  <div>
+    <label>College:</label>
+    <span ng-bind="vm.pendingrequet.college"></span>
+  </div>
+  <div>
+    <label>Position:</label>
+    <span ng-bind="vm.pendingrequet.position"></span>
+  </div>
+  <div>
+    <label>I am:</label>
+    <span ng-bind="vm.pendingrequet.selection"></span>
+  </div>
+  <div>
+    <label>Number of Years at UF:</label>
+    <span ng-bind="vm.pendingrequet.yearsUf"></span>
+  </div>
+  <div>
+    <label>Is this your first time joining AAW?</label>
+    <span ng-bind="vm.pendingrequet.selection2"></span>
+  </div>
+  <div>
+    <label>Are you interested in joining an AAW committee?</label>
+    <span ng-bind="vm.pendingrequet.selection3"></span>
+  </div>
+  <div>
+    <label>What topics would you like to see included in our future programming?</label><br>
+    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.topics"></textarea>
+  </div>
+  <div>
+    <label>Interested in having a profile?</label>
+    <span ng-bind="vm.pendingrequet.selection4"></span>
+  </div>
+  <div>
+    <label>Academic, Scholarly, or Professional Interests:</label><br>
+    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.interest"></textarea>
+  </div>
+  <div>
+    <label>What attracted you to AAW?</label><br>
+    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.motivation"></textarea>
+  </div>
+
+  <div ng-controller="ProfilesController">
+    <button class="btn btn-primary" type="submit" ng-click="createProfile(vm.pendingrequet.interest, vm.pendingrequet.motivation)" ng-show="vm.pendingrequet.interest && vm.pendingrequet.interest != '' && vm.pendingrequet.motivation && vm.pendingrequet.motivation != ''">Create Profile</button>
+  </div>
+
+<div>
+  <!--<div class="pull-right"-->
+       <!--ng-show="vm.pendingrequet.isCurrentUserOwner">-->
+    <!--<a class="btn btn-primary"-->
+       <!--ui-sref="pendingrequets.edit({ pendingrequetId: vm.pendingrequet._id })">-->
+      <!--<i class="glyphicon glyphicon-edit"></i>-->
+    <!--</a>-->
+    <a class="btn btn-danger" ng-click="vm.remove()">
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
@@ -62,8 +87,8 @@
       <span ng-bind="vm.pendingrequet.created | date:'mediumDate'"></span>
       by
       <span ng-if="vm.pendingrequet.user"
-            ng-bind="vm.pendingrequet.user.displayName"></span>
-      <span ng-if="!vm.pendingrequet.user">Deleted User</span>
+            ng-bind="vm.pendingrequet.user"></span>
+      <span ng-if="!vm.pendingrequet.user"></span>
     </em>
   </small>
   <p class="lead" ng-bind="vm.pendingrequet.content"></p>

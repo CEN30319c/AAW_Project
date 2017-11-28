@@ -6,8 +6,38 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Member = mongoose.model('Member'),
+  multer = require('multer'),
+  config = require(path.resolve('./config/config')),
+  fs = require('fs'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
+
+
+  exports.uploadImage = function (req, res) {
+    var message = null;
+
+    var upload = multer(config.uploads.pendingProfileUpload).single('newMemberPicture');
+    var membersUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+
+
+    // Filtering to upload only images
+    upload.fileFilter = membersUploadFileFilter;
+
+    upload(req, res, function (uploadError) {
+        if (uploadError) {
+            return res.status(400).send({
+                message: 'Error occurred while uploading upcoming member picture'
+            });
+        }
+        else {
+            return res.status(200).send({
+                message: 'Is working!',
+                file: req.file
+            });
+        }
+    });
+};
+
 
 /**
  * Create a Member

@@ -1,0 +1,77 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.newabout._id ? 'Edit About Element' : 'New Newabout'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <!-- <form name="vm.form.newaboutForm" class="form-horizontal" ng-submit="vm.save(vm.form.newaboutForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.newabout.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.newaboutForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Newabout name is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.newabout._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form> -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- <button ng-click="edit()" type="button" class="btn btn-primary">Edit</button> -->
+<div class="col-md-10">
+    <form name="vm.form.newaboutForm" class="form-horizontal" ng-submit="vm.save(vm.form.newaboutForm.$valid)" novalidate>
+      <fieldset>
+        <!-- <div class="form-group" show-errors>
+          <label class="control-label" for="name">Content Type</label>
+          <input name="contentType" type="text" ng-model="vm.newabout.contentType" id="contentType" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.newaboutForm.contentType.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Newabout name is required.</p>
+          </div>
+        </div> -->
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="p1">Paragraph 1</label>
+          <textarea name="p1" type="text" ng-model="p1" id="p1" class="form-control" placeholder="Name" required></textarea>
+          <div ng-messages="vm.form.newaboutForm.p1.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Newabout name is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="p2">Paragraph 2</label>
+          <textarea name="p2" type="text" ng-model="p2" id="p2" class="form-control" placeholder="Name"></textarea>
+          <!-- <div ng-messages="vm.form.newaboutForm.p2.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Newabout name is required.</p>
+          </div> -->
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="p3">Paragraph 3</label>
+          <textarea name="p3" type="text" ng-model="p3" id="p3" class="form-control" placeholder="Name"></textarea>
+          <!-- <div ng-messages="vm.form.newaboutForm.p3.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Newabout name is required.</p>
+          </div> -->
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.newabout._id ? 'Update' : 'Create'}}</button>
+          <button ui-sref="newabouts.list" type="submit" class="btn btn-danger">Cancel</button>
+
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  </div>
+</section>

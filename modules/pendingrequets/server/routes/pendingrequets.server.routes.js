@@ -7,6 +7,10 @@ var pendingrequetsPolicy = require('../policies/pendingrequets.server.policy'),
   pendingrequets = require('../controllers/pendingrequets.server.controller');
 
 module.exports = function(app) {
+  //Setting profile picture
+  app.route('/api/pendingrequets/picture').all()
+      .post(pendingrequets.uploadImage);
+
   // Pendingrequets Routes
   app.route('/api/pendingrequets').all(pendingrequetsPolicy.isAllowed)
     .get(pendingrequets.list)
@@ -19,4 +23,7 @@ module.exports = function(app) {
 
   // Finish by binding the Pendingrequet middleware
   app.param('pendingrequetId', pendingrequets.pendingrequetByID);
+
+  //Finish by sending email to admin
+  app.route('/api/auth/notification').post(pendingrequets.sendMail);
 };
