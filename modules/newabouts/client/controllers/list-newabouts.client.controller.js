@@ -12,7 +12,6 @@
     
     $scope.user = Authentication.user;
     $scope.ids = ['mission', 'people', 'awards', 'history'];
-    $scope.awardsection = 'why';
 
     vm.newabouts = NewaboutsService.query();
 
@@ -152,16 +151,10 @@
                     if (newText === '') {
                     }
                     else {
-                        $scope.awardsection = section;
-                        $log.info($scope.awardsection);
-
-                        $log.info($scope.awardsection);
-                        var thissection = 'madelyn' + $scope.awardsection;
-                        $log.info(thissection);
                         var award = new NewaboutsService({
                             text: newText,
-                            award: thissection,
-                            });
+                            award: section,
+                        });
             
                         award.$save(function() {
                             
@@ -172,7 +165,6 @@
                             
                         $modalInstance.close($scope.award);
 
-                        $scope.awardsection = null;
                         $state.reload();      //reloads the page
                     }
                 };
@@ -195,6 +187,61 @@
         $log.info("Modal dismissed at: " + new Date());
     });
   };
+
+  vm.modalTableAdd = function (section, size) {
+    var modalInstance = $modal.open({
+        templateUrl: "modules/newabouts/client/views/newabouts-add-table-modal.client.view.html",
+        controller: function ($scope, $modalInstance) {
+            $scope.ok = function() {
+                $log.info('updating');
+                var newYear = document.getElementById("year").value;
+                var newName = document.getElementById("name").value;
+                var newDepartment = document.getElementById("department").value;
+                if (newYear === '' || newName === '' || newDepartment === '') {
+                  $log.info('didnt work');
+                }
+                else {
+                    $log.info('should be working');
+
+                    $log.info(section);
+                    var award = new NewaboutsService({
+                        year: newYear,
+                        name: newName,
+                        department: newDepartment,
+                        award: section,
+                    });
+          
+                    award.$save(function() {
+                        
+                    }, function(errorResponse) {
+                        $scope.error = errorResponse.data.message;
+                    });
+        
+                        
+                    $modalInstance.close($scope.award);
+
+                    $state.reload();      //reloads the page
+                }
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        },
+        size: size,
+        resolve: {
+            award: function() {
+                
+            }
+        }
+    });
+
+    modalInstance.result.then(function(selectedAward) {
+    $scope.selected = selectedAward;
+    }, function () {
+        $log.info("Modal dismissed at: " + new Date());
+    });
+    };
 
   }
 }());

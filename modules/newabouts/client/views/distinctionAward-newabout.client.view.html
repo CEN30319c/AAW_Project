@@ -15,25 +15,73 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="text-center">
           <div class="elig-header">
-            <h2> Eligibility Requirements </h2>
+            <h2> Nominee Eligibility Requirements </h2>
           </div>
           <div class="elig-list">
-    					<ul style="width: 100%; margin: auto;">
-    						<li>
-    							<p style="text-align:left">Must be a University of Florida faculty member or administrative/professional woman</p>
-    						</li>
-    						<li>
-    							<p style="text-align:left">Must be a member of AAW to submit a nomination</p>
-    						</li>
-    						<li>
-    							<p style="text-align:left">Must have made significant contributions to the quality of life of women</p>
-    						</li>
-    					</ul>
+    					<ul style="width: 100%; margin: auto;" ng-repeat="about in vm.newabouts | filter: {'award' : 'distinctionbullets'} | orderBy : 'created'">
+									<li>
+										<p style="text-align:left">
+											{{about.text[0]}}
+												<button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+														<span class="glyphicon glyphicon-pencil"></span>
+												</button>
+												<button ng-click="vm.delete(about)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+														<span class="glyphicon glyphicon-trash"></span>
+												</button>
+										</p>
+									</li>
+									<!-- <li>
+										<p style="text-align:left">Must be a University of Florida faculty member or administrative/professional woman</p> 10 26
+									</li>
+									<li>
+										<p style="text-align:left">Must be a member of AAW to submit a nomination</p> 10 27
+									</li>
+									<li>
+										<p style="text-align:left">Must have made significant contributions to the quality of life of women</p> 10 28
+									</li> -->
+									
+							</ul>
+							<button ng-click="vm.modalAdd('distinctionbullets', lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
+									Add new bullet point
+							</button>
           </div>
 
           <div class="elig-footer">
-            <p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;"><b>Applications submitted after the deadline will NOT be accepted.</b></p>
-          </div>
+							<hr>
+							<div ng-repeat="about in vm.newabouts | filter: {'award' : 'distinctioneligibility'} | orderBy : 'created'">
+									<p class="elig-p"><b>
+											{{about.text[0]}}
+											</b>
+									
+											<button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+													<span class="glyphicon glyphicon-pencil"></span>
+											</button>
+											<button ng-click="vm.delete(about)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+															<span class="glyphicon glyphicon-trash"></span>
+											</button>
+									</p>
+							</div>
+							<button ng-click="vm.modalAdd('distinctioneligibility', lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
+									Add new eligibility paragraph
+							</button>
+
+							<div ng-repeat="about in vm.newabouts | filter: {'award' : 'distinctionwarning'} | orderBy : 'created'">
+								<p class="elig-p" style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;">
+									<b>{{about.text[0]}}</b>
+									<button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+											<span class="glyphicon glyphicon-pencil"></span>
+									</button>
+									<button ng-click="vm.delete(about)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+											<span class="glyphicon glyphicon-trash"></span>
+									</button>
+								</p>
+							</div>
+						<!-- <p style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;"><b>Applications submitted after the deadline will NOT be accepted.</b></p> -->
+						<button ng-click="vm.modalAdd('distinctionwarning', lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
+								Add new warning paragraph
+						</button>
+					</div>
+					
   				<!-- No current apply link, but will update if there is one -->
   				<!--<button type="button" class="btn btn-primary btn-lg" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">Apply Here
               </button> -->
@@ -44,57 +92,44 @@
 
 
     <div class="prev-content">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="text-center">
-            <div class="prev-header">
-              <h2>Previous Woman of Distinction Award Winners</h2>
-            </div>
-            <!-- not working right now, should access information from database -->
-            <div class="list-group">
-              <div ng-repeat="x in vm.abouts" class="list-group-item">
-                <p ng-bind="x.name"></p>
-                <p ng-bind="x.year"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+				<div class="row">
+						<div class="col-md-8 col-md-offset-2">
+								<div class="text-center">
+										<div class="prev-header">
+												<h2> Previous Woman of Distinction Award Winners </h2>
+										</div>
 
-
-		<!-- <div class="row">
-			<div class="text-center">
-				<h2> Previous Madelyn Lockhart Dissertation Fellowship Winners </h2>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>
-								<p style="font-weight: bold;">Year</p>
-							</th>
-							<th>
-								<p style="font-weight: bold;">Name</p>
-							</th>
-							<th>
-								<p style="font-weight: bold;">Department/Unit/College</p>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="about in aboutsData | filter: {'award' : 'distinction'}">
-							<td>
-								<p>{{ about.year }}</p>
-							</td>
-							<td>
-								<p>{{ about.name }}</p>
-							</td>
-							<td>
-								<p>{{ about.department }}</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div> -->
+										<div class="prev-table">
+												<table class="table table-bordered">
+														<thead>
+																<tr>
+																<th style="background: #E28F40;"><p>Year</p></th>
+																<th style="background: #6B9AC3;"><p>Name</p></th>
+																<th style="background: #E28F40;"><p>Department/Unit/College</p></th>
+																</tr>
+														</thead>
+														<tbody>
+																<tr ng-repeat="about in vm.newabouts | filter: {'award' : 'distinctiontable'} | orderBy : '-year'">
+																<td><p>{{ about.year }}</p></td>
+																<td><p>{{ about.name }}</p></td>
+																<td><p>{{ about.department }}</p></td>
+																<td><button ng-click="vm.modalTableEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+																		<span class="glyphicon glyphicon-pencil"></span>
+																</button></td>
+																<td><button ng-click="vm.delete(about)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+																		<span class="glyphicon glyphicon-trash"></span>
+																</button></td>
+																</tr>
+														</tbody>
+												</table>
+										</div>
+										<button ng-click="vm.modalTableAdd('distinctiontable', lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-success">
+												Add new table entry
+										</button>
+								</div>
+						</div>
+				</div>
+		</div>
 	</section>
 </div>
+	
