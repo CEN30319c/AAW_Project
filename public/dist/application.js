@@ -346,16 +346,19 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
 
     $scope.user = Authentication.user;
 
-    var bodyError = [{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR'}];
-    vm.calendars = [];
-    do {
-    	vm.calendars = CalendarsService.query();
-    	// console.log('bodyError: ' + JSON.stringify(bodyError));
-    	// console.log('vm.calendars: ' + JSON.stringify(vm.calendars));
-    	// console.log(JSON.stringify(bodyError) == JSON.stringify(vm.calendars));
-	} while(1 === 0);
+    vm.calendars = CalendarsService.query();
+ 
   }
+
 }());
+
+angular.module('calendars').filter('monthName', [function() {
+  return function (monthNumber) { //1 = January
+    var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December' ];
+    return monthNames[monthNumber - 1];
+  };
+}]);
 
 // Calendars service used to communicate Calendars REST endpoints
 (function () {
@@ -483,6 +486,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 
 angular.module('core')
   .directive('ycNavbarAffix', ["$window", function($window) {
+
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
@@ -503,6 +507,28 @@ angular.module('core')
       }
     };
   }]);
+
+  angular.module('core')
+    .directive('ycNavbarBrandAffix', ["$window", function($window) {
+      return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+          var orignOffsetTop = element[0].offsetTop;
+          scope.condition = function() {
+            return $window.pageYOffset > orignOffsetTop;
+          };
+
+          angular.element($window).bind('scroll', function() {
+            scope.$apply(function() {
+
+              scope.showSmallLogo = true;
+
+
+            });
+          });
+        }
+      };
+    }]);
 
 'use strict';
 
@@ -526,7 +552,7 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
 
     //var list = $scope.miscData;
     for(var data in $scope.miscData) {
-      console.log(data);
+      //console.log(data);
     }
     //console.log($scope.miscData['$promise'][0]);
     // $scope.homePage_id = '';
@@ -578,6 +604,14 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
 
   }
 ]);
+
+angular.module('core').filter('monthName', [function() {
+  return function (monthNumber) { //1 = January
+    var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December' ];
+    return monthNames[monthNumber - 1];
+  };
+}]);
 
 'use strict';
 
@@ -1532,43 +1566,72 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       .module('members')
       .controller('ProfilesController', ProfilesController);
   
-    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', 'MembersService', 'Authentication'];
+    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', '$timeout', 'MembersService', 'Authentication', 'FileUploader'];
   
-    function ProfilesController ($scope, $state, $window, $modal, $log, MembersService, Authentication, member) {
+    function ProfilesController ($scope, $state, $window, $modal, $log, $timeout, MembersService, Authentication, FileUploader, member) {
       var vm = this;
       vm.member = member;
+      vm.error = null;
       vm.authentication = Authentication;
       $scope.user = Authentication.user;
       $scope.profiles = MembersService.query();
+      $scope.newfilename = null;
+      $scope.newimageURL = null;
+      $scope.showForm = false;
 
-      $scope.ProfileUpdate = function(updatedProfile) {
-        var profile = updatedProfile;
-        profile.name = document.getElementById("name").value;
-        profile.description = document.getElementById("description").value;
-
-          profile.$update(function() {
-
-          }, function(errorResponse) {
-              $scope.error = errorResponse.data.message;
-          });
+      $scope.clicked = function () {
+        $scope.showForm = !$scope.showForm;
       };
 
-      $scope.ProfileAdd = function() {
-          var newName = document.getElementById("name").value;
-          var newDescription = document.getElementById("description").value;
+      $scope.ProfileUpdate = function(updatedProfile) {
+        var newName = document.getElementById("name").value;
+        var newDescription = document.getElementById("description").value;
+        if (newName === '' || newDescription === '') {
 
-          var profile = new MembersService({
-            name: newName,
-            description: newDescription
-            });
+        }
+        else {
+            var profile = updatedProfile;
+            profile.name = document.getElementById("name").value;
+            profile.description = document.getElementById("description").value;
+            if ($scope.showForm) {
+                profile.filename = $scope.newfilename;
+                profile.imageURL = $scope.newimageURL;
+            }
 
-            profile.$save(function() {
-                
+            profile.$update(function() {
+
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
 
-            $state.reload();      //reloads the page
+            $scope.newfilename = null;
+            $scope.newimageURL = null;
+        }
+      };
+
+      $scope.ProfileAdd = function() {
+        var newName = document.getElementById("name").value;
+        var newDescription = document.getElementById("description").value;
+          if (newName === '' || newDescription === '') {}
+          else {
+            var profile = new MembersService({
+                name: newName,
+                description: newDescription,
+                filename: $scope.newfilename,
+                imageURL: $scope.newimageURL
+                });
+
+                profile.$save(function() {
+                    
+                }, function(errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+
+                $scope.newfilename = null;
+                $scope.newimageURL = null;
+
+                $state.reload();      //reloads the page
+        }
       };
 
       vm.delete = function(selectedProfile) {
@@ -1620,10 +1683,20 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
                 $scope.profile = profile;
 
                 $scope.ok = function() {
-                    $modalInstance.close($scope.profile);
+                    var newName = document.getElementById("name").value;
+                    var newDescription = document.getElementById("description").value;
+                    if (newName === '' || newDescription === '') {
+
+                    }
+                    else {
+                        $modalInstance.close($scope.profile);
+                    }
                 };
                 $scope.cancel = function() {
                     $modalInstance.dismiss('cancel');
+
+                    $scope.newfilename = null;
+                    $scope.newimageURL = null;
                 };
             }],
             size: size,
@@ -1646,11 +1719,21 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
             templateUrl: "modules/members/client/views/profiles-add-modal.client.view.html",
             controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
                 $scope.ok = function() {
-                    $modalInstance.close();
+                    var newName = document.getElementById("name").value;
+                    var newDescription = document.getElementById("description").value;
+                    if (newName === '' || newDescription === '') {
+
+                    }
+                    else {
+                        $modalInstance.close($scope.profile);
+                    }
                 };
 
                 $scope.cancel = function() {
                     $modalInstance.dismiss('cancel');
+
+                    $scope.newfilename = null;
+                    $scope.newimageURL = null;
                 };
             }],
             size: size,
@@ -1666,6 +1749,88 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
         }, function () {
             $log.info("Modal dismissed at: " + new Date());
         });
+    };
+
+    //Below functions are all for uploading pictures
+    $scope.fillFields = function () {
+        if (vm.member.imageURL && vm.member.imageURL !== './modules/members/client/img/memberImages/uploads/') {
+          $scope.imageURL = vm.member.imageURL;
+        }
+        else {
+          $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
+          console.log($scope.imageURL);
+        }
+    };
+    // Create file uploader instance
+    $scope.uploader = new FileUploader({
+        url: '/api/members/picture',
+        alias: 'newMemberPicture'
+    });
+  
+    // Set file uploader image filter
+    $scope.uploader.filters.push({
+        name: 'imageFilter',
+        fn: function (item, options) {
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        }
+    });
+    // Function called after the user selected a new picture file
+    $scope.uploader.onAfterAddingFile = function (fileItem) {
+        console.log("onAfterAddingFile");
+        if ($window.FileReader) {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(fileItem._file);
+            fileReader.onload = function (fileReaderEvent) {
+                $timeout(function () {
+                    $scope.imageURL = fileReaderEvent.target.result;
+  
+                    // Upload the new selected picture.
+                    $scope.uploadPicture();
+                }, 0);
+            };
+        }
+    };
+  
+    // Called after the user has successfully uploaded a new picture
+    $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+        console.log("onSuccessItem");
+  
+        // Show success message
+        $scope.success = true;
+  
+        // Populate user object
+        $scope.newfilename = response.file.filename;
+        $scope.newimageURL = response.file.filename;
+  
+        console.log("filename: " + $scope.newfilename);
+    };
+  
+    // Called after the user has failed to uploaded a new picture
+    $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
+        // Clear upload buttons
+        $scope.cancelUpload();
+  
+        // Show error message
+        $scope.error = response.message;
+    };
+  
+  
+    // Change upcoming member picture
+    $scope.uploadPicture = function () {
+        console.log("upload Picture");
+  
+        // Clear messages
+        $scope.success = $scope.error = null;
+  
+        // Start upload
+        $scope.uploader.uploadAll();
+    };
+  
+    // Cancel the upload process
+    $scope.cancelUpload = function () {
+        $scope.uploader.clearQueue();
+        // $scope.imageURL = '';
     };
 
     }
@@ -2041,15 +2206,244 @@ angular.module('newabouts')
     .module('newabouts')
     .controller('NewaboutsListController', NewaboutsListController);
 
-  NewaboutsListController.$inject = ['$scope', 'NewaboutsService', 'Authentication'];
+  NewaboutsListController.$inject = ['$scope', '$state', 'NewaboutsService', 'Authentication', '$modal', '$log'];
 
-  function NewaboutsListController($scope, NewaboutsService, Authentication) {
+  function NewaboutsListController($scope, $state, NewaboutsService, Authentication, $modal, $log) {
     var vm = this;
+    
     $scope.user = Authentication.user;
-    $scope.aboutsData = NewaboutsService.query();
     $scope.ids = ['mission', 'people', 'awards', 'history'];
 
     vm.newabouts = NewaboutsService.query();
+
+    $scope.AwardUpdate = function(updatedAward) {
+      $log.info('updating');
+      var newDescription = document.getElementById("description").value;
+      if (newDescription === '') {
+        $log.info('didnt work');
+      }
+      else {
+        $log.info('should be working');
+          var award = updatedAward;
+          award.text = document.getElementById("description").value;
+
+          award.$update(function() {
+
+          }, function(errorResponse) {
+              $scope.error = errorResponse.data.message;
+          });
+      }
+    };
+
+    $scope.AwardTableUpdate = function(updatedAward) {
+        $log.info('updating');
+        var newYear = document.getElementById("year").value;
+        var newName = document.getElementById("name").value;
+        var newDepartment = document.getElementById("department").value;
+        if (newYear === '' || newName === '' || newDepartment === '') {
+          $log.info('didnt work');
+        }
+        else {
+          $log.info('should be working');
+            var award = updatedAward;
+            award.year = document.getElementById("year").value;
+            award.name = document.getElementById("name").value;
+            award.department = document.getElementById("department").value;
+  
+            award.$update(function() {
+  
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        }
+    };
+
+    vm.delete = function(selectedAward) {
+      var award = selectedAward;
+
+      if (confirm("Are you sure you want to delete this?")) {
+          award.$delete(function() {
+              
+          }, function(errorResponse) {
+              $scope.error = errorResponse.data.message;
+          });
+
+          $state.reload();      //reloads the page
+      }
+    };
+
+    vm.modalEdit = function (selectedAward, size) {
+      var modalInstance = $modal.open({
+          templateUrl: "modules/newabouts/client/views/newabouts-edit-modal.client.view.html",
+          controller: ["$scope", "$modalInstance", "award", function ($scope, $modalInstance, award) {
+              $scope.award = award;
+
+              $scope.ok = function() {
+                  var newDescription = document.getElementById("description").value;
+                  if (newDescription === '') {
+
+                  }
+                  else {
+                      $modalInstance.close($scope.award);
+                  }
+              };
+              $scope.cancel = function() {
+                  $modalInstance.dismiss('cancel');
+              };
+          }],
+          size: size,
+           resolve: {
+               award: function() {
+                   return selectedAward;
+               }
+           }
+      });
+
+      modalInstance.result.then(function(selectedAward) {
+        $scope.selected = selectedAward;
+      }, function () {
+          $log.info("Modal dismissed at: " + new Date());
+      });
+  };
+
+  vm.modalTableEdit = function (selectedAward, size) {
+    var modalInstance = $modal.open({
+        templateUrl: "modules/newabouts/client/views/newabouts-edit-table-modal.client.view.html",
+        controller: ["$scope", "$modalInstance", "award", function ($scope, $modalInstance, award) {
+            $scope.award = award;
+
+            $scope.ok = function() {
+                var newYear = document.getElementById("year").value;
+                var newName = document.getElementById("name").value;
+                var newDepartment = document.getElementById("department").value;
+                if (newYear === '' || newName === '' || newDepartment === '') {
+
+                }
+                else {
+                    
+                    $modalInstance.close($scope.award);
+                }
+            };
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        }],
+        size: size,
+         resolve: {
+             award: function() {
+                 return selectedAward;
+             }
+         }
+    });
+
+        modalInstance.result.then(function(selectedAward) {
+            $scope.selected = selectedAward;
+        }, function () {
+            $log.info("Modal dismissed at: " + new Date());
+        });
+    };
+
+  vm.modalAdd = function (section, size) {
+        var modalInstance = $modal.open({
+            templateUrl: "modules/newabouts/client/views/newabouts-add-modal.client.view.html",
+            controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
+                $scope.ok = function() {
+                    var newText = document.getElementById("description").value;
+                    if (newText === '') {
+                    }
+                    else {
+                        var award = new NewaboutsService({
+                            text: newText,
+                            award: section,
+                        });
+            
+                        award.$save(function() {
+                            
+                        }, function(errorResponse) {
+                            $scope.error = errorResponse.data.message;
+                        });
+            
+                            
+                        $modalInstance.close($scope.award);
+
+                        $state.reload();      //reloads the page
+                    }
+                };
+
+                $scope.cancel = function() {
+                    $modalInstance.dismiss('cancel');
+                };
+            }],
+            size: size,
+            resolve: {
+                award: function() {
+                    
+                }
+            }
+    });
+
+    modalInstance.result.then(function(selectedAward) {
+      $scope.selected = selectedAward;
+    }, function () {
+        $log.info("Modal dismissed at: " + new Date());
+    });
+  };
+
+  vm.modalTableAdd = function (section, size) {
+    var modalInstance = $modal.open({
+        templateUrl: "modules/newabouts/client/views/newabouts-add-table-modal.client.view.html",
+        controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
+            $scope.ok = function() {
+                $log.info('updating');
+                var newYear = document.getElementById("year").value;
+                var newName = document.getElementById("name").value;
+                var newDepartment = document.getElementById("department").value;
+                if (newYear === '' || newName === '' || newDepartment === '') {
+                  $log.info('didnt work');
+                }
+                else {
+                    $log.info('should be working');
+
+                    $log.info(section);
+                    var award = new NewaboutsService({
+                        year: newYear,
+                        name: newName,
+                        department: newDepartment,
+                        award: section,
+                    });
+          
+                    award.$save(function() {
+                        
+                    }, function(errorResponse) {
+                        $scope.error = errorResponse.data.message;
+                    });
+        
+                        
+                    $modalInstance.close($scope.award);
+
+                    $state.reload();      //reloads the page
+                }
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        }],
+        size: size,
+        resolve: {
+            award: function() {
+                
+            }
+        }
+    });
+
+    modalInstance.result.then(function(selectedAward) {
+    $scope.selected = selectedAward;
+    }, function () {
+        $log.info("Modal dismissed at: " + new Date());
+    });
+    };
+
   }
 }());
 
@@ -2142,6 +2536,184 @@ angular.module('newabouts')
         vm.error = res.data.message;
       }
     }
+
+    $scope.AwardUpdate = function(updatedAward) {
+      $log.info('updating');
+      var newDescription = document.getElementById("description").value;
+      if (newDescription === '') {
+        $log.info('didnt work');
+      }
+      else {
+        $log.info('should be working');
+          var award = updatedAward;
+          award.description = document.getElementById("description").value;
+
+          award.$update(function() {
+
+          }, function(errorResponse) {
+              $scope.error = errorResponse.data.message;
+          });
+      }
+    };
+
+    $scope.AwardTableUpdate = function(updatedAward) {
+      var newDescription = document.getElementById("description").value;
+      if (newDescription === '') {
+
+      }
+      else {
+          var award = updatedAward;
+          award.description = document.getElementById("description").value;
+
+          award.$update(function() {
+
+          }, function(errorResponse) {
+              $scope.error = errorResponse.data.message;
+          });
+      }
+    };
+
+    $scope.AwardAdd = function() {
+      var newDescription = document.getElementById("description").value;
+        if (newDescription === '') {}
+        else {
+          var award = new NewaboutsService({
+              description: newDescription,
+              });
+
+              award.$save(function() {
+                  
+              }, function(errorResponse) {
+                  $scope.error = errorResponse.data.message;
+              });
+
+              $state.reload();      //reloads the page
+      }
+    };
+
+    vm.delete = function(selectedAward) {
+      var award = selectedAward;
+
+      if (confirm("Are you sure you want to delete this?")) {
+          award.$delete(function() {
+              
+          }, function(errorResponse) {
+              $scope.error = errorResponse.data.message;
+          });
+
+          $state.reload();      //reloads the page
+      }
+    };
+
+    vm.modalEdit = function (selectedAward, size) {
+      var modalInstance = $modal.open({
+          templateUrl: "modules/newabouts/client/views/newabouts-edit-modal.client.view.html",
+          controller: ["$scope", "$modalInstance", "award", function ($scope, $modalInstance, award) {
+              $scope.award = award;
+
+              $scope.ok = function() {
+                  var newDescription = document.getElementById("description").value;
+                  if (newDescription === '') {
+
+                  }
+                  else {
+                      $modalInstance.close($scope.award);
+                  }
+              };
+              $scope.cancel = function() {
+                  $modalInstance.dismiss('cancel');
+              };
+          }],
+          size: size,
+           resolve: {
+               award: function() {
+                   return selectedAward;
+               }
+           }
+      });
+
+      modalInstance.result.then(function(selectedAward) {
+        $scope.selected = selectedAward;
+      }, function () {
+          $log.info("Modal dismissed at: " + new Date());
+      });
+  };
+
+  vm.modalTableEdit = function (selectedProfile, size) {
+    var modalInstance = $modal.open({
+        templateUrl: "modules/newabouts/client/views/profiles-edit-modal.client.view.html",
+        controller: ["$scope", "$modalInstance", "profile", function ($scope, $modalInstance, profile) {
+            $scope.profile = profile;
+
+            $scope.ok = function() {
+                var newName = document.getElementById("name").value;
+                var newDescription = document.getElementById("description").value;
+                if (newName === '' || newDescription === '') {
+
+                }
+                else {
+                    $modalInstance.close($scope.profile);
+                }
+            };
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+
+                $scope.newfilename = null;
+                $scope.newimageURL = null;
+            };
+        }],
+        size: size,
+         resolve: {
+             profile: function() {
+                 return selectedProfile;
+             }
+         }
+    });
+
+    modalInstance.result.then(function(selectedProfile) {
+      $scope.selected = selectedProfile;
+    }, function () {
+        $log.info("Modal dismissed at: " + new Date());
+    });
+};
+
+  vm.modalAdd = function (size) {
+    var modalInstance = $modal.open({
+        templateUrl: "modules/newabouts/client/views/profiles-add-modal.client.view.html",
+        controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
+            $scope.ok = function() {
+                var newName = document.getElementById("name").value;
+                var newDescription = document.getElementById("description").value;
+                if (newName === '' || newDescription === '') {
+
+                }
+                else {
+                    $modalInstance.close($scope.profile);
+                }
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+
+                $scope.newfilename = null;
+                $scope.newimageURL = null;
+            };
+        }],
+        size: size,
+         resolve: {
+             profile: function() {
+                 
+             }
+         }
+    });
+
+    modalInstance.result.then(function(selectedProfile) {
+      $scope.selected = selectedProfile;
+    }, function () {
+        $log.info("Modal dismissed at: " + new Date());
+    });
+  };
+    
   }
 }());
 
@@ -2181,19 +2753,20 @@ angular.module('newabouts')
       title: 'News',
       state: 'news',
       type: 'dropdown',
-      roles: ['admin']
+      roles: ['*']
     });
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'news', {
       title: 'List News',
-      state: 'news.list'
+      state: 'news.list',
     });
 
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'news', {
       title: 'Create News',
-      state: 'news.create'
+      state: 'news.create',
+      roles: ['admin']
       //roles: ['user']
     });
   }
@@ -2543,6 +3116,12 @@ angular.module('newabouts')
       }
   };
 
+  //this function takes the user to add a profile page. I am passing two parameters to try to populate the profile.
+  $scope.createProfile = function (interest, motivation) {
+      $state.go('profiles');
+  };
+
+
     //this function open a modal that allows user to create an account and go to pay
     $scope.goToPay = function () {
 
@@ -2662,7 +3241,9 @@ angular.module('newabouts')
 
   // Save Pendingrequet
     function save(isValid) {
-      if (!isValid) {
+        console.log("Inside save");
+
+        if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.pendingrequetForm');
         return false;
       }
@@ -2672,7 +3253,9 @@ angular.module('newabouts')
       if (vm.pendingrequet._id) {
         vm.pendingrequet.$update(successCallback, errorCallback);
       } else {
-        vm.pendingrequet.$save(successCallback, errorCallback);
+          console.log("Inside save but is Valid");
+
+          vm.pendingrequet.$save(successCallback, errorCallback);
       }
 
       function successCallback(res) {
