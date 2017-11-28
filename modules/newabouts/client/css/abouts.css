@@ -8,6 +8,18 @@
   /*z-index: 9999 !important;*/
 }
 
+@media screen and (max-width: 768px) {
+  .sidebar-affix {
+    top: 200px;
+    position: relative;
+    /*margin-top: 45px;
+    padding-left: 45px;
+    border-right: solid #6B9AC3 1px;
+
+    /*z-index: 9999 !important;*/
+  }
+}
+
 .sidebar{
   margin-top: 45px;
   padding-left: 45px;
@@ -87,7 +99,6 @@ th {
 .about-section{
 	padding-top: 125px;
 	margin-top: -125px;
-
 }
 
 .about-section > h1 {
