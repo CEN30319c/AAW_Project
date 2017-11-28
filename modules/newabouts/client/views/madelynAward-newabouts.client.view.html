@@ -5,8 +5,11 @@
 
     <section>
 
+      <div class="distin-header">
+        <h1><span style="font-family: 'Avenir Light';">The</br></span><span style="font-size: 1.25em;">Madelyn Lockhart</span></br><span style="color: #E28F40;font-family: 'Avenir Light';">Dissertation Fellowship</span></h1>
+      </div>
 
-    <div class="elig-content"> 
+    <div class="elig-content">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="text-center">
@@ -42,7 +45,7 @@
                             <p class="elig-p"><b>
                                 {{about.text[0]}}
                                 </b>
-                            
+
                                 <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
@@ -57,7 +60,7 @@
                         <div ng-repeat="about in vm.newabouts | filter: {'award' : 'madelynwarning'} | orderBy : 'created'">
                             <p class="elig-p" style="font-family: 'Avenir Black'; text-transform: uppercase; margin-bottom: 3%;">
                                 <b>{{about.text[0]}}</b>
-                            
+
                                 <button ng-click="vm.modalEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
@@ -74,7 +77,7 @@
                         <span class="apply-button" onclick="location.href='http://graduateschool.ufl.edu/prospective-students/funding/fellowships/madelyn-lockhart-dissertation-fellowship/';">APPLY HERE</span>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -114,7 +117,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 
         <div class="prev-content">
             <div class="row">
@@ -138,10 +141,12 @@
                                     <td><p>{{ about.year }}</p></td>
                                     <td><p>{{ about.name }}</p></td>
                                     <td><p>{{ about.department }}</p></td>
-                                    <td><button ng-click="vm.modalTableEdit(about, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">
+
+                                    <td ng-show="user != '' && user.roles[0] == 'admin'" ><button ng-click="vm.modalTableEdit(about, lg)"  type="button" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </button></td>
-                                    <td><button ng-click="vm.delete(about)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-danger">
+
+                                    <td ng-show="user != '' && user.roles[0] == 'admin'"><button ng-click="vm.delete(about)" type="button" class="btn btn-danger">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button></td>
                                     </tr>
@@ -159,4 +164,3 @@
     </section>
 
 </div>
-
