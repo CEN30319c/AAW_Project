@@ -13,7 +13,7 @@
         // abstract: true,
         url: 'https://www.facebook.com/pg/UFL.AAW/photos/?ref=page_internal',
         controller: '',
-        templateUrl: 'https://www.facebook.com/pg/UFL.AAW/photos/?ref=page_internal'
+        templateUrl: ''
       })
      .state('galleries.album', {
        url: '/album',
