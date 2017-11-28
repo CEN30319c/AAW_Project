@@ -56,7 +56,10 @@ angular.module('core').service('Menus', [
     // Add new menu object by menu id
     this.addMenu = function (menuId, options) {
       options = options || {};
-
+      print(menuId);
+      if(menuId == 'galleries'){
+        target = "_blank";
+      }
       // Create the new menu
       this.menus[menuId] = {
         roles: options.roles || this.defaultRoles,
