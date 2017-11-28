@@ -1611,6 +1611,9 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       $scope.ProfileAdd = function() {
         var newName = document.getElementById("name").value;
         var newDescription = document.getElementById("description").value;
+        //Added this to saved the image URL in DB
+        //var imageURL = document.getElementById("image").value;
+
           if (newName === '' || newDescription === '') {}
           else {
             var profile = new MembersService({
@@ -1618,6 +1621,7 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
                 description: newDescription,
                 filename: $scope.newfilename,
                 imageURL: $scope.newimageURL
+                //imageURL: imageURL   // save obj image url
                 });
 
                 profile.$save(function() {
@@ -1716,12 +1720,13 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     vm.modalAdd = function (size) {
         var modalInstance = $modal.open({
             templateUrl: "modules/members/client/views/profiles-add-modal.client.view.html",
+            // templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
             controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
                 $scope.ok = function() {
                     var newName = document.getElementById("name").value;
                     var newDescription = document.getElementById("description").value;
                     if (newName === '' || newDescription === '') {
-
+                        console.log(' ');
                     }
                     else {
                         $modalInstance.close($scope.profile);
@@ -1757,15 +1762,18 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
         }
         else {
           $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
-          console.log($scope.imageURL);
         }
+        console.log($scope.imageURL);
     };
+
+
+//Comment this out!
     // Create file uploader instance
     $scope.uploader = new FileUploader({
         url: '/api/members/picture',
         alias: 'newMemberPicture'
     });
-  
+
     // Set file uploader image filter
     $scope.uploader.filters.push({
         name: 'imageFilter',
@@ -1783,49 +1791,49 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
             fileReader.onload = function (fileReaderEvent) {
                 $timeout(function () {
                     $scope.imageURL = fileReaderEvent.target.result;
-  
+
                     // Upload the new selected picture.
                     $scope.uploadPicture();
                 }, 0);
             };
         }
     };
-  
+
     // Called after the user has successfully uploaded a new picture
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
         console.log("onSuccessItem");
-  
+
         // Show success message
         $scope.success = true;
-  
+
         // Populate user object
         $scope.newfilename = response.file.filename;
         $scope.newimageURL = response.file.filename;
-  
+
         console.log("filename: " + $scope.newfilename);
     };
-  
+
     // Called after the user has failed to uploaded a new picture
     $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
         // Clear upload buttons
         $scope.cancelUpload();
-  
+
         // Show error message
         $scope.error = response.message;
     };
-  
-  
+
+
     // Change upcoming member picture
     $scope.uploadPicture = function () {
         console.log("upload Picture");
-  
+
         // Clear messages
         $scope.success = $scope.error = null;
-  
+
         // Start upload
         $scope.uploader.uploadAll();
     };
-  
+
     // Cancel the upload process
     $scope.cancelUpload = function () {
         $scope.uploader.clearQueue();
@@ -3086,229 +3094,270 @@ angular.module('newabouts')
 }());
 
 (function () {
-  'use strict';
+    'use strict';
 
-  // Pendingrequets controller
-  angular
-    .module('pendingrequets')
-    .controller('PendingrequetsController', PendingrequetsController);
+    // Pendingrequets controller
+    angular
+        .module('pendingrequets')
+        .controller('PendingrequetsController', PendingrequetsController);
 
-  PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', '$http', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
+    PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', '$http', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
 
-  function PendingrequetsController ($scope, $state, $window, $modal, $timeout, $location, $http, Authentication, FileUploader, pendingrequet) {
-    var vm = this;
+    function PendingrequetsController($scope, $state, $window, $modal, $timeout, $location, $http, Authentication, FileUploader, pendingrequet) {
+        var vm = this;
 
-    vm.authentication = Authentication;
-    vm.pendingrequet = pendingrequet;
-    vm.error = null;
-    vm.form = {};
-    vm.remove = remove;
-    vm.save = save;
+        vm.authentication = Authentication;
+        vm.pendingrequet = pendingrequet;
+        vm.error = null;
+        vm.form = {};
+        vm.remove = remove;
+        vm.save = save;
 
-  $scope.clicked = function () {
-      if(vm.pendingrequet.selection4) {
-          $scope.showForm = true;
-      } else {
-          $scope.showForm = false;
-          vm.pendingrequet.interest = '';
-          vm.pendingrequet.motivation = '';
-      }
-  };
+        $scope.clicked = function () {
+            if (vm.pendingrequet.selection4) {
+                $scope.showForm = true;
+            } else {
+                $scope.showForm = false;
+                vm.pendingrequet.interest = '';
+                vm.pendingrequet.motivation = '';
+            }
+        };
 
-  //this function takes the user to add a profile page. I am passing two parameters to try to populate the profile.
-  $scope.createProfile = function (interest, motivation) {
-      $state.go('profiles');
-  };
+        //this function takes the user to add a profile page.
+        $scope.createProfile = function () {
 
+            $state.go('profiles');
 
-    //this function open a modal that allows user to create an account and go to pay
-    $scope.goToPay = function () {
-
-      $modal.open ({
-        templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
-        controller:'JoinsController'
-
-      }).result.then(function () {
-            //Redirecting to client's current payment page
-        // var url = 'https://squareup.com/store/UFLAAW';
-        //$window.open(url);
-        $window.location.href = 'https://squareup.com/store/UFLAAW';
-
-    });
+        };
 
 
-    };
+        //this function open a modal that allows user to create an account and go to pay
+        $scope.goToPay = function () {
+
+            $modal.open({
+                templateUrl: 'modules/joins/client/views/modal-join.client.view.html',
+                controller: 'JoinsController'
+
+            }).result.then(function () {
+                //Redirecting to client's current payment page
+                // var url = 'https://squareup.com/store/UFLAAW';
+                //$window.open(url);
+                $window.location.href = 'https://squareup.com/store/UFLAAW';
+
+            });
 
 
-    $scope.cancelForm = function () {
-      $state.go('joins');
-    };
+        };
 
 
-  /*
-  * Upload images.
-  */
-  $scope.fillFields = function () {
-      if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
-        $scope.imageURL = vm.pendingrequet.imageURL;
-      }
-      else {
-        $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
-        console.log($scope.imageURL);
-      }
-  };
-  // Create file uploader instance
-  $scope.uploader = new FileUploader({
-      url: '/api/pendingrequets/picture',
-      alias: 'newMemberPicture'
-  });
-
-  // Set file uploader image filter
-  $scope.uploader.filters.push({
-      name: 'imageFilter',
-      fn: function (item, options) {
-          var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-          return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-  });
-  // Function called after the user selected a new picture file
-  $scope.uploader.onAfterAddingFile = function (fileItem) {
-      console.log("onAfterAddingFile");
-      if ($window.FileReader) {
-          var fileReader = new FileReader();
-          fileReader.readAsDataURL(fileItem._file);
-          fileReader.onload = function (fileReaderEvent) {
-              $timeout(function () {
-                  $scope.imageURL = fileReaderEvent.target.result;
-
-                  // Upload the new selected picture.
-                  $scope.uploadPicture();
-              }, 0);
-          };
-      }
-  };
-
-  // Called after the user has successfully uploaded a new picture
-  $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
-      console.log("onSuccessItem");
-
-      // Show success message
-      $scope.success = true;
-
-      // Populate user object
-      vm.pendingrequet.filename = response.file.filename;
-      vm.pendingrequet.imageURL = response.file.filename;
-
-      console.log("filename: " + vm.pendingrequet.filename);
-  };
-
-  // Called after the user has failed to uploaded a new picture
-  $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
-      // Clear upload buttons
-      $scope.cancelUpload();
-
-      // Show error message
-      $scope.error = response.message;
-  };
+        $scope.cancelForm = function () {
+            $state.go('joins');
+        };
 
 
-  // Change upcoming member picture
-  $scope.uploadPicture = function () {
-      console.log("upload Picture");
+        /**
+         * Upload images.
+         */
+        $scope.fillFields = function () {
+            if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
+                $scope.imageURL = vm.pendingrequet.imageURL;
+            }
+            else {
+                $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
+            }
+        };
+        // Create file uploader instance
+        $scope.uploader = new FileUploader({
+            url: '/api/pendingrequets/picture',
+            alias: 'newMemberPicture'
+        });
 
-      // Clear messages
-      $scope.success = $scope.error = null;
+        // Set file uploader image filter
+        $scope.uploader.filters.push({
+            name: 'imageFilter',
+            fn: function (item, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        });
+        // Function called after the user selected a new picture file
+        $scope.uploader.onAfterAddingFile = function (fileItem) {
+            console.log("onAfterAddingFile");
+            if ($window.FileReader) {
+                var fileReader = new FileReader();
+                fileReader.readAsDataURL(fileItem._file);
+                fileReader.onload = function (fileReaderEvent) {
+                    $timeout(function () {
+                        $scope.imageURL = fileReaderEvent.target.result;
 
-      // Start upload
-      $scope.uploader.uploadAll();
-  };
+                        // Upload the new selected picture.
+                        $scope.uploadPicture();
+                    }, 0);
+                };
+            }
+        };
 
-  // Cancel the upload process
-  $scope.cancelUpload = function () {
-      $scope.uploader.clearQueue();
-      // $scope.imageURL = '';
-  };
+        // Called after the user has successfully uploaded a new picture
+        $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            console.log("onSuccessItem");
+
+            // Show success message
+            $scope.success = true;
+
+            // Populate user object
+            vm.pendingrequet.filename = response.file.filename;
+            vm.pendingrequet.imageURL = response.file.filename;
+
+            // console.log("filename: " + vm.pendingrequet.filename);
+        };
+
+        // Called after the user has failed to uploaded a new picture
+        $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
+            // Clear upload buttons
+            $scope.cancelUpload();
+
+            // Show error message
+            $scope.error = response.message;
+        };
 
 
+        // Change upcoming member picture
+        $scope.uploadPicture = function () {
+            console.log("upload Picture");
 
-    // Remove existing Pendingrequet
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
-        vm.pendingrequet.$remove($state.go('pendingrequets.list'));
-      }
+            // Clear messages
+            $scope.success = $scope.error = null;
+
+            // Start upload
+            $scope.uploader.uploadAll();
+        };
+
+        // Cancel the upload process
+        $scope.cancelUpload = function () {
+            $scope.uploader.clearQueue();
+            // $scope.imageURL = '';
+        };
+
+
+        // Remove existing Pendingrequet
+        function remove() {
+            if ($window.confirm('Are you sure you want to delete?')) {
+                vm.pendingrequet.$remove($state.go('pendingrequets.list'));
+            }
+        }
+
+        // Save Pendingrequet
+        function save(isValid) {
+            console.log("Inside save");
+
+            if (!isValid) {
+                $scope.$broadcast('show-errors-check-validity', 'vm.form.pendingrequetForm');
+                return false;
+            }
+
+
+            // TODO: move create/update logic to service
+            if (vm.pendingrequet._id) {
+                vm.pendingrequet.$update(successCallback, errorCallback);
+            } else {
+                console.log("Inside save but is Valid");
+
+                vm.pendingrequet.$save(successCallback, errorCallback);
+            }
+
+            function successCallback(res) {
+                //Sending email to notify the admin about a new member application
+                var data = ({
+
+                    contactName: vm.pendingrequet.name,
+                    contactEmail: vm.pendingrequet.email,
+                    contactMsg: 'This email is to notify you that ' + vm.pendingrequet.name + ' has submitted a new membership application.\n' //' + ' Does the new member want a PROFILE? ' + vm.pendingrequet.selection4 + ' IMAGE URL: ' + vm.pendingrequet.imageURL
+
+                });
+                if(vm.pendingrequet.selection4) {
+                    data.contactMsg = data.contactMsg + 'The member wants to have a public profile with the following information:\n';
+                    data.contactMsg = data.contactMsg + 'Description: ' + vm.pendingrequet.motivation + '. ' + vm.pendingrequet.interest + '\n';
+                    // data.contactMsg = data.contactMsg + 'filename: ' + vm.pendingrequet.filename + '\n';
+                    data.contactMsg = data.contactMsg + 'ImageURL: ' + vm.pendingrequet.imageURL + '\n';
+                } else {
+                    data.contactMsg = data.contactMsg + 'The member does not want a public profile.\n';
+                }
+
+                $http.post('/api/auth/notification', data).success(function (data, status, headers, config) {
+                    console.log('Successfully sent the email');
+
+                    // $state.go('pendingrequets.form', {
+                    //     pendingrequetId: res._id
+                    // });
+                    $state.go('home');
+                }).error(function (data, status, headers, config) {
+                    console.log('Error sending the email');
+                });
+
+                // $state.go('pendingrequets.view', {
+                //   pendingrequetId: res._id
+                // });
+            }
+
+            function errorCallback(res) {
+                vm.error = res.data.message;
+            }
+        }
     }
-
-  // Save Pendingrequet
-    function save(isValid) {
-        console.log("Inside save");
-
-        if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.pendingrequetForm');
-        return false;
-      }
-
-
-      // TODO: move create/update logic to service
-      if (vm.pendingrequet._id) {
-        vm.pendingrequet.$update(successCallback, errorCallback);
-      } else {
-          console.log("Inside save but is Valid");
-
-          vm.pendingrequet.$save(successCallback, errorCallback);
-      }
-
-      function successCallback(res) {
-
-
-       //Sending email to notify the admin about a new member application
-       var data = ({
-
-           contactName: vm.pendingrequet.name,
-           contactEmail: vm.pendingrequet.email,
-           contactMsg: 'This email is to notify you that ' + vm.pendingrequet.name + ' has submitted a new membership application.' +
-           ' Does the new member want a PROFILE? ' + vm.pendingrequet.selection4 + '. Please, review the required fields in the application.'
-
-       });
-
-       $http.post('/api/auth/notification', data).success(function (data, status, headers, config) {
-           $state.go('pendingrequets.form', {
-               pendingrequetId: res._id
-           });
-       }).error(function (data, status, headers, config) {
-           console.log('Error sending the email');
-       });
-
-        // $state.go('pendingrequets.view', {
-        //   pendingrequetId: res._id
-        // });
-      }
-
-      function errorCallback(res) {
-        vm.error = res.data.message;
-      }
-    }
-  }
 }());
 
 // Pendingrequets service used to communicate Pendingrequets REST endpoints
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('pendingrequets')
-    .factory('PendingrequetsService', PendingrequetsService);
+    angular
+        .module('pendingrequets')
+        .factory('PendingrequetsService', PendingrequetsService);
+        // .factory('MyCoolService', MyCoolService);
 
-  PendingrequetsService.$inject = ['$resource'];
+    PendingrequetsService.$inject = ['$resource'];
 
-  function PendingrequetsService($resource) {
-    return $resource('api/pendingrequets/:pendingrequetId', {
-      pendingrequetId: '@_id'
-    }, {
-      update: {
-        method: 'PUT'
-      }
-    });
-  }
+    function PendingrequetsService($resource) {
+        return $resource('api/pendingrequets/:pendingrequetId', {
+            pendingrequetId: '@_id'
+        }, {
+            update: {
+                method: 'PUT'
+            }
+        });
+    }
+
+
+    // MyCoolService.$inject = [];
+    //
+    // function MyCoolService() {
+    //
+    //     var myObject = undefined;
+    //     var newObject = false;
+    //
+    //     function getObject() {
+    //         newObject = false;
+    //         return myObject;
+    //     }
+    //
+    //     function setObject(obj) {
+    //         myObject = obj;
+    //         console.log("Set in Service: " + myObject);
+    //         newObject = true;
+    //     }
+    //
+    //     function isNewObject() {
+    //         return newObject;
+    //     }
+    //
+    //     return {
+    //         isNewObject: isNewObject,
+    //         getObject: getObject,
+    //         setObject: setObject
+    //     };
+    // }
+
+
 }());
 
 'use strict';
