@@ -52,6 +52,9 @@
       $scope.ProfileAdd = function() {
         var newName = document.getElementById("name").value;
         var newDescription = document.getElementById("description").value;
+        //Added this to saved the image URL in DB
+        //var imageURL = document.getElementById("image").value;
+
           if (newName === '' || newDescription === '') {}
           else {
             var profile = new MembersService({
@@ -59,6 +62,7 @@
                 description: newDescription,
                 filename: $scope.newfilename,
                 imageURL: $scope.newimageURL
+                //imageURL: imageURL   // save obj image url
                 });
 
                 profile.$save(function() {
@@ -157,12 +161,13 @@
     vm.modalAdd = function (size) {
         var modalInstance = $modal.open({
             templateUrl: "modules/members/client/views/profiles-add-modal.client.view.html",
+            // templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
             controller: function ($scope, $modalInstance) {
                 $scope.ok = function() {
                     var newName = document.getElementById("name").value;
                     var newDescription = document.getElementById("description").value;
                     if (newName === '' || newDescription === '') {
-
+                        console.log(' ');
                     }
                     else {
                         $modalInstance.close($scope.profile);
@@ -198,15 +203,18 @@
         }
         else {
           $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
-          console.log($scope.imageURL);
         }
+        console.log($scope.imageURL);
     };
+
+
+//Comment this out!
     // Create file uploader instance
     $scope.uploader = new FileUploader({
         url: '/api/members/picture',
         alias: 'newMemberPicture'
     });
-  
+
     // Set file uploader image filter
     $scope.uploader.filters.push({
         name: 'imageFilter',
@@ -224,49 +232,49 @@
             fileReader.onload = function (fileReaderEvent) {
                 $timeout(function () {
                     $scope.imageURL = fileReaderEvent.target.result;
-  
+
                     // Upload the new selected picture.
                     $scope.uploadPicture();
                 }, 0);
             };
         }
     };
-  
+
     // Called after the user has successfully uploaded a new picture
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
         console.log("onSuccessItem");
-  
+
         // Show success message
         $scope.success = true;
-  
+
         // Populate user object
         $scope.newfilename = response.file.filename;
         $scope.newimageURL = response.file.filename;
-  
+
         console.log("filename: " + $scope.newfilename);
     };
-  
+
     // Called after the user has failed to uploaded a new picture
     $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
         // Clear upload buttons
         $scope.cancelUpload();
-  
+
         // Show error message
         $scope.error = response.message;
     };
-  
-  
+
+
     // Change upcoming member picture
     $scope.uploadPicture = function () {
         console.log("upload Picture");
-  
+
         // Clear messages
         $scope.success = $scope.error = null;
-  
+
         // Start upload
         $scope.uploader.uploadAll();
     };
-  
+
     // Cancel the upload process
     $scope.cancelUpload = function () {
         $scope.uploader.clearQueue();
