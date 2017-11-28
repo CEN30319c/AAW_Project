@@ -1,0 +1,29 @@
+<section>
+  <div class="header">
+    <h1>USERS</h1>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="vm.misc.name"></h1>
+  </div>
+  <div class="pull-right"
+       ng-show="vm.misc.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="miscs.edit({ miscId: vm.misc._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.misc.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.misc.user"
+            ng-bind="vm.misc.user.displayName"></span>
+      <span ng-if="!vm.misc.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.misc.content"></p>
+</section>

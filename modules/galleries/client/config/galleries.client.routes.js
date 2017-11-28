@@ -11,14 +11,14 @@
     $stateProvider
       .state('galleries', {
         // abstract: true,
-        url: '/gallery',
-        controller: 'GalleriesController',
-        templateUrl: 'modules/galleries/client/views/view-gallery.client.view.html'
+        url: 'https://www.facebook.com/pg/UFL.AAW/photos/?ref=page_internal',
+        controller: '',
+        templateUrl: ''
       })
      .state('galleries.album', {
        url: '/album',
        controller: 'GalleriesController',
-       templateUrl: 'modules/galleries/client/views/album-gallery.client.view.html',
+       templateUrl: 'modules/galleries/client/views/album-gallery.client.view.html'
      });
 //      .state('galleries.create', {
 //        url: '/create',

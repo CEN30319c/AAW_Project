@@ -6,18 +6,21 @@
     .module('news')
     .controller('NewsController', NewsController);
 
-  NewsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'newsResolve'];
+  NewsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'newsResolve', 'Admin'];
 
-  function NewsController ($scope, $state, $window, Authentication, news) {
+  function NewsController ($scope, $state, $window, Authentication, news, Admin) {
     var vm = this;
-
-
+    $scope.usersList = Admin.query();
+    $scope.user = 'HI';
+    $scope.currUserRole = Authentication.user.roles[0];
     vm.authentication = Authentication;
     vm.news = news;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    //console.log($scope.user.roles[0]);
 
     // Remove existing News
     function remove() {
@@ -28,8 +31,10 @@
 
     // Save News
     function save(isValid) {
-      console.log(vm.news.text);
-      console.log(vm.news);
+      console.log($scope.usersList);
+      console.log(vm.authentication);
+      console.log($scope.currUserRole);
+      console.log(news);
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.newsForm');
         return false;

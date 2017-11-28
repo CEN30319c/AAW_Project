@@ -5,11 +5,11 @@
     .module('news')
     .controller('NewsListController', NewsListController);
 
-  NewsListController.$inject = ['NewsService'];
+  NewsListController.$inject = ['$scope', 'NewsService', 'Authentication'];
 
-  function NewsListController(NewsService) {
+  function NewsListController($scope, NewsService, Authentication) {
     var vm = this;
-
+    $scope.user = Authentication.user;
     vm.news = NewsService.query();
   }
 }());

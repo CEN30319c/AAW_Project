@@ -7,6 +7,10 @@ var membersPolicy = require('../policies/members.server.policy'),
   members = require('../controllers/members.server.controller');
 
 module.exports = function(app) {
+  //Setting profile picture
+  app.route('/api/members/picture').all()
+    .post(members.uploadImage);
+
   // Members Routes
   app.route('/api/members').all(membersPolicy.isAllowed)
     .get(members.list)
