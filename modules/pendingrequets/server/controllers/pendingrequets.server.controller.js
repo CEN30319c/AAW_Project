@@ -171,7 +171,7 @@ exports.sendMail = function (req, res) {
 
     transport.sendMail({
         from: data.contactEmail,
-        to: 'awwuf2017@gmail.com',
+        to: 'aawuf2017@gmail.com',
         subject: data.contactName + ' submitted a new Membership Application',
         text: data.contactMsg
 

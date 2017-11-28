@@ -1,10 +1,15 @@
-<section>
+<div>
 
   <div class="header"></div>
 
   <div ng-init="fillFields()">
     <!--<h4 ng-bind="vm.pendingrequet.file"></h4>-->
     <img class="member-picture-description" ng-src="{{imageURL}}" class="img-thumbnail add-member-picture" style="width:150px; height:150px">
+  </div>
+
+  <div>
+    <label>Image URL: </label>
+      <span ng-bind="vm.pendingrequet.imageURL"></span>
   </div>
 
   <div>
@@ -50,7 +55,7 @@
   </div>
   <div>
     <label>What topics would you like to see included in our future programming?</label><br>
-    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.topics"></textarea>
+    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.topics" readonly></textarea>
   </div>
   <div>
     <label>Interested in having a profile?</label>
@@ -58,15 +63,15 @@
   </div>
   <div>
     <label>Academic, Scholarly, or Professional Interests:</label><br>
-    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.interest"></textarea>
+    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.interest" readonly></textarea>
   </div>
   <div>
     <label>What attracted you to AAW?</label><br>
-    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.motivation"></textarea>
+    <textarea rows="8" cols="60" ng-bind="vm.pendingrequet.motivation" readonly></textarea>
   </div>
 
   <div ng-controller="ProfilesController">
-    <button class="btn btn-primary" type="submit" ng-click="createProfile(vm.pendingrequet.interest, vm.pendingrequet.motivation)" ng-show="vm.pendingrequet.interest && vm.pendingrequet.interest != '' && vm.pendingrequet.motivation && vm.pendingrequet.motivation != ''">Create Profile</button>
+    <button class="btn btn-primary" type="submit" ng-click="createProfile()" ng-show="vm.pendingrequet.interest && vm.pendingrequet.interest != '' && vm.pendingrequet.motivation && vm.pendingrequet.motivation != ''">Create Profile</button>
   </div>
 
 <div>
