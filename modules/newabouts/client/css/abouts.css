@@ -166,7 +166,7 @@ th {
 .elig-list > ul > li > p{
   background: #E28F40;
   color: white;
-  font-size: 0.75;
+  font-size: 0.75em;
 }
 
 .elig-header > h2 {
@@ -201,6 +201,7 @@ th {
 .selec-p{
   color: white;
   margin-bottom: 5%;
+  font-size: 1.45em;
 }
 
 .selec-p > p{
@@ -221,6 +222,11 @@ th {
   color: white;
 }
 
+.prev-table > table > tbody > tr >td >p {
+  font-size: 1.45em;
+  padding: 0 15px;
+}
+
 .distin-header > h1{
   font-family: 'Avenir Black';
   text-transform: uppercase;
@@ -237,4 +243,5 @@ th {
   text-align: center;
   padding: 15px;
   width: 25%;
+  cursor: pointer;
 }
