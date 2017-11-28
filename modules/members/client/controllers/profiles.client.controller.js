@@ -52,17 +52,21 @@
       $scope.ProfileAdd = function() {
         var newName = document.getElementById("name").value;
         var newDescription = document.getElementById("description").value;
+          //var imageURL2 = document.getElementById("image").value;
+          //var filename2 = document.getElementById("image").value;
         //Added this to saved the image URL in DB
         //var imageURL = document.getElementById("image").value;
 
           if (newName === '' || newDescription === '') {}
           else {
+
             var profile = new MembersService({
                 name: newName,
                 description: newDescription,
                 filename: $scope.newfilename,
                 imageURL: $scope.newimageURL
-                //imageURL: imageURL   // save obj image url
+
+                //imageURL2: imageURL   // save obj image url
                 });
 
                 profile.$save(function() {
@@ -77,6 +81,38 @@
                 $state.reload();      //reloads the page
         }
       };
+
+        $scope.ProfileRequestAdd = function() {
+            var newName = document.getElementById("name").value;
+            var newDescription = document.getElementById("description").value;
+            var imageURL = document.getElementById("image").value;
+            var filename = document.getElementById("image").value;
+            //Added this to saved the image URL in DB
+            //var imageURL = document.getElementById("image").value;
+
+            if (newName === '' || newDescription === '') {}
+            else {
+
+                var profile = new MembersService({
+                    name: newName,
+                    description: newDescription,
+                    filename: filename,
+                    imageURL: imageURL
+
+                });
+
+                profile.$save(function() {
+
+                }, function(errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+
+                $scope.newfilename = null;
+                $scope.newimageURL = null;
+
+                $state.reload();      //reloads the page
+            }
+        };
 
       vm.delete = function(selectedProfile) {
         var profile = selectedProfile;
@@ -184,7 +220,7 @@
             size: size,
              resolve: {
                  profile: function() {
-                     
+
                  }
              }
         });
@@ -195,6 +231,44 @@
             $log.info("Modal dismissed at: " + new Date());
         });
     };
+
+        vm.modalRequestAdd = function (size) {
+            var modalInstance = $modal.open({
+                //templateUrl: "modules/members/client/views/profiles-add-modal.client.view.html",
+                 templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
+                controller: function ($scope, $modalInstance) {
+                    $scope.ok = function() {
+                        var newName = document.getElementById("name").value;
+                        var newDescription = document.getElementById("description").value;
+                        if (newName === '' || newDescription === '') {
+                            console.log(' ');
+                        }
+                        else {
+                            $modalInstance.close($scope.profile);
+                        }
+                    };
+
+                    $scope.cancel = function() {
+                        $modalInstance.dismiss('cancel');
+
+                        $scope.newfilename = null;
+                        $scope.newimageURL = null;
+                    };
+                },
+                size: size,
+                resolve: {
+                    profile: function() {
+
+                    }
+                }
+            });
+
+            modalInstance.result.then(function(selectedProfile) {
+                $scope.selected = selectedProfile;
+            }, function () {
+                $log.info("Modal dismissed at: " + new Date());
+            });
+        };
 
     //Below functions are all for uploading pictures
     $scope.fillFields = function () {
