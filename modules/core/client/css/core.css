@@ -498,15 +498,18 @@ GALLERY
 }
 .new-list-cell-heading{
   font-family: 'Avenir Black';
-  font-size: 2.25em;
+  font-size: 2.4em;
   text-transform: uppercase;
   margin: 3% 0 ;
   text-align: center;
+  margin-top: 5%;
 }
 
 .new-list-cell-p{
-  font-size: 1.05em;
+  font-size: 1.25em;
   margin-top: 3%;
+  line-height: 45px;
+  margin-bottom: 5%;
 }
 
 .row{
