@@ -72,21 +72,72 @@
             }
         };
         // Create file uploader instance
-        $scope.uploader = new FileUploader({
+        /*$scope.uploader = new FileUploader({
             url: '/api/pendingrequets/picture',
             alias: 'newMemberPicture'
-        });
+        });*/
+
+        $scope.uploader = function() {
+            console.log('I get here');
+            document.getElementById("file-input").onchange = () => {
+                const files = document.getElementById('file-input').files;
+                const file = files[0];
+                if(file === null){
+                    return alert('No file selected.');
+                }
+                getSignedRequest(file);
+          };
+        };
+
+        function getSignedRequest(file) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4) {
+                    if(xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        uploadFile(file, response.signedRequest, response.url);
+                    }
+                    else {
+                        //alert('Could not upload file.');
+                        console.log(xhr.status + ': ' + xhr.statusText);
+                        $scope.error = xhr.status + ': ' + xhr.statusText;
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function uploadFile(file, signedRequest, url) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('PUT', signedRequest);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4) {
+                    if(xhr.status === 200) {
+                        $scope.imageURL = url;
+                        $scope.success = true;
+                        //document.getElementById('avatar-url').value = url;
+                    }
+                    else {
+                        //alert('Could not upload file.');
+                        console.log(xhr.status + ': ' + xhr.statusText);
+                        $scope.error = xhr.status + ': ' + xhr.statusText;
+                    }
+                }
+            };
+            xhr.send(file);
+        }
 
         // Set file uploader image filter
-        $scope.uploader.filters.push({
+        /*$scope.uploader.filters.push({
             name: 'imageFilter',
             fn: function (item, options) {
                 var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
                 return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
             }
-        });
+        });*/
         // Function called after the user selected a new picture file
-        $scope.uploader.onAfterAddingFile = function (fileItem) {
+        /*$scope.uploader.onAfterAddingFile = function (fileItem) {
             console.log("onAfterAddingFile");
             if ($window.FileReader) {
                 var fileReader = new FileReader();
@@ -100,10 +151,10 @@
                     }, 0);
                 };
             }
-        };
+        };*/
 
         // Called after the user has successfully uploaded a new picture
-        $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+        /*$scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
             console.log("onSuccessItem");
 
             // Show success message
@@ -114,20 +165,20 @@
             vm.pendingrequet.imageURL = response.file.filename;
 
             // console.log("filename: " + vm.pendingrequet.filename);
-        };
+        };*/
 
         // Called after the user has failed to uploaded a new picture
-        $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
+        /*$scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
             // Clear upload buttons
             $scope.cancelUpload();
 
             // Show error message
             $scope.error = response.message;
-        };
+        };*/
 
 
         // Change upcoming member picture
-        $scope.uploadPicture = function () {
+        /*$scope.uploadPicture = function () {
             console.log("upload Picture");
 
             // Clear messages
@@ -135,13 +186,13 @@
 
             // Start upload
             $scope.uploader.uploadAll();
-        };
+        };*/
 
         // Cancel the upload process
-        $scope.cancelUpload = function () {
+        /*$scope.cancelUpload = function () {
             $scope.uploader.clearQueue();
             // $scope.imageURL = '';
-        };
+        };*/
 
 
         // Remove existing Pendingrequet
