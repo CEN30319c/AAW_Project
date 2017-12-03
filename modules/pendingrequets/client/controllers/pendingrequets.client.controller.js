@@ -30,8 +30,40 @@
 
         //this function takes the user to add a profile page.
         $scope.createProfile = function () {
+            var modalInstance = $modal.open({
+                templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
+                // templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
+                controller: function ($scope, $modalInstance) {
+                    $scope.ok = function() {
+                        var newName = document.getElementById("name").value;
+                        var newDescription = document.getElementById("description").value;
+                        var imageURL2 = document.getElementById("image").value;
+                        var filename2 = document.getElementById("image").value;
+                        if (newName === '' || newDescription === '') {
+                            console.log(' ');
+                        }
+                        else {
+                            $modalInstance.close($scope.profile);
+                        }
+                    };
 
-            $state.go('profiles');
+                    $scope.cancel = function() {
+                        $modalInstance.dismiss('cancel');
+
+                        $scope.newfilename = null;
+                        $scope.newimageURL = null;
+                    };
+                },
+                // size: size,
+                resolve: {
+                    profile: function() {
+
+                    }
+                }
+            });
+
+
+            //$state.go('profiles');
 
         };
 
