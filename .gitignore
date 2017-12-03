@@ -15,6 +15,7 @@ app/tests/coverage/
 .bower-*/
 .idea/
 coverage/
+s3_config.json
 
 # MEAN.js app and assets
 # ======================
