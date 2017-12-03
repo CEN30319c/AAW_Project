@@ -2,11 +2,12 @@
 
 angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService', 'CalendarsService', 'MiscsService',
   function ($scope, $modal, $log, Authentication, NewsService, CalendarsService, MiscsService) {
-
+    var vm = this;
     $scope.authentication = Authentication;
     $scope.user = Authentication.user;
     $scope.whoweareText = 'AAW strives to empower UF women for the utmost success in each stage of their careers at the university.';
     $scope.myInterval = 3000;
+    $scope.title = "Home Page Edit";
     $scope.slides = [
       {
         image: 'modules/core/client/img/pictures/slide5.png'
@@ -39,6 +40,71 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
       modalUpdate(0, header);
     };*/
 
+    //$scope.misc = '';
+
+    $scope.HomeUpdate = function(updatedMisc) {
+      $log.info('updating');
+
+      //var newDescription = document.getElementById("description").value;
+      var p1 = document.getElementById("p1").value;
+      var p2 = document.getElementById("p2").value;
+      var p3 = document.getElementById("p3").value;
+      if (p1 === '' && p2 === '' && p3 === '') {
+        $log.info('didnt work');
+      }
+      else {
+        $log.info('should be working');
+          var misc = updatedMisc;
+          //about.text = document.getElementById("description").value;
+          misc.text = [];
+          misc.text.push(p1);
+          misc.text.push(p2);
+          misc.text.push(p3);
+          console.log("In Function");
+          misc.$update(function() {
+
+          }, function(errorResponse) {
+              $scope.error = errorResponse.data.message;
+          });
+      }
+    };
+
+    $scope.modalHomeEdit = function (misc, size) {
+      //$scope.misc = misc;
+      console.log("IN FUNCTION");
+      var modalInstance = $modal.open({
+          templateUrl: "modules/miscs/client/views/misc-editHome-modal-client.view.html",
+          controller: function ($scope, $modalInstance, award) {
+              $scope.misc = award;
+
+              $scope.ok = function() {
+                  // var p1 = document.getElementById("p1").value;
+                  // var p2 = document.getElementById("p2").value;
+                  // var p3 = document.getElementById("p3").value;
+                  $modalInstance.dismiss('cancel');
+
+              };
+              $scope.cancel = function() {
+                  $modalInstance.dismiss('cancel');
+              };
+          },
+          size: size,
+           resolve: {
+               award: function() {
+                   return misc;
+               }
+           }
+      });
+
+      modalInstance.result.then(function(misc) {
+        $scope.selected = misc;
+      }, function () {
+          $log.info("Modal dismissed at: " + new Date());
+      });
+  };
+
+
+
     $scope.modalUpdate = function(size, texttoedit) {
       var url = 'modules/core/client/views/modal-home.client.view.html';
       var modalInstance = $modal.open({
@@ -68,9 +134,11 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+
     };
 
   }
+
 ]);
 
 angular.module('core').filter('monthName', [function() {
