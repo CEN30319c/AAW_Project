@@ -43,7 +43,8 @@
             <h1 style="color: #E28F41">MISSION</h1>
             <hr>
             <p ng-repeat="text in about.text" class="list-group-item-heading">{{text}}</p>
-            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button>
+            <!-- <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button> -->
+            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ng-click="vm.modalAboutEdit(about, lg)">Edit</button>
           </div>
 
           <br>
@@ -53,7 +54,8 @@
             <hr>
             <p ng-repeat="text in about.text" class="list-group-item-heading" style="font-family: 'Avenir Black';">{{text}}</p>
             <div class="about-button" id="profilesLink" type="button" class="btn btn-primary" onclick="location.href = '/members/profiles';">See All Members</div>
-            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button>
+            <!-- <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button> -->
+            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ng-click="vm.modalAboutEdit(about, lg)">Edit</button>
           </div>
 
           <br>
@@ -66,7 +68,8 @@
               <div class="about-section">
                 <p ng-repeat="text in award.text" class="list-group-item-heading">{{text}}</p>
                 <div class="about-button" id="awardLink1" type="button" class="btn btn-primary" ui-sref="newabouts.madelynAward">Learn More</div>
-                <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: award._id })">Edit</button>
+                <!-- <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: award._id })">Edit</button> -->
+                <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ng-click="vm.modalAboutEdit(award, lg)">Edit</button>
               </div>
             </div>
 
@@ -79,7 +82,8 @@
               <div class="about-section">
                 <p ng-repeat="text in award.text" class="list-group-item-heading">{{text}}</p>
                 <div class="about-button" id="awardLink2" type="button" class="btn btn-primary" ui-sref="newabouts.distinctionAward">Learn More</div>
-                <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: award._id })">Edit</button>
+                <!-- <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: award._id })">Edit</button> -->
+                <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ng-click="vm.modalAboutEdit(award, lg)">Edit</button>
               </div>
             </div>
           </div>
@@ -90,7 +94,8 @@
             <h1 style="color: #6C9AC3">HISTORY</h1>
             <hr>
             <p ng-repeat="text in about.text" class="list-group-item-heading">{{text}}</p>
-            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button>
+            <!-- <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ui-sref="newabouts.edit({ newaboutId: about._id })">Edit</button> -->
+            <button ng-show="user && user.roles[0] == 'admin'" class="btn btn-primary" ng-click="vm.modalAboutEdit(about, lg)">Edit</button>
           </div>
 
         </div>
