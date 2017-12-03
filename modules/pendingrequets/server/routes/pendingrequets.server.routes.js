@@ -11,6 +11,9 @@ module.exports = function(app) {
   app.route('/api/pendingrequets/picture').all()
       .post(pendingrequets.uploadImage);
 
+  app.route('/sign-s3').all()
+    .get(pendingrequets.uploadImage);
+
   // Pendingrequets Routes
   app.route('/api/pendingrequets').all(pendingrequetsPolicy.isAllowed)
     .get(pendingrequets.list)
