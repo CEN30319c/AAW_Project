@@ -6,6 +6,37 @@
     <iframe id='cv_if5' src='http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=https%3A%2F%2Foutlook.live.com%2Fowa%2F%2Fcalendar%2F00000000-0000-0000-0000-000000000000%2Fc71946db-4cbb-4ca0-9af3-f5a34459cf28%2Fcid-5939566F43ADC820%2Fcalendar.ics&theme=6b9ac3&ccolor=e28f40&dims=1&gtype=cv_monthgrid&gcloseable=0&gnavigable=1&gperiod=month&itype=cv_simpleevent' allowTransparency=true scrolling='no' frameborder=0 height=600 class="calendar"></iframe>
   </div>
 
+  <div class="container">
+
+    <div class="events-grid">
+      <span>
+        <h1>All Upcoming Events</h1>
+      </span>
+
+      <div class="row">
+        <div ng-repeat="event in vm.calendars">
+          <div class="event-cell">
+             <div class="row row-eq-height">
+                <div class="col-md-4">
+                  <div class="date text-center">
+                    <h4>{{event.beginMonth | monthName}}</h4>
+                    <h1>{{event.beginDay}}</h1>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="event-descrip">
+                    <h3>{{event.title}}</h3>
+                    <h4>{{event.location}}</h4>
+                    <h4>{{event.beginTime}}</h4>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
       <div class="sub-buttons text-center">
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
@@ -39,36 +70,6 @@
       </div>
     </div>
   </div>
-<div class="container">
-
-    <div class="events-grid">
-      <span>
-        <h1>All Upcoming Events</h1>
-      </span>
-
-      <div class="row">
-        <div ng-repeat="event in vm.calendars">
-          <div class="event-cell">
-             <div class="row row-eq-height">
-                <div class="col-md-4">
-                  <div class="date text-center">
-                    <h4>{{event.beginMonth | monthName}}</h4>
-                    <h1>{{event.beginDay}}</h1>
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <div class="event-descrip">
-                    <h3>{{event.title}}</h3>
-                    <h4>{{event.location}}</h4>
-                    <h4>{{event.beginTime}}</h4>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
     <div ng-show="user != '' && user.roles[0] == 'admin'">
       <div class="container">
         <div class="admin-add-event">
