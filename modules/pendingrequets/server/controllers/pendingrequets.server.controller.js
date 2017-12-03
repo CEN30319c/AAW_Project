@@ -8,6 +8,7 @@ var path = require('path'),
     Pendingrequet = mongoose.model('Pendingrequet'),
     errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
     multer = require('multer'),
+    aws = require('aws-sdk'),
     config = require(path.resolve('./config/config')),
     fs = require('fs'),
     _ = require('lodash');
@@ -17,7 +18,7 @@ var path = require('path'),
  * Upload Image in Pendingrequet
  */
 exports.uploadImage = function (req, res) {
-    var message = null;
+    /*var message = null;
 
     var upload = multer(config.uploads.pendingProfileUpload).single('newMemberPicture');
     var pendingrequetsUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
@@ -38,7 +39,37 @@ exports.uploadImage = function (req, res) {
                 file: req.file
             });
         }
-    });
+    });*/
+
+    aws.config.loadFromPath('./s3_config.json');
+    var S3_BUCKET = 'aawimages';
+
+    var s3 = new aws.S3();
+
+    var fileName = req.query['file-name'];
+    var fileType = req.query['file-type'];
+    //var path = fileName;
+
+    var s3Params = {
+        Bucket: S3_BUCKET,
+        Key: fileName,
+        Expires: 60,
+        ACL: 'public-read',
+        ContentType: fileType
+    };
+
+    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+        if(err) {
+            console.log(err);
+            return res.end();
+        }
+        const returnData = {
+            signedRequest: data,
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+        };
+        res.write(JSON.stringify(returnData));
+        res.end();
+  });
 };
 
 
