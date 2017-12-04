@@ -6,42 +6,7 @@
     <iframe id='cv_if5' src='http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=https%3A%2F%2Foutlook.live.com%2Fowa%2F%2Fcalendar%2F00000000-0000-0000-0000-000000000000%2Fc71946db-4cbb-4ca0-9af3-f5a34459cf28%2Fcid-5939566F43ADC820%2Fcalendar.ics&theme=6b9ac3&ccolor=e28f40&dims=1&gtype=cv_monthgrid&gcloseable=0&gnavigable=1&gperiod=month&itype=cv_simpleevent' allowTransparency=true scrolling='no' frameborder=0 height=600 class="calendar"></iframe>
   </div>
 
-  <!-- <div class="container">
-
-  </div> -->
-
-      <div class="sub-buttons text-center">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <div class="sub1"><a href="https://outlook.office365.com/owa/?realm=ufl.edu&path=/calendar/view/Month" target="_blank">UF Webmail Calendar</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="help">
-
-      <div class="row" style="padding-bottom: 5%;">
-        <div class="col-md-12">
-          <div class="text-center">
-            <h3> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="help"></span></h3>
-            <h3 style="font-family: 'Avenir Black'; color: white;">HOW TO SUBSCRIBE</h3>
-          </div>
-
-          <div class="col-md-6 col-md-offset-3">
-
-            <div class="panel-content" style="margin-top: 3%;">
-              <div><span class="number"> 1.</span> Copy this link:</br> <div style="text-align: center; margin: 0 3%; color:#80BE64;">https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/2fcda5ec-ef8a-4933-872a-676fdc90b096/cid-5939566F43ADC820/calendar.ics</div></div>
-              <div><span class="number"> 2.</span> Click the "UF Webmail Calendar" button above and login with your Gatorlink</div>
-              <div><span class="number"> 3.</span> On the top of the page, click on "Add Calendar" and from the drop down menu click "From Internet" </div>
-              <div><span class="number"> 4.</span> Under "Link to Calendar" paste the link copied in step 1 </div>
-              <div><span class="number"> 5.</span> Under "Calendar Name" put any name you wish</div>
-              <div><span class="number"> 6.</span> Click Save and you're done!</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<div class="container">
+  <div class="container">
 
     <div class="events-grid">
       <span>
@@ -71,6 +36,40 @@
       </div>
     </div>
 </div>
+
+      <div class="sub-buttons text-center">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="sub1"><a href="https://outlook.office365.com/owa/?realm=ufl.edu&path=/calendar/view/Month" target="_blank">UF Webmail Calendar</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="help">
+
+      <div class="row" style="padding-bottom: 5%;">
+        <div class="col-md-12">
+          <div class="text-center">
+            <div class="row" style="background: #D7152A; margin: 5% 0 0 0;">
+              <div class="col-md-6 col-md-offset-3">
+                <accordion close others="oneAtATime">
+                   <div accordion-group class="panel default" heading='HOW TO SUBSCRIBE ▼' is open="status.isFirstOpen" is disabled="status.isFirstDisabled" style="margin-top: 3%;">
+                     <div class="panel-content">
+                      <div><span class="number"> 1.</span> Copy this link:</br> <div style="text-align: center; margin: 0 3%; color:#80BE64;">https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/2fcda5ec-ef8a-4933-872a-676fdc90b096/cid-5939566F43ADC820/calendar.ics</div></div>
+                      <div><span class="number"> 2.</span> Click the "UF Webmail Calendar" button above and login with your Gatorlink</div>
+                      <div><span class="number"> 3.</span> On the top of the page, click on "Add Calendar" and from the drop down menu click "From Internet" </div>
+                      <div><span class="number"> 4.</span> Under "Link to Calendar" paste the link copied in step 1 </div>
+                      <div><span class="number"> 5.</span> Under "Calendar Name" put any name you wish</div>
+                      <div><span class="number"> 6.</span> Click Save and you're done!</div>
+                     </div>
+                  </div>
+                </accordion>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <div ng-show="user != '' && user.roles[0] == 'admin'">
       <div class="container">
         <div class="admin-add-event">
@@ -127,15 +126,5 @@
             </div>
         </div>
     </div>
-<!--
-
-        <div>
-          <h4>{{event.title}}</h4>
-          <div>Location: {{event.location}}</div>
-          <div>Begins: {{event.begin}}</div>
-          <div>Ends: {{event.end}}</div>
-          <div>Description: {{event.description}}</div>
-        </div> -->
-
     </div>
   </div>
