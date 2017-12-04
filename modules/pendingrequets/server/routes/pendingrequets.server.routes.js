@@ -9,7 +9,10 @@ var pendingrequetsPolicy = require('../policies/pendingrequets.server.policy'),
 module.exports = function(app) {
   //Setting profile picture
   app.route('/api/pendingrequets/picture').all()
-      .post(pendingrequets.uploadImage);
+      .post(pendingrequets.uploadImageDB);
+
+  app.route('/sign-s3').all()
+    .get(pendingrequets.uploadImage);
 
   // Pendingrequets Routes
   app.route('/api/pendingrequets').all(pendingrequetsPolicy.isAllowed)

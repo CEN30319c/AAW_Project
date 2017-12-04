@@ -8,6 +8,7 @@ var path = require('path'),
     Pendingrequet = mongoose.model('Pendingrequet'),
     errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
     multer = require('multer'),
+    aws = require('aws-sdk'),
     config = require(path.resolve('./config/config')),
     fs = require('fs'),
     _ = require('lodash');
@@ -17,28 +18,64 @@ var path = require('path'),
  * Upload Image in Pendingrequet
  */
 exports.uploadImage = function (req, res) {
-    var message = null;
+    aws.config.loadFromPath('./s3_config.json');
+    var S3_BUCKET = 'aawufimages';
 
-    var upload = multer(config.uploads.pendingProfileUpload).single('newMemberPicture');
-    var pendingrequetsUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+    var s3 = new aws.S3();
 
+    var fileName = req.query['file-name'];
+    var fileType = req.query['file-type'];
+    //var path = fileName;
 
-    // Filtering to upload only images
-    upload.fileFilter = pendingrequetsUploadFileFilter;
+    var s3Params = {
+        Bucket: S3_BUCKET,
+        Key: fileName,
+        Expires: 60,
+        ACL: 'public-read',
+        ContentType: fileType
+    };
 
-    upload(req, res, function (uploadError) {
-        if (uploadError) {
-            return res.status(400).send({
-                message: 'Error occurred while uploading upcoming member picture'
-            });
+    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+        if(err) {
+            console.log(err);
+            return res.end();
         }
-        else {
-            return res.status(200).send({
-                message: 'Is working!',
-                file: req.file
-            });
-        }
-    });
+        const returnData = {
+            signedRequest: data,
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+        };
+        res.write(JSON.stringify(returnData));
+        res.end();
+  });
+};
+
+/**
+ * Upload Image to MongoDB in Pendingrequet
+ */
+exports.uploadImageDB = function (req, res) {
+  var message = null;
+
+  var upload = multer(config.uploads.pendingProfileUpload).single('newMemberPicture');
+  var pendingrequetsUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+
+
+  // Filtering to upload only images
+  upload.fileFilter = pendingrequetsUploadFileFilter;
+
+  upload(req, res, function (uploadError) {
+      if (uploadError) {
+          return res.status(400).send({
+              message: 'Error occurred while uploading upcoming member picture'
+          });
+      }
+      else {
+          return res.status(200).send({
+              message: 'Is working!',
+              file: req.file
+          });
+      }
+  });
+
 };
 
 

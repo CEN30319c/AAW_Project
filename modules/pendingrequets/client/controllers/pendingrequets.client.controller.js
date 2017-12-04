@@ -109,6 +109,59 @@
             alias: 'newMemberPicture'
         });
 
+        $scope.uploadAWS = function() {
+            console.log('uploadAWS function called');
+            document.getElementById("file-input").onchange = () => {
+                const files = document.getElementById('file-input').files;
+                const file = files[0];
+                if(file === null){
+                    return alert('No file selected.');
+                }
+                getSignedRequest(file);
+          };
+        };
+
+        function getSignedRequest(file) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4) {
+                    if(xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        uploadFile(file, response.signedRequest, response.url);
+                    }
+                    else {
+                        //alert('Could not upload file.');
+                        console.log(xhr.status + ': ' + xhr.statusText);
+                        //$scope.error = xhr.status + ': ' + xhr.statusText;
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function uploadFile(file, signedRequest, url) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('PUT', signedRequest);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4) {
+                    if(xhr.status === 200) {
+                        //$scope.imageURL = url
+                        console.log('AWS URL: ' + url);
+                        //$scope.success = true;
+                        console.log('Upload to AWS successful');
+                        //document.getElementById('avatar-url').value = url;
+                    }
+                    else {
+                        //alert('Could not upload file.');
+                        console.log(xhr.status + ': ' + xhr.statusText);
+                        //$scope.error = xhr.status + ': ' + xhr.statusText;
+                    }
+                }
+            };
+            xhr.send(file);
+        }
+
         // Set file uploader image filter
         $scope.uploader.filters.push({
             name: 'imageFilter',
