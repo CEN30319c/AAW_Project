@@ -7,7 +7,7 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
     $scope.user = Authentication.user;
     $scope.whoweareText = 'AAW strives to empower UF women for the utmost success in each stage of their careers at the university.';
     $scope.myInterval = 3000;
-    $scope.title = "Home Page Edit";
+    $scope.title = 'Home Page Edit';
     $scope.slides = [
       {
         image: 'modules/core/client/img/pictures/slide5.png'
@@ -58,13 +58,13 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
           var misc = updatedMisc;
           //about.text = document.getElementById("description").value;
           misc.data = [];
-          if(p1 != '') {
+          if(p1 !== '') {
             misc.data.push(p1);
           }
-          if(p2 != '') {
+          if(p2 !== '') {
             misc.data.push(p2);
           }
-          if(p3 != '') {
+          if(p3 !== '') {
             misc.data.push(p3);
           }
           // misc.text.push(p2);
