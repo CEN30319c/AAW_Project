@@ -72,6 +72,35 @@ exports.uploadImage = function (req, res) {
   });
 };
 
+/**
+ * Upload Image to MongoDB in Pendingrequet
+ */
+exports.uploadImageDB = function (req, res) {
+  var message = null;
+
+  var upload = multer(config.uploads.pendingProfileUpload).single('newMemberPicture');
+  var pendingrequetsUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+
+
+  // Filtering to upload only images
+  upload.fileFilter = pendingrequetsUploadFileFilter;
+
+  upload(req, res, function (uploadError) {
+      if (uploadError) {
+          return res.status(400).send({
+              message: 'Error occurred while uploading upcoming member picture'
+          });
+      }
+      else {
+          return res.status(200).send({
+              message: 'Is working!',
+              file: req.file
+          });
+      }
+  });
+
+};
+
 
 /**
  * Create a Pendingrequet
