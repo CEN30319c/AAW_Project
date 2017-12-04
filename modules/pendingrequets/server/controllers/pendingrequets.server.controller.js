@@ -18,31 +18,8 @@ var path = require('path'),
  * Upload Image in Pendingrequet
  */
 exports.uploadImage = function (req, res) {
-    /*var message = null;
-
-    var upload = multer(config.uploads.pendingProfileUpload).single('newMemberPicture');
-    var pendingrequetsUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
-
-
-    // Filtering to upload only images
-    upload.fileFilter = pendingrequetsUploadFileFilter;
-
-    upload(req, res, function (uploadError) {
-        if (uploadError) {
-            return res.status(400).send({
-                message: 'Error occurred while uploading upcoming member picture'
-            });
-        }
-        else {
-            return res.status(200).send({
-                message: 'Is working!',
-                file: req.file
-            });
-        }
-    });*/
-
     aws.config.loadFromPath('./s3_config.json');
-    var S3_BUCKET = 'aawimages';
+    var S3_BUCKET = 'aawufimages';
 
     var s3 = new aws.S3();
 

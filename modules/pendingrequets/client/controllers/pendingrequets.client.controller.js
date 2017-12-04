@@ -110,7 +110,7 @@
         });
 
         $scope.uploadAWS = function() {
-            console.log('I get here');
+            console.log('uploadAWS function called');
             document.getElementById("file-input").onchange = () => {
                 const files = document.getElementById('file-input').files;
                 const file = files[0];
@@ -146,7 +146,8 @@
             xhr.onreadystatechange = () => {
                 if(xhr.readyState === 4) {
                     if(xhr.status === 200) {
-                        //$scope.imageURL = url;
+                        //$scope.imageURL = url
+                        console.log('AWS URL: ' + url);
                         //$scope.success = true;
                         console.log('Upload to AWS successful');
                         //document.getElementById('avatar-url').value = url;
