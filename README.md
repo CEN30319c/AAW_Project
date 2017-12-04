@@ -40,3 +40,7 @@ To run the website on localhost, first clone the repository on your computer and
   The website is now viewable at localhost:3000 in a web browser.
   
   Changes to the project may also be done while the command prompt/terminal is running the localhost. The website will automatically refresh to reflect new changes.
+		
+-Outside contributions
+The calendar displayed on the calendar page comes from http://www.instantcal.com/
+A tool called ICAL was used to parse an .ics file to get the list of upcoming events on the calendar page.  The repo for ICAL is here: https://github.com/mozilla-comm/ical.js/
