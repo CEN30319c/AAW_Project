@@ -1,24 +1,23 @@
 <div class="footer" ng-controller="FooterController">
   <div class="container-fluid">
 
-    <div class="text-center">
-      <a href="https://www.facebook.com/UFL.AAW" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true" href="https://www.facebook.com/UFL.AAW"></i></a>
-      <a href="" target="_blank"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true" href="https://www.facebook.com/UFL.AAW"></i></a>
+    <div class="row">
+      <div class="text-center">
+        <a href="https://www.facebook.com/UFL.AAW" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true" href="https://www.facebook.com/UFL.AAW"></i></a>
+        <a href="http://la.linkedin.com/groups?gid=4478253" target="_blank"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
+      </div>
     </div>
 
-
-<div class="text-right">
-  <ul ng-hide="authentication.user">
-    <li ui-sref-active="active">
-      <a ui-sref="authentication.signup">Sign Up</a>
-    </li>
-    <li class="divider-vertical"></li>
-    <li ui-sref-active="active">
-      <a ui-sref="authentication.signin">Member Portal</a>
-    </li>
-  </ul>
-
-</div>
-</div>
-
+    <div class="row">
+      <div class="text-right">
+        <ul ng-hide="authentication.user">
+          <li ui-sref-active="active">
+            <a ui-sref="authentication.signup">Sign Up </a>
+            <span style="color: white;"> • </span>
+            <a ui-sref="authentication.signin"> Member Portal</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

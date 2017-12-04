@@ -2,19 +2,26 @@
   <div class="header">
     <h1>NEWS</h1>
   </div>
-  <div class="jumbotron" style="height: 500px; overflow-y: scroll;, overflow-x: scroll;">
-  <div class="list-group">
-    <div ng-repeat="news in vm.news" class="list-group-item">
-       <button class="btn btn-primary" ng-show="user && user.roles[0] == 'admin'" ui-sref="news.view({ newsId: news._id })" style="position: absolute; right: 100px; top: 20px;">Edit</button>
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="news.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="news.user" ng-bind="news.user.displayName"></span>
-        <span ng-if="!news.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="news.name"></h4>
-      <p class="list-group-item-heading" ng-bind="news.text"></p>
+  <div class="" style="margin: 3% 0;">
+  <div class="container">
+    <div ng-repeat="news in vm.news" class="">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <button class="btn btn-primary" ng-show="user && user.roles[0] == 'admin'" ui-sref="news.view({ newsId: news._id })" style="position: absolute; right: 100px; top: 20px;">View</button>
+          <div class="news-list-cell">
+            <h4 class="new-list-cell-heading" ng-bind="news.name"></h4>
+            <p class="news-list-cell-prefix text-center">
+              Posted on
+              <span ng-bind="news.created | date:'mediumDate'"></span>
+              by
+              <span ng-if="news.user" ng-bind="news.user.displayName"></span>
+              <span ng-if="!news.user">Deleted User</span>
+            </p>
+            <p class="new-list-cell-p" ng-bind="news.text"></p>
+            <hr>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

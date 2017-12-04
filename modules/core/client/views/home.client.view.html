@@ -49,7 +49,8 @@
             {{data}}
           </p>
 
-          <button ui-sref="miscs.edit({ miscId: misc._id })" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
+          <!-- <button ui-sref="miscs.edit({ miscId: misc._id })" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button> -->
+          <button ng-click="modalHomeEdit(misc, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
         </div>
       </div>
       <div class="row news">
@@ -72,15 +73,15 @@
           <div class="row row-eq-height">
             <div class="col-md-4">
               <div class="date text-center">
-                <h4>MONTH</h4>
-                <h1>00</h1>
+                <h4>{{event.beginMonth | monthName}}</h4>
+                <h1>{{event.beginDay}}</h1>
               </div>
             </div>
             <div class="col-md-8">
               <div class="event-descrip">
                 <h3>{{event.title}}</h3>
                 <h4>{{event.location}}</h4>
-                <h4>{{event.begin.substring(event.begin.length-10,event.begin.length)}}</h4>
+                <h4>{{event.beginTime}}</h4>
               </div>
             </div>
           </div>
