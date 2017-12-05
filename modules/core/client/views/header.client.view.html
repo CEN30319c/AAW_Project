@@ -40,8 +40,9 @@
           </li>
         </ul>
 
-          <a ng-if="item.title != 'Gallery'" class="navbar-links" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
-          <a ng-if="item.title == 'Gallery'" class="navbar-links" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title" target="_blank"></a>
+          <!--<a ng-if="item.title != 'Gallery'" class="navbar-links" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+          <a ng-if="item.title == 'Gallery'" class="navbar-links" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title" target="_blank"></a>-->
+          <a class="navbar-links" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
 
       </li>
     </ul>
