@@ -6,10 +6,13 @@ describe('Newabouts E2E Tests:', function () {
       browser.get('http://localhost:3001/about');
       expect(element.all(by.repeater('newabout in newabouts')).count()).toEqual(0);
     });
+    
 
-    it('Should test About page links', function () {
+    it('Should test About page buttons', function () {
       browser.get('http://localhost:3001/about');
-      element(by.buttonText("See All Members")).click();
+
+      element(by.id('profilesLink')).click();
+
       expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/members/profiles');
     });
   });

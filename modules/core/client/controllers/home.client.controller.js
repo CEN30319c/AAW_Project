@@ -74,8 +74,8 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
       console.log("IN FUNCTION");
       var modalInstance = $modal.open({
           templateUrl: "modules/miscs/client/views/misc-editHome-modal-client.view.html",
-          controller: function ($scope, $modalInstance, award) {
-              $scope.misc = award;
+          controller: function ($scope, $modalInstance, misc) {
+              $scope.misc = misc;
 
               $scope.ok = function() {
                   // var p1 = document.getElementById("p1").value;
@@ -90,7 +90,7 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
           },
           size: size,
            resolve: {
-               award: function() {
+               misc: function() {
                    return misc;
                }
            }
