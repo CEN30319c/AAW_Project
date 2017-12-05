@@ -96,6 +96,7 @@
          * Upload images.
          */
         $scope.fillFields = function () {
+            console.log(vm.pendingrequet.imageURL);
             if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
                 $scope.imageURL = vm.pendingrequet.imageURL;
             }
@@ -108,6 +109,66 @@
             url: '/api/pendingrequets/picture',
             alias: 'newMemberPicture'
         });
+
+        function uploadAWS() {
+            console.log('uploadAWS function called');
+            /*document.getElementById("file-input").onchange = () => {
+                const files = document.getElementById('file-input').files;
+                const file = files[0];
+                if(file === null){
+                    return alert('No file selected.');
+                }
+                getSignedRequest(file);
+            };*/
+            var files = document.getElementById('file-input').files;
+            var file = files[0];
+            getSignedRequest(file);
+        }
+
+        function getSignedRequest(file) {
+            var xhr = new XMLHttpRequest();
+            vm.pendingrequet.filename = file.name;
+            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4) {
+                    if(xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        //vm.pendingrequet.imageURL = response.url;
+                        uploadFile(file, response.signedRequest, response.url);
+                    }
+                    else {
+                        //alert('Could not upload file.');
+                        console.log(xhr.status + ': ' + xhr.statusText);
+                        //$scope.error = xhr.status + ': ' + xhr.statusText;
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function uploadFile(file, signedRequest, url) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('PUT', signedRequest);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4) {
+                    if(xhr.status === 200) {
+                        //$scope.imageURL = url
+                        //console.log('imageURL just prior to upload: ' + $scope.imageURL);
+                        vm.pendingrequet.imageURL = url;
+                        console.log('AWS URL: ' + url);
+                        //$scope.success = true;
+                        console.log('Upload to AWS successful');
+                        //document.getElementById('avatar-url').value = url;
+                    }
+                    else {
+                        //alert('Could not upload file.');
+                        console.log(xhr.status + ': ' + xhr.statusText);
+                        //$scope.error = xhr.status + ': ' + xhr.statusText;
+                    }
+                }
+            };
+            xhr.send(file);
+        }
 
         // Set file uploader image filter
         $scope.uploader.filters.push({
@@ -142,8 +203,10 @@
             $scope.success = true;
 
             // Populate user object
-            vm.pendingrequet.filename = response.file.filename;
-            vm.pendingrequet.imageURL = response.file.filename;
+            //vm.pendingrequet.filename = response.file.filename;
+            //vm.pendingrequet.imageURL = response.file.filename;
+
+            uploadAWS();
 
             // console.log("filename: " + vm.pendingrequet.filename);
         };
@@ -172,7 +235,7 @@
         // Cancel the upload process
         $scope.cancelUpload = function () {
             $scope.uploader.clearQueue();
-            // $scope.imageURL = '';
+            $scope.imageURL = '';
         };
 
 

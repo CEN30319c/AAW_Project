@@ -7,7 +7,7 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
     $scope.user = Authentication.user;
     $scope.whoweareText = 'AAW strives to empower UF women for the utmost success in each stage of their careers at the university.';
     $scope.myInterval = 3000;
-    $scope.title = "Home Page Edit";
+    $scope.title = 'Home Page Edit';
     $scope.slides = [
       {
         image: 'modules/core/client/img/pictures/slide5.png'
@@ -47,6 +47,7 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
 
       //var newDescription = document.getElementById("description").value;
       var p1 = document.getElementById("p1").value;
+      console.log(p1);
       var p2 = document.getElementById("p2").value;
       var p3 = document.getElementById("p3").value;
       if (p1 === '' && p2 === '' && p3 === '') {
@@ -56,10 +57,18 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
         $log.info('should be working');
           var misc = updatedMisc;
           //about.text = document.getElementById("description").value;
-          misc.text = [];
-          misc.text.push(p1);
-          misc.text.push(p2);
-          misc.text.push(p3);
+          misc.data = [];
+          if(p1 !== '') {
+            misc.data.push(p1);
+          }
+          if(p2 !== '') {
+            misc.data.push(p2);
+          }
+          if(p3 !== '') {
+            misc.data.push(p3);
+          }
+          // misc.text.push(p2);
+          // misc.text.push(p3);
           console.log("In Function");
           misc.$update(function() {
 
