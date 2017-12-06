@@ -138,7 +138,7 @@
         function getSignedRequest(file) {
             var xhr = new XMLHttpRequest();
             vm.pendingrequet.filename = file.name;
-            xhr.open('GET', '/sign-s3?file-name=${file.name}&file-type=${file.type}');
+            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
             xhr.onreadystatechange = () => {
                 if(xhr.readyState === 4) {
                     if(xhr.status === 200) {
