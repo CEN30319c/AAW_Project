@@ -64,7 +64,7 @@ exports.ical = function(req, response) {
             if (a.time < b.time)
               return -1;
             if (a.time > b.time)
-              return -1
+              return -1;
             return 0;
           })); //return the array
         }
