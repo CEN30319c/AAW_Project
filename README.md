@@ -2,7 +2,7 @@
 
 Association for Acedemic Women at the University of Florida website repository.
 
-The website is deployed here: https://aawproject.herokuapp.com/
+The website is deployed here: https://aawufl.herokuapp.com/
 
 To run the website on localhost, first clone the repository on your computer and do the following:
 
