@@ -1,0 +1,121 @@
+/**** CALENDAR ****/
+
+.calendar{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  /*margin-bottom: 15px;*/
+}
+
+.events-calendar{
+  margin: 45px;
+}
+.sub-buttons{
+  padding: 35px 0;
+  padding-top: 50px;
+
+}
+
+.sub1{
+  text-align: center;
+}
+
+.sub2{
+  text-align: left;
+
+}
+.sub1 > a{
+  font-family: 'Avenir Black';
+  background: #E28F41;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-size: 2em;
+  padding: 15px 35px;
+}
+
+.sub2 > a{
+  font-family: 'Avenir Black';
+  background: white;
+  text-transform: uppercase;
+  color: #80BE64;
+  font-size: 2em;
+  padding: 15px 35px;
+}
+
+.sub1 > a:hover,
+.sub2 > a:hover{
+  text-decoration: none;
+}
+
+.panel-default > .panel-heading {
+  background: #D7152A;
+  color: #FFF;
+  font-family: 'Avenir Roman';
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.panel-default-2 > .panel-heading {
+  background: #6B9AC3;
+}
+
+.panel-default{
+  display: block;
+  margin: 0 auto;
+
+  border: none;
+  /*background: none;*/
+  box-shadow: none;
+
+}
+
+.help{
+  /*margin-top: 35px;*/
+  padding-bottom: 15px;
+}
+#help{
+  font-size: 3em;
+  text-align: center;
+  color: #fff;
+}
+
+.events-grid{
+  margin: 45px 0;
+  margin-right: 45px;
+  height: 550px;
+}
+
+.events-grid > span > h1{
+  font-family: 'Avenir Black';
+  color: #4a4a4a;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.number{
+  color: #4A4A4A;
+  font-size: 1em;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.panel-content{
+  font-family: 'Avenir Roman';
+  background: white;
+  text-align: left;
+  padding: 35px;
+  border-radius: 25px;
+  font-size: 1.15em;
+  line-height: 45px;
+
+}
+
+.admin-add-event > a{
+  color: white;
+}
+.admin-add-event{
+  text-align: center;
+  text-transform: uppercase;
+  background: #D7152A;
+  padding: 3%;
+}

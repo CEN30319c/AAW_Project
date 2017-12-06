@@ -13,7 +13,8 @@
       title: 'Gallery',
       state: 'galleries',
       // type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 4
     });
   }
 }());
