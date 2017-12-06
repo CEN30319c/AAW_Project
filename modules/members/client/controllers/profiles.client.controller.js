@@ -6,9 +6,9 @@
       .module('members')
       .controller('ProfilesController', ProfilesController);
   
-    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', '$timeout', 'MembersService', 'Authentication', 'FileUploader'];
+    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', '$timeout', '$rootScope', 'MembersService', 'Authentication', 'FileUploader'];
   
-    function ProfilesController ($scope, $state, $window, $modal, $log, $timeout, MembersService, Authentication, FileUploader, member) {
+    function ProfilesController ($scope, $state, $window, $modal, $log, $timeout, $rootScope, MembersService, Authentication, FileUploader, member) {
       var vm = this;
       vm.member = member;
       vm.error = null;
@@ -16,12 +16,52 @@
       $scope.user = Authentication.user;
       $scope.profiles = MembersService.query();
       $scope.newfilename = null;
-      $scope.newimageURL = null;
       $scope.showForm = false;
 
       $scope.clicked = function () {
         $scope.showForm = !$scope.showForm;
       };
+
+        $scope.createProfile = function () {
+            console.log('Image URL createProf in Profiles is: ' + $rootScope.imageURL);
+            var modalInstance = $modal.open({
+                templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
+                controller: function ($scope, $modalInstance) {
+
+
+                    $scope.ok = function() {
+                        var newName = document.getElementById("name").value;
+                        var newDescription = document.getElementById("description").value;
+                        var imageURL = document.getElementById("image").value;
+
+
+                        if (newName === '' || newDescription === '' || imageURL === '') {
+                            console.log(' ');
+                        }
+                        else {
+                            $modalInstance.close($scope.profile);
+                        }
+                    };
+
+                    $scope.cancel = function() {
+                        $modalInstance.dismiss('cancel');
+
+                        $scope.newfilename = null;
+                        $scope.imageURL = null;
+                    };
+                },
+                // size: size,
+                resolve: {
+                    profile: function() {
+
+                    }
+                }
+            });
+
+
+            $state.go('profiles');
+
+        };
 
       $scope.ProfileUpdate = function(updatedProfile) {
         var newName = document.getElementById("name").value;
@@ -52,10 +92,6 @@
       $scope.ProfileAdd = function() {
         var newName = document.getElementById("name").value;
         var newDescription = document.getElementById("description").value;
-          //var imageURL2 = document.getElementById("image").value;
-          //var filename2 = document.getElementById("image").value;
-        //Added this to saved the image URL in DB
-        //var imageURL = document.getElementById("image").value;
 
           if (newName === '' || newDescription === '') {}
           else {
@@ -65,9 +101,7 @@
                 description: newDescription,
                 filename: $scope.newfilename,
                 imageURL: $scope.newimageURL
-
-                //imageURL2: imageURL   // save obj image url
-                });
+             });
 
                 profile.$save(function() {
                     
@@ -83,20 +117,20 @@
       };
 
         $scope.ProfileRequestAdd = function() {
+            console.log('Image URL in Profiles is: ' + $scope.imageURL);
+
             var newName = document.getElementById("name").value;
             var newDescription = document.getElementById("description").value;
             var imageURL = document.getElementById("image").value;
-            var filename = document.getElementById("image").value;
-            //Added this to saved the image URL in DB
-            //var imageURL = document.getElementById("image").value;
+            // var filename = document.getElementById("image").value;
 
-            if (newName === '' || newDescription === '') {}
+            if (newName === '' || newDescription === '' || imageURL === '') {}
             else {
 
                 var profile = new MembersService({
                     name: newName,
                     description: newDescription,
-                    filename: filename,
+                    // filename: filename,
                     imageURL: imageURL
 
                 });
@@ -107,8 +141,8 @@
                     $scope.error = errorResponse.data.message;
                 });
 
-                $scope.newfilename = null;
-                $scope.newimageURL = null;
+                // $scope.newfilename = null;
+                $scope.imageURL = null;
 
                 $state.reload();      //reloads the page
             }
@@ -233,13 +267,15 @@
     };
 
         vm.modalRequestAdd = function (size) {
+            console.log('Image URL in Modal Profiles is: ' + $scope.imageURL);
+
             var modalInstance = $modal.open({
-                //templateUrl: "modules/members/client/views/profiles-add-modal.client.view.html",
                  templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
-                controller: function ($scope, $modalInstance) {
+                 controller: function ($scope, $modalInstance) {
                     $scope.ok = function() {
                         var newName = document.getElementById("name").value;
                         var newDescription = document.getElementById("description").value;
+                        var imageURL = document.getElementById("image").value;
                         if (newName === '' || newDescription === '') {
                             console.log(' ');
                         }
@@ -251,8 +287,8 @@
                     $scope.cancel = function() {
                         $modalInstance.dismiss('cancel');
 
-                        $scope.newfilename = null;
-                        $scope.newimageURL = null;
+                        // $scope.newfilename = null;
+                        $scope.imageURL = null;
                     };
                 },
                 size: size,
