@@ -107,11 +107,12 @@
          * Upload images.
          */
         $scope.fillFields = function () {
-            if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
+            if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== 'https://s3.us-east-2.amazonaws.com/aawufimages/') {
+                console.log("Inside fillFields Image URL is: " + vm.pendingrequet.imageURL);
                 $scope.imageURL = vm.pendingrequet.imageURL;
             }
             else {
-                $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
+                $scope.imageURL = ' https://s3.us-east-2.amazonaws.com/aawufimages/default';
             }
         };
         // Create file uploader instance
@@ -138,7 +139,7 @@
         function getSignedRequest(file) {
             var xhr = new XMLHttpRequest();
             vm.pendingrequet.filename = file.name;
-            xhr.open('GET', '/sign-s3?file-name=${file.name}&file-type=${file.type}');
+            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
             xhr.onreadystatechange = () => {
                 if(xhr.readyState === 4) {
                     if(xhr.status === 200) {
