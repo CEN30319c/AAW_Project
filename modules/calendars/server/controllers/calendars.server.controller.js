@@ -75,7 +75,7 @@ exports.ical = function(req, response) {
         }
       }
     );
-  } while(b == '' || b == bodyError);
+  } while(b === '' || b === bodyError);
   b = '';
 };
 
