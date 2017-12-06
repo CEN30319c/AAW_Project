@@ -186,7 +186,8 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
       title: 'Calendar',
       state: 'calendars.list',
       // type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 1
     });
 
     // Add the dropdown list item
@@ -393,7 +394,8 @@ angular.module('core.admin').run(['Menus',
       title: 'Admin',
       state: 'admin',
       type: 'dropdown',
-      roles: ['admin']
+      roles: ['admin'],
+      position: 7
     });
   }
 ]);
@@ -1024,7 +1026,8 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
       title: 'Gallery',
       state: 'galleries',
       // type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 4
     });
   }
 }());
@@ -1218,7 +1221,8 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
     Menus.addMenuItem('topbar', {
       title: 'Join Us!',
       state: 'joins',
-      roles: ['*']
+      roles: ['*'],
+      position: 5
     });
 
     // // Add the dropdown list item
@@ -1636,7 +1640,8 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       title: 'Members',
       state: 'members',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 3
     });
 
     // Add the dropdown list item
@@ -1847,6 +1852,7 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
                         var newDescription = document.getElementById("description").value;
                         var imageURL = document.getElementById("image").value;
 
+                        console.log("Modal OK ImageURL is: " + imageURL);
 
                         if (newName === '' || newDescription === '' || imageURL === '') {
                             console.log(' ');
@@ -1946,7 +1952,7 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
             var newName = document.getElementById("name").value;
             var newDescription = document.getElementById("description").value;
             var imageURL = document.getElementById("image").value;
-            // var filename = document.getElementById("image").value;
+            var filename = document.getElementById("image").value;
 
             if (newName === '' || newDescription === '' || imageURL === '') {}
             else {
@@ -1954,7 +1960,7 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
                 var profile = new MembersService({
                     name: newName,
                     description: newDescription,
-                    // filename: filename,
+                    filename: filename,
                     imageURL: imageURL
 
                 });
@@ -2055,7 +2061,6 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
     vm.modalAdd = function (size) {
         var modalInstance = $modal.open({
             templateUrl: "modules/members/client/views/profiles-add-modal.client.view.html",
-            // templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
             controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
                 $scope.ok = function() {
                     var newName = document.getElementById("name").value;
@@ -2512,7 +2517,8 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       title: 'About',
       state: 'newabouts.list',
       //type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 0
     });
 
     // Add the dropdown list item
@@ -3271,7 +3277,8 @@ angular.module('newabouts')
       title: 'News',
       state: 'news',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 2
     });
 
     // Add the dropdown list item
@@ -3485,7 +3492,8 @@ angular.module('newabouts')
       title: 'List of Members',
       state: 'pendingrequets.list',
       // type: 'dropdown',
-      roles: ['admin']
+      roles: ['admin'],
+      position: 6
     });
 
     // Add the dropdown create item
@@ -3673,7 +3681,7 @@ angular.module('newabouts')
                 $scope.imageURL = vm.pendingrequet.imageURL;
             }
             else {
-                $scope.imageURL = 'modules/pendingrequets/client/img/memberImages/default.png';
+                $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
             }
         };
         // Create file uploader instance
