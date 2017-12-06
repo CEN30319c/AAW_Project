@@ -86,8 +86,11 @@ exports.create = function (req, res) {
     var pendingrequet = new Pendingrequet(req.body);
     pendingrequet.user = req.user;
 
-    //pendingrequet.imageURL = config.uploads.pendingProfileUpload.dest + pendingrequet.filename;
-    pendingrequet.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + pendingrequet.filename;
+    if (pendingrequet.filename.substring(0, 5) === 'https') {
+        pendingrequet.imageURL = pendingrequet.filename;
+    } else {
+        pendingrequet.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + pendingrequet.filename;
+    }
 
     pendingrequet.save(function (err) {
         if (err) {
@@ -123,7 +126,12 @@ exports.update = function (req, res) {
     pendingrequet = _.extend(pendingrequet, req.body);
 
     //pendingrequet.imageURL = config.uploads.pendingProfileUpload.dest + pendingrequet.filename;
-    pendingrequet.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + pendingrequet.filename;
+    // pendingrequet.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + pendingrequet.filename;
+    if (pendingrequet.filename.substring(0, 5) === 'https') {
+        pendingrequet.imageURL = pendingrequet.filename;
+    } else {
+        pendingrequet.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + pendingrequet.filename;
+    }
 
 
     pendingrequet.save(function (err) {

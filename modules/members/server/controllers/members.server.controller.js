@@ -78,7 +78,12 @@ var path = require('path'),
 exports.create = function(req, res) {
   var member = new Member(req.body);
   member.user = req.user;
-  member.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + member.filename;
+
+    if (member.filename.substring(0, 5) === 'https') {
+        member.imageURL = member.filename;
+    } else {
+        member.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + member.filename;
+    }
 
   member.save(function(err) {
     if (err) {
@@ -113,7 +118,11 @@ exports.update = function(req, res) {
 
   member = _.extend(member, req.body);
 
-  member.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + member.filename;
+    if (member.filename.substring(0, 5) === 'https') {
+        member.imageURL = member.filename;
+    } else {
+        member.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + member.filename;
+    }
 
   member.save(function(err) {
     if (err) {

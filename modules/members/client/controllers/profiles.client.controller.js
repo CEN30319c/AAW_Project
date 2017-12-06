@@ -34,6 +34,7 @@
                         var newDescription = document.getElementById("description").value;
                         var imageURL = document.getElementById("image").value;
 
+                        console.log("Modal OK ImageURL is: " + imageURL);
 
                         if (newName === '' || newDescription === '' || imageURL === '') {
                             console.log(' ');
@@ -133,7 +134,7 @@
             var newName = document.getElementById("name").value;
             var newDescription = document.getElementById("description").value;
             var imageURL = document.getElementById("image").value;
-            // var filename = document.getElementById("image").value;
+            var filename = document.getElementById("image").value;
 
             if (newName === '' || newDescription === '' || imageURL === '') {}
             else {
@@ -141,7 +142,7 @@
                 var profile = new MembersService({
                     name: newName,
                     description: newDescription,
-                    // filename: filename,
+                    filename: filename,
                     imageURL: imageURL
 
                 });
@@ -242,7 +243,6 @@
     vm.modalAdd = function (size) {
         var modalInstance = $modal.open({
             templateUrl: "modules/members/client/views/profiles-add-modal.client.view.html",
-            // templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
             controller: function ($scope, $modalInstance) {
                 $scope.ok = function() {
                     var newName = document.getElementById("name").value;
