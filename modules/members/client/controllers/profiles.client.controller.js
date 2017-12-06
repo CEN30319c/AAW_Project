@@ -30,6 +30,12 @@
 
         }
         else {
+
+            if ($scope.newimageURL === null) {
+                $scope.newfilename = "default.png";
+                $scope.newimageURL = "default.png";
+            }
+            
             var profile = updatedProfile;
             profile.name = document.getElementById("name").value;
             profile.description = document.getElementById("description").value;
@@ -59,6 +65,11 @@
 
           if (newName === '' || newDescription === '') {}
           else {
+
+            if ($scope.newimageURL === null) {
+                $scope.newfilename = "default.png";
+                $scope.newimageURL = "default.png";
+            }
 
             var profile = new MembersService({
                 name: newName,

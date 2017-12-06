@@ -19,11 +19,13 @@
                   </div>
                 </div>
 
-                <div ng-init="fillFields()">
+                <div>
                   <label>Picture:</label>
 
                   <div class="form-group text-center">
-                    <img ng-src="{{imageURL}}" class="img-thumbnail add-member-picture">
+                    <div class="imagediv">
+                      <img ng-src="{{imageURL}}" class="img-thumbnail add-member-picture">
+                    </div>
                   </div>
                   <div class="form-group text-center">
                       <span class="btn btn-default btn-file">
