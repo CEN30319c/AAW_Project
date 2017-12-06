@@ -6,9 +6,9 @@
       .module('members')
       .controller('ProfilesController', ProfilesController);
   
-    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', '$timeout', 'MembersService', 'Authentication', 'FileUploader'];
+    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', '$timeout', '$rootScope', 'MembersService', 'Authentication', 'FileUploader'];
   
-    function ProfilesController ($scope, $state, $window, $modal, $log, $timeout, MembersService, Authentication, FileUploader, member) {
+    function ProfilesController ($scope, $state, $window, $modal, $log, $timeout, $rootScope, MembersService, Authentication, FileUploader, member) {
       var vm = this;
       vm.member = member;
       vm.error = null;
@@ -16,12 +16,52 @@
       $scope.user = Authentication.user;
       $scope.profiles = MembersService.query();
       $scope.newfilename = null;
-      $scope.newimageURL = null;
       $scope.showForm = false;
 
       $scope.clicked = function () {
         $scope.showForm = !$scope.showForm;
       };
+
+        $scope.createProfile = function () {
+            console.log('Image URL createProf in Profiles is: ' + $rootScope.imageURL);
+            var modalInstance = $modal.open({
+                templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
+                controller: function ($scope, $modalInstance) {
+
+
+                    $scope.ok = function() {
+                        var newName = document.getElementById("name").value;
+                        var newDescription = document.getElementById("description").value;
+                        var imageURL = document.getElementById("image").value;
+
+
+                        if (newName === '' || newDescription === '' || imageURL === '') {
+                            console.log(' ');
+                        }
+                        else {
+                            $modalInstance.close($scope.profile);
+                        }
+                    };
+
+                    $scope.cancel = function() {
+                        $modalInstance.dismiss('cancel');
+
+                        $scope.newfilename = null;
+                        $scope.imageURL = null;
+                    };
+                },
+                // size: size,
+                resolve: {
+                    profile: function() {
+
+                    }
+                }
+            });
+
+
+            $state.go('profiles');
+
+        };
 
       $scope.ProfileUpdate = function(updatedProfile) {
         var newName = document.getElementById("name").value;
@@ -30,6 +70,12 @@
 
         }
         else {
+
+            if ($scope.newimageURL === null) {
+                $scope.newfilename = "default.png";
+                $scope.newimageURL = "default.png";
+            }
+            
             var profile = updatedProfile;
             profile.name = document.getElementById("name").value;
             profile.description = document.getElementById("description").value;
@@ -52,18 +98,21 @@
       $scope.ProfileAdd = function() {
         var newName = document.getElementById("name").value;
         var newDescription = document.getElementById("description").value;
-        //Added this to saved the image URL in DB
-        //var imageURL = document.getElementById("image").value;
 
           if (newName === '' || newDescription === '') {}
           else {
+
+            if ($scope.newimageURL === null) {
+                $scope.newfilename = "default.png";
+                $scope.newimageURL = "default.png";
+            }
+
             var profile = new MembersService({
                 name: newName,
                 description: newDescription,
                 filename: $scope.newfilename,
                 imageURL: $scope.newimageURL
-                //imageURL: imageURL   // save obj image url
-                });
+             });
 
                 profile.$save(function() {
                     
@@ -77,6 +126,38 @@
                 $state.reload();      //reloads the page
         }
       };
+
+        $scope.ProfileRequestAdd = function() {
+            console.log('Image URL in Profiles is: ' + $scope.imageURL);
+
+            var newName = document.getElementById("name").value;
+            var newDescription = document.getElementById("description").value;
+            var imageURL = document.getElementById("image").value;
+            // var filename = document.getElementById("image").value;
+
+            if (newName === '' || newDescription === '' || imageURL === '') {}
+            else {
+
+                var profile = new MembersService({
+                    name: newName,
+                    description: newDescription,
+                    // filename: filename,
+                    imageURL: imageURL
+
+                });
+
+                profile.$save(function() {
+
+                }, function(errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+
+                // $scope.newfilename = null;
+                $scope.imageURL = null;
+
+                $state.reload();      //reloads the page
+            }
+        };
 
       vm.delete = function(selectedProfile) {
         var profile = selectedProfile;
@@ -184,7 +265,7 @@
             size: size,
              resolve: {
                  profile: function() {
-                     
+
                  }
              }
         });
@@ -195,6 +276,46 @@
             $log.info("Modal dismissed at: " + new Date());
         });
     };
+
+        vm.modalRequestAdd = function (size) {
+            console.log('Image URL in Modal Profiles is: ' + $scope.imageURL);
+
+            var modalInstance = $modal.open({
+                 templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
+                 controller: function ($scope, $modalInstance) {
+                    $scope.ok = function() {
+                        var newName = document.getElementById("name").value;
+                        var newDescription = document.getElementById("description").value;
+                        var imageURL = document.getElementById("image").value;
+                        if (newName === '' || newDescription === '') {
+                            console.log(' ');
+                        }
+                        else {
+                            $modalInstance.close($scope.profile);
+                        }
+                    };
+
+                    $scope.cancel = function() {
+                        $modalInstance.dismiss('cancel');
+
+                        // $scope.newfilename = null;
+                        $scope.imageURL = null;
+                    };
+                },
+                size: size,
+                resolve: {
+                    profile: function() {
+
+                    }
+                }
+            });
+
+            modalInstance.result.then(function(selectedProfile) {
+                $scope.selected = selectedProfile;
+            }, function () {
+                $log.info("Modal dismissed at: " + new Date());
+            });
+        };
 
     //Below functions are all for uploading pictures
     $scope.fillFields = function () {
@@ -207,6 +328,68 @@
         console.log($scope.imageURL);
     };
 
+      function uploadAWS() {
+        console.log('uploadAWS function called');
+        /*document.getElementById("file-input").onchange = () => {
+            const files = document.getElementById('file-input').files;
+            const file = files[0];
+            if(file === null){
+                return alert('No file selected.');
+            }
+            getSignedRequest(file);
+        };*/
+        var files = document.getElementById('file-input').files;
+        var file = files[0];
+        getSignedRequest(file);
+      }
+
+      function getSignedRequest(file) {
+        var xhr = new XMLHttpRequest();
+        $scope.newfilename = file.name;
+        //vm.member.filename = file.name;
+        //console.log('Member.filename: ' + vm.member.filename);
+        xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+        xhr.onreadystatechange = () => {
+          if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
+              const response = JSON.parse(xhr.responseText);
+              //vm.pendingrequet.imageURL = response.url;
+              uploadFile(file, response.signedRequest, response.url);
+            }
+            else {
+              //alert('Could not upload file.');
+              console.log(xhr.status + ': ' + xhr.statusText);
+              //$scope.error = xhr.status + ': ' + xhr.statusText;
+            }
+          }
+        };
+        xhr.send();
+      }
+
+      function uploadFile(file, signedRequest, url) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', signedRequest);
+        xhr.onreadystatechange = () => {
+          if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
+              //$scope.imageURL = url
+              //console.log('imageURL just prior to upload: ' + $scope.imageURL);
+              $scope.newimageURL = url;
+              //vm.member.imageURL = url;
+              console.log('AWS URL: ' + url);
+              //$scope.success = true;
+              console.log('Upload to AWS successful');
+              //document.getElementById('avatar-url').value = url;
+            }
+            else {
+              //alert('Could not upload file.');
+              console.log(xhr.status + ': ' + xhr.statusText);
+              //$scope.error = xhr.status + ': ' + xhr.statusText;
+            }
+          }
+        };
+        xhr.send(file);
+      }
 
 //Comment this out!
     // Create file uploader instance
@@ -248,8 +431,10 @@
         $scope.success = true;
 
         // Populate user object
-        $scope.newfilename = response.file.filename;
-        $scope.newimageURL = response.file.filename;
+        //$scope.newfilename = response.file.filename;
+        //$scope.newimageURL = response.file.filename;
+
+        uploadAWS();
 
         console.log("filename: " + $scope.newfilename);
     };

@@ -49,7 +49,8 @@
             {{data}}
           </p>
 
-          <button ui-sref="miscs.edit({ miscId: misc._id })" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
+          <!-- <button ui-sref="miscs.edit({ miscId: misc._id })" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button> -->
+          <button ng-click="modalHomeEdit(misc, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Edit</button>
         </div>
       </div>
       <div class="row news">

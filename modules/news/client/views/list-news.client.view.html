@@ -7,7 +7,7 @@
     <div ng-repeat="news in vm.news" class="">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <button class="btn btn-primary" ng-show="user && user.roles[0] == 'admin'" ui-sref="news.view({ newsId: news._id })" style="position: absolute; right: 100px; top: 20px;">Edit</button>
+          <button class="btn btn-primary" ng-show="user && user.roles[0] == 'admin'" ui-sref="news.view({ newsId: news._id })" style="position: absolute; right: 100px; top: 20px;">View</button>
           <div class="news-list-cell">
             <h4 class="new-list-cell-heading" ng-bind="news.name"></h4>
             <p class="news-list-cell-prefix text-center">

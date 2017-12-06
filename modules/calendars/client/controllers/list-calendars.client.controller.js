@@ -12,7 +12,7 @@
 
     $scope.user = Authentication.user;
 
-    vm.calendars = CalendarsService.query();
+    vm.calendars = CalendarsService.query(); //fills vm.calendars with events
  
   }
 

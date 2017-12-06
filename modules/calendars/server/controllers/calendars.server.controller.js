@@ -11,35 +11,66 @@ var path = require('path'),
   request = require('request'),
   ical = require('ical.js');
 
+var b;
+var bodyError = [{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR', beginMonth: 'ERROR', beginDay: 'ERROR', beginTime: 'ERROR', endMonth: 'ERROR', endDay: 'ERROR', endTime: 'ERROR'}];
+
+
+//get the .ical file and parsing it to get the events
 exports.ical = function(req, response) {
-    request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/calendar.ics', function(err, res, body) {  
-    if (err) { return console.log(err); }
-    if ((body[0] + body[1] + body[2] + body[3] + body[4]) == 'BEGIN') {
-      // BODY IS GOOD SO PARSE
-      var jcalData = ical.parse(body);
-      var vcalendar = new ical.Component(jcalData);
-      var vevents = vcalendar.getAllSubcomponents('vevent');
-      var calendars = [];
-      vevents.forEach(function(evt, ix, array) {
-        var event = new ical.Event(evt);
-        var now = new Date();
-        var dtstart = evt.getFirstPropertyValue('dtstart');
-        var ds = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
-        var dtend = evt.getFirstPropertyValue('dtend');
-        var de = new Date(dtend._time.year, dtend._time.month - 1, dtend._time.day, dtend._time.hour, dtend._time.minute, dtend._time.second);
-        var location = evt.getFirstPropertyValue('location');
-        var e = {title: event.summary, description: event.description, begin: ds.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString(), beginMonth: (ds.getMonth() + 1), beginDay: ds.getDate(), beginTime: ds.toLocaleTimeString(), endMonth: (de.getMonth() + 1), endDay: de.getDate(), endTime: de.toLocaleTimeString()};
-        if (now.getTime() < de.getTime()) {
-          calendars.push(e);
+
+  do {
+    request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/calendar.ics', 
+      function(err, res, body) {  
+        
+        //handle error
+        if (err) { return console.log(err); }
+
+        //checking if body contains correct data
+        if ((body[0] + body[1] + body[2] + body[3] + body[4]) == 'BEGIN') {
+          
+          // BODY IS GOOD SO PARSE
+          var jcalData = ical.parse(body); //parse body with ical
+          var vcalendar = new ical.Component(jcalData); //gets the calendar from the parsed data
+          var vevents = vcalendar.getAllSubcomponents('vevent'); //gets all the events from the calendar
+          var calendars = []; //array that will be returned at the end
+          
+          //for loop that goes over each event in vevents
+          vevents.forEach(function(evt, ix, array) {
+            var event = new ical.Event(evt); //making an event object
+            var now = new Date(); //current date and time
+            var dtstart = evt.getFirstPropertyValue('dtstart'); //getting the start date
+
+            //making a date object with info from the start date
+            var ds = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
+            
+            var dtend = evt.getFirstPropertyValue('dtend'); //getting the end date
+
+            //making a date object with info from the end date
+            var de = new Date(dtend._time.year, dtend._time.month - 1, dtend._time.day, dtend._time.hour, dtend._time.minute, dtend._time.second);
+            
+            var location = evt.getFirstPropertyValue('location'); //getting the location of the event
+
+            //making the event object that will be pushed to the returned array
+            var e = {title: event.summary, description: event.description, begin: ds.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString(), beginMonth: (ds.getMonth() + 1), beginDay: ds.getDate(), beginTime: ds.toLocaleTimeString(), endMonth: (de.getMonth() + 1), endDay: de.getDate(), endTime: de.toLocaleTimeString()};
+            
+            //if the event is in the future
+            if (now.getTime() < de.getTime()) {
+              calendars.push(e); //push event to the returned array
+            }
+          });
+
+          b = calendars;
+          response.send(calendars); //return the array
         }
-      });
-      response.send(calendars);
-    }
-    else {
-      // BODY IS BAD SO SEND ERRORS
-      response.send([{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR', beginMonth: 'ERROR', beginDay: 'ERROR', beginTime: 'ERROR', endMonth: 'ERROR', endDay: 'ERROR', endTime: 'ERROR'}]);
-    }
-  });
+        else {
+          // BODY IS BAD SO SEND ERRORS
+          b = bodyError;
+          response.send([{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR', beginMonth: 'ERROR', beginDay: 'ERROR', beginTime: 'ERROR', endMonth: 'ERROR', endDay: 'ERROR', endTime: 'ERROR'}]);
+        }
+      }
+    );
+  } while(b === '' || b === bodyError);
+  b = '';
 };
 
 /**

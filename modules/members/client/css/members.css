@@ -1,8 +1,10 @@
-.imgContainer {
-  /*overflow: hidden;*/
-  /*width: 200px;
-  height: 200px;*/
+.imagediv img {
+  background-image: url('https://aawufimages.s3.amazonaws.com/default.png');
+  background-position: center;
+  background-size: 140px 140px;
+  background-repeat: no-repeat;
 }
+
 .imgContainer img {
   width: 200px;
   height: 200px;
