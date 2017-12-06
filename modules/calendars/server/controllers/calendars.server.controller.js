@@ -12,14 +12,14 @@ var path = require('path'),
   ical = require('ical.js');
 
 var b;
-var bodyError = [{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR', beginMonth: 'ERROR', beginDay: 'ERROR', beginTime: 'ERROR', endMonth: 'ERROR', endDay: 'ERROR', endTime: 'ERROR'}];
+var bodyError = [{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR', beginMonth: 'ERROR', beginDay: 'ERROR', beginTime: 'ERROR', endMonth: 'ERROR', endDay: 'ERROR', endTime: 'ERROR', time: 'ERROR'}];
 
 
 //get the .ical file and parsing it to get the events
 exports.ical = function(req, response) {
 
   do {
-    request('https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/c71946db-4cbb-4ca0-9af3-f5a34459cf28/cid-5939566F43ADC820/calendar.ics', 
+    request('https://calendar.google.com/calendar/ical/aaw.florida%40gmail.com/public/basic.ics', 
       function(err, res, body) {  
         
         //handle error
@@ -41,17 +41,17 @@ exports.ical = function(req, response) {
             var dtstart = evt.getFirstPropertyValue('dtstart'); //getting the start date
 
             //making a date object with info from the start date
-            var ds = new Date(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second);
+            var ds = new Date(Date.UTC(dtstart._time.year, dtstart._time.month - 1, dtstart._time.day, dtstart._time.hour, dtstart._time.minute, dtstart._time.second));
             
             var dtend = evt.getFirstPropertyValue('dtend'); //getting the end date
 
             //making a date object with info from the end date
-            var de = new Date(dtend._time.year, dtend._time.month - 1, dtend._time.day, dtend._time.hour, dtend._time.minute, dtend._time.second);
+            var de = new Date(Date.UTC(dtend._time.year, dtend._time.month - 1, dtend._time.day, dtend._time.hour, dtend._time.minute, dtend._time.second));
             
             var location = evt.getFirstPropertyValue('location'); //getting the location of the event
 
             //making the event object that will be pushed to the returned array
-            var e = {title: event.summary, description: event.description, begin: ds.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString(), beginMonth: (ds.getMonth() + 1), beginDay: ds.getDate(), beginTime: ds.toLocaleTimeString(), endMonth: (de.getMonth() + 1), endDay: de.getDate(), endTime: de.toLocaleTimeString()};
+            var e = {title: event.summary, description: event.description, begin: ds.toLocaleString(), end: de.toLocaleString(), location: location.toLocaleString(), beginMonth: (ds.getMonth() + 1), beginDay: ds.getDate(), beginTime: ds.toLocaleTimeString(), endMonth: (de.getMonth() + 1), endDay: de.getDate(), endTime: de.toLocaleTimeString(), time: ds.getTime()};
             
             //if the event is in the future
             if (now.getTime() < de.getTime()) {
@@ -60,12 +60,18 @@ exports.ical = function(req, response) {
           });
 
           b = calendars;
-          response.send(calendars); //return the array
+          response.send(calendars.sort(function(a,b){
+            if (a.time < b.time)
+              return -1;
+            if (a.time > b.time)
+              return -1;
+            return 0;
+          })); //return the array
         }
         else {
           // BODY IS BAD SO SEND ERRORS
           b = bodyError;
-          response.send([{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR', beginMonth: 'ERROR', beginDay: 'ERROR', beginTime: 'ERROR', endMonth: 'ERROR', endDay: 'ERROR', endTime: 'ERROR'}]);
+          response.send([{title: 'ERROR', description: 'ERROR', begin: 'ERROR', end: 'ERROR', location: 'ERROR', beginMonth: 'ERROR', beginDay: 'ERROR', beginTime: 'ERROR', endMonth: 'ERROR', endDay: 'ERROR', endTime: 'ERROR', time: 'ERROR'}]);
         }
       }
     );
