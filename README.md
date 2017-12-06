@@ -45,6 +45,4 @@ To run the website on localhost, first clone the repository on your computer and
 		
 -Outside contributions
 
-The calendar displayed on the calendar page comes from http://www.instantcal.com/
-
 A tool called ICAL was used to parse an .ics file to get the list of upcoming events on the calendar page.  The repo for ICAL is here: https://github.com/mozilla-comm/ical.js/
