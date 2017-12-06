@@ -13,7 +13,8 @@
       title: 'Calendar',
       state: 'calendars.list',
       // type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 1
     });
 
     // Add the dropdown list item
