@@ -67,7 +67,7 @@
                 $scope.imageURL = vm.pendingrequet.imageURL;
             }
             else {
-                $scope.imageURL = 'modules/pendingrequets/client/img/memberImages/default.png';
+                $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
             }
         };
         // Create file uploader instance
