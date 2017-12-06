@@ -15,8 +15,8 @@ var path = require('path'),
 
 
   exports.uploadImage = function (req, res) {
-    aws.config.region = 'us-east-2';
-    var S3_BUCKET = process.env.S3_BUCKET;
+    aws.config.loadFromPath('./s3_config.json');
+    var S3_BUCKET = 'aawufimages';
 
     var s3 = new aws.S3();
 

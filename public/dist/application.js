@@ -131,12 +131,6 @@ ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
 (function (app) {
   'use strict';
 
-  app.registerModule('meetingminutes');
-}(ApplicationConfiguration));
-
-(function (app) {
-  'use strict';
-
   app.registerModule('members');
 }(ApplicationConfiguration));
 
@@ -352,7 +346,7 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
 
     $scope.user = Authentication.user;
 
-    vm.calendars = CalendarsService.query(); //fills vm.calendars with events
+    vm.calendars = CalendarsService.query();
  
   }
 
@@ -540,12 +534,11 @@ angular.module('core')
 
 angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 'Authentication', 'NewsService', 'CalendarsService', 'MiscsService',
   function ($scope, $modal, $log, Authentication, NewsService, CalendarsService, MiscsService) {
-    var vm = this;
+
     $scope.authentication = Authentication;
     $scope.user = Authentication.user;
     $scope.whoweareText = 'AAW strives to empower UF women for the utmost success in each stage of their careers at the university.';
     $scope.myInterval = 3000;
-    $scope.title = 'Home Page Edit';
     $scope.slides = [
       {
         image: 'modules/core/client/img/pictures/slide5.png'
@@ -578,80 +571,6 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
       modalUpdate(0, header);
     };*/
 
-    //$scope.misc = '';
-
-    $scope.HomeUpdate = function(updatedMisc) {
-      $log.info('updating');
-
-      //var newDescription = document.getElementById("description").value;
-      var p1 = document.getElementById("p1").value;
-      console.log(p1);
-      var p2 = document.getElementById("p2").value;
-      var p3 = document.getElementById("p3").value;
-      if (p1 === '' && p2 === '' && p3 === '') {
-        $log.info('didnt work');
-      }
-      else {
-        $log.info('should be working');
-          var misc = updatedMisc;
-          //about.text = document.getElementById("description").value;
-          misc.data = [];
-          if(p1 !== '') {
-            misc.data.push(p1);
-          }
-          if(p2 !== '') {
-            misc.data.push(p2);
-          }
-          if(p3 !== '') {
-            misc.data.push(p3);
-          }
-          // misc.text.push(p2);
-          // misc.text.push(p3);
-          console.log("In Function");
-          misc.$update(function() {
-
-          }, function(errorResponse) {
-              $scope.error = errorResponse.data.message;
-          });
-      }
-    };
-
-    $scope.modalHomeEdit = function (misc, size) {
-      //$scope.misc = misc;
-      console.log("IN FUNCTION");
-      var modalInstance = $modal.open({
-          templateUrl: "modules/miscs/client/views/misc-editHome-modal-client.view.html",
-          controller: ["$scope", "$modalInstance", "misc", function ($scope, $modalInstance, misc) {
-              $scope.misc = misc;
-
-              $scope.ok = function() {
-                  // var p1 = document.getElementById("p1").value;
-                  // var p2 = document.getElementById("p2").value;
-                  // var p3 = document.getElementById("p3").value;
-                  $modalInstance.dismiss('cancel');
-
-              };
-              $scope.cancel = function() {
-                  $modalInstance.dismiss('cancel');
-              };
-          }],
-          size: size,
-           resolve: {
-               misc: function() {
-                   return misc;
-               }
-           }
-      });
-
-      modalInstance.result.then(function(misc) {
-        $scope.selected = misc;
-      }, function () {
-          $log.info("Modal dismissed at: " + new Date());
-      });
-  };
-
-
-
     $scope.modalUpdate = function(size, texttoedit) {
       var url = 'modules/core/client/views/modal-home.client.view.html';
       var modalInstance = $modal.open({
@@ -681,11 +600,9 @@ angular.module('core').controller('HomeController', ['$scope','$modal', '$log', 
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-
     };
 
   }
-
 ]);
 
 angular.module('core').filter('monthName', [function() {
@@ -1454,177 +1371,6 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
   'use strict';
 
   angular
-    .module('meetingminutes')
-    .config(routeConfig);
-
-  routeConfig.$inject = ['$stateProvider'];
-
-  function routeConfig($stateProvider) {
-    $stateProvider
-      .state('meetingminutes', {
-        abstract: true,
-        url: '/meetingminutes',
-        template: '<ui-view/>'
-      })
-      .state('meetingminutes.list', {
-        url: '',
-        templateUrl: 'modules/meetingminutes/client/views/list-meetingminutes.client.view.html',
-        controller: 'MeetingminutesListController',
-        controllerAs: 'vm',
-        data: {
-          pageTitle: 'Meetingminutes List'
-        }
-      })
-      .state('meetingminutes.create', {
-        url: '/create',
-        templateUrl: 'modules/meetingminutes/client/views/form-meetingminute.client.view.html',
-        controller: 'MeetingminutesController',
-        controllerAs: 'vm',
-        resolve: {
-          meetingminuteResolve: newMeetingminute
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'Meetingminutes Create'
-        }
-      })
-      .state('meetingminutes.edit', {
-        url: '/:meetingminuteId/edit',
-        templateUrl: 'modules/meetingminutes/client/views/form-meetingminute.client.view.html',
-        controller: 'MeetingminutesController',
-        controllerAs: 'vm',
-        resolve: {
-          meetingminuteResolve: getMeetingminute
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'Edit Meetingminute {{ meetingminuteResolve.name }}'
-        }
-      })
-      .state('meetingminutes.view', {
-        url: '/:meetingminuteId',
-        templateUrl: 'modules/meetingminutes/client/views/view-meetingminute.client.view.html',
-        controller: 'MeetingminutesController',
-        controllerAs: 'vm',
-        resolve: {
-          meetingminuteResolve: getMeetingminute
-        },
-        data: {
-          pageTitle: 'Meetingminute {{ meetingminuteResolve.name }}'
-        }
-      });
-  }
-
-  getMeetingminute.$inject = ['$stateParams', 'MeetingminutesService'];
-
-  function getMeetingminute($stateParams, MeetingminutesService) {
-    return MeetingminutesService.get({
-      meetingminuteId: $stateParams.meetingminuteId
-    }).$promise;
-  }
-
-  newMeetingminute.$inject = ['MeetingminutesService'];
-
-  function newMeetingminute(MeetingminutesService) {
-    return new MeetingminutesService();
-  }
-}());
-
-(function () {
-  'use strict';
-
-  angular
-    .module('meetingminutes')
-    .controller('MeetingminutesListController', MeetingminutesListController);
-
-  MeetingminutesListController.$inject = ['MeetingminutesService'];
-
-  function MeetingminutesListController(MeetingminutesService) {
-    var vm = this;
-
-    vm.meetingminutes = MeetingminutesService.query();
-  }
-}());
-
-(function () {
-  'use strict';
-
-  // Meetingminutes controller
-  angular
-    .module('meetingminutes')
-    .controller('MeetingminutesController', MeetingminutesController);
-
-  MeetingminutesController.$inject = ['$scope', '$state', '$window', 'Authentication', 'meetingminuteResolve'];
-
-  function MeetingminutesController ($scope, $state, $window, Authentication, meetingminute) {
-    var vm = this;
-
-    vm.authentication = Authentication;
-    vm.meetingminute = meetingminute;
-    vm.error = null;
-    vm.form = {};
-    vm.remove = remove;
-    vm.save = save;
-
-    // Remove existing Meetingminute
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
-        vm.meetingminute.$remove($state.go('meetingminutes.list'));
-      }
-    }
-
-    // Save Meetingminute
-    function save(isValid) {
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.meetingminuteForm');
-        return false;
-      }
-
-      // TODO: move create/update logic to service
-      if (vm.meetingminute._id) {
-        vm.meetingminute.$update(successCallback, errorCallback);
-      } else {
-        vm.meetingminute.$save(successCallback, errorCallback);
-      }
-
-      function successCallback(res) {
-        $state.go('meetingminutes.view', {
-          meetingminuteId: res._id
-        });
-      }
-
-      function errorCallback(res) {
-        vm.error = res.data.message;
-      }
-    }
-  }
-}());
-
-// Meetingminutes service used to communicate Meetingminutes REST endpoints
-(function () {
-  'use strict';
-
-  angular
-    .module('meetingminutes')
-    .factory('MeetingminutesService', MeetingminutesService);
-
-  MeetingminutesService.$inject = ['$resource'];
-
-  function MeetingminutesService($resource) {
-    return $resource('api/meetingminutes/:meetingminuteId', {
-      meetingminuteId: '@_id'
-    }, {
-      update: {
-        method: 'PUT'
-      }
-    });
-  }
-}());
-
-(function () {
-  'use strict';
-
-  angular
     .module('members')
     .run(menuConfig);
 
@@ -1819,9 +1565,9 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       .module('members')
       .controller('ProfilesController', ProfilesController);
   
-    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', '$timeout', '$rootScope', 'MembersService', 'Authentication', 'FileUploader'];
+    ProfilesController.$inject = ['$scope', '$state', '$window', '$modal', '$log', '$timeout', 'MembersService', 'Authentication', 'FileUploader'];
   
-    function ProfilesController ($scope, $state, $window, $modal, $log, $timeout, $rootScope, MembersService, Authentication, FileUploader, member) {
+    function ProfilesController ($scope, $state, $window, $modal, $log, $timeout, MembersService, Authentication, FileUploader, member) {
       var vm = this;
       vm.member = member;
       vm.error = null;
@@ -1829,52 +1575,12 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       $scope.user = Authentication.user;
       $scope.profiles = MembersService.query();
       $scope.newfilename = null;
+      $scope.newimageURL = null;
       $scope.showForm = false;
 
       $scope.clicked = function () {
         $scope.showForm = !$scope.showForm;
       };
-
-        $scope.createProfile = function () {
-            console.log('Image URL createProf in Profiles is: ' + $rootScope.imageURL);
-            var modalInstance = $modal.open({
-                templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
-                controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
-
-
-                    $scope.ok = function() {
-                        var newName = document.getElementById("name").value;
-                        var newDescription = document.getElementById("description").value;
-                        var imageURL = document.getElementById("image").value;
-
-
-                        if (newName === '' || newDescription === '' || imageURL === '') {
-                            console.log(' ');
-                        }
-                        else {
-                            $modalInstance.close($scope.profile);
-                        }
-                    };
-
-                    $scope.cancel = function() {
-                        $modalInstance.dismiss('cancel');
-
-                        $scope.newfilename = null;
-                        $scope.imageURL = null;
-                    };
-                }],
-                // size: size,
-                resolve: {
-                    profile: function() {
-
-                    }
-                }
-            });
-
-
-            $state.go('profiles');
-
-        };
 
       $scope.ProfileUpdate = function(updatedProfile) {
         var newName = document.getElementById("name").value;
@@ -1883,12 +1589,6 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
 
         }
         else {
-
-            if ($scope.newimageURL === null) {
-                $scope.newfilename = "default.png";
-                $scope.newimageURL = "default.png";
-            }
-            
             var profile = updatedProfile;
             profile.name = document.getElementById("name").value;
             profile.description = document.getElementById("description").value;
@@ -1911,21 +1611,18 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
       $scope.ProfileAdd = function() {
         var newName = document.getElementById("name").value;
         var newDescription = document.getElementById("description").value;
+        //Added this to saved the image URL in DB
+        //var imageURL = document.getElementById("image").value;
 
           if (newName === '' || newDescription === '') {}
           else {
-
-            if ($scope.newimageURL === null) {
-                $scope.newfilename = "default.png";
-                $scope.newimageURL = "default.png";
-            }
-
             var profile = new MembersService({
                 name: newName,
                 description: newDescription,
                 filename: $scope.newfilename,
                 imageURL: $scope.newimageURL
-             });
+                //imageURL: imageURL   // save obj image url
+                });
 
                 profile.$save(function() {
                     
@@ -1939,38 +1636,6 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
                 $state.reload();      //reloads the page
         }
       };
-
-        $scope.ProfileRequestAdd = function() {
-            console.log('Image URL in Profiles is: ' + $scope.imageURL);
-
-            var newName = document.getElementById("name").value;
-            var newDescription = document.getElementById("description").value;
-            var imageURL = document.getElementById("image").value;
-            // var filename = document.getElementById("image").value;
-
-            if (newName === '' || newDescription === '' || imageURL === '') {}
-            else {
-
-                var profile = new MembersService({
-                    name: newName,
-                    description: newDescription,
-                    // filename: filename,
-                    imageURL: imageURL
-
-                });
-
-                profile.$save(function() {
-
-                }, function(errorResponse) {
-                    $scope.error = errorResponse.data.message;
-                });
-
-                // $scope.newfilename = null;
-                $scope.imageURL = null;
-
-                $state.reload();      //reloads the page
-            }
-        };
 
       vm.delete = function(selectedProfile) {
         var profile = selectedProfile;
@@ -2078,7 +1743,7 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
             size: size,
              resolve: {
                  profile: function() {
-
+                     
                  }
              }
         });
@@ -2089,46 +1754,6 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
             $log.info("Modal dismissed at: " + new Date());
         });
     };
-
-        vm.modalRequestAdd = function (size) {
-            console.log('Image URL in Modal Profiles is: ' + $scope.imageURL);
-
-            var modalInstance = $modal.open({
-                 templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
-                 controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
-                    $scope.ok = function() {
-                        var newName = document.getElementById("name").value;
-                        var newDescription = document.getElementById("description").value;
-                        var imageURL = document.getElementById("image").value;
-                        if (newName === '' || newDescription === '') {
-                            console.log(' ');
-                        }
-                        else {
-                            $modalInstance.close($scope.profile);
-                        }
-                    };
-
-                    $scope.cancel = function() {
-                        $modalInstance.dismiss('cancel');
-
-                        // $scope.newfilename = null;
-                        $scope.imageURL = null;
-                    };
-                }],
-                size: size,
-                resolve: {
-                    profile: function() {
-
-                    }
-                }
-            });
-
-            modalInstance.result.then(function(selectedProfile) {
-                $scope.selected = selectedProfile;
-            }, function () {
-                $log.info("Modal dismissed at: " + new Date());
-            });
-        };
 
     //Below functions are all for uploading pictures
     $scope.fillFields = function () {
@@ -2141,68 +1766,6 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
         console.log($scope.imageURL);
     };
 
-      function uploadAWS() {
-        console.log('uploadAWS function called');
-        /*document.getElementById("file-input").onchange = () => {
-            const files = document.getElementById('file-input').files;
-            const file = files[0];
-            if(file === null){
-                return alert('No file selected.');
-            }
-            getSignedRequest(file);
-        };*/
-        var files = document.getElementById('file-input').files;
-        var file = files[0];
-        getSignedRequest(file);
-      }
-
-      function getSignedRequest(file) {
-        var xhr = new XMLHttpRequest();
-        $scope.newfilename = file.name;
-        //vm.member.filename = file.name;
-        //console.log('Member.filename: ' + vm.member.filename);
-        xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
-        xhr.onreadystatechange = () => {
-          if(xhr.readyState === 4) {
-            if(xhr.status === 200) {
-              const response = JSON.parse(xhr.responseText);
-              //vm.pendingrequet.imageURL = response.url;
-              uploadFile(file, response.signedRequest, response.url);
-            }
-            else {
-              //alert('Could not upload file.');
-              console.log(xhr.status + ': ' + xhr.statusText);
-              //$scope.error = xhr.status + ': ' + xhr.statusText;
-            }
-          }
-        };
-        xhr.send();
-      }
-
-      function uploadFile(file, signedRequest, url) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('PUT', signedRequest);
-        xhr.onreadystatechange = () => {
-          if(xhr.readyState === 4) {
-            if(xhr.status === 200) {
-              //$scope.imageURL = url
-              //console.log('imageURL just prior to upload: ' + $scope.imageURL);
-              $scope.newimageURL = url;
-              //vm.member.imageURL = url;
-              console.log('AWS URL: ' + url);
-              //$scope.success = true;
-              console.log('Upload to AWS successful');
-              //document.getElementById('avatar-url').value = url;
-            }
-            else {
-              //alert('Could not upload file.');
-              console.log(xhr.status + ': ' + xhr.statusText);
-              //$scope.error = xhr.status + ': ' + xhr.statusText;
-            }
-          }
-        };
-        xhr.send(file);
-      }
 
 //Comment this out!
     // Create file uploader instance
@@ -2244,10 +1807,8 @@ angular.module('joins').controller('ModalController', ['$scope', function($scope
         $scope.success = true;
 
         // Populate user object
-        //$scope.newfilename = response.file.filename;
-        //$scope.newimageURL = response.file.filename;
-
-        uploadAWS();
+        $scope.newfilename = response.file.filename;
+        $scope.newimageURL = response.file.filename;
 
         console.log("filename: " + $scope.newfilename);
     };
@@ -2656,7 +2217,7 @@ angular.module('newabouts')
 
   function NewaboutsListController($scope, $state, NewaboutsService, Authentication, $modal, $log) {
     var vm = this;
-
+    
     $scope.user = Authentication.user;
     $scope.ids = ['mission', 'people', 'awards', 'history'];
 
@@ -2681,43 +2242,6 @@ angular.module('newabouts')
       }
     };
 
-    $scope.AboutUpdate = function(updatedAbout) {
-      $log.info('updating');
-
-      if(updatedAbout.contentType == 'mission') {
-        $scope.title = 'Mission';
-      }
-      //var newDescription = document.getElementById("description").value;
-      var p1 = document.getElementById("p1").value;
-      var p2 = document.getElementById("p2").value;
-      var p3 = document.getElementById("p3").value;
-      if (p1 === '' && p2 === '' && p3 === '') {
-        $log.info('didnt work');
-      }
-      else {
-        $log.info('should be working');
-          var about = updatedAbout;
-          //about.text = document.getElementById("description").value;
-          about.text = [];
-          if(p1 !== '') {
-            about.text.push(p1);
-          }
-          if(p2 !== '') {
-            about.text.push(p2);
-          }
-          if(p3 !== '') {
-            about.text.push(p3);
-          }
-          
-          console.log("In Function");
-          about.$update(function() {
-
-          }, function(errorResponse) {
-              $scope.error = errorResponse.data.message;
-          });
-      }
-    };
-
     $scope.AwardTableUpdate = function(updatedAward) {
         $log.info('updating');
         var newYear = document.getElementById("year").value;
@@ -2732,9 +2256,9 @@ angular.module('newabouts')
             award.year = document.getElementById("year").value;
             award.name = document.getElementById("name").value;
             award.department = document.getElementById("department").value;
-
+  
             award.$update(function() {
-
+  
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -2746,7 +2270,7 @@ angular.module('newabouts')
 
       if (confirm("Are you sure you want to delete this?")) {
           award.$delete(function() {
-
+              
           }, function(errorResponse) {
               $scope.error = errorResponse.data.message;
           });
@@ -2754,39 +2278,6 @@ angular.module('newabouts')
           $state.reload();      //reloads the page
       }
     };
-
-
-    vm.modalAboutEdit = function (about, size) {
-      var modalInstance = $modal.open({
-          templateUrl: "modules/newabouts/client/views/newabouts-editAbout-modal-client.view.html",
-          controller: ["$scope", "$modalInstance", "award", function ($scope, $modalInstance, award) {
-              $scope.about = award;
-
-              $scope.ok = function() {
-                  // var p1 = document.getElementById("p1").value;
-                  // var p2 = document.getElementById("p2").value;
-                  // var p3 = document.getElementById("p3").value;
-                  $modalInstance.dismiss('cancel');
-
-              };
-              $scope.cancel = function() {
-                  $modalInstance.dismiss('cancel');
-              };
-          }],
-          size: size,
-           resolve: {
-               award: function() {
-                   return about;
-               }
-           }
-      });
-
-      modalInstance.result.then(function(about) {
-        $scope.selected = about;
-      }, function () {
-          $log.info("Modal dismissed at: " + new Date());
-      });
-  };
 
     vm.modalEdit = function (selectedAward, size) {
       var modalInstance = $modal.open({
@@ -2822,8 +2313,6 @@ angular.module('newabouts')
       });
   };
 
-
-
   vm.modalTableEdit = function (selectedAward, size) {
     var modalInstance = $modal.open({
         templateUrl: "modules/newabouts/client/views/newabouts-edit-table-modal.client.view.html",
@@ -2838,7 +2327,7 @@ angular.module('newabouts')
 
                 }
                 else {
-
+                    
                     $modalInstance.close($scope.award);
                 }
             };
@@ -2874,14 +2363,14 @@ angular.module('newabouts')
                             text: newText,
                             award: section,
                         });
-
+            
                         award.$save(function() {
-
+                            
                         }, function(errorResponse) {
                             $scope.error = errorResponse.data.message;
                         });
-
-
+            
+                            
                         $modalInstance.close($scope.award);
 
                         $state.reload();      //reloads the page
@@ -2895,7 +2384,7 @@ angular.module('newabouts')
             size: size,
             resolve: {
                 award: function() {
-
+                    
                 }
             }
     });
@@ -2929,14 +2418,14 @@ angular.module('newabouts')
                         department: newDepartment,
                         award: section,
                     });
-
+          
                     award.$save(function() {
-
+                        
                     }, function(errorResponse) {
                         $scope.error = errorResponse.data.message;
                     });
-
-
+        
+                        
                     $modalInstance.close($scope.award);
 
                     $state.reload();      //reloads the page
@@ -2950,7 +2439,7 @@ angular.module('newabouts')
         size: size,
         resolve: {
             award: function() {
-
+                
             }
         }
     });
@@ -3612,9 +3101,9 @@ angular.module('newabouts')
         .module('pendingrequets')
         .controller('PendingrequetsController', PendingrequetsController);
 
-    PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', '$http', '$rootScope', 'MembersService', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
+    PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', '$http', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
 
-    function PendingrequetsController($scope, $state, $window, $modal, $timeout, $location, $http, $rootScope, MembersService, Authentication, FileUploader, pendingrequet) {
+    function PendingrequetsController($scope, $state, $window, $modal, $timeout, $location, $http, Authentication, FileUploader, pendingrequet) {
         var vm = this;
 
         vm.authentication = Authentication;
@@ -3624,13 +3113,6 @@ angular.module('newabouts')
         vm.remove = remove;
         vm.save = save;
 
-        //Global variables that can be accessed by any module.
-        $rootScope.name = vm.pendingrequet.name;
-        $rootScope.imageURL = vm.pendingrequet.imageURL;
-        $rootScope.interest = vm.pendingrequet.interest;
-        $rootScope.motivation = vm.pendingrequet.motivation;
-
-
         $scope.clicked = function () {
             if (vm.pendingrequet.selection4) {
                 $scope.showForm = true;
@@ -3639,6 +3121,13 @@ angular.module('newabouts')
                 vm.pendingrequet.interest = '';
                 vm.pendingrequet.motivation = '';
             }
+        };
+
+        //this function takes the user to add a profile page.
+        $scope.createProfile = function () {
+
+            $state.go('profiles');
+
         };
 
 
@@ -3651,6 +3140,8 @@ angular.module('newabouts')
 
             }).result.then(function () {
                 //Redirecting to client's current payment page
+                // var url = 'https://squareup.com/store/UFLAAW';
+                //$window.open(url);
                 $window.location.href = 'https://squareup.com/store/UFLAAW';
 
             });
@@ -3668,12 +3159,11 @@ angular.module('newabouts')
          * Upload images.
          */
         $scope.fillFields = function () {
-            if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== 'https://s3.us-east-2.amazonaws.com/aawufimages/') {
-                console.log("Inside fillFields Image URL is: " + vm.pendingrequet.imageURL);
+            if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
                 $scope.imageURL = vm.pendingrequet.imageURL;
             }
             else {
-                $scope.imageURL = 'modules/pendingrequets/client/img/memberImages/default.png';
+                $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
             }
         };
         // Create file uploader instance
@@ -3681,66 +3171,6 @@ angular.module('newabouts')
             url: '/api/pendingrequets/picture',
             alias: 'newMemberPicture'
         });
-
-        function uploadAWS() {
-            console.log('uploadAWS function called');
-            /*document.getElementById("file-input").onchange = () => {
-                const files = document.getElementById('file-input').files;
-                const file = files[0];
-                if(file === null){
-                    return alert('No file selected.');
-                }
-                getSignedRequest(file);
-            };*/
-            var files = document.getElementById('file-input').files;
-            var file = files[0];
-            getSignedRequest(file);
-        }
-
-        function getSignedRequest(file) {
-            var xhr = new XMLHttpRequest();
-            vm.pendingrequet.filename = file.name;
-            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
-            xhr.onreadystatechange = () => {
-                if(xhr.readyState === 4) {
-                    if(xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText);
-                        //vm.pendingrequet.imageURL = response.url;
-                        uploadFile(file, response.signedRequest, response.url);
-                    }
-                    else {
-                        //alert('Could not upload file.');
-                        console.log(xhr.status + ': ' + xhr.statusText);
-                        //$scope.error = xhr.status + ': ' + xhr.statusText;
-                    }
-                }
-            };
-            xhr.send();
-        }
-
-        function uploadFile(file, signedRequest, url) {
-            const xhr = new XMLHttpRequest();
-            xhr.open('PUT', signedRequest);
-            xhr.onreadystatechange = () => {
-                if(xhr.readyState === 4) {
-                    if(xhr.status === 200) {
-                        //$scope.imageURL = url
-                        //console.log('imageURL just prior to upload: ' + $scope.imageURL);
-                        vm.pendingrequet.imageURL = url;
-                        console.log('AWS URL: ' + url);
-                        //$scope.success = true;
-                        console.log('Upload to AWS successful');
-                        //document.getElementById('avatar-url').value = url;
-                    }
-                    else {
-                        //alert('Could not upload file.');
-                        console.log(xhr.status + ': ' + xhr.statusText);
-                        //$scope.error = xhr.status + ': ' + xhr.statusText;
-                    }
-                }
-            };
-            xhr.send(file);
-        }
 
         // Set file uploader image filter
         $scope.uploader.filters.push({
@@ -3775,10 +3205,8 @@ angular.module('newabouts')
             $scope.success = true;
 
             // Populate user object
-            //vm.pendingrequet.filename = response.file.filename;
-            //vm.pendingrequet.imageURL = response.file.filename;
-
-            uploadAWS();
+            vm.pendingrequet.filename = response.file.filename;
+            vm.pendingrequet.imageURL = response.file.filename;
 
             // console.log("filename: " + vm.pendingrequet.filename);
         };
@@ -3807,7 +3235,7 @@ angular.module('newabouts')
         // Cancel the upload process
         $scope.cancelUpload = function () {
             $scope.uploader.clearQueue();
-            $scope.imageURL = '';
+            // $scope.imageURL = '';
         };
 
 
