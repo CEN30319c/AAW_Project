@@ -4,7 +4,87 @@
     <h1>GALLERY</h1>
   </div>
 
-  
+  <div class="ui-view">
+    <div class="page-content">
+      <button ng-click="modalHomeEdit(misc, lg)" ng-show="user != '' && user.roles[0] == 'admin'" type="button" class="btn btn-primary">Add picture</button>
+      <div class="gallery-container">
+        <div class="row album-row">
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="row album-row">
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="row album-row">
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+          <div class="col-md-4 col-sm-4 album-item">
+            <a ui-sref='galleries.album' class="album-link">
+              <img class="img-responsive album-cover-image" src="">
+              <p>{{albumName}}</p>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </section>

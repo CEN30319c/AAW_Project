@@ -13,7 +13,8 @@
       title: 'Members',
       state: 'members',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 3
     });
 
     // Add the dropdown list item

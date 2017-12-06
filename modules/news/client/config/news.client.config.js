@@ -13,7 +13,8 @@
       title: 'News',
       state: 'news',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['*'],
+      position: 2
     });
 
     // Add the dropdown list item

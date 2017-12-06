@@ -7,6 +7,7 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Member = mongoose.model('Member'),
   multer = require('multer'),
+  aws = require('aws-sdk'),
   config = require(path.resolve('./config/config')),
   fs = require('fs'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
@@ -14,6 +15,38 @@ var path = require('path'),
 
 
   exports.uploadImage = function (req, res) {
+    aws.config.region = 'us-east-2';
+    var S3_BUCKET = process.env.S3_BUCKET;
+
+    var s3 = new aws.S3();
+
+    var fileName = req.query['file-name'];
+    var fileType = req.query['file-type'];
+    //var path = fileName;
+
+    var s3Params = {
+      Bucket: S3_BUCKET,
+      Key: fileName,
+      Expires: 60,
+      ACL: 'public-read',
+      ContentType: fileType
+    };
+
+    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+      if(err) {
+        console.log(err);
+        return res.end();
+      }
+      const returnData = {
+        signedRequest: data,
+        url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+      };
+      res.write(JSON.stringify(returnData));
+      res.end();
+    });
+};
+
+  exports.uploadImageDB = function (req, res) {
     var message = null;
 
     var upload = multer(config.uploads.pendingProfileUpload).single('newMemberPicture');
@@ -45,6 +78,12 @@ var path = require('path'),
 exports.create = function(req, res) {
   var member = new Member(req.body);
   member.user = req.user;
+
+    if (member.filename.substring(0, 5) === 'https') {
+        member.imageURL = member.filename;
+    } else {
+        member.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + member.filename;
+    }
 
   member.save(function(err) {
     if (err) {
@@ -78,6 +117,12 @@ exports.update = function(req, res) {
   var member = req.member;
 
   member = _.extend(member, req.body);
+
+    if (member.filename.substring(0, 5) === 'https') {
+        member.imageURL = member.filename;
+    } else {
+        member.imageURL = 'https://s3.us-east-2.amazonaws.com/aawufimages/' + member.filename;
+    }
 
   member.save(function(err) {
     if (err) {

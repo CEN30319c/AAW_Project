@@ -14,7 +14,8 @@
       title: 'List of Members',
       state: 'pendingrequets.list',
       // type: 'dropdown',
-      roles: ['admin']
+      roles: ['admin'],
+      position: 6
     });
 
     // Add the dropdown create item

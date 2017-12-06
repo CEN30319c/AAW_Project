@@ -102,7 +102,7 @@ th {
 }
 
 .about-section > h1 {
-  font-size: 4em;
+  font-size: 2.5em;
   margin-top: 5%;
 }
 
@@ -255,4 +255,17 @@ th {
   padding: 15px;
   width: 25%;
   cursor: pointer;
+}
+
+
+.apply-button-1{
+  display: block;
+  font-family: 'Avenir Black';
+  color: white;
+  font-size: 2em;
+  background-color: #4a4a4a;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  padding: 15px 0;
 }

@@ -33,7 +33,7 @@ var MemberSchema = new Schema({
   },
   imageURL: {
       type: String,
-      default: 'modules/pendingrequets/client/img/memberImages/default.png'
+      default: 'default.png'
   }
 });
 

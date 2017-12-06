@@ -33,7 +33,7 @@ describe('ical test', function () {
 
   it('should be able to save a Calendar if logged in', function (done) {
     agent.post('/api/ical')
-      .expect(200)
+      .expect(200);
 
       done();
   });
