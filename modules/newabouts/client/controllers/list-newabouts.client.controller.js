@@ -52,13 +52,13 @@
           var about = updatedAbout;
           //about.text = document.getElementById("description").value;
           about.text = [];
-          if(p1 != '') {
+          if(p1 !== '') {
             about.text.push(p1);
           }
-          if(p2 != '') {
+          if(p2 !== '') {
             about.text.push(p2);
           }
-          if(p3 != '') {
+          if(p3 !== '') {
             about.text.push(p3);
           }
           
