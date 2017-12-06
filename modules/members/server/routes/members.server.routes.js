@@ -9,7 +9,10 @@ var membersPolicy = require('../policies/members.server.policy'),
 module.exports = function(app) {
   //Setting profile picture
   app.route('/api/members/picture').all()
-    .post(members.uploadImage);
+    .post(members.uploadImageDB);
+
+  app.route('/sign-s3').all()
+    .get(members.uploadImage);
 
   // Members Routes
   app.route('/api/members').all(membersPolicy.isAllowed)
