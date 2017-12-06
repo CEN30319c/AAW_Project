@@ -35,49 +35,6 @@
             }
         };
 
-        //This function takes the user to add a profile page.
-    // $scope.createProfile = function () {
-    //     console.log('Image URL createProf in Pending is: ' + vm.pendingrequet.imageURL);
-    //
-    //     var modalInstance = $modal.open({
-    //         templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
-    //         controller: function ($scope, $modalInstance) {
-    //
-    //
-    //             $scope.ok = function() {
-    //                 var newName = document.getElementById("name").value;
-    //                 var newDescription = document.getElementById("description").value;
-    //                 var imageURL = document.getElementById("image").value;
-    //
-    //                 console.log('Image URL createProf inside ok is: ' + vm.pendingrequet.imageURL);
-    //                 if (newName === '' || newDescription === '' || imageURL === '') {
-    //                     console.log(' ');
-    //                 }
-    //                 else {
-    //                     $modalInstance.close($scope.profile);
-    //                 }
-    //             };
-    //
-    //             $scope.cancel = function() {
-    //                 $modalInstance.dismiss('cancel');
-    //
-    //                 $scope.newfilename = null;
-    //                 $scope.imageURL = null;
-    //             };
-    //         },
-    //         // size: size,
-    //         resolve: {
-    //             profile: function() {
-    //
-    //             }
-    //         }
-    //     });
-    //
-    //
-    //         //$state.go('profiles');
-    //
-    //     };
-
 
         //this function open a modal that allows user to create an account and go to pay
         $scope.goToPay = function () {
@@ -88,8 +45,6 @@
 
             }).result.then(function () {
                 //Redirecting to client's current payment page
-                // var url = 'https://squareup.com/store/UFLAAW';
-                //$window.open(url);
                 $window.location.href = 'https://squareup.com/store/UFLAAW';
 
             });
@@ -107,11 +62,12 @@
          * Upload images.
          */
         $scope.fillFields = function () {
-            if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
+            if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== 'https://s3.us-east-2.amazonaws.com/aawufimages/') {
+                console.log("Inside fillFields Image URL is: " + vm.pendingrequet.imageURL);
                 $scope.imageURL = vm.pendingrequet.imageURL;
             }
             else {
-                $scope.imageURL = './modules/pendingrequets/client/img/memberImages/default.png';
+                $scope.imageURL = 'modules/pendingrequets/client/img/memberImages/default.png';
             }
         };
         // Create file uploader instance
