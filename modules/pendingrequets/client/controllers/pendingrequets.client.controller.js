@@ -6,9 +6,9 @@
         .module('pendingrequets')
         .controller('PendingrequetsController', PendingrequetsController);
 
-    PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', '$http', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
+    PendingrequetsController.$inject = ['$scope', '$state', '$window', '$modal', '$timeout', '$location', '$http', '$rootScope', 'MembersService', 'Authentication', 'FileUploader', 'pendingrequetResolve'];
 
-    function PendingrequetsController($scope, $state, $window, $modal, $timeout, $location, $http, Authentication, FileUploader, pendingrequet) {
+    function PendingrequetsController($scope, $state, $window, $modal, $timeout, $location, $http, $rootScope, MembersService, Authentication, FileUploader, pendingrequet) {
         var vm = this;
 
         vm.authentication = Authentication;
@@ -17,6 +17,13 @@
         vm.form = {};
         vm.remove = remove;
         vm.save = save;
+
+        //Global variables that can be accessed by any module.
+        $rootScope.name = vm.pendingrequet.name;
+        $rootScope.imageURL = vm.pendingrequet.imageURL;
+        $rootScope.interest = vm.pendingrequet.interest;
+        $rootScope.motivation = vm.pendingrequet.motivation;
+
 
         $scope.clicked = function () {
             if (vm.pendingrequet.selection4) {
@@ -28,44 +35,48 @@
             }
         };
 
-        //this function takes the user to add a profile page.
-        $scope.createProfile = function () {
-            var modalInstance = $modal.open({
-                templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
-                // templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
-                controller: function ($scope, $modalInstance) {
-                    $scope.ok = function() {
-                        var newName = document.getElementById("name").value;
-                        var newDescription = document.getElementById("description").value;
-                        var imageURL2 = document.getElementById("image").value;
-                        var filename2 = document.getElementById("image").value;
-                        if (newName === '' || newDescription === '') {
-                            console.log(' ');
-                        }
-                        else {
-                            $modalInstance.close($scope.profile);
-                        }
-                    };
-
-                    $scope.cancel = function() {
-                        $modalInstance.dismiss('cancel');
-
-                        $scope.newfilename = null;
-                        $scope.newimageURL = null;
-                    };
-                },
-                // size: size,
-                resolve: {
-                    profile: function() {
-
-                    }
-                }
-            });
-
-
-            //$state.go('profiles');
-
-        };
+        //This function takes the user to add a profile page.
+    // $scope.createProfile = function () {
+    //     console.log('Image URL createProf in Pending is: ' + vm.pendingrequet.imageURL);
+    //
+    //     var modalInstance = $modal.open({
+    //         templateUrl: "modules/members/client/views/profiles-add-new-modal.client.view.html",
+    //         controller: function ($scope, $modalInstance) {
+    //
+    //
+    //             $scope.ok = function() {
+    //                 var newName = document.getElementById("name").value;
+    //                 var newDescription = document.getElementById("description").value;
+    //                 var imageURL = document.getElementById("image").value;
+    //
+    //                 console.log('Image URL createProf inside ok is: ' + vm.pendingrequet.imageURL);
+    //                 if (newName === '' || newDescription === '' || imageURL === '') {
+    //                     console.log(' ');
+    //                 }
+    //                 else {
+    //                     $modalInstance.close($scope.profile);
+    //                 }
+    //             };
+    //
+    //             $scope.cancel = function() {
+    //                 $modalInstance.dismiss('cancel');
+    //
+    //                 $scope.newfilename = null;
+    //                 $scope.imageURL = null;
+    //             };
+    //         },
+    //         // size: size,
+    //         resolve: {
+    //             profile: function() {
+    //
+    //             }
+    //         }
+    //     });
+    //
+    //
+    //         //$state.go('profiles');
+    //
+    //     };
 
 
         //this function open a modal that allows user to create an account and go to pay
@@ -96,7 +107,6 @@
          * Upload images.
          */
         $scope.fillFields = function () {
-            console.log(vm.pendingrequet.imageURL);
             if (vm.pendingrequet.imageURL && vm.pendingrequet.imageURL !== './modules/pendingrequets/client/img/memberImages/uploads/') {
                 $scope.imageURL = vm.pendingrequet.imageURL;
             }
@@ -128,7 +138,7 @@
         function getSignedRequest(file) {
             var xhr = new XMLHttpRequest();
             vm.pendingrequet.filename = file.name;
-            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+            xhr.open('GET', '/sign-s3?file-name=${file.name}&file-type=${file.type}');
             xhr.onreadystatechange = () => {
                 if(xhr.readyState === 4) {
                     if(xhr.status === 200) {

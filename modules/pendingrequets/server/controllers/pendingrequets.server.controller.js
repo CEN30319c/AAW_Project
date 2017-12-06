@@ -201,8 +201,8 @@ var nodemailer = require ('nodemailer');
 var transport = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'aawuf2017@gmail.com',
-        pass: '12345qwerT!'
+        user: 'aaw.uf@outlook.com',
+        pass: 'aaw@uf12345!'
     }
 });
 
@@ -211,7 +211,7 @@ exports.sendMail = function (req, res) {
 
     transport.sendMail({
         from: data.contactEmail,
-        to: 'aawuf2017@gmail.com',
+        to: 'aaw.uf@outlook.com',
         subject: data.contactName + ' submitted a new Membership Application',
         text: data.contactMsg
 
