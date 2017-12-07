@@ -95,3 +95,10 @@ Note that the side menu appears extra times due to the screenshot. It is only pr
 ### Join Form Public
 
 ![Join Form Public](screenshots/joinformpublic.png?raw=true "Join Form Public")
+
+### Admin Views
+
+#### Modal
+
+![Modal](screenshots/modal.jpg?raw=true "Modal")
+Each edit button causes a modal similar to this to appear. The text is editable.
