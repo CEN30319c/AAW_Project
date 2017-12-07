@@ -102,3 +102,11 @@ Note that the side menu appears extra times due to the screenshot. It is only pr
 
 ![Modal](screenshots/modal.jpg?raw=true "Modal")
 Each edit button causes a modal similar to this to appear. The text is editable.
+
+#### List News
+
+![List News](screenshots/listnews.png?raw=true "List News")
+
+#### Application List
+
+![Application List](screenshots/listapplications.png?raw=true "Application List")
