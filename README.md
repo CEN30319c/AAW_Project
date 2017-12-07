@@ -59,6 +59,8 @@ The top answer in this Stack Overflow question was used to implement the month f
 
 ### Calendar Page
 
-![Calendar Page](screenshots/calendars.png?raw=true "Calendar Page)
+![Calendar Page](screenshots/calendars.png?raw=true "Calendar Page")
 
+### News Page
 
+![News Page](screenshots/news.png?raw=true "News Page")
