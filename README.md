@@ -110,3 +110,7 @@ Each edit button causes a modal similar to this to appear. The text is editable.
 #### Application List
 
 ![Application List](screenshots/listapplications.png?raw=true "Application List")
+
+#### Application Individual List
+
+![Application Individual List](screenshots/applicationlist.png?raw=true "Application Individual List")
