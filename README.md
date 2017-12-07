@@ -50,3 +50,15 @@ A tool called ICAL was used to parse an .ics file to get the list of upcoming ev
 Heroku's file upload tutorial was used to implement file uploading in the profiles and pendingrequet controllers. https://devcenter.heroku.com/articles/s3-upload-node
 
 The top answer in this Stack Overflow question was used to implement the month filter in the calendar and home client controllers: https://stackoverflow.com/questions/21480359/angularjs-show-name-of-the-month-given-the-month-number
+
+## Project Features
+
+### Home Page
+
+![Home Page](screenshots/home.png?raw=true "Home Page")
+
+### Calendar Page
+
+![Calendar Page](screenshots/calendars.png?raw=true "Calendar Page)
+
+
