@@ -57,6 +57,11 @@ The top answer in this Stack Overflow question was used to implement the month f
 
 ![Home Page](screenshots/home.png?raw=true "Home Page")
 
+### About Page
+
+![Home Page](screenshots/about.png?raw=true "About Page")
+Note that the side menu appears extra times due to the screenshot. It is only present once on the screen.
+
 ### Calendar Page
 
 ![Calendar Page](screenshots/calendars.png?raw=true "Calendar Page")
