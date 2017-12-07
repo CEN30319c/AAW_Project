@@ -78,29 +78,21 @@
 
         function uploadAWS() {
             console.log('uploadAWS function called');
-            /*document.getElementById("file-input").onchange = () => {
-                const files = document.getElementById('file-input').files;
-                const file = files[0];
-                if(file === null){
-                    return alert('No file selected.');
-                }
-                getSignedRequest(file);
-            };*/
-            var files = document.getElementById('file-input').files;
-            var file = files[0];
-            getSignedRequest(file);
+            var files = document.getElementById('file-input').files; //sets the files in file-input from html view equal to usable variable
+            var file = files[0]; //variable to hold first file input
+            getSignedRequest(file); //send file to function that will send to AWS server function
         }
 
         function getSignedRequest(file) {
-            var xhr = new XMLHttpRequest();
+            var xhr = new XMLHttpRequest(); // XMLHttpRequest used to connect to aws
             vm.pendingrequet.filename = file.name;
-            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`); //template literal string passed to back-end
             xhr.onreadystatechange = () => {
                 if(xhr.readyState === 4) {
                     if(xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText);
+                        const response = JSON.parse(xhr.responseText); //if response from back is 200, the response text is set equal to variable
                         //vm.pendingrequet.imageURL = response.url;
-                        uploadFile(file, response.signedRequest, response.url);
+                        uploadFile(file, response.signedRequest, response.url); //return values from server controller is passed to uploadFile
                     }
                     else {
                         //alert('Could not upload file.');
@@ -114,7 +106,7 @@
 
         function uploadFile(file, signedRequest, url) {
             const xhr = new XMLHttpRequest();
-            xhr.open('PUT', signedRequest);
+            xhr.open('PUT', signedRequest); //XMLHttpRequest is made to the signed request that comes from the uploadImage server function
             xhr.onreadystatechange = () => {
                 if(xhr.readyState === 4) {
                     if(xhr.status === 200) {

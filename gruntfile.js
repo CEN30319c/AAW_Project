@@ -297,7 +297,7 @@ module.exports = function (grunt) {
   });
 
   // Lint CSS and JavaScript files.
-  grunt.registerTask('lint', ['sass', 'less', 'jshint', 'csslint']); //REMOVED eslint
+  grunt.registerTask('lint', ['sass', 'less', 'jshint', 'csslint']); //REMOVED eslint from task to prevent grunt errors due to use of ES6 JS
 
   // Lint project files and minify them into two production files.
   grunt.registerTask('build', ['env:dev', 'lint', 'ngAnnotate', 'uglify', 'cssmin']);
