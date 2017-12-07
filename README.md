@@ -62,6 +62,14 @@ The top answer in this Stack Overflow question was used to implement the month f
 ![Home Page](screenshots/about.png?raw=true "About Page")
 Note that the side menu appears extra times due to the screenshot. It is only present once on the screen.
 
+### Madelyn Page
+
+![Madelyn Page](screenshots/madelyn.png?raw=true "Madelyn Page")
+
+### Distinction Page
+
+![Distinction Page](screenshots/distinction.png?raw=true "Distinction Page")
+
 ### Calendar Page
 
 ![Calendar Page](screenshots/calendars.png?raw=true "Calendar Page")
@@ -70,6 +78,9 @@ Note that the side menu appears extra times due to the screenshot. It is only pr
 
 ![News Page](screenshots/news.png?raw=true "News Page")
 
+### Profiles Page
+
+![Profiles Page](screenshots/profiles.png?raw=true "Profiles Page")
 
 ### Join Page
 
