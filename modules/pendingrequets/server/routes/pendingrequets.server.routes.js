@@ -11,8 +11,8 @@ module.exports = function(app) {
   app.route('/api/pendingrequets/picture').all()
       .post(pendingrequets.uploadImageDB);
 
-  app.route('/sign-s3').all()
-    .get(pendingrequets.uploadImage);
+  app.route('/sign-s3').all() //middleware that identifies route starting with "/sign-s3"
+    .get(pendingrequets.uploadImage); //get request goes through uploadImage function in server controller
 
   // Pendingrequets Routes
   app.route('/api/pendingrequets').all(pendingrequetsPolicy.isAllowed)

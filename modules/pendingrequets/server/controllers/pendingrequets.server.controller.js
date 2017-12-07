@@ -19,9 +19,9 @@ var path = require('path'),
  */
 exports.uploadImage = function (req, res) {
     aws.config.region = 'us-east-2';
-    var S3_BUCKET = process.env.S3_BUCKET;
+    var S3_BUCKET = process.env.S3_BUCKET; //bucketname
 
-    var s3 = new aws.S3();
+    var s3 = new aws.S3(); //aws-sdk object
 
     var fileName = req.query['file-name'];
     var fileType = req.query['file-type'];
@@ -35,14 +35,14 @@ exports.uploadImage = function (req, res) {
         ContentType: fileType
     };
 
-    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    s3.getSignedUrl('putObject', s3Params, (err, data) => { //aws-sdk function that returns a signed request that can be used to access the AWS bucket
         if(err) {
             console.log(err);
             return res.end();
         }
         const returnData = {
-            signedRequest: data,
-            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+            signedRequest: data, //signed request to access AWS S3
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}` //url of file
         };
         res.write(JSON.stringify(returnData));
         res.end();
