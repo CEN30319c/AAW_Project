@@ -43,6 +43,10 @@ To run the website on localhost, first clone the repository on your computer and
 		
 		
 		
--Outside contributions
+## Outside contributions
 
 A tool called ICAL was used to parse an .ics file to get the list of upcoming events on the calendar page.  The repo for ICAL is here: https://github.com/mozilla-comm/ical.js/
+
+Heroku's file upload tutorial was used to implement file uploading in the profiles and pendingrequet controllers. https://devcenter.heroku.com/articles/s3-upload-node
+
+The top answer in this Stack Overflow question was used to implement the month filter in the calendar and home client controllers: https://stackoverflow.com/questions/21480359/angularjs-show-name-of-the-month-given-the-month-number
