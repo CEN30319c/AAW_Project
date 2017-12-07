@@ -69,3 +69,18 @@ Note that the side menu appears extra times due to the screenshot. It is only pr
 ### News Page
 
 ![News Page](screenshots/news.png?raw=true "News Page")
+
+
+### Join Page
+
+![Join Page](screenshots/join.png?raw=true "Join Page")
+
+
+### Join Form
+
+![Join Form](screenshots/joinform.png?raw=true "Join Form")
+
+
+### Join Form Public
+
+![Join Form Public](screenshots/joinformpublic.png?raw=true "Join Form Public")
